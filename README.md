@@ -35,6 +35,19 @@ Edge contains `from` and `to` with node `id`s
 }
 ```
 
+## Why?
+
+[JSONL](https://jsonlines.org/) is a perfect fit for storing graphs
+
+- can append new endges by concatenating files
+- can append new nodes by concatenating files
+- schemaless
+- nodes can have any data
+- edges can have any data
+- any subset of lines is a valid graph
+
+## Examples
+
 If you pass color scheme, then values will be colored.
 ```bash
 $ cat '
