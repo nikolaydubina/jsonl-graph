@@ -3,6 +3,7 @@
 > Convenient to use with `jq`
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/nikolaydubina/jsonl-graph.svg)](https://pkg.go.dev/github.com/nikolaydubina/jsonl-graph)
+[![Go Report Card](https://goreportcard.com/badge/github.com/nikolaydubina/jsonl-graph)](https://goreportcard.com/report/github.com/nikolaydubina/jsonl-graph)
 
 ```bash
 $ go install github.com/nikolaydubina/jsonl-graph@latest
