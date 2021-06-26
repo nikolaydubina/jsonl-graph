@@ -48,7 +48,7 @@ Edge contains `from` and `to` with node `id`s
 
 ## Examples
 
-If you pass color scheme, then values will be colored.
+To illustrate, I am using data collected by [import-graph](github.com/nikolaydubina/import-graph). If you pass color scheme, then values will be colored.
 ```bash
 $ cat '
 {"id":"github.com/gin-gonic/gin","can_get_git":true, ... }
