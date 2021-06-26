@@ -72,7 +72,7 @@ func NewGraphFromJSONLReader(r io.Reader) (Graph, error) {
 
 		var nodeEdge orNodeEdge
 		if err := decoder.Decode(&nodeEdge); err != nil {
-			return g, fmt.Errorf("can not decode to either node or edge: %w", err)
+			continue
 		}
 
 		node, edge, err := nodeEdge.cast()
@@ -85,8 +85,6 @@ func NewGraphFromJSONLReader(r io.Reader) (Graph, error) {
 			g.Nodes = append(g.Nodes, *node)
 		case edge != nil:
 			g.Edges = append(g.Edges, *edge)
-		default:
-			return g, errors.New("both edge and node are nil")
 		}
 	}
 
