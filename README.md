@@ -58,3 +58,23 @@ $ cat '
 ' | jsonl-graph | dot -Tsvg > basic.svg
 ```
 ![gin-nocolor](./docs/gin_nocolor.svg)
+
+If nodes have less fields, then adjusting graph
+
+```bash
+$ cat '
+{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"bufio"}
+{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"bytes"}
+{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"encoding/json"}
+{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"errors"}
+{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"fmt"}
+...
+' | jsonl-graph | dot -Tsvg > small.svg
+```
+
+![small](./docs/small.svg)
+
+## TODO
+
+- [ ] adjust node spacing when graph is large
+- [ ] group subgraphs

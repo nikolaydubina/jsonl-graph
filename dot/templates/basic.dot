@@ -1,11 +1,10 @@
 digraph G {
-	concentrate=True;
-	rankdir=TB;
-	node [shape=record];
+	rankdir={{$.Orientation}}
+	node [shape=record]
 	
-	{{range $i, $o := $.Graph.Nodes}}"{{index $o "id" }}" [label="{{ nodeLabelBasic $o }}"];
+	{{range $i, $o := $.Graph.Nodes}}"{{index $o "id" }}" [label="{{ nodeLabelBasic $o }}"]
 	{{end}}
 
-	{{range $i, $o := $.Graph.Edges}}"{{index $o "from" }}" -> "{{index $o "to" }}";
+	{{range $i, $o := $.Graph.Edges}}"{{index $o "from" }}" -> "{{index $o "to" }}"
 	{{end}}
 }

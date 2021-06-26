@@ -1,6 +1,5 @@
-digraph G
-{
-    rankdir = TB;
+digraph G {
+	rankdir=TB
 
 	
 	"github.com/gin-gonic/gin"
@@ -2685,40 +2684,40 @@ digraph G
 	]
 	
 	
-	"github.com/gin-gonic/gin" -> "github.com/gin-contrib/sse";
-	"github.com/gin-gonic/gin" -> "github.com/go-playground/validator/v10";
-	"github.com/gin-gonic/gin" -> "github.com/golang/protobuf";
-	"github.com/gin-gonic/gin" -> "github.com/json-iterator/go";
-	"github.com/gin-gonic/gin" -> "github.com/mattn/go-isatty";
-	"github.com/gin-gonic/gin" -> "github.com/stretchr/testify";
-	"github.com/gin-gonic/gin" -> "github.com/ugorji/go/codec";
-	"github.com/gin-gonic/gin" -> "gopkg.in/yaml.v2";
-	"github.com/gin-contrib/sse" -> "github.com/stretchr/testify";
-	"github.com/go-playground/validator/v10" -> "github.com/go-playground/assert/v2";
-	"github.com/go-playground/validator/v10" -> "github.com/go-playground/locales";
-	"github.com/go-playground/validator/v10" -> "github.com/go-playground/universal-translator";
-	"github.com/go-playground/validator/v10" -> "github.com/leodido/go-urn";
-	"github.com/go-playground/validator/v10" -> "golang.org/x/crypto";
-	"github.com/json-iterator/go" -> "github.com/davecgh/go-spew";
-	"github.com/json-iterator/go" -> "github.com/google/gofuzz";
-	"github.com/json-iterator/go" -> "github.com/modern-go/concurrent";
-	"github.com/json-iterator/go" -> "github.com/modern-go/reflect2";
-	"github.com/json-iterator/go" -> "github.com/stretchr/testify";
-	"github.com/mattn/go-isatty" -> "golang.org/x/sys";
-	"github.com/stretchr/testify" -> "github.com/davecgh/go-spew";
-	"github.com/stretchr/testify" -> "github.com/pmezard/go-difflib";
-	"github.com/stretchr/testify" -> "github.com/stretchr/objx";
-	"github.com/stretchr/testify" -> "gopkg.in/yaml.v2";
-	"github.com/ugorji/go/codec" -> "github.com/ugorji/go";
-	"gopkg.in/yaml.v2" -> "gopkg.in/check.v1";
-	"github.com/go-playground/locales" -> "golang.org/x/text";
-	"github.com/go-playground/universal-translator" -> "github.com/go-playground/locales";
-	"github.com/leodido/go-urn" -> "github.com/stretchr/testify";
-	"golang.org/x/crypto" -> "golang.org/x/net";
-	"golang.org/x/crypto" -> "golang.org/x/sys";
-	"github.com/ugorji/go" -> "github.com/ugorji/go/codec";
-	"golang.org/x/text" -> "golang.org/x/tools";
-	"golang.org/x/net" -> "golang.org/x/crypto";
-	"golang.org/x/net" -> "golang.org/x/text";
+	"github.com/gin-gonic/gin" -> "github.com/gin-contrib/sse"
+	"github.com/gin-gonic/gin" -> "github.com/go-playground/validator/v10"
+	"github.com/gin-gonic/gin" -> "github.com/golang/protobuf"
+	"github.com/gin-gonic/gin" -> "github.com/json-iterator/go"
+	"github.com/gin-gonic/gin" -> "github.com/mattn/go-isatty"
+	"github.com/gin-gonic/gin" -> "github.com/stretchr/testify"
+	"github.com/gin-gonic/gin" -> "github.com/ugorji/go/codec"
+	"github.com/gin-gonic/gin" -> "gopkg.in/yaml.v2"
+	"github.com/gin-contrib/sse" -> "github.com/stretchr/testify"
+	"github.com/go-playground/validator/v10" -> "github.com/go-playground/assert/v2"
+	"github.com/go-playground/validator/v10" -> "github.com/go-playground/locales"
+	"github.com/go-playground/validator/v10" -> "github.com/go-playground/universal-translator"
+	"github.com/go-playground/validator/v10" -> "github.com/leodido/go-urn"
+	"github.com/go-playground/validator/v10" -> "golang.org/x/crypto"
+	"github.com/json-iterator/go" -> "github.com/davecgh/go-spew"
+	"github.com/json-iterator/go" -> "github.com/google/gofuzz"
+	"github.com/json-iterator/go" -> "github.com/modern-go/concurrent"
+	"github.com/json-iterator/go" -> "github.com/modern-go/reflect2"
+	"github.com/json-iterator/go" -> "github.com/stretchr/testify"
+	"github.com/mattn/go-isatty" -> "golang.org/x/sys"
+	"github.com/stretchr/testify" -> "github.com/davecgh/go-spew"
+	"github.com/stretchr/testify" -> "github.com/pmezard/go-difflib"
+	"github.com/stretchr/testify" -> "github.com/stretchr/objx"
+	"github.com/stretchr/testify" -> "gopkg.in/yaml.v2"
+	"github.com/ugorji/go/codec" -> "github.com/ugorji/go"
+	"gopkg.in/yaml.v2" -> "gopkg.in/check.v1"
+	"github.com/go-playground/locales" -> "golang.org/x/text"
+	"github.com/go-playground/universal-translator" -> "github.com/go-playground/locales"
+	"github.com/leodido/go-urn" -> "github.com/stretchr/testify"
+	"golang.org/x/crypto" -> "golang.org/x/net"
+	"golang.org/x/crypto" -> "golang.org/x/sys"
+	"github.com/ugorji/go" -> "github.com/ugorji/go/codec"
+	"golang.org/x/text" -> "golang.org/x/tools"
+	"golang.org/x/net" -> "golang.org/x/crypto"
+	"golang.org/x/net" -> "golang.org/x/text"
 	
 }

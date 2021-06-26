@@ -30,13 +30,9 @@ func NewBasicRenderer() BasicRenderer {
 	}
 }
 
-// TemplateParams is data passed to template
-type TemplateParams struct {
-	Graph graph.Graph
-}
-
 // Render writes graph in  format to writer
 func (g BasicRenderer) Render(params TemplateParams, w io.Writer) error {
+	params.UpdateOrientation()
 	return g.Template.Execute(w, params)
 }
 

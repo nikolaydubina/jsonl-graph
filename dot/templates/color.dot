@@ -1,6 +1,5 @@
-digraph G
-{
-    rankdir = TB;
+digraph G {
+	rankdir={{$.Orientation}}
 
 	{{range $i, $o := $.Graph.Nodes}}
 	"{{index $o "id" }}"
@@ -10,6 +9,6 @@ digraph G
 	]
 	{{end}}
 	
-	{{range $i, $o := $.Graph.Edges}}"{{index $o "from" }}" -> "{{index $o "to" }}";
+	{{range $i, $o := $.Graph.Edges}}"{{index $o "from" }}" -> "{{index $o "to" }}"
 	{{end}}
 }

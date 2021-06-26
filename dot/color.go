@@ -124,6 +124,7 @@ func NewColorRenderer(conf ColorConfig) ColorRenderer {
 
 // Render writes graph in Graphviz format to writer
 func (g ColorRenderer) Render(params TemplateParams, w io.Writer) error {
+	params.UpdateOrientation()
 	return g.Template.Execute(w, params)
 }
 
