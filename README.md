@@ -8,7 +8,7 @@
 
 ```bash
 $ go install github.com/nikolaydubina/jsonl-graph@latest
-# and get https://graphviz.org/download/
+# get https://graphviz.org/download/
 ```
 
 Graph is represented as JSONL of nodes and edges.
