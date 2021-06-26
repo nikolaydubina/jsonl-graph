@@ -5,7 +5,7 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/nikolaydubina/jsonl-graph.svg)](https://pkg.go.dev/github.com/nikolaydubina/jsonl-graph)
 
 ```bash
-$ go install github.com/nikolaydubina/jsonl-graph
+$ go install github.com/nikolaydubina/jsonl-graph@latest
 # and get https://graphviz.org/download/
 ```
 
