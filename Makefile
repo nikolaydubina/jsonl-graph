@@ -13,4 +13,7 @@ docs: clean build
 	cat docs/small.jsonl | ./jsonl-graph > docs/small.dot
 	cat docs/small.dot | dot -Tsvg > docs/small.svg
 
+test:
+	go test -covermode=atomic ./...
+
 .PHONY: docs clean build
