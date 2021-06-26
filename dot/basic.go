@@ -1,6 +1,7 @@
 package dot
 
 import (
+	// embed
 	_ "embed"
 	"encoding/json"
 	"fmt"
