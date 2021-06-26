@@ -14,6 +14,6 @@ docs: clean build
 	cat docs/small.dot | dot -Tsvg > docs/small.svg
 
 test:
-	go test -covermode=atomic ./...
+	go test -race -coverprofile=coverage.out -covermode=atomic ./...
 
 .PHONY: docs clean build
