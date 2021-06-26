@@ -10,7 +10,7 @@ $ go install github.com/nikolaydubina/jsonl-graph
 Graph is represented as JSONL of nodes and edges.
 
 Node contains `id` with string and fields.
-```json
+```
 {
     "id": "github.com/gin-gonic/gin",
     "can_get_git": true,
