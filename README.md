@@ -91,3 +91,4 @@ $ cat '
 
 - [ ] adjust node spacing when graph is large
 - [ ] group subgraphs
+- [ ] interactive web interface: collapse; highlight; arragement aglrorith; edge shape algorithm;
