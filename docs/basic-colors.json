@@ -1,0 +1,140 @@
+{
+    "can_get_git": {
+        "ColorMapping": {
+            "false": {"R": 255, "G": 1, "B": 1},
+            "true": {"R": 1, "G": 255, "B": 1}
+        }
+    },
+    "can_get_github": {
+        "ColorMapping": {
+            "false": {"R": 255, "G": 1, "B": 1},
+            "true": {"R": 1, "G": 255, "B": 1}
+        }
+    },
+    "can_run_tests": {
+        "ColorMapping": {
+            "false": {"R": 255, "G": 1, "B": 1},
+            "true": {"R": 1, "G": 255, "B": 1}
+        }
+    },
+    "files_has_benchmarks": {
+        "ColorMapping": {
+            "true": {"R": 1, "G": 255, "B": 1}
+        }
+    },
+    "files_has_tests":  {
+        "ColorMapping": {
+            "false": {"R": 255, "G": 1, "B": 1},
+            "true": {"R": 1, "G": 255, "B": 1}
+        }
+    },
+    "gotest_has_tests":  {
+        "ColorMapping": {
+            "false": {"R": 255, "G": 1, "B": 1},
+            "true": {"R": 1, "G": 255, "B": 1}
+        }
+    },
+    "gotest_all_tests_passed":  {
+        "ColorMapping": {
+            "false": {"R": 255, "G": 1, "B": 1},
+            "true": {"R": 1, "G": 255, "B": 1}
+        }
+    },
+    "goreportcard_grade": {
+        "ColorMapping": {
+            "A+": {"R": 1, "G": 255, "B": 1},
+            "A": {"R": 1, "G": 255, "B": 1},
+            "B": {"R": 1, "G": 255, "B": 1},
+            "C": {"R": 255, "G": 1, "B": 1},
+            "D": {"R": 255, "G": 1, "B": 1},
+            "E": {"R": 255, "G": 1, "B": 1},
+            "F": {"R": 255, "G": 1, "B": 1}
+        } 
+    },
+    "readme_deprecated": {
+        "ColorMapping": {
+            "true": {"R": 255, "G": 1, "B": 1}
+        }
+    },
+    "awesomelists_is_mentioned": {
+        "ColorMapping": {
+            "true": {"R": 1, "G": 255, "B": 1}
+        }
+    },
+    "gotest_num_packages_with_tests": {
+        "ColorMapping": {
+            "0": {"R": 255, "G": 1, "B": 1}
+        }
+    },
+    "gotest_num_packages_tests_passed": {
+        "ColorMapping": {
+            "0": {"R": 255, "G": 1, "B": 1}
+        }
+    },
+    "codecov_coverage": {
+        "ColorScale": {
+            "Colors": [
+                {"R": 255, "G": 1, "B": 1},
+                {"R": 1, "G": 255, "B": 1}
+            ],
+            "Points": [
+                70
+            ]
+        }
+    },
+    "git_last_commit_days_since":{
+        "ColorScale": {
+            "Colors": [
+                {"R": 1, "G": 255, "B": 1},
+                {"R": 255, "G": 1, "B": 1}
+            ],
+            "Points": [
+                360
+            ]
+        }
+    },
+    "git_num_contributors": {
+        "ColorScale": {
+            "Colors": [
+                {"R": 255, "G": 255, "B": 255},
+                {"R": 1, "G": 255, "B": 1}
+            ],
+            "Points": [
+                50
+            ]
+        }
+    },
+    "goreportcard_average": {
+        "ColorScale": {
+            "Colors": [
+                {"R": 255, "G": 1, "B": 1},
+                {"R": 1, "G": 255, "B": 1}
+            ],
+            "Points": [
+                0.7
+            ]
+        }
+    },
+    "gotest_package_coverage_avg": {
+        "ColorScale": {
+            "Colors": [
+                {"R": 255, "G": 1, "B": 1},
+                {"R": 1, "G": 255, "B": 1}
+            ],
+            "Points": [
+                70
+            ]
+        }
+    },
+    "github_repo_stars":{
+        "ColorScale": {
+            "Colors": [
+                {"R": 255, "G": 1, "B": 1},
+                {"R": 1, "G": 255, "B": 1}
+            ],
+            "Points": [
+                50
+            ]
+        }
+    }
+}

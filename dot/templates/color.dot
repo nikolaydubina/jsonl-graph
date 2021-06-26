@@ -1,0 +1,15 @@
+digraph G
+{
+    rankdir = TB;
+
+	{{range $i, $o := $.Graph.Nodes}}
+	"{{index $o "id" }}"
+	[
+        shape = none
+        label = {{ nodeLabelTableColored $o }}
+	]
+	{{end}}
+	
+	{{range $i, $o := $.Graph.Edges}}"{{index $o "from" }}" -> "{{index $o "to" }}";
+	{{end}}
+}
