@@ -9,7 +9,7 @@ $ go install github.com/nikolaydubina/jsonl-graph
 
 Graph is represented as JSONL of nodes and edges.
 
-Node contains `id` with string and fields.
+Node contains `id` and any fields
 ```
 {
     "id": "github.com/gin-gonic/gin",
@@ -25,7 +25,7 @@ Node contains `id` with string and fields.
 }
 ```
 
-Edge contains `from` and `to` with node `id`s.
+Edge contains `from` and `to` with node `id`s
 ```json
 {
     "from": "github.com/gin-gonic/gin",
@@ -41,7 +41,6 @@ $ cat '
 ...
 {"from":"github.com/gin-gonic/gin","to":"golang.org/x/tools"}
 {"from":"github.com/gin-gonic/gin","to":"github.com/go-playground/validator/v10"}
-...
 ' | jsonl-graph -color-scheme=file://$PWD/docs/colors.json | dot -Tsvg > colored.svg
 ```
 ![gin-color](./docs/gin_color.svg)
@@ -54,7 +53,6 @@ $ cat '
 ...
 {"from":"github.com/gin-gonic/gin","to":"golang.org/x/tools"}
 {"from":"github.com/gin-gonic/gin","to":"github.com/go-playground/validator/v10"}
-...
 ' | jsonl-graph | dot -Tsvg > basic.svg
 ```
 ![gin-nocolor](./docs/gin_nocolor.svg)
