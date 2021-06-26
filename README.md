@@ -39,11 +39,9 @@ Edge contains `from` and `to` with node `id`s
 
 [JSONL](https://jsonlines.org/) is a perfect fit for storing graphs
 
-- can append new endges by concatenating files
-- can append new nodes by concatenating files
+- can append new nodes and endges by concatenating files
+- nodes and edges can have any data
 - schemaless
-- nodes can have any data
-- edges can have any data
 - any subset of lines is a valid graph
 
 ## Examples
