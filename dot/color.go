@@ -50,14 +50,17 @@ func NewColorConfigFromFileURL(path string) (ColorConfig, error) {
 	if err != nil {
 		return nil, fmt.Errorf("can not load colorscheme file at path %s: %w", path, err)
 	}
-
 	colorschemeBytes, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return nil, fmt.Errorf("can not read file: %w", err)
 	}
+	return NewColorConfig(colorschemeBytes)
+}
 
+// NewColorConfig loads from string
+func NewColorConfig(s []byte) (ColorConfig, error) {
 	var conf ColorConfig
-	if err := json.Unmarshal(colorschemeBytes, &conf); err != nil {
+	if err := json.Unmarshal(s, &conf); err != nil {
 		return nil, fmt.Errorf("can not unmarshal: %w", err)
 	}
 	return conf, nil
