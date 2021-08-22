@@ -15,23 +15,19 @@ $ go install github.com/nikolaydubina/jsonl-graph@latest
 
 Graph is represented as JSONL of nodes and edges.
 
-Node contains `id` and any fields
+Node has `id` and any fields:
 ```
 {
     "id": "github.com/gin-gonic/gin",
-    "can_get_git": true,
-    "can_run_tests": true,
     "can_get_github": true,
     "github_url": "https://github.com/gin-gonic/gin",
-    "git_url": "https://github.com/gin-gonic/gin",
     "git_last_commit": "2021-04-21",
-    "git_last_commit_days_since": 4,
     "git_num_contributors": 321,
     ...
 }
 ```
 
-Edge contains `from` and `to` with node `id`s
+Edge has `from` and `to` of node `id`:
 ```json
 {
     "from": "github.com/gin-gonic/gin",
@@ -39,16 +35,17 @@ Edge contains `from` and `to` with node `id`s
 }
 ```
 
-## Why?
-
-[JSONL](https://jsonlines.org/) is a perfect fit for storing graphs
-
-- can append new nodes and endges by concatenating files
+Why [JSONL](https://jsonlines.org/)? It is a perfect fit for storing graphs:
+- can append new nodes and edges by concatenating files
 - nodes and edges can have any data
-- schemaless
+- schema-less
 - any subset of lines is a valid graph
 
 ## Examples
+
+Website TODO: link here
+
+TODO: screenshot here
 
 To illustrate, I am using data from [import-graph](github.com/nikolaydubina/import-graph). If you pass color scheme, then values will be colored.
 ```bash
@@ -88,3 +85,8 @@ $ cat '
 ```
 
 ![small](./docs/small.svg)
+
+## References
+
+- Layered Graph, https://en.wikipedia.org/wiki/Layered_graph_drawing
+- Kozo Sugiyama, Magnetic Spring graph drawing

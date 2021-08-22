@@ -52,7 +52,7 @@ func RenderValue(v interface{}) string {
 
 // RenderBasicLabel makes  string for a single node
 // This is pretty complex to write in Go template language due to map structure.
-func RenderBasicLabel(n graph.Node) string {
+func RenderBasicLabel(n graph.NodeData) string {
 	rows := []string{}
 	for k, v := range n {
 		if k == "id" {

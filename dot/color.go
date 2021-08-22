@@ -139,7 +139,7 @@ func Color(c color.Color) string {
 }
 
 // RenderLabelTableColored makes graphviz string for a single node with colored table
-func (c ColorRenderer) RenderLabelTableColored(n graph.Node) string {
+func (c ColorRenderer) RenderLabelTableColored(n graph.NodeData) string {
 	rows := []string{}
 	for k, v := range n {
 		if k == "id" || strings.HasSuffix(k, "_url") {
