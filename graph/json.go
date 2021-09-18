@@ -109,6 +109,7 @@ func (g Graph) AddEdge(edge EdgeData) {
 
 // ReplaceFrom will move data from other graph while preserving
 // IDs from nodes that match "id", "from", "to" keys.
+// Nodes and Edges not found in other graph will be removed.
 func (g Graph) ReplaceFrom(other Graph) {
 	for _, node := range other.Nodes {
 		g.AddNode(node)
@@ -116,6 +117,30 @@ func (g Graph) ReplaceFrom(other Graph) {
 	for _, edges := range other.Edges {
 		for _, edge := range edges {
 			g.AddEdge(edge)
+		}
+	}
+
+	// delete nodes not in other
+	for id, node := range g.Nodes {
+		// not found
+		if other.IDStorage.Get(node.ID()) == 0 {
+			delete(g.Nodes, id)
+		}
+	}
+
+	// delete edges not in other
+	for fromID, edges := range g.Edges {
+		otherFromID := other.IDStorage.Get(g.Nodes[fromID].ID())
+		if otherFromID == 0 || len(other.Edges[otherFromID]) == 0 {
+			delete(g.Edges, fromID)
+			continue
+		}
+
+		for toID := range edges {
+			otherToID := other.IDStorage.Get(g.Nodes[toID].ID())
+			if _, ok := other.Edges[otherFromID][otherToID]; !ok {
+				delete(g.Edges[fromID], toID)
+			}
 		}
 	}
 }
