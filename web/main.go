@@ -33,7 +33,6 @@ func makeEmptyRenderGraph(g graph.Graph) render.Graph {
 // TODO: edge location algorithm
 // TODO: set widths of nodes
 // TODO: draw contents of nodes
-// TODO: draw node id/title
 // TODO: make small / make large nodes functions and callbacks
 // TODO: coloring of nodes contents
 // TODO: UI for coloring input
@@ -76,16 +75,27 @@ func (r *Renderer) Render() {
 
 	gr := makeEmptyRenderGraph(g)
 
-	render.MakeBasicGridLayout(gr)
+	layout := render.BasicGridLayout{
+		W:         100,
+		H:         16,
+		RowLength: 10,
+		Margin:    5,
+	}
+	layout.UpdateGraphLayout(gr)
 
-	js.Global().Get("document").Call("getElementById", "output-container").Set("innerHTML", render.Render(gr))
+	js.Global().
+		Get("document").
+		Call("getElementById", "output-container").
+		Set("innerHTML", gr.Render())
 
-	// TODO: consider google/perf like zooming
-	js.Global().Get("svgPanZoom").Invoke("#graph", map[string]interface{}{
-		"minZoom":             0.1,
-		"maxZoom":             10,
-		"dblClickZoomEnabled": false,
-	})
+	// TODO: avoid large JS code for zooming. use google/perf like zooming
+	js.Global().
+		Get("svgPanZoom").
+		Invoke("#graph", map[string]interface{}{
+			"minZoom":             0.1,
+			"maxZoom":             10,
+			"dblClickZoomEnabled": false,
+		})
 }
 
 func main() {
