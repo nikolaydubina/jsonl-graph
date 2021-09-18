@@ -1,6 +1,8 @@
 package render
 
-import "image"
+import (
+	"image"
+)
 
 // BasicGridLayout arranges nodes in rows and columns.
 // Useful for debugging.
@@ -12,6 +14,7 @@ type BasicGridLayout struct {
 }
 
 func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
+	// update nodes positions
 	i := 0
 	for id, node := range g.Nodes {
 		g.Nodes[id] = Node{
@@ -23,7 +26,22 @@ func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
 			},
 			Title: node.Title,
 		}
-
 		i++
+	}
+
+	//  update edges
+	for idFrom, toEdges := range g.Edges {
+		for idTo := range toEdges {
+			g.Edges[idFrom][idTo] = DirectEdge(g.Nodes[idFrom], g.Nodes[idTo])
+		}
+	}
+}
+
+func DirectEdge(from, to Node) Edge {
+	return Edge{
+		Points: []image.Point{
+			from.LeftBottom.Add(image.Point{X: from.Width / 2, Y: from.Height / 2}),
+			to.LeftBottom.Add(image.Point{X: to.Width / 2, Y: to.Height / 2}),
+		},
 	}
 }

@@ -44,11 +44,11 @@ type Edge struct {
 }
 
 func (e Edge) Render() string {
-	points := []string{}
+	var points []string
 	for _, point := range e.Points {
 		points = append(points, fmt.Sprintf("%d,%d", point.X, point.Y))
 	}
-	return fmt.Sprintf(`<polyline style="fill:none;stroke-width:1" points="%s"></polyline>`, strings.Join(points, " "))
+	return fmt.Sprintf(`<polyline style="fill:none;stroke-width:1;stroke: black;" points="%s"></polyline>`, strings.Join(points, " "))
 }
 
 // Graph is rendered graph.
@@ -73,14 +73,15 @@ func (g Graph) Render() string {
 
 	body := []string{}
 
-	for _, node := range g.Nodes {
-		body = append(body, node.Render())
-	}
-
 	for _, tos := range g.Edges {
 		for _, edge := range tos {
 			body = append(body, edge.Render())
 		}
+	}
+
+	// draw nodes always on top of edges
+	for _, node := range g.Nodes {
+		body = append(body, node.Render())
 	}
 
 	return svg(defs, body, image.Point{X: 0, Y: 0}, image.Point{X: 350, Y: 100})
