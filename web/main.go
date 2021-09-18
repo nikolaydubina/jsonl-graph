@@ -60,16 +60,16 @@ func (r Renderer) UpdateRenderGraphWithDataGraph() {
 	}
 
 	// update edges with new data, preserve rest. add new edges.
-	for fromID, dedges := range r.graphData.Edges {
+	for fromID, edges := range r.graphData.Edges {
 		if _, ok := r.graphRender.Edges[fromID]; !ok {
-			r.graphRender.Edges[fromID] = make(map[uint64]render.Edge, len(dedges))
+			r.graphRender.Edges[fromID] = make(map[uint64]render.Edge, len(edges))
 		}
 
 		// check all new data edges
-		for dToID := range r.graphData.Edges {
+		for toID := range edges {
 			// new edge, creating new edge
-			if _, ok := r.graphRender.Edges[fromID]; !ok {
-				r.graphRender.Edges[fromID][dToID] = render.Edge{}
+			if _, ok := r.graphRender.Edges[fromID][toID]; !ok {
+				r.graphRender.Edges[fromID][toID] = render.Edge{}
 			}
 			// existing edge. skipping, no fields to update.
 		}
