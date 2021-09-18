@@ -1,4 +1,4 @@
-# JSONL graph tools
+# JSONL Graph Tools
 
 > Convenient to use with `jq`
 
@@ -10,8 +10,10 @@
 
 ```bash
 $ go install github.com/nikolaydubina/jsonl-graph@latest
-# get https://graphviz.org/download/
 ```
+
+Self contained graph renderer.
+This can be an alternative to Graphviz, however it supports it as an output target too.
 
 Graph is represented as JSONL of nodes and edges.
 
@@ -47,7 +49,9 @@ Website TODO: link here
 
 TODO: screenshot here
 
-To illustrate, I am using data from [import-graph](github.com/nikolaydubina/import-graph). If you pass color scheme, then values will be colored.
+To illustrate, I am using data from [import-graph](github.com/nikolaydubina/import-graph). 
+
+[Graphviz](https://graphviz.org/download/) renderer also supported. If you pass color scheme, then values will be colored.
 ```bash
 $ cat '
 {"id":"github.com/gin-gonic/gin","can_get_git":true, ... }
@@ -86,7 +90,24 @@ $ cat '
 
 ![small](./docs/small.svg)
 
+## TODO
+
+- [ ] node location algorithm
+- [ ] edge location algorithm
+- [ ] set widths of nodes
+- [ ] draw contents of nodes
+- [ ] collapse and un-collapse nodes by click
+- [ ] subway map style edges ports in nodes and layout
+- [ ] flexible path edges
+- [ ] coloring of nodes contents
+- [ ] UI input
+- [ ] UI for coloring input
+- [ ] update graph without re-rendering whole
+- [ ] JSON input shorten or un-shorten + prettify each
+
 ## References
 
-- Layered Graph, https://en.wikipedia.org/wiki/Layered_graph_drawing
-- Kozo Sugiyama, Magnetic Spring graph drawing
+- [Layered Graph](https://en.wikipedia.org/wiki/Layered_graph_drawing)
+- Magnetic Spring graph drawing, Kozo Sugiyama
+- [google/pprof svg](https://github.com/google/pprof/blob/master/internal/driver/svg.go)
+- [google/pprof svgpan](https://github.com/google/pprof/blob/master/third_party/svgpan/svgpan.go)

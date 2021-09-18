@@ -77,8 +77,11 @@ func NewGraph() Graph {
 
 // AddNode to graph and overwrite if exists.
 func (g Graph) AddNode(node NodeData) {
-	nodeID := g.IDStorage.Add(node.ID())
-	g.Nodes[nodeID] = node
+	id := g.IDStorage.Get(node.ID())
+	if id == 0 {
+		id = g.IDStorage.Add(node.ID())
+	}
+	g.Nodes[id] = node
 }
 
 // AddEdge to graph and overwrite if exists.
@@ -102,6 +105,19 @@ func (g Graph) AddEdge(edge EdgeData) {
 	}
 
 	g.Edges[fromID][toID] = edge
+}
+
+// ReplaceFrom will move data from other graph while preserving
+// IDs from nodes that match "id", "from", "to" keys.
+func (g Graph) ReplaceFrom(other Graph) {
+	for _, node := range other.Nodes {
+		g.AddNode(node)
+	}
+	for _, edges := range other.Edges {
+		for _, edge := range edges {
+			g.AddEdge(edge)
+		}
+	}
 }
 
 // NewGraphFromJSONLReader parses JSONL from reader into a graph.

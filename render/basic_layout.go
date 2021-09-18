@@ -2,6 +2,7 @@ package render
 
 import (
 	"image"
+	"sort"
 )
 
 // BasicGridLayout arranges nodes in rows and columns.
@@ -14,9 +15,16 @@ type BasicGridLayout struct {
 }
 
 func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
+	// sort nodes by id
+	nodes := make([]uint64, 0, len(g.Nodes))
+	for id := range g.Nodes {
+		nodes = append(nodes, id)
+	}
+	sort.Slice(nodes, func(i, j int) bool { return nodes[i] < nodes[j] })
+
 	// update nodes positions
 	i := 0
-	for id, node := range g.Nodes {
+	for _, id := range nodes {
 		g.Nodes[id] = Node{
 			Width:  l.W,
 			Height: l.H,
@@ -24,7 +32,7 @@ func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
 				X: (i % l.RowLength) * (l.W + l.Margin),
 				Y: (i / l.RowLength) * (l.W + l.Margin),
 			},
-			Title: node.Title,
+			Title: g.Nodes[id].Title,
 		}
 		i++
 	}

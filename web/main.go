@@ -9,86 +9,99 @@ import (
 	"github.com/nikolaydubina/jsonl-graph/render"
 )
 
-// makeEmptyRenderGraph will make empty render graph based on graph.
-func makeEmptyRenderGraph(g graph.Graph) render.Graph {
-	gr := render.NewGraph()
-
-	for id, node := range g.Nodes {
-		gr.Nodes[id] = render.Node{
-			Title: node.ID(),
-		}
-	}
-
-	for fromID, toIDs := range g.Edges {
-		gr.Edges[fromID] = make(map[uint64]render.Edge, len(toIDs))
-		for toID, _ := range toIDs {
-			gr.Edges[fromID][toID] = render.Edge{}
-		}
-	}
-
-	return gr
+type layoutUpdater interface {
+	UpdateGraphLayout(g render.Graph)
 }
 
-// TODO: node location algorithm
-// TODO: edge location algorithm
-// TODO: set widths of nodes
-// TODO: draw contents of nodes
-// TODO: make small / make large nodes functions and callbacks
-// TODO: coloring of nodes contents
-// TODO: UI for coloring input
+type Renderer struct {
+	graphData     graph.Graph   // what graph contains
+	graphRender   render.Graph  // how graph is rendered
+	layoutUpdater layoutUpdater // how to make render graph
+}
 
-type Renderer struct{}
+func (r Renderer) OnDataChange(this js.Value, inputs []js.Value) interface{} {
+	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 
-func (r *Renderer) Render() {
-	input := `
-{"id": "abcd"}
-{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"bufio"}
-{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"bytes"}
-{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"encoding/json"}
-{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"errors"}
-{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"fmt"}
-{"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"io"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"embed"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"encoding/json"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"errors"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"fmt"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"github.com/nikolaydubina/jsonl-graph/graph"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"image/color"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"io"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"io/ioutil"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"net/http"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"sort"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"strconv"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"strings"}
-{"from":"github.com/nikolaydubina/jsonl-graph/dot","to":"text/template"}
-{"from":"github.com/nikolaydubina/jsonl-graph","to":"flag"}
-{"from":"github.com/nikolaydubina/jsonl-graph","to":"github.com/nikolaydubina/jsonl-graph/dot"}
-{"from":"github.com/nikolaydubina/jsonl-graph","to":"github.com/nikolaydubina/jsonl-graph/graph"}
-{"from":"github.com/nikolaydubina/jsonl-graph","to":"io"}
-{"from":"github.com/nikolaydubina/jsonl-graph","to":"log"}
-{"from":"github.com/nikolaydubina/jsonl-graph","to":"os"}
-	`
-	g, err := graph.NewGraphFromJSONLReader(strings.NewReader(input))
+	g, err := graph.NewGraphFromJSONLReader(strings.NewReader(inputString.String()))
 	if err != nil {
-		log.Fatalf("expected no error but got %v", err)
+		log.Printf("bad input: %s", err)
+		return nil
 	}
 
-	gr := makeEmptyRenderGraph(g)
+	r.graphData.ReplaceFrom(g)
+	r.Render()
 
-	layout := render.BasicGridLayout{
-		W:         100,
-		H:         16,
-		RowLength: 10,
-		Margin:    5,
+	return nil
+}
+
+// UpdateRenderGraphWithDataGraph is called when graph data changed
+// and we need to update render graph nodes and fields based on new
+// data from data graph.
+// We have to preserve ids and existing render information.
+// For example, preserving positions in Nodes and Paths points in Edges.
+func (r Renderer) UpdateRenderGraphWithDataGraph() {
+	// update nodes with new data, preserve rest. add new nodes.
+	for id, node := range r.graphData.Nodes {
+		if _, ok := r.graphRender.Nodes[id]; !ok {
+			r.graphRender.Nodes[id] = render.Node{}
+		}
+
+		rnode := r.graphRender.Nodes[id]
+		rnode.Title = node.ID()
+
+		r.graphRender.Nodes[id] = rnode
 	}
-	layout.UpdateGraphLayout(gr)
+
+	// delete render graph nodes that no longer present
+	for id := range r.graphRender.Nodes {
+		if _, ok := r.graphData.Nodes[id]; !ok {
+			delete(r.graphRender.Nodes, id)
+		}
+	}
+
+	// update edges with new data, preserve rest. add new edges.
+	for fromID, dedges := range r.graphData.Edges {
+		if _, ok := r.graphRender.Edges[fromID]; !ok {
+			r.graphRender.Edges[fromID] = make(map[uint64]render.Edge, len(dedges))
+		}
+
+		// check all new data edges
+		for dToID := range r.graphData.Edges {
+			// new edge, creating new edge
+			if _, ok := r.graphRender.Edges[fromID]; !ok {
+				r.graphRender.Edges[fromID][dToID] = render.Edge{}
+			}
+			// existing edge. skipping, no fields to update.
+		}
+	}
+
+	// delete render graph edges that no longer present
+	for idFrom, edges := range r.graphRender.Edges {
+		dEdges, ok := r.graphData.Edges[idFrom]
+		if !ok {
+			delete(r.graphRender.Edges, idFrom)
+			continue
+		}
+		for idTo := range edges {
+			if _, ok := dEdges[idTo]; !ok {
+				delete(r.graphRender.Edges[idFrom], idTo)
+			}
+		}
+	}
+}
+
+func (r Renderer) Render() {
+	r.UpdateRenderGraphWithDataGraph()
+	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
 
 	js.Global().
 		Get("document").
 		Call("getElementById", "output-container").
-		Set("innerHTML", gr.Render())
+		Set("innerHTML", r.graphRender.Render())
 
 	// TODO: avoid large JS code for zooming. use google/perf like zooming
+	// zoom and pan
+	// TODO: preserve old coordinates
 	js.Global().
 		Get("svgPanZoom").
 		Invoke("#graph", map[string]interface{}{
@@ -101,8 +114,23 @@ func (r *Renderer) Render() {
 func main() {
 	c := make(chan bool)
 
-	renderer := Renderer{}
-	renderer.Render()
+	renderer := Renderer{
+		graphRender: render.NewGraph(),
+		graphData:   graph.NewGraph(),
+		layoutUpdater: render.BasicGridLayout{
+			W:         100,
+			H:         16,
+			RowLength: 10,
+			Margin:    5,
+		},
+	}
+
+	js.Global().
+		Get("document").
+		Call("getElementById", "inputData").
+		Set("onkeyup", js.FuncOf(renderer.OnDataChange))
+
+	renderer.OnDataChange(js.Value{}, nil)
 
 	<-c
 }

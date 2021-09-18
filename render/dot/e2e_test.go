@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nikolaydubina/jsonl-graph/dot"
 	"github.com/nikolaydubina/jsonl-graph/graph"
+	"github.com/nikolaydubina/jsonl-graph/render/dot"
 )
 
 //go:embed testdata/config.json
