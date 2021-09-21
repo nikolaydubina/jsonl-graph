@@ -2,7 +2,6 @@ package svgpanzoom
 
 import (
 	"fmt"
-	"log"
 	"math"
 	"strings"
 	"syscall/js"
@@ -26,8 +25,8 @@ type PanZoomer struct {
 	rootID    string
 	zoomScale float64
 	state     State
-	transform mat.Dense
-	origin    mat.Dense
+	transform *mat.Dense
+	origin    *mat.Dense
 }
 
 func NewPanZoomer(
@@ -37,35 +36,8 @@ func NewPanZoomer(
 	return &PanZoomer{
 		rootID:    rootID,
 		zoomScale: zoomScale,
-		transform: *newIdentity(),
+		transform: newIdentity(),
 	}
-}
-
-// parseDOMMatrix will parse JS DOMMatrix spec into Go matrix.
-func parseDOMMatrix(val js.Value) *mat.Dense {
-	m11 := val.Get("m11").Float()
-	m12 := val.Get("m12").Float()
-	m13 := val.Get("m13").Float()
-	m14 := val.Get("m14").Float()
-	m21 := val.Get("m21").Float()
-	m22 := val.Get("m22").Float()
-	m23 := val.Get("m23").Float()
-	m24 := val.Get("m24").Float()
-	m31 := val.Get("m31").Float()
-	m32 := val.Get("m32").Float()
-	m33 := val.Get("m33").Float()
-	m34 := val.Get("m34").Float()
-	m41 := val.Get("m41").Float()
-	m42 := val.Get("m42").Float()
-	m43 := val.Get("m43").Float()
-	m44 := val.Get("m44").Float()
-
-	return mat.NewDense(4, 4, []float64{
-		m11, m12, m13, m14,
-		m21, m22, m23, m24,
-		m31, m32, m33, m34,
-		m41, m42, m43, m44,
-	})
 }
 
 // TODO: add DOMMouseScroll support
@@ -89,11 +61,7 @@ func (p *PanZoomer) SetupHandlers() {
 	}
 }
 
-func (p *PanZoomer) getRoot() js.Value {
-	return js.Global().Get("document").Call("getElementById", p.rootID)
-}
-
-func (p *PanZoomer) getEventPoint(event js.Value) *mat.Dense {
+func getEventPoint(event js.Value) *mat.Dense {
 	return mat.NewDense(4, 1, []float64{
 		event.Get("clientX").Float(),
 		event.Get("clientY").Float(),
@@ -115,6 +83,73 @@ func (p *PanZoomer) setRootTranslation() {
 
 	s := fmt.Sprintf("matrix(%f,%f,%f,%f,%f,%f)", a, b, c, d, e, f)
 	js.Global().Get("document").Call("getElementById", p.rootID).Call("setAttribute", "transform", s)
+}
+
+func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{} {
+	event := args[0]
+	delta := 0.0
+	if event.Get("wheelDelta").Truthy() {
+		// Chrome/Safari
+		delta = event.Get("wheelDelta").Float() / 360
+	} else {
+		// Mozilla
+		delta = event.Get("detail").Float() / -9
+	}
+
+	var z = math.Pow(1+p.zoomScale, delta)
+
+	var point mat.Dense
+	point.Mul(p.transform, getEventPoint(event))
+
+	// Compute new scale matrix in current mouse position
+	x := point.At(0, 0)
+	y := point.At(1, 0)
+
+	var k *mat.Dense = newIdentity()
+	k.Mul(newTranslate(x, y, 0), k)
+	k.Mul(newScale(z), k)
+	k.Mul(newTranslate(-x, -y, 0), k)
+	k.Inverse(k)
+
+	p.transform.Mul(p.transform, k)
+	p.setRootTranslation()
+	return nil
+}
+
+func (p *PanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
+	if p.state != Drag {
+		return nil
+	}
+
+	event := args[0]
+	var point mat.Dense
+	point.Mul(p.transform, getEventPoint(event))
+
+	x := point.At(0, 0)
+	y := point.At(1, 0)
+	ox := p.origin.At(0, 0)
+	oy := p.origin.At(1, 0)
+
+	var k mat.Dense
+	k.Inverse(p.transform)
+	k.Mul(p.transform, newTranslate(x-ox, y-oy, 0))
+	k.Inverse(&k)
+
+	p.transform.Mul(p.transform, &k)
+	p.setRootTranslation()
+	return nil
+}
+
+func (p *PanZoomer) handleMouseDown(_ js.Value, args []js.Value) interface{} {
+	p.state = Drag
+	event := args[0]
+	p.origin = getEventPoint(event)
+	return nil
+}
+
+func (p *PanZoomer) handleMouseUp(_ js.Value, _ []js.Value) interface{} {
+	p.state = NotActive
+	return nil
 }
 
 func newIdentity() *mat.Dense {
@@ -142,78 +177,4 @@ func newTranslate(x, y, z float64) *mat.Dense {
 		0, 0, 1, z,
 		0, 0, 0, 1,
 	})
-}
-
-func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{} {
-	event := args[0]
-
-	delta := 0.0
-	if event.Get("wheelDelta").Truthy() {
-		// Chrome/Safari
-		delta = event.Get("wheelDelta").Float() / 360
-	} else {
-		// Mozilla
-		delta = event.Get("detail").Float() / -9
-	}
-
-	var z = math.Pow(1+p.zoomScale, delta)
-
-	var point mat.Dense
-	point.Mul(&p.transform, p.getEventPoint(event))
-
-	// Compute new scale matrix in current mouse position
-	x := point.At(0, 0)
-	y := point.At(1, 0)
-	var k mat.Dense
-	k = *newIdentity()
-	k.Mul(&k, newTranslate(x, y, 0))
-	k.Mul(&k, newScale(z))
-	k.Mul(&k, newTranslate(-x, -y, 0))
-
-	var ki mat.Dense
-	_ = ki.Inverse(&k)
-
-	p.transform.Mul(&p.transform, &ki)
-
-	p.setRootTranslation()
-	return nil
-}
-
-func (p *PanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
-	log.Printf("%#v", p)
-	if p.state != Drag {
-		return nil
-	}
-
-	event := args[0]
-	log.Printf("%s", event.String())
-
-	var point mat.Dense
-	point.Mul(&p.transform, p.getEventPoint(event))
-
-	x := point.At(0, 0)
-	y := point.At(1, 0)
-	ox := p.origin.At(0, 0)
-	oy := p.origin.At(1, 0)
-
-	var itr mat.Dense
-	itr.Inverse(&p.transform)
-
-	translate := newTranslate(x-ox, y-oy, 0)
-	p.transform.Mul(&p.transform, translate)
-
-	p.setRootTranslation()
-	return nil
-}
-
-func (p *PanZoomer) handleMouseDown(_ js.Value, args []js.Value) interface{} {
-	p.state = Drag
-	event := args[0]
-	p.origin = *p.getEventPoint(event)
-	return nil
-}
-
-func (p *PanZoomer) handleMouseUp(_ js.Value, _ []js.Value) interface{} {
-	p.state = NotActive
-	return nil
 }
