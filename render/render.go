@@ -71,7 +71,9 @@ func (g Graph) Render() string {
 		arrowDef(),
 	}
 
-	body := []string{}
+	body := []string{
+		`<g id="graph">`,
+	}
 
 	for _, tos := range g.Edges {
 		for _, edge := range tos {
@@ -84,5 +86,7 @@ func (g Graph) Render() string {
 		body = append(body, node.Render())
 	}
 
-	return svg(defs, body, image.Point{X: 0, Y: 0}, image.Point{X: 350, Y: 100})
+	body = append(body, "</g>")
+
+	return svg(defs, body)
 }

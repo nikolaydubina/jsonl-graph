@@ -7,6 +7,7 @@ import (
 
 	"github.com/nikolaydubina/jsonl-graph/graph"
 	"github.com/nikolaydubina/jsonl-graph/render"
+	"github.com/nikolaydubina/jsonl-graph/web/svgpanzoom"
 )
 
 type layoutUpdater interface {
@@ -19,7 +20,7 @@ type Renderer struct {
 	layoutUpdater layoutUpdater // how to make render graph
 }
 
-func (r Renderer) OnDataChange(this js.Value, inputs []js.Value) interface{} {
+func (r Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 
 	g, err := graph.NewGraphFromJSONLReader(strings.NewReader(inputString.String()))
@@ -98,17 +99,6 @@ func (r Renderer) Render() {
 		Get("document").
 		Call("getElementById", "output-container").
 		Set("innerHTML", r.graphRender.Render())
-
-	// TODO: avoid large JS code for zooming. use google/perf like zooming
-	// zoom and pan
-	// TODO: preserve old coordinates
-	js.Global().
-		Get("svgPanZoom").
-		Invoke("#graph", map[string]interface{}{
-			"minZoom":             0.1,
-			"maxZoom":             10,
-			"dblClickZoomEnabled": false,
-		})
 }
 
 func main() {
@@ -131,6 +121,14 @@ func main() {
 		Set("onkeyup", js.FuncOf(renderer.OnDataChange))
 
 	renderer.OnDataChange(js.Value{}, nil)
+
+	// once it is rendered at least once, bind handlers
+
+	p := svgpanzoom.NewPanZoomer(
+		"graph",
+		0.2,
+	)
+	p.SetupHandlers()
 
 	<-c
 }

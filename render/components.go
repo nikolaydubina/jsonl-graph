@@ -2,14 +2,13 @@ package render
 
 import (
 	"fmt"
-	"image"
 	"strings"
 )
 
-func svg(defs []string, body []string, leftBottom, rightTop image.Point) string {
+func svg(defs []string, body []string) string {
 	return strings.Join(
 		[]string{
-			fmt.Sprintf(`<svg id="graph" xmlns="http://www.w3.org/2000/svg" viewBox="%d %d %d %d" style="width: 100%%; height: 100%%;">`, leftBottom.X, leftBottom.Y, rightTop.X, rightTop.Y),
+			fmt.Sprintf(`<svg id="graph2" xmlns="http://www.w3.org/2000/svg" style="width: 100%%; height: 100%%;">`),
 			`<defs>`,
 			strings.Join(defs, "\n"),
 			`</defs>`,
