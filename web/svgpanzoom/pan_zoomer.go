@@ -102,8 +102,10 @@ func (p *PanZoomer) getEventPoint(event js.Value) *mat.Dense {
 	})
 }
 
-// set transformation field to SVG element.
-func setCTM(element js.Value, m mat.Dense) {
+// setRootTranslation updates translation matrix of root svg element
+func (p *PanZoomer) setRootTranslation() {
+	m := p.transform
+
 	a := m.At(0, 0)
 	b := m.At(0, 1)
 	c := m.At(1, 0)
@@ -112,7 +114,7 @@ func setCTM(element js.Value, m mat.Dense) {
 	f := m.At(2, 1)
 
 	s := fmt.Sprintf("matrix(%f,%f,%f,%f,%f,%f)", a, b, c, d, e, f)
-	element.Call("setAttribute", "transform", s)
+	js.Global().Get("document").Call("getElementById", p.rootID).Call("setAttribute", "transform", s)
 }
 
 func newIdentity() *mat.Dense {
@@ -173,7 +175,7 @@ func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{}
 
 	p.transform.Mul(&p.transform, &ki)
 
-	setCTM(p.getRoot(), p.transform)
+	p.setRootTranslation()
 	return nil
 }
 
@@ -200,7 +202,7 @@ func (p *PanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
 	translate := newTranslate(x-ox, y-oy, 0)
 	p.transform.Mul(&p.transform, translate)
 
-	setCTM(p.getRoot(), p.transform)
+	p.setRootTranslation()
 	return nil
 }
 
