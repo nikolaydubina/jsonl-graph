@@ -40,7 +40,6 @@ func NewPanZoomer(
 	}
 }
 
-// TODO: add DOMMouseScroll support
 func (p *PanZoomer) SetupHandlers() {
 	js.Global().Set("handleMouseUp", js.FuncOf(p.handleMouseUp))
 	js.Global().Set("handleMouseDown", js.FuncOf(p.handleMouseDown))
