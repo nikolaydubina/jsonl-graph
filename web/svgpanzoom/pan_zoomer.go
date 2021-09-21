@@ -76,6 +76,7 @@ func (p *PanZoomer) setRootTranslation() {
 	js.Global().Get("document").Call("getElementById", p.rootID).Call("setAttribute", "transform", s)
 }
 
+// will make zoom at currently pointing at mouse
 func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{} {
 	event := args[0]
 	delta := 0.0
@@ -96,6 +97,7 @@ func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{}
 	x := p.origin.At(0, 0)
 	y := p.origin.At(1, 0)
 
+	// move to center, apply zoom, move back
 	k := identity()
 	k.Mul(translate(-x, -y, 0), k)
 	k.Mul(scale(z), k)
@@ -120,7 +122,14 @@ func (p *PanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
 	ox := p.origin.At(0, 0)
 	oy := p.origin.At(1, 0)
 
-	p.transform.Mul(p.transformBeforeDrag, translate(x-ox, y-oy, 0))
+	// revert to original scaling, compute translation, move back to new scaling
+	var k mat.Dense
+	k.Inverse(p.transformBeforeDrag)
+	k.Mul(&k, translate(x-ox, y-oy, 0))
+	k.Mul(p.transformBeforeDrag, &k)
+
+	// add new scaling
+	p.transform.Mul(&k, p.transformBeforeDrag)
 	p.setRootTranslation()
 	return nil
 }
