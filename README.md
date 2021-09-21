@@ -100,7 +100,6 @@ $ cat '
 - [ ] subway map style edges ports in nodes and layout
 - [ ] flexible path edges
 - [ ] coloring of nodes contents
-- [ ] UI input
 - [ ] UI for coloring input
 - [ ] update graph without re-rendering whole
 - [ ] JSON input shorten or un-shorten + prettify each
