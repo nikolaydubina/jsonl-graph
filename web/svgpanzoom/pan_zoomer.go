@@ -40,18 +40,20 @@ func NewPanZoomer(
 }
 
 func (p *PanZoomer) SetupHandlers() {
-	js.Global().Get("document").Call("getElementById", "graph2").Call("addEventListener", "mouseup", js.FuncOf(p.handleMouseUp))
-	js.Global().Get("document").Call("getElementById", "graph2").Call("addEventListener", "mousedown", js.FuncOf(p.handleMouseDown))
-	js.Global().Get("document").Call("getElementById", "graph2").Call("addEventListener", "mousemove", js.FuncOf(p.handleMouseMove))
-	js.Global().Get("document").Call("getElementById", "graph2").Call("addEventListener", "mousepout", js.FuncOf(p.handleMouseUp))
+	container := js.Global().Get("document").Call("getElementById", "graph2")
+
+	container.Call("addEventListener", "mouseup", js.FuncOf(p.handleMouseUp))
+	container.Call("addEventListener", "mousedown", js.FuncOf(p.handleMouseDown))
+	container.Call("addEventListener", "mousemove", js.FuncOf(p.handleMouseMove))
+	container.Call("addEventListener", "mousepout", js.FuncOf(p.handleMouseUp))
 
 	userAgent := js.Global().Get("navigator").Get("userAgent").String()
 	if strings.Contains(strings.ToLower(userAgent), "webkit") {
 		// Chrome/Safari
-		js.Global().Get("document").Call("getElementById", "graph2").Call("addEventListener", "mousewheel", js.FuncOf(p.handleMouseWheel), false)
+		container.Call("addEventListener", "mousewheel", js.FuncOf(p.handleMouseWheel), false)
 	} else {
 		// Firefox/Other
-		js.Global().Get("document").Call("getElementById", "graph2").Call("addEventListener", "DOMMouseScroll", js.FuncOf(p.handleMouseWheel), false)
+		container.Call("addEventListener", "DOMMouseScroll", js.FuncOf(p.handleMouseWheel), false)
 	}
 }
 
