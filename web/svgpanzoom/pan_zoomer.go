@@ -19,8 +19,6 @@ const (
 // PanZoomer handles updates to SVG based
 // This is port of https://github.com/aleofreddi/svgpan
 // Which is also as of 2021-09-19 inlined in https://github.com/google/pprof/blob/master/third_party/svgpan/svgpan.go
-// Zoom and Dragging is not supported at same time.
-// This code is using a lot of JS functions for matrix manipulations.
 type PanZoomer struct {
 	rootID    string
 	zoomScale float64
