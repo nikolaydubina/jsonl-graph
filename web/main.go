@@ -18,8 +18,37 @@ type Renderer struct {
 	graphData     graph.Graph   // what graph contains
 	graphRender   render.Graph  // how graph is rendered
 	layoutUpdater layoutUpdater // how to make render graph
+	containerID   string
 	svgID         string
 	rootID        string
+	scaler        *svgpanzoom.PanZoomer
+}
+
+func NewRenderer(
+	graphData graph.Graph,
+	graphRender render.Graph,
+	layoutUpdater layoutUpdater,
+	containerID string,
+	svgID string,
+	rootID string,
+	scaler *svgpanzoom.PanZoomer,
+) Renderer {
+	renderer := Renderer{
+		graphData:     graphData,
+		graphRender:   graphRender,
+		layoutUpdater: layoutUpdater,
+		containerID:   containerID,
+		svgID:         svgID,
+		rootID:        rootID,
+		scaler:        scaler,
+	}
+
+	js.Global().
+		Get("document").
+		Call("getElementById", "inputData").
+		Set("onkeyup", js.FuncOf(renderer.OnDataChange))
+
+	return renderer
 }
 
 func (r Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
@@ -99,41 +128,36 @@ func (r Renderer) Render() {
 
 	js.Global().
 		Get("document").
-		Call("getElementById", "output-container").
+		Call("getElementById", r.containerID).
 		Set("innerHTML", r.graphRender.Render(r.svgID, r.rootID))
+
+	r.scaler.SetupHandlers()
+	r.scaler.SetRootTranslation()
 }
 
 func main() {
 	c := make(chan bool)
 
-	renderer := Renderer{
-		graphRender: render.NewGraph(),
-		graphData:   graph.NewGraph(),
-		layoutUpdater: render.BasicGridLayout{
+	renderer := NewRenderer(
+		graph.NewGraph(),
+		render.NewGraph(),
+		render.BasicGridLayout{
 			W:         100,
 			H:         16,
 			RowLength: 10,
 			Margin:    5,
 		},
-		svgID:  "svg-jsonl-graph",
-		rootID: "svg-jsonl-graph-root",
-	}
-
-	js.Global().
-		Get("document").
-		Call("getElementById", "inputData").
-		Set("onkeyup", js.FuncOf(renderer.OnDataChange))
-
-	renderer.OnDataChange(js.Value{}, nil)
-
-	// once it is rendered at least once, bind handlers
-
-	p := svgpanzoom.NewPanZoomer(
+		"output-container",
 		"svg-jsonl-graph",
 		"svg-jsonl-graph-root",
-		0.2,
+		svgpanzoom.NewPanZoomer(
+			"svg-jsonl-graph",
+			"svg-jsonl-graph-root",
+			0.2,
+		),
 	)
-	p.SetupHandlers()
+	renderer.Render()
+	renderer.OnDataChange(js.Value{}, nil)
 
 	<-c
 }

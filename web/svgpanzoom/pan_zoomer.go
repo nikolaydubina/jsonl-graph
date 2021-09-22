@@ -69,7 +69,7 @@ func getEventPoint(event js.Value) *mat.Dense {
 }
 
 // setRootTranslation updates translation matrix of root svg element
-func (p *PanZoomer) setRootTranslation() {
+func (p *PanZoomer) SetRootTranslation() {
 	a := p.transform.At(0, 0)
 	b := p.transform.At(1, 0)
 	c := p.transform.At(0, 1)
@@ -109,7 +109,7 @@ func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{}
 	k.Mul(translate(x, y, 0), k)
 
 	p.transform.Mul(k, p.transform)
-	p.setRootTranslation()
+	p.SetRootTranslation()
 	return nil
 }
 
@@ -135,7 +135,7 @@ func (p *PanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
 
 	// add new scaling
 	p.transform.Mul(&k, p.transformBeforeDrag)
-	p.setRootTranslation()
+	p.SetRootTranslation()
 	return nil
 }
 
