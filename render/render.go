@@ -65,14 +65,10 @@ func NewGraph() Graph {
 	}
 }
 
-// Render creates SVG.
-func (g Graph) Render() string {
-	defs := []string{
-		arrowDef(),
-	}
-
+// Render creates root svg element
+func (g Graph) RenderSVGRoot(rootID string) string {
 	body := []string{
-		`<g id="graph">`,
+		fmt.Sprintf(`<g id="%s">`, rootID),
 	}
 
 	for _, tos := range g.Edges {
@@ -88,5 +84,13 @@ func (g Graph) Render() string {
 
 	body = append(body, "</g>")
 
-	return svg(defs, body)
+	return strings.Join(body, "\n")
+}
+
+// Render creates SVG.
+func (g Graph) Render(svgID, rootID string) string {
+	defs := []string{
+		arrowDef(),
+	}
+	return svg(defs, svgID, g.RenderSVGRoot(rootID))
 }

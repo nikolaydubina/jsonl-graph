@@ -20,6 +20,7 @@ const (
 // This is port of https://github.com/aleofreddi/svgpan
 // Which is also as of 2021-09-19 inlined in https://github.com/google/pprof/blob/master/third_party/svgpan/svgpan.go
 type PanZoomer struct {
+	svgID               string
 	rootID              string
 	zoomScale           float64
 	state               State
@@ -29,10 +30,12 @@ type PanZoomer struct {
 }
 
 func NewPanZoomer(
+	svgID string,
 	rootID string,
 	zoomScale float64,
 ) *PanZoomer {
 	return &PanZoomer{
+		svgID:     svgID,
 		rootID:    rootID,
 		zoomScale: zoomScale,
 		transform: identity(),
@@ -40,7 +43,7 @@ func NewPanZoomer(
 }
 
 func (p *PanZoomer) SetupHandlers() {
-	container := js.Global().Get("document").Call("getElementById", "graph2")
+	container := js.Global().Get("document").Call("getElementById", p.svgID)
 
 	container.Call("addEventListener", "mouseup", js.FuncOf(p.handleMouseUp))
 	container.Call("addEventListener", "mousedown", js.FuncOf(p.handleMouseDown))

@@ -5,14 +5,14 @@ import (
 	"strings"
 )
 
-func svg(defs []string, body []string) string {
+func svg(defs []string, id string, body string) string {
 	return strings.Join(
 		[]string{
-			fmt.Sprintf(`<svg id="graph2" xmlns="http://www.w3.org/2000/svg" style="width: 100%%; height: 100%%;">`),
+			fmt.Sprintf(`<svg id="%s" xmlns="http://www.w3.org/2000/svg" style="width: 100%%; height: 100%%;">`, id),
 			`<defs>`,
 			strings.Join(defs, "\n"),
 			`</defs>`,
-			strings.Join(body, "\n"),
+			body,
 			`</svg>`,
 		},
 		"\n",

@@ -18,6 +18,8 @@ type Renderer struct {
 	graphData     graph.Graph   // what graph contains
 	graphRender   render.Graph  // how graph is rendered
 	layoutUpdater layoutUpdater // how to make render graph
+	svgID         string
+	rootID        string
 }
 
 func (r Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
@@ -98,7 +100,7 @@ func (r Renderer) Render() {
 	js.Global().
 		Get("document").
 		Call("getElementById", "output-container").
-		Set("innerHTML", r.graphRender.Render())
+		Set("innerHTML", r.graphRender.Render(r.svgID, r.rootID))
 }
 
 func main() {
@@ -113,6 +115,8 @@ func main() {
 			RowLength: 10,
 			Margin:    5,
 		},
+		svgID:  "svg-jsonl-graph",
+		rootID: "svg-jsonl-graph-root",
 	}
 
 	js.Global().
@@ -125,7 +129,8 @@ func main() {
 	// once it is rendered at least once, bind handlers
 
 	p := svgpanzoom.NewPanZoomer(
-		"graph",
+		"svg-jsonl-graph",
+		"svg-jsonl-graph-root",
 		0.2,
 	)
 	p.SetupHandlers()
