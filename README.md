@@ -92,14 +92,14 @@ $ cat '
 
 ## TODO
 
-- [ ] node location algorithm
-- [ ] edge location algorithm
 - [ ] set widths of nodes
 - [ ] draw contents of nodes
 - [ ] collapse and un-collapse nodes by click
+- [ ] coloring of nodes contents
+- [ ] node location algorithm
+- [ ] edge location algorithm
 - [ ] subway map style edges ports in nodes and layout
 - [ ] flexible path edges
-- [ ] coloring of nodes contents
 - [ ] UI for coloring input
 - [ ] update graph without re-rendering whole
 - [ ] Touch for zoom and pan
