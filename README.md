@@ -103,6 +103,7 @@ $ cat '
 - [ ] UI for coloring input
 - [ ] update graph without re-rendering whole
 - [ ] Touch for zoom and pan
+- [ ] Center content on startup
 
 ## References
 
