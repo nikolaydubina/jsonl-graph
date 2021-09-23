@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"log"
 	"strings"
 	"syscall/js"
@@ -8,6 +9,7 @@ import (
 	"github.com/nikolaydubina/jsonl-graph/graph"
 	"github.com/nikolaydubina/jsonl-graph/render"
 	"github.com/nikolaydubina/jsonl-graph/web/svgpanzoom"
+	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
 )
 
 type layoutUpdater interface {
@@ -43,10 +45,9 @@ func NewRenderer(
 		scaler:        scaler,
 	}
 
-	js.Global().
-		Get("document").
-		Call("getElementById", "inputData").
-		Set("onkeyup", js.FuncOf(renderer.OnDataChange))
+	js.Global().Get("document").Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChange))
+	js.Global().Get("document").Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.OnPrettifyJSON))
+	js.Global().Get("document").Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.OnCollapseJSON))
 
 	return renderer
 }
@@ -54,7 +55,7 @@ func NewRenderer(
 func (r Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 
-	g, err := graph.NewGraphFromJSONLReader(strings.NewReader(inputString.String()))
+	g, err := graph.NewGraphFromJSONL(strings.NewReader(inputString.String()))
 	if err != nil {
 		log.Printf("bad input: %s", err)
 		return nil
@@ -63,6 +64,34 @@ func (r Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	r.graphData.ReplaceFrom(g)
 	r.Render()
 
+	return nil
+}
+
+func (r Renderer) OnPrettifyJSON(_ js.Value, _ []js.Value) interface{} {
+	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
+
+	var out bytes.Buffer
+	if err := mjsonl.FormatJSONL(strings.NewReader(inputString.String()), &out, true); err != nil {
+		log.Printf("bad input: %s", err)
+		return nil
+	}
+	js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
+
+	r.OnDataChange(js.Value{}, nil)
+	return nil
+}
+
+func (r Renderer) OnCollapseJSON(_ js.Value, _ []js.Value) interface{} {
+	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
+
+	var out bytes.Buffer
+	if err := mjsonl.FormatJSONL(strings.NewReader(inputString.String()), &out, false); err != nil {
+		log.Printf("bad input: %s", err)
+		return nil
+	}
+	js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
+
+	r.OnDataChange(js.Value{}, nil)
 	return nil
 }
 

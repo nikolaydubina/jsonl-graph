@@ -7,6 +7,8 @@ import (
 	"errors"
 	"fmt"
 	"io"
+
+	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
 )
 
 // NodeData can have any fields, only `id` is reserved.
@@ -145,12 +147,14 @@ func (g Graph) ReplaceFrom(other Graph) {
 	}
 }
 
-// NewGraphFromJSONLReader parses JSONL from reader into a graph.
-// TODO: read multiline JSON objects.
-func NewGraphFromJSONLReader(r io.Reader) (Graph, error) {
-	scanner := bufio.NewScanner(r)
-
+// NewGraphFromJSONL parses multiple JSON objects separated by new line.
+// JSON objects do not have to be single line.
+// Objects are separated by new lines and whitespaces
+func NewGraphFromJSONL(r io.Reader) (Graph, error) {
 	g := NewGraph()
+
+	scanner := bufio.NewScanner(r)
+	scanner.Split(mjsonl.SplitMultilineJSONL)
 
 	for scanner.Scan() {
 		decoder := json.NewDecoder(bytes.NewReader(scanner.Bytes()))

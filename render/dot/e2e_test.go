@@ -60,7 +60,7 @@ func TestE2E(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			g, err := graph.NewGraphFromJSONLReader(strings.NewReader(tc.in))
+			g, err := graph.NewGraphFromJSONL(strings.NewReader(tc.in))
 			if err != nil {
 				t.Errorf("%#v", err)
 			}

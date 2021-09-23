@@ -169,7 +169,7 @@ func TestParser(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.input, func(t *testing.T) {
-			_, err := NewGraphFromJSONLReader(strings.NewReader(tc.input))
+			_, err := NewGraphFromJSONL(strings.NewReader(tc.input))
 			if !strings.Contains(err.Error(), tc.err) {
 				t.Errorf("%v but got %v", tc.err, err)
 			}
@@ -181,7 +181,7 @@ func TestParser(t *testing.T) {
 		{"id": "123"}
 		{"from": "123", "to": "321"}
 		`
-		g, err := NewGraphFromJSONLReader(strings.NewReader(input))
+		g, err := NewGraphFromJSONL(strings.NewReader(input))
 		if err != nil {
 			t.Errorf("expected no error but got %v", err)
 		}

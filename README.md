@@ -102,11 +102,11 @@ $ cat '
 - [ ] coloring of nodes contents
 - [ ] UI for coloring input
 - [ ] update graph without re-rendering whole
-- [ ] JSON input shorten or un-shorten + prettify each
+- [ ] Touch for zoom and pan
 
 ## References
 
-- [Layered Graph](https://en.wikipedia.org/wiki/Layered_graph_drawing)
 - Magnetic Spring graph drawing, Kozo Sugiyama
+- [Layered Graph](https://en.wikipedia.org/wiki/Layered_graph_drawing)
 - [google/pprof svg](https://github.com/google/pprof/blob/master/internal/driver/svg.go)
 - [google/pprof svgpan](https://github.com/google/pprof/blob/master/third_party/svgpan/svgpan.go)
