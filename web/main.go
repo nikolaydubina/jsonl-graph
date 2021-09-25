@@ -171,7 +171,6 @@ func main() {
 		graph.NewGraph(),
 		render.NewGraph(),
 		render.BasicGridLayout{
-			W:         100,
 			H:         16,
 			RowLength: 10,
 			Margin:    5,

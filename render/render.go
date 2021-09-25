@@ -6,10 +6,11 @@ import (
 	"strings"
 )
 
+const nodeFontSize int = 9
+
 // Node is rendered point
 type Node struct {
 	LeftBottom image.Point
-	Width      int
 	Height     int
 	Title      string
 }
@@ -20,7 +21,7 @@ func (n Node) Render() string {
 		<g>
 			<rect x="%d" y="%d" width="%d" height="%d" style="fill:rgb(240,240,240);stroke-width:1;stroke:rgb(200,200,200);"></rect>
 			<foreignObject x="%d" y="%d" width="%d" height="%d">
-				<div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 9px; overflow: hidden; text-align: center;">
+				<div xmlns="http://www.w3.org/1999/xhtml" style="font-size: %dpx; overflow: hidden; text-align: center;">
 				%s
 				</div>
 			</foreignObject>
@@ -28,14 +29,20 @@ func (n Node) Render() string {
 		`,
 		n.LeftBottom.X,
 		n.LeftBottom.Y,
-		n.Width,
+		n.Width(),
 		n.Height,
 		n.LeftBottom.X,
 		n.LeftBottom.Y,
-		n.Width,
+		n.Width(),
 		n.Height,
+		nodeFontSize,
 		n.Title,
 	)
+}
+
+func (n Node) Width() int {
+	w := int(float64(nodeFontSize*len(n.Title)) * 0.75)
+	return w
 }
 
 // Edge is rendered edge
