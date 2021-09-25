@@ -171,9 +171,8 @@ func main() {
 		graph.NewGraph(),
 		render.NewGraph(),
 		render.BasicGridLayout{
-			H:         16,
-			RowLength: 10,
-			Margin:    5,
+			RowLength: 5,
+			Margin:    25,
 		},
 		"output-container",
 		"svg-jsonl-graph",

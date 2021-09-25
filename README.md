@@ -92,7 +92,6 @@ $ cat '
 
 ## TODO
 
-- [ ] set widths of nodes
 - [ ] draw contents of nodes
 - [ ] collapse and un-collapse nodes by click
 - [ ] coloring of nodes contents

@@ -8,7 +8,6 @@ import (
 // BasicGridLayout arranges nodes in rows and columns.
 // Useful for debugging.
 type BasicGridLayout struct {
-	H         int
 	RowLength int
 	Margin    int
 }
@@ -22,17 +21,27 @@ func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
 	sort.Slice(nodes, func(i, j int) bool { return nodes[i] < nodes[j] })
 
 	// update nodes positions
-	i := 0
-	for _, id := range nodes {
+	x := 0
+	y := 0
+	yf := 0
+	for i, id := range nodes {
 		g.Nodes[id] = Node{
-			Height: l.H,
-			LeftBottom: image.Point{
-				X: (i % l.RowLength) * (g.Nodes[id].Width() + l.Margin),
-				Y: (i / l.RowLength) * (g.Nodes[id].Width() + l.Margin),
-			},
-			Title: g.Nodes[id].Title,
+			LeftBottom: image.Point{X: x, Y: y},
+			Title:      g.Nodes[id].Title,
 		}
-		i++
+
+		colNum := i % l.RowLength
+
+		if colNum == 0 {
+			x = 0
+			yf = g.Nodes[id].Height()
+			y += yf + l.Margin
+		} else {
+			x += g.Nodes[id].Width() + l.Margin
+			if h := g.Nodes[id].Width(); h > yf {
+				yf = g.Nodes[id].Height()
+			}
+		}
 	}
 
 	//  update edges
@@ -46,8 +55,8 @@ func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
 func DirectEdge(from, to Node) Edge {
 	return Edge{
 		Points: []image.Point{
-			from.LeftBottom.Add(image.Point{X: from.Width() / 2, Y: from.Height / 2}),
-			to.LeftBottom.Add(image.Point{X: to.Width() / 2, Y: to.Height / 2}),
+			from.LeftBottom.Add(image.Point{X: from.Width() / 2, Y: from.Height() / 2}),
+			to.LeftBottom.Add(image.Point{X: to.Width() / 2, Y: to.Height() / 2}),
 		},
 	}
 }

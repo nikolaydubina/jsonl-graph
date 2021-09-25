@@ -11,7 +11,6 @@ const nodeFontSize int = 9
 // Node is rendered point
 type Node struct {
 	LeftBottom image.Point
-	Height     int
 	Title      string
 }
 
@@ -30,11 +29,11 @@ func (n Node) Render() string {
 		n.LeftBottom.X,
 		n.LeftBottom.Y,
 		n.Width(),
-		n.Height,
+		n.Height(),
 		n.LeftBottom.X,
 		n.LeftBottom.Y,
 		n.Width(),
-		n.Height,
+		n.Height(),
 		nodeFontSize,
 		n.Title,
 	)
@@ -42,6 +41,11 @@ func (n Node) Render() string {
 
 func (n Node) Width() int {
 	w := int(float64(nodeFontSize*len(n.Title)) * 0.75)
+	return w
+}
+
+func (n Node) Height() int {
+	w := 2 * nodeFontSize
 	return w
 }
 
