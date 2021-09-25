@@ -16,12 +16,33 @@
         }
         
         .unselectable {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
             -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
             user-select: none;
+        }
+        
+        #input-container {
+            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
+            border-color: black;
+            border-radius: 5px;
+            border: 1px solid lightgrey;
+            left: 50px;
+            margin-top: 15px;
+            min-width: 440px;
+            padding: 15px;
+            position: absolute;
+            z-index: 1;
+        }
+        
+        #output-container {
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
         }
     </style>
 
@@ -47,9 +68,8 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <div id="output-container" style="height: 100%; width: 100%; position: absolute; z-index: -1;"></div>
-
-    <div class="input-container" style="min-width: 440px;position: absolute;left: 50px;z-index: 1;border-color: black;border: 1px solid lightgrey;padding: 15px;margin-top: 15px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-radius: 5px;">
+    <div id="output-container"></div>
+    <div id="input-container">
         <div class="mx-auto" style="width: 100%;">
             <div class="d-grid gap-4">
                 <div class="mb-3">
