@@ -96,6 +96,7 @@ $ cat '
 - [ ] draw contents of nodes
 - [ ] collapse and un-collapse nodes by click
 - [ ] coloring of nodes contents
+- [ ] Put center of mass at center of browser on startup
 - [ ] node location algorithm
 - [ ] edge location algorithm
 - [ ] subway map style edges ports in nodes and layout
@@ -103,7 +104,6 @@ $ cat '
 - [ ] UI for coloring input
 - [ ] update graph without re-rendering whole
 - [ ] Touch for zoom and pan
-- [ ] Put center of mass at center of browser on startup
 
 ## References
 

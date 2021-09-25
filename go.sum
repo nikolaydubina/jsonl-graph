@@ -17,6 +17,8 @@ github.com/jung-kurt/gofpdf v1.0.0/go.mod h1:7Id9E/uU8ce6rXgefFLlgrJj/GYY22cpxn+
 github.com/jung-kurt/gofpdf v1.0.3-0.20190309125859-24315acbbda5/go.mod h1:7Id9E/uU8ce6rXgefFLlgrJj/GYY22cpxn+r32jIOes=
 github.com/nikolaydubina/multiline-jsonl v1.0.2 h1:CK9Xcmvb39Yl11Urc9hAaSCBrb30WOTh3xIRYEBq0Cw=
 github.com/nikolaydubina/multiline-jsonl v1.0.2/go.mod h1:/CONohg68Ltqm6QImYFWK2hC4025Sm/b53pqWQDVJ2A=
+github.com/nikolaydubina/multiline-jsonl v1.0.3 h1:rzfukoRroxvBorDgrtAjIcBasBpKQstqaOk9VfBPz70=
+github.com/nikolaydubina/multiline-jsonl v1.0.3/go.mod h1:/CONohg68Ltqm6QImYFWK2hC4025Sm/b53pqWQDVJ2A=
 github.com/phpdave11/gofpdf v1.4.2/go.mod h1:zpO6xFn9yxo3YLyMvW8HcKWVdbNqgIfOOp2dXMnm1mY=
 github.com/phpdave11/gofpdi v1.0.12/go.mod h1:vBmVV0Do6hSBHC8uKUQ71JGW+ZGQq74llk/7bXwjDoI=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
