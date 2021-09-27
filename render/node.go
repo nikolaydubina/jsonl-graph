@@ -28,7 +28,7 @@ func (n Node) Render() string {
 	return fmt.Sprintf(`
 		<g>
 			<foreignObject x="%d" y="%d" width="%d" height="%d">
-				<div xmlns="http://www.w3.org/1999/xhtml" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px; padding: 5px;">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px; padding: 5px;">
 					%s
 					%s
 				</div>
@@ -66,7 +66,7 @@ type NodeTitle struct {
 
 func (n NodeTitle) Render() string {
 	return fmt.Sprintf(`
-		<div style="font-size: %dpx; text-align: center; padding: 5px;">
+		<div style="font-size: %dpx; text-align: center; padding: 5px; border-bottom: 1px solid lightgrey;">
 			%s
 		</div>`,
 		n.FontSize,
