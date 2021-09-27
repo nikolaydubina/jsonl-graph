@@ -107,10 +107,13 @@ func (r Renderer) UpdateRenderGraphWithDataGraph() {
 			r.graphRender.Nodes[id] = render.Node{}
 		}
 
-		rnode := r.graphRender.Nodes[id]
-		rnode.Title = node.ID()
-
-		r.graphRender.Nodes[id] = rnode
+		renderedNode := r.graphRender.Nodes[id]
+		r.graphRender.Nodes[id] = render.Node{
+			Title:      node.ID(),
+			LeftBottom: renderedNode.LeftBottom,
+			ShowData:   true,
+			NodeData:   node,
+		}
 	}
 
 	// delete render graph nodes that no longer present

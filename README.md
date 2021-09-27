@@ -92,7 +92,6 @@ $ cat '
 
 ## TODO
 
-- [ ] draw contents of nodes
 - [ ] collapse and un-collapse nodes by click
 - [ ] coloring of nodes contents
 - [ ] Put center of mass at center of browser on startup
@@ -103,6 +102,7 @@ $ cat '
 - [ ] UI for coloring input
 - [ ] update graph without re-rendering whole
 - [ ] Touch for zoom and pan
+- [ ] Stable render graph update on large changes (e.g. "one deleted node does not shift everything")
 
 ## References
 

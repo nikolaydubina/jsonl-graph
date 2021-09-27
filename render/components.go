@@ -1,6 +1,7 @@
 package render
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 )
@@ -25,4 +26,17 @@ func arrowDef() string {
 			<polygon points="0 0, 10 3.5, 0 7" />
 		</marker>
 	`
+}
+
+// RenderValue coerces to json.Number and tries to avoid adding decimal points to integers
+func RenderValue(v interface{}) string {
+	if v, ok := v.(json.Number); ok {
+		if vInt, err := v.Int64(); err == nil {
+			return fmt.Sprintf("%d", vInt)
+		}
+		if v, err := v.Float64(); err == nil {
+			return fmt.Sprintf("%.2f", v)
+		}
+	}
+	return fmt.Sprintf("%v", v)
 }
