@@ -28,7 +28,7 @@ func (n Node) Render() string {
 	return fmt.Sprintf(`
 		<g>
 			<foreignObject x="%d" y="%d" width="%d" height="%d">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px; padding: 5px;">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
 					%s
 					%s
 				</div>
@@ -66,7 +66,7 @@ type NodeTitle struct {
 
 func (n NodeTitle) Render() string {
 	return fmt.Sprintf(`
-		<div style="font-size: %dpx; text-align: center; padding: 5px; border-bottom: 1px solid lightgrey;">
+		<div style="font-size: %dpx; text-align: center; padding: 4px;">
 			%s
 		</div>`,
 		n.FontSize,
@@ -92,7 +92,7 @@ func (n NodeDataTable) Width() int {
 			maxlen = currLen
 		}
 	}
-	return int(float64(nodeFontSize*maxlen) * 0.75)
+	return int(float64(nodeFontSize*maxlen) * 0.8)
 }
 
 func (n NodeDataTable) Height() int {
@@ -130,7 +130,7 @@ func (n NodeDataTable) Render() string {
 	sort.Strings(rows)
 
 	return fmt.Sprintf(
-		`<div style="font-size: %dpx;">
+		`<div style="font-size: %dpx; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
 			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%%;">
 			%s
 			</table>
