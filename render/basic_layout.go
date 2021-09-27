@@ -32,15 +32,15 @@ func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
 			NodeData:   g.Nodes[id].NodeData,
 		}
 
-		colNum := i % l.RowLength
+		colNum := (i + 1) % l.RowLength
 
 		if colNum == 0 {
 			x = 0
-			yf = g.Nodes[id].Height()
 			y += yf + l.Margin
+			yf = g.Nodes[id].Height()
 		} else {
 			x += g.Nodes[id].Width() + l.Margin
-			if h := g.Nodes[id].Width(); h > yf {
+			if h := g.Nodes[id].Height(); h > yf {
 				yf = g.Nodes[id].Height()
 			}
 		}
