@@ -105,6 +105,7 @@ $ cat '
 - [ ] Fetch single json from URL
 - [ ] Fetch single field from URL
 - [ ] Fetch multiple JSONL from URL
+- [ ] UI collapseable sections
 
 ## References
 
