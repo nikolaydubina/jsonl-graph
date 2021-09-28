@@ -102,6 +102,9 @@ $ cat '
 - [ ] update graph without re-rendering whole
 - [ ] Touch for zoom and pan
 - [ ] Stable render graph update on large changes (e.g. "one deleted node does not shift everything")
+- [ ] Fetch single json from URL
+- [ ] Fetch single field from URL
+- [ ] Fetch multiple JSONL from URL
 
 ## References
 
