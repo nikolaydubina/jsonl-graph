@@ -63,6 +63,7 @@
                 .then(result => go.run(result.instance));
         }
     </script>
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
 </head>
 
 <body>
@@ -86,14 +87,11 @@
                 <form id="inputConfig">
                     <div class="d-grid gap-1">
                         <div class="mb-3">
-                            <input type="radio" class="btn-check" name="formatOption" id="formatSVG" autocomplete="off" checked>
-                            <label class="btn btn-outline-secondary" for="formatSVG">SVG</label>
+                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionGrid" autocomplete="off" checked>
+                            <label class="btn btn-outline-secondary" for="layoutOptionGrid">Grid</label>
 
-                            <input type="radio" class="btn-check" name="formatOption" id="formatPNG" autocomplete="off">
-                            <label class="btn btn-outline-secondary" for="formatPNG">PNG</label>
-
-                            <input type="radio" class="btn-check" name="formatOption" id="formatJPEG" autocomplete="off">
-                            <label class="btn btn-outline-secondary" for="formatJPEG">JPEG</label>
+                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionForces" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="layoutOptionForces">Forces</label>
                         </div>
 
                         <div class="mb-3">

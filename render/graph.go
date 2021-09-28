@@ -48,3 +48,21 @@ func (g Graph) Render(svgID, rootID string) string {
 	}
 	return svg(defs, svgID, g.RenderSVGRoot(rootID))
 }
+
+// TotalNodesWidth is sum of all nodes width.
+func (g Graph) TotalNodesWidth() int {
+	w := 0
+	for _, node := range g.Nodes {
+		w += node.Width()
+	}
+	return w
+}
+
+// TotalNodesHeight is sum of all nodes height.
+func (g Graph) TotalNodesHeight() int {
+	h := 0
+	for _, node := range g.Nodes {
+		h += node.Height()
+	}
+	return h
+}

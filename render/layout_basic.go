@@ -2,8 +2,19 @@ package render
 
 import (
 	"image"
+	"math/rand"
 	"sort"
 )
+
+func InitRandom(g Graph) {
+	// randomize positions
+	graphWidth := g.TotalNodesWidth()
+	graphHeight := g.TotalNodesHeight()
+	for i := range g.Nodes {
+		g.Nodes[i].LeftBottom.X = int(rand.Float64() * float64(graphWidth))
+		g.Nodes[i].LeftBottom.Y = int(rand.Float64() * float64(graphHeight))
+	}
+}
 
 // BasicGridLayout arranges nodes in rows and columns.
 // Useful for debugging.

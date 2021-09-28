@@ -111,5 +111,12 @@ $ cat '
 
 - Magnetic Spring graph drawing, Kozo Sugiyama
 - [Layered Graph](https://en.wikipedia.org/wiki/Layered_graph_drawing)
+- [Graph Drawing](https://en.wikipedia.org/wiki/Graph_drawing)
 - [google/pprof svg](https://github.com/google/pprof/blob/master/internal/driver/svg.go)
 - [google/pprof svgpan](https://github.com/google/pprof/blob/master/third_party/svgpan/svgpan.go)
+- [Graph Compact Orthogonal Layout Algorithm](https://arxiv.org/pdf/1807.09368.pdf)
+- [Coffman-Graham algorithm](https://en.wikipedia.org/wiki/Coffman–Graham_algorithm)
+- [gonum isomap layout](https://github.com/gonum/gonum/blob/master/graph/layout/isomap.go)
+- [gonum eades layout](https://github.com/gonum/gonum/blob/master/graph/layout/eades.go)
+- [Booststrap](https://getbootstrap.com)
+- [Go WebAssembly](https://github.com/golang/go/wiki/WebAssembly#debugging)

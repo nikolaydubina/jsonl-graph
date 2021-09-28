@@ -24,6 +24,7 @@ type Renderer struct {
 	svgID         string
 	rootID        string
 	scaler        *svgpanzoom.PanZoomer
+	hasLayout     bool
 }
 
 func NewRenderer(
@@ -34,8 +35,8 @@ func NewRenderer(
 	svgID string,
 	rootID string,
 	scaler *svgpanzoom.PanZoomer,
-) Renderer {
-	renderer := Renderer{
+) *Renderer {
+	renderer := &Renderer{
 		graphData:     graphData,
 		graphRender:   graphRender,
 		layoutUpdater: layoutUpdater,
@@ -51,10 +52,59 @@ func NewRenderer(
 	js.Global().Get("document").Call("getElementById", "btnCollapseAllNodes").Set("onclick", js.FuncOf(renderer.OnCollapseAllNodes))
 	js.Global().Get("document").Call("getElementById", "btnExpandAllNodes").Set("onclick", js.FuncOf(renderer.OnExpandAllNodes))
 
+	layoutOptions := []LayoutOption{
+		GridLayoutOption,
+		ForcesLayoutOption,
+	}
+	for _, l := range layoutOptions {
+		js.Global().Get("document").Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
+	}
+
 	return renderer
 }
 
-func (r Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value, _ []js.Value) interface{} {
+type LayoutOption string
+
+const (
+	GridLayoutOption   LayoutOption = "layoutOptionGrid"
+	ForcesLayoutOption LayoutOption = "layoutOptionForces"
+)
+
+// TODO: read options of layout from UI
+func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Value, _ []js.Value) interface{} {
+	return func(_ js.Value, _ []js.Value) interface{} {
+		switch layoutOption {
+		case GridLayoutOption:
+			r.layoutUpdater = render.BasicGridLayout{
+				RowLength: 5,
+				Margin:    25,
+			}
+		case ForcesLayoutOption:
+			render.InitRandom(r.graphRender)
+			r.layoutUpdater = render.ForceGraphLayout{
+				Delta:    10,
+				MaxSteps: 500,
+				Forces: []render.Force{
+					render.GravityNodesForce{
+						K: 10,
+					},
+					render.GravityEdgesForce{
+						K: 10,
+					},
+					render.ShrinkSpringEdgesForce{
+						K: 0.01,
+						L: 500,
+					},
+				},
+			}
+		}
+
+		r.Render()
+		return nil
+	}
+}
+
+func (r *Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value, _ []js.Value) interface{} {
 	return func(_ js.Value, _ []js.Value) interface{} {
 		// natural id
 		idParts := strings.Split(nodeTitleID, ":")
@@ -69,7 +119,7 @@ func (r Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value
 	}
 }
 
-func (r Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
+func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 
 	g, err := graph.NewGraphFromJSONL(strings.NewReader(inputString.String()))
@@ -84,7 +134,7 @@ func (r Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
-func (r Renderer) OnPrettifyJSON(_ js.Value, _ []js.Value) interface{} {
+func (r *Renderer) OnPrettifyJSON(_ js.Value, _ []js.Value) interface{} {
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 
 	var out bytes.Buffer
@@ -98,7 +148,7 @@ func (r Renderer) OnPrettifyJSON(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
-func (r Renderer) OnCollapseJSON(_ js.Value, _ []js.Value) interface{} {
+func (r *Renderer) OnCollapseJSON(_ js.Value, _ []js.Value) interface{} {
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 
 	var out bytes.Buffer
@@ -112,7 +162,7 @@ func (r Renderer) OnCollapseJSON(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
-func (r Renderer) OnCollapseAllNodes(_ js.Value, _ []js.Value) interface{} {
+func (r *Renderer) OnCollapseAllNodes(_ js.Value, _ []js.Value) interface{} {
 	for i := range r.graphRender.Nodes {
 		r.graphRender.Nodes[i].ShowData = false
 	}
@@ -120,7 +170,7 @@ func (r Renderer) OnCollapseAllNodes(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
-func (r Renderer) OnExpandAllNodes(_ js.Value, _ []js.Value) interface{} {
+func (r *Renderer) OnExpandAllNodes(_ js.Value, _ []js.Value) interface{} {
 	for i := range r.graphRender.Nodes {
 		r.graphRender.Nodes[i].ShowData = true
 	}
@@ -133,7 +183,7 @@ func (r Renderer) OnExpandAllNodes(_ js.Value, _ []js.Value) interface{} {
 // data from data graph.
 // We have to preserve ids and existing render information.
 // For example, preserving positions in Nodes and Paths points in Edges.
-func (r Renderer) UpdateRenderGraphWithDataGraph() {
+func (r *Renderer) UpdateRenderGraphWithDataGraph() {
 	// update nodes with new data, preserve rest. add new nodes.
 	for id, node := range r.graphData.Nodes {
 		if _, ok := r.graphRender.Nodes[id]; !ok {
@@ -183,7 +233,7 @@ func (r Renderer) UpdateRenderGraphWithDataGraph() {
 	}
 }
 
-func (r Renderer) Render() {
+func (r *Renderer) Render() {
 	r.UpdateRenderGraphWithDataGraph()
 	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
 
@@ -220,7 +270,6 @@ func main() {
 			0.2,
 		),
 	)
-	renderer.Render()
 	renderer.OnDataChange(js.Value{}, nil)
 
 	<-c
