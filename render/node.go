@@ -12,10 +12,15 @@ const nodeFontSize int = 9
 // Node is rendered point.
 // Can render contents as table.
 type Node struct {
+	ID         string      // used to make DOM IDs
+	LeftBottom image.Point // lowest X and Y coordinate of node box
+	ShowData   bool        // if true then render contents of node besides title
 	Title      string
-	LeftBottom image.Point
-	ShowData   bool
 	NodeData   map[string]interface{}
+}
+
+func (n Node) NodeTitleID() string {
+	return fmt.Sprintf("svg:graph:node:title:%s", n.ID)
 }
 
 // Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject
@@ -39,13 +44,17 @@ func (n Node) Render() string {
 		n.LeftBottom.Y,
 		n.Width()+padding,
 		n.Height()+padding,
-		NodeTitle{Title: n.Title, FontSize: nodeFontSize}.Render(),
+		NodeTitle{ID: fmt.Sprintf("svg:graph:node:title:%s", n.ID), Title: n.Title, FontSize: nodeFontSize}.Render(),
 		body,
 	)
 }
 
 func (n Node) Width() int {
-	w := int(float64(nodeFontSize*len(n.Title)) * 0.75)
+	w := int(float64(nodeFontSize*len(n.Title)) * 0.8)
+	if !n.ShowData {
+		return w
+	}
+
 	nd := NodeDataTable{NodeData: n.NodeData, FontSize: nodeFontSize}
 	if nd.Width() > w {
 		w = nd.Width()
@@ -55,20 +64,26 @@ func (n Node) Width() int {
 
 func (n Node) Height() int {
 	titleHeight := 2 * nodeFontSize
+	if !n.ShowData {
+		return titleHeight
+	}
+
 	nd := NodeDataTable{NodeData: n.NodeData, FontSize: nodeFontSize}
 	return titleHeight + nd.Height()
 }
 
 type NodeTitle struct {
+	ID       string
 	Title    string
 	FontSize int
 }
 
 func (n NodeTitle) Render() string {
 	return fmt.Sprintf(`
-		<div style="font-size: %dpx; text-align: center; padding: 4px;">
+		<div id="%s", style="font-size: %dpx; text-align: center; padding: 4px; cursor: pointer;">
 			%s
 		</div>`,
+		n.ID,
 		n.FontSize,
 		n.Title,
 	)

@@ -7,15 +7,15 @@ import (
 
 // Graph is rendered graph.
 type Graph struct {
-	Nodes map[uint64]Node
-	Edges map[uint64]map[uint64]Edge
+	Nodes map[uint64]*Node
+	Edges map[uint64]map[uint64]*Edge
 }
 
 // NewGraph initializes empty Graph.
 func NewGraph() Graph {
 	return Graph{
-		Nodes: map[uint64]Node{},
-		Edges: map[uint64]map[uint64]Edge{},
+		Nodes: map[uint64]*Node{},
+		Edges: map[uint64]map[uint64]*Edge{},
 	}
 }
 

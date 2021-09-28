@@ -25,12 +25,7 @@ func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
 	y := 0
 	yf := 0
 	for i, id := range nodes {
-		g.Nodes[id] = Node{
-			LeftBottom: image.Point{X: x, Y: y},
-			Title:      g.Nodes[id].Title,
-			ShowData:   g.Nodes[id].ShowData,
-			NodeData:   g.Nodes[id].NodeData,
-		}
+		g.Nodes[id].LeftBottom = image.Point{X: x, Y: y}
 
 		colNum := (i + 1) % l.RowLength
 
@@ -49,7 +44,8 @@ func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
 	//  update edges
 	for idFrom, toEdges := range g.Edges {
 		for idTo := range toEdges {
-			g.Edges[idFrom][idTo] = DirectEdge(g.Nodes[idFrom], g.Nodes[idTo])
+			edge := DirectEdge(*g.Nodes[idFrom], *g.Nodes[idTo])
+			g.Edges[idFrom][idTo] = &edge
 		}
 	}
 }

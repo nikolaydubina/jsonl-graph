@@ -92,7 +92,6 @@ $ cat '
 
 ## TODO
 
-- [ ] collapse and un-collapse nodes by click
 - [ ] coloring of nodes contents
 - [ ] Put center of mass at center of browser on startup
 - [ ] node location algorithm

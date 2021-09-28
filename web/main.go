@@ -52,6 +52,25 @@ func NewRenderer(
 	return renderer
 }
 
+func (r Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value, _ []js.Value) interface{} {
+	return func(_ js.Value, _ []js.Value) interface{} {
+		// natural id
+		idParts := strings.Split(nodeTitleID, ":")
+		id := strings.Join(idParts[4:], "")
+
+		// internal id
+		iid := r.graphData.IDStorage.Get(id)
+
+		// update rendered node
+		log.Printf("%#v", r.graphRender.Nodes[iid])
+		r.graphRender.Nodes[iid].ShowData = !r.graphRender.Nodes[iid].ShowData
+		log.Printf("%#v", r.graphRender.Nodes[iid])
+
+		r.Render()
+		return nil
+	}
+}
+
 func (r Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 
@@ -104,16 +123,12 @@ func (r Renderer) UpdateRenderGraphWithDataGraph() {
 	// update nodes with new data, preserve rest. add new nodes.
 	for id, node := range r.graphData.Nodes {
 		if _, ok := r.graphRender.Nodes[id]; !ok {
-			r.graphRender.Nodes[id] = render.Node{}
+			r.graphRender.Nodes[id] = &render.Node{}
 		}
 
-		renderedNode := r.graphRender.Nodes[id]
-		r.graphRender.Nodes[id] = render.Node{
-			Title:      node.ID(),
-			LeftBottom: renderedNode.LeftBottom,
-			ShowData:   true,
-			NodeData:   node,
-		}
+		r.graphRender.Nodes[id].NodeData = node
+		r.graphRender.Nodes[id].ID = node.ID()
+		r.graphRender.Nodes[id].Title = node.ID()
 	}
 
 	// delete render graph nodes that no longer present
@@ -126,14 +141,14 @@ func (r Renderer) UpdateRenderGraphWithDataGraph() {
 	// update edges with new data, preserve rest. add new edges.
 	for fromID, edges := range r.graphData.Edges {
 		if _, ok := r.graphRender.Edges[fromID]; !ok {
-			r.graphRender.Edges[fromID] = make(map[uint64]render.Edge, len(edges))
+			r.graphRender.Edges[fromID] = make(map[uint64]*render.Edge, len(edges))
 		}
 
 		// check all new data edges
 		for toID := range edges {
 			// new edge, creating new edge
 			if _, ok := r.graphRender.Edges[fromID][toID]; !ok {
-				r.graphRender.Edges[fromID][toID] = render.Edge{}
+				r.graphRender.Edges[fromID][toID] = &render.Edge{}
 			}
 			// existing edge. skipping, no fields to update.
 		}
@@ -162,6 +177,11 @@ func (r Renderer) Render() {
 		Get("document").
 		Call("getElementById", r.containerID).
 		Set("innerHTML", r.graphRender.Render(r.svgID, r.rootID))
+
+	for _, node := range r.graphRender.Nodes {
+		nodeTitleID := node.NodeTitleID()
+		js.Global().Get("document").Call("getElementById", nodeTitleID).Set("onclick", js.FuncOf(r.NewOnNodeTitleClickHandler(nodeTitleID)))
+	}
 
 	r.scaler.SetupHandlers()
 	r.scaler.SetRootTranslation()
