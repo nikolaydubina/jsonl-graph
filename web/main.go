@@ -86,10 +86,10 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 				MaxSteps: 500,
 				Forces: []render.Force{
 					render.GravityNodesForce{
-						K: 500,
+						K: 1000,
 					},
 					render.ShrinkSpringNodesForce{
-						K: 0.1,
+						K: 0.05,
 						L: 500,
 					},
 				},
