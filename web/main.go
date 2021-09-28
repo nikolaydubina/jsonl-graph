@@ -61,11 +61,7 @@ func (r Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value
 		// internal id
 		iid := r.graphData.IDStorage.Get(id)
 
-		// update rendered node
-		log.Printf("%#v", r.graphRender.Nodes[iid])
 		r.graphRender.Nodes[iid].ShowData = !r.graphRender.Nodes[iid].ShowData
-		log.Printf("%#v", r.graphRender.Nodes[iid])
-
 		r.Render()
 		return nil
 	}
