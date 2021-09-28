@@ -48,6 +48,8 @@ func NewRenderer(
 	js.Global().Get("document").Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChange))
 	js.Global().Get("document").Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.OnPrettifyJSON))
 	js.Global().Get("document").Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.OnCollapseJSON))
+	js.Global().Get("document").Call("getElementById", "btnCollapseAllNodes").Set("onclick", js.FuncOf(renderer.OnCollapseAllNodes))
+	js.Global().Get("document").Call("getElementById", "btnExpandAllNodes").Set("onclick", js.FuncOf(renderer.OnExpandAllNodes))
 
 	return renderer
 }
@@ -107,6 +109,22 @@ func (r Renderer) OnCollapseJSON(_ js.Value, _ []js.Value) interface{} {
 	js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
 
 	r.OnDataChange(js.Value{}, nil)
+	return nil
+}
+
+func (r Renderer) OnCollapseAllNodes(_ js.Value, _ []js.Value) interface{} {
+	for i := range r.graphRender.Nodes {
+		r.graphRender.Nodes[i].ShowData = false
+	}
+	r.Render()
+	return nil
+}
+
+func (r Renderer) OnExpandAllNodes(_ js.Value, _ []js.Value) interface{} {
+	for i := range r.graphRender.Nodes {
+		r.graphRender.Nodes[i].ShowData = true
+	}
+	r.Render()
 	return nil
 }
 
