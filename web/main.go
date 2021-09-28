@@ -47,8 +47,8 @@ func NewRenderer(
 	}
 
 	js.Global().Get("document").Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChange))
-	js.Global().Get("document").Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.OnPrettifyJSON))
-	js.Global().Get("document").Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.OnCollapseJSON))
+	js.Global().Get("document").Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(true)))
+	js.Global().Get("document").Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(false)))
 	js.Global().Get("document").Call("getElementById", "btnCollapseAllNodes").Set("onclick", js.FuncOf(renderer.OnCollapseAllNodes))
 	js.Global().Get("document").Call("getElementById", "btnExpandAllNodes").Set("onclick", js.FuncOf(renderer.OnExpandAllNodes))
 
@@ -131,32 +131,20 @@ func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
-func (r *Renderer) OnPrettifyJSON(_ js.Value, _ []js.Value) interface{} {
-	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
+func (r *Renderer) NewJSONFormatButtonHandler(prettify bool) func(_ js.Value, _ []js.Value) interface{} {
+	return func(_ js.Value, _ []js.Value) interface{} {
+		inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 
-	var out bytes.Buffer
-	if err := mjsonl.FormatJSONL(strings.NewReader(inputString.String()), &out, true); err != nil {
-		log.Printf("bad input: %s", err)
+		var out bytes.Buffer
+		if err := mjsonl.FormatJSONL(strings.NewReader(inputString.String()), &out, prettify); err != nil {
+			log.Printf("bad input: %s", err)
+			return nil
+		}
+		js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
+
+		r.OnDataChange(js.Value{}, nil)
 		return nil
 	}
-	js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
-
-	r.OnDataChange(js.Value{}, nil)
-	return nil
-}
-
-func (r *Renderer) OnCollapseJSON(_ js.Value, _ []js.Value) interface{} {
-	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
-
-	var out bytes.Buffer
-	if err := mjsonl.FormatJSONL(strings.NewReader(inputString.String()), &out, false); err != nil {
-		log.Printf("bad input: %s", err)
-		return nil
-	}
-	js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
-
-	r.OnDataChange(js.Value{}, nil)
-	return nil
 }
 
 func (r *Renderer) OnCollapseAllNodes(_ js.Value, _ []js.Value) interface{} {
