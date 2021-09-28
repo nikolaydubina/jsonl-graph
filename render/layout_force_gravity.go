@@ -29,8 +29,8 @@ func (l GravityEdgesForce) Force(g Graph) map[uint64][2]float64 {
 
 				if d > 1 {
 					f := l.K / (d * d)
-					fx = (xj - xi) / d * f
-					fy = (yj - yi) / d * f
+					fx += (xj - xi) / d * f
+					fy += (yj - yi) / d * f
 				}
 			}
 		}
@@ -69,8 +69,8 @@ func (l GravityNodesForce) Force(g Graph) map[uint64][2]float64 {
 
 			if d > 1 {
 				f := l.K / (d * d)
-				fx = (xj - xi) / d * f
-				fy = (yj - yi) / d * f
+				fx += (xj - xi) / d * f
+				fy += (yj - yi) / d * f
 			}
 		}
 

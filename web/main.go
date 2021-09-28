@@ -82,17 +82,14 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 		case ForcesLayoutOption:
 			render.InitRandom(r.graphRender)
 			r.layoutUpdater = render.ForceGraphLayout{
-				Delta:    10,
+				Delta:    1,
 				MaxSteps: 500,
 				Forces: []render.Force{
 					render.GravityNodesForce{
-						K: 10,
+						K: 500,
 					},
-					render.GravityEdgesForce{
-						K: 10,
-					},
-					render.ShrinkSpringEdgesForce{
-						K: 0.01,
+					render.ShrinkSpringNodesForce{
+						K: 0.1,
 						L: 500,
 					},
 				},

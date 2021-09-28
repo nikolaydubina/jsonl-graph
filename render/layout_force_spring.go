@@ -30,8 +30,8 @@ func (l ShrinkSpringEdgesForce) Force(g Graph) map[uint64][2]float64 {
 
 				if d < l.L && d > 1 {
 					f := (l.L - d) * l.K
-					fx = -1 * (xj - xi) / d * f
-					fy = -1 * (yj - yi) / d * f
+					fx += -1 * (xj - xi) / d * f
+					fy += -1 * (yj - yi) / d * f
 				}
 			}
 		}
@@ -71,8 +71,8 @@ func (l ShrinkSpringNodesForce) Force(g Graph) map[uint64][2]float64 {
 
 			if d < l.L && d > 1 {
 				f := (l.L - d) * l.K
-				fx = -1 * (xj - xi) / d * f
-				fy = -1 * (yj - yi) / d * f
+				fx += -1 * (xj - xi) / d * f
+				fy += -1 * (yj - yi) / d * f
 			}
 		}
 
