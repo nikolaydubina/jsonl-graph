@@ -2,75 +2,48 @@ package render
 
 import "math"
 
-// GravityEdgesForce is gravity attraction force by edges: f_ij = k * / (x_j - x_i) ** 2)
-type GravityEdgesForce struct {
-	K float64 // how to translate distance to force
+// GravityForce is gravity force
+type GravityForce struct {
+	K         float64 // positive K for attraction
+	EdgesOnly bool    // true = only edges, false = all nodes
 }
 
-func (l GravityEdgesForce) Force(g Graph) map[uint64][2]float64 {
+func (l GravityForce) Force(g Graph) map[uint64][2]float64 {
 	forces := make(map[uint64][2]float64, len(g.Nodes))
 
 	// force applied to node i
 	for i := range g.Nodes {
-		fx := 0.0
-		fy := 0.0
-
-		xi := float64(g.Nodes[i].LeftBottom.X)
-		yi := float64(g.Nodes[i].LeftBottom.Y)
-
-		if toIDs, ok := g.Edges[i]; ok {
-			for toID := range toIDs {
-				nodej := g.Nodes[toID]
-
-				xj := float64(nodej.LeftBottom.X)
-				yj := float64(nodej.LeftBottom.Y)
-
-				d := math.Hypot(xi-xj, yi-yj)
-
-				if d > 1 {
-					f := l.K / (d * d)
-					fx += (xj - xi) / d * f
-					fy += (yj - yi) / d * f
+		var js []uint64
+		if l.EdgesOnly {
+			if toIDs, ok := g.Edges[i]; ok {
+				for j := range toIDs {
+					js = append(js, j)
+				}
+			}
+		} else {
+			for j := range g.Nodes {
+				if i != j {
+					js = append(js, j)
 				}
 			}
 		}
 
-		forces[i] = [2]float64{fx, fy}
-	}
-
-	return forces
-}
-
-// GravityNodesForce is gravity attraction force among all nodes: f_ij = k * / (x_j - x_i) ** 2)
-type GravityNodesForce struct {
-	K float64 // how to translate distance to force
-}
-
-func (l GravityNodesForce) Force(g Graph) map[uint64][2]float64 {
-	forces := make(map[uint64][2]float64, len(g.Nodes))
-
-	// force applied to node i
-	for i := range g.Nodes {
 		fx := 0.0
 		fy := 0.0
 
 		xi := float64(g.Nodes[i].LeftBottom.X)
 		yi := float64(g.Nodes[i].LeftBottom.Y)
 
-		for j := range g.Nodes {
-			if i == j {
-				continue
-			}
-
+		for _, j := range js {
 			xj := float64(g.Nodes[j].LeftBottom.X)
 			yj := float64(g.Nodes[j].LeftBottom.Y)
 
 			d := math.Hypot(xi-xj, yi-yj)
 
 			if d > 1 {
-				f := l.K / (d * d)
-				fx += (xj - xi) / d * f
-				fy += (yj - yi) / d * f
+				f := l.K / d
+				fx += f * (xj - xi) / d
+				fy += f * (yj - yi) / d
 			}
 		}
 

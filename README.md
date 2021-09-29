@@ -102,9 +102,8 @@ $ cat '
 - [ ] update graph without re-rendering whole
 - [ ] Touch for zoom and pan
 - [ ] Stable render graph update on large changes (e.g. "one deleted node does not shift everything")
-- [ ] Fetch single json from URL
-- [ ] Fetch single field from URL
-- [ ] Fetch multiple JSONL from URL
+- [ ] Fetch JSON from URL + jsonpath for field
+- [ ] Fetch JSONL from URL
 - [ ] UI collapseable sections
 
 ## References
@@ -120,3 +119,6 @@ $ cat '
 - [gonum eades layout](https://github.com/gonum/gonum/blob/master/graph/layout/eades.go)
 - [Booststrap](https://getbootstrap.com)
 - [Go WebAssembly](https://github.com/golang/go/wiki/WebAssembly#debugging)
+- Fruchterman & Reingold forces
+- Lombarding-Spring-Embedder (Chernobleskiy, 2012)
+- Realistic Node Sizes (Gasner, North 1998)

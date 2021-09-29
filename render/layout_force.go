@@ -1,15 +1,17 @@
 package render
 
+import "math"
+
 // Force computes forces for Nodes.
 type Force interface {
 	Force(g Graph) map[uint64][2]float64
 }
 
 // ForceGraphLayout will simulate node movement due to forces.
-// TODO: add early stop if nodes did not move within some constant.
 type ForceGraphLayout struct {
 	Delta    float64 // how much move each step
 	MaxSteps int     // limit of iterations
+	Epsilon  float64 // minimal force
 	Forces   []Force
 }
 
@@ -22,6 +24,18 @@ func (l ForceGraphLayout) UpdateGraphLayout(g Graph) {
 			for k, v := range l.Forces[i].Force(g) {
 				forces[k] = [2]float64{forces[k][0] + v[0], forces[k][1] + v[1]}
 			}
+		}
+
+		// delete tiny forces
+		for i, f := range forces {
+			if math.Hypot(f[0], f[1]) < l.Epsilon {
+				delete(forces, i)
+			}
+		}
+
+		// early stop if no forces
+		if len(forces) == 0 {
+			break
 		}
 
 		// move by delta
@@ -39,5 +53,4 @@ func (l ForceGraphLayout) UpdateGraphLayout(g Graph) {
 			g.Edges[idFrom][idTo] = &edge
 		}
 	}
-
 }
