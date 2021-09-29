@@ -4,7 +4,7 @@ import "math"
 
 // Force computes forces for Nodes.
 type Force interface {
-	Force(g Graph) map[uint64][2]float64
+	AddForce(g Graph, fx map[uint64]float64, fy map[uint64]float64)
 }
 
 // ForceGraphLayout will simulate node movement due to forces.
@@ -17,31 +17,31 @@ type ForceGraphLayout struct {
 
 func (l ForceGraphLayout) UpdateGraphLayout(g Graph) {
 	for step := 0; step < l.MaxSteps; step++ {
-		forces := make(map[uint64][2]float64, len(g.Nodes))
+		fx := make(map[uint64]float64, len(g.Nodes))
+		fy := make(map[uint64]float64, len(g.Nodes))
 
 		// accumulate all forces
 		for i := range l.Forces {
-			for k, v := range l.Forces[i].Force(g) {
-				forces[k] = [2]float64{forces[k][0] + v[0], forces[k][1] + v[1]}
-			}
+			l.Forces[i].AddForce(g, fx, fy)
 		}
 
 		// delete tiny forces
-		for i, f := range forces {
-			if math.Hypot(f[0], f[1]) < l.Epsilon {
-				delete(forces, i)
+		for i := range g.Nodes {
+			if math.Hypot(fx[i], fy[i]) < l.Epsilon {
+				delete(fx, i)
+				delete(fy, i)
 			}
 		}
 
 		// early stop if no forces
-		if len(forces) == 0 {
+		if len(fx) == 0 || len(fy) == 0 {
 			break
 		}
 
 		// move by delta
 		for i := range g.Nodes {
-			g.Nodes[i].LeftBottom.X += int(forces[i][0] * l.Delta)
-			g.Nodes[i].LeftBottom.Y += int(forces[i][1] * l.Delta)
+			g.Nodes[i].LeftBottom.X += int(fx[i] * l.Delta)
+			g.Nodes[i].LeftBottom.Y += int(fy[i] * l.Delta)
 		}
 
 	}

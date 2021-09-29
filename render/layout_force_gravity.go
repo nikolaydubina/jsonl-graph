@@ -8,10 +8,7 @@ type GravityForce struct {
 	EdgesOnly bool    // true = only edges, false = all nodes
 }
 
-func (l GravityForce) Force(g Graph) map[uint64][2]float64 {
-	forces := make(map[uint64][2]float64, len(g.Nodes))
-
-	// force applied to node i
+func (l GravityForce) AddForce(g Graph, fx map[uint64]float64, fy map[uint64]float64) {
 	for i := range g.Nodes {
 		var js []uint64
 		if l.EdgesOnly {
@@ -28,9 +25,6 @@ func (l GravityForce) Force(g Graph) map[uint64][2]float64 {
 			}
 		}
 
-		fx := 0.0
-		fy := 0.0
-
 		xi := float64(g.Nodes[i].LeftBottom.X)
 		yi := float64(g.Nodes[i].LeftBottom.Y)
 
@@ -42,13 +36,9 @@ func (l GravityForce) Force(g Graph) map[uint64][2]float64 {
 
 			if d > 1 {
 				f := l.K / d
-				fx += f * (xj - xi) / d
-				fy += f * (yj - yi) / d
+				fx[i] += f * (xj - xi) / d
+				fy[i] += f * (yj - yi) / d
 			}
 		}
-
-		forces[i] = [2]float64{fx, fy}
 	}
-
-	return forces
 }
