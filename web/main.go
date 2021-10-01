@@ -55,10 +55,13 @@ func NewRenderer(
 	layoutOptions := []LayoutOption{
 		GridLayoutOption,
 		ForcesLayoutOption,
+		EadesLayoutOption,
+		IsomapLayoutOption,
 	}
 	for _, l := range layoutOptions {
 		js.Global().Get("document").Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
 	}
+	js.Global().Get("document").Call("getElementById", "btnUpdateLayout").Set("onclick", js.FuncOf(renderer.OnUpdateLayoutHandler))
 
 	return renderer
 }
@@ -68,6 +71,8 @@ type LayoutOption string
 const (
 	GridLayoutOption   LayoutOption = "layoutOptionGrid"
 	ForcesLayoutOption LayoutOption = "layoutOptionForces"
+	EadesLayoutOption  LayoutOption = "layoutOptionEades"
+	IsomapLayoutOption LayoutOption = "layoutOptionIsomap"
 )
 
 // TODO: read options of layout from UI
@@ -97,8 +102,23 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 					},
 				},
 			}
+		case EadesLayoutOption:
+			r.layoutUpdater = render.EadesGonumLayout{
+				Repulsion: 1,
+				Rate:      0.05,
+				Updates:   30,
+				Theta:     0.2,
+				ScaleX:    0.5,
+				ScaleY:    0.5,
+			}
+		case IsomapLayoutOption:
+			r.layoutUpdater = render.IsomapR2GonumLayout{
+				ScaleX: 0.5,
+				ScaleY: 0.5,
+			}
 		}
 
+		r.OnUpdateLayoutHandler(js.Value{}, nil)
 		r.Render()
 		return nil
 	}
@@ -166,6 +186,12 @@ func (r *Renderer) OnExpandAllNodes(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
+func (r *Renderer) OnUpdateLayoutHandler(_ js.Value, _ []js.Value) interface{} {
+	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
+	r.Render()
+	return nil
+}
+
 // UpdateRenderGraphWithDataGraph is called when graph data changed
 // and we need to update render graph nodes and fields based on new
 // data from data graph.
@@ -223,7 +249,6 @@ func (r *Renderer) UpdateRenderGraphWithDataGraph() {
 
 func (r *Renderer) Render() {
 	r.UpdateRenderGraphWithDataGraph()
-	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
 
 	js.Global().
 		Get("document").
@@ -259,6 +284,7 @@ func main() {
 		),
 	)
 	renderer.OnDataChange(js.Value{}, nil)
+	renderer.OnUpdateLayoutHandler(js.Value{}, nil)
 
 	<-c
 }

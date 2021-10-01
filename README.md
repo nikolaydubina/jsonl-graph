@@ -105,6 +105,7 @@ $ cat '
 - [ ] Fetch JSON from URL + jsonpath for field
 - [ ] Fetch JSONL from URL
 - [ ] UI collapseable sections
+- [ ] Scale layout X and Y node distances
 
 ## References
 
