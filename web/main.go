@@ -61,7 +61,6 @@ func NewRenderer(
 	for _, l := range layoutOptions {
 		js.Global().Get("document").Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
 	}
-	js.Global().Get("document").Call("getElementById", "btnUpdateLayout").Set("onclick", js.FuncOf(renderer.OnUpdateLayoutHandler))
 
 	return renderer
 }
@@ -118,7 +117,6 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 			}
 		}
 
-		r.OnUpdateLayoutHandler(js.Value{}, nil)
 		r.Render()
 		return nil
 	}
@@ -186,12 +184,6 @@ func (r *Renderer) OnExpandAllNodes(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
-func (r *Renderer) OnUpdateLayoutHandler(_ js.Value, _ []js.Value) interface{} {
-	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-	r.Render()
-	return nil
-}
-
 // UpdateRenderGraphWithDataGraph is called when graph data changed
 // and we need to update render graph nodes and fields based on new
 // data from data graph.
@@ -249,6 +241,7 @@ func (r *Renderer) UpdateRenderGraphWithDataGraph() {
 
 func (r *Renderer) Render() {
 	r.UpdateRenderGraphWithDataGraph()
+	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
 
 	js.Global().
 		Get("document").
@@ -284,7 +277,6 @@ func main() {
 		),
 	)
 	renderer.OnDataChange(js.Value{}, nil)
-	renderer.OnUpdateLayoutHandler(js.Value{}, nil)
 
 	<-c
 }
