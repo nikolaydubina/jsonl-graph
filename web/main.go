@@ -16,6 +16,10 @@ type layoutUpdater interface {
 	UpdateGraphLayout(g render.Graph)
 }
 
+// Changes are of two types: structural (what is connected to what) and contents (node contents).
+// We re-compute layout when structural changes or large enough visual changes.
+// We do not re-compute layout on content changes.
+// TODO: make layouts smart enough that they update smoothly on content changes (right now gonum is jumping).
 type Renderer struct {
 	graphData     graph.Graph   // what graph contains
 	graphRender   render.Graph  // how graph is rendered
@@ -117,6 +121,7 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 			}
 		}
 
+		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
 		r.Render()
 		return nil
 	}
@@ -138,8 +143,9 @@ func (r *Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Valu
 }
 
 func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
-	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
+	tracker := graph.NewGraphTracker(r.graphData)
 
+	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
 	g, err := graph.NewGraphFromJSONL(strings.NewReader(inputString.String()))
 	if err != nil {
 		log.Printf("bad input: %s", err)
@@ -147,8 +153,14 @@ func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	}
 
 	r.graphData.ReplaceFrom(g)
-	r.Render()
+	r.UpdateRenderGraphWithDataGraph()
 
+	// update layout only on structural changes.
+	if tracker.HasChanged(r.graphData) {
+		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
+	}
+
+	r.Render()
 	return nil
 }
 
@@ -168,18 +180,22 @@ func (r *Renderer) NewJSONFormatButtonHandler(prettify bool) func(_ js.Value, _ 
 	}
 }
 
+// collapsing all nodes changes graph a lot, so re-copmuting layout
 func (r *Renderer) OnCollapseAllNodes(_ js.Value, _ []js.Value) interface{} {
 	for i := range r.graphRender.Nodes {
 		r.graphRender.Nodes[i].ShowData = false
 	}
+	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
 	r.Render()
 	return nil
 }
 
+// expanding all nodes changes graph a lot, so re-copmuting layout
 func (r *Renderer) OnExpandAllNodes(_ js.Value, _ []js.Value) interface{} {
 	for i := range r.graphRender.Nodes {
 		r.graphRender.Nodes[i].ShowData = true
 	}
+	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
 	r.Render()
 	return nil
 }
@@ -240,9 +256,6 @@ func (r *Renderer) UpdateRenderGraphWithDataGraph() {
 }
 
 func (r *Renderer) Render() {
-	r.UpdateRenderGraphWithDataGraph()
-	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-
 	js.Global().
 		Get("document").
 		Call("getElementById", r.containerID).
@@ -276,6 +289,7 @@ func main() {
 			0.2,
 		),
 	)
+
 	renderer.OnDataChange(js.Value{}, nil)
 
 	<-c
