@@ -16,11 +16,11 @@ docs: clean build
 test:
 	go test -race -coverprofile=coverage.out -covermode=atomic ./...
 
-build-web:
+web: clean
 	cp "$$(go env GOROOT)/misc/wasm/wasm_exec.js" web/
-	cd web; GOARCH=wasm GOOS=js go build -o main.wasm main.go
+	cd web; GOARCH=wasm GOOS=js go build -ldflags="-s -w" -o main.wasm main.go
 
-run-web: build-web
+serve:
 	cd web; python3 -m http.server 8000
 
 .PHONY: docs clean build

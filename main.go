@@ -21,7 +21,7 @@ func main() {
 	flag.StringVar(&colorSchemeFilePath, "color-scheme", "", "optional path to colorscheme file (can be e.g. file://basic-colors.json)")
 	flag.Parse()
 
-	g, err := graph.NewGraphFromJSONLReader(os.Stdin)
+	g, err := graph.NewGraphFromJSONL(os.Stdin)
 	if err != nil {
 		log.Fatal(err)
 	}
