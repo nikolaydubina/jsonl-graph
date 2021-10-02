@@ -30,6 +30,7 @@ type Renderer struct {
 	scaler        *svgpanzoom.PanZoomer
 	hasLayout     bool
 	expandNodes   bool
+	prettifyJSON  bool
 	scalerLayout  render.MemoLayout
 }
 
@@ -69,8 +70,7 @@ func NewRenderer(
 	document := js.Global().Get("document")
 
 	document.Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChange))
-	document.Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(true)))
-	document.Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(false)))
+	document.Call("getElementById", "switchPrettifyJSON").Set("onchange", js.FuncOf(renderer.SwitchPrettifyJSONHandler))
 	document.Call("getElementById", "switchExpandNodes").Set("onchange", js.FuncOf(renderer.SwitchExpandNodesHandler))
 	document.Call("getElementById", "rangeNodeDistance").Set("oninput", js.FuncOf(renderer.NodeDistanceRangeHandler))
 
@@ -123,22 +123,6 @@ func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
-func (r *Renderer) NewJSONFormatButtonHandler(prettify bool) func(_ js.Value, _ []js.Value) interface{} {
-	return func(_ js.Value, _ []js.Value) interface{} {
-		inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
-
-		var out bytes.Buffer
-		if err := mjsonl.FormatJSONL(strings.NewReader(inputString.String()), &out, prettify); err != nil {
-			log.Printf("bad input: %s", err)
-			return nil
-		}
-		js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
-
-		r.OnDataChange(js.Value{}, nil)
-		return nil
-	}
-}
-
 func (r *Renderer) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interface{} {
 	rawval := args[0].Get("target").Get("value").String()
 	val := 1.0
@@ -158,6 +142,22 @@ func (r *Renderer) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interfa
 	r.scalerLayout.UpdateGraphLayout(r.graphRender)
 
 	r.Render()
+	return nil
+}
+
+func (r *Renderer) SwitchPrettifyJSONHandler(_ js.Value, _ []js.Value) interface{} {
+	r.prettifyJSON = !r.prettifyJSON
+
+	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
+
+	var out bytes.Buffer
+	if err := mjsonl.FormatJSONL(strings.NewReader(inputString.String()), &out, r.prettifyJSON); err != nil {
+		log.Printf("bad input: %s", err)
+		return nil
+	}
+	js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
+
+	r.OnDataChange(js.Value{}, nil)
 	return nil
 }
 
