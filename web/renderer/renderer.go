@@ -130,10 +130,18 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 
 // centerGraph will reset transformations, center it and apply zoom.
 func centerGraph(g render.Graph, scaler *svgpanzoom.PanZoomer) {
-	w := float64(g.Width())
-	h := float64(g.Height())
+	wScreen := js.Global().Get("document").Call("width")
+	hScreen := js.Global().Get("document").Call("height")
 
-	scaler.Reset().Shift(w/2, h/2).Zoom(1)
+	wGraph := float64(g.Width())
+	hGraph := float64(g.Height())
+
+	log.Printf("screen (%f x %f) graph (%f x %f)", wScreen, hScreen, wGraph, hGraph)
+
+	dx := 0.0
+	dy := 0.0
+
+	scaler.Reset().Shift(dx, dy).Zoom(1)
 }
 
 func (r *Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value, _ []js.Value) interface{} {
