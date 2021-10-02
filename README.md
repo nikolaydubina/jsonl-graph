@@ -95,16 +95,16 @@ $ cat '
 - [ ] UI collapseable sections
 - [ ] coloring of nodes contents
 - [ ] UI for coloring input
-- [ ] Put center of mass at center of browser on startup
 - [ ] Layered layout
 - [ ] Subway map style edges ports in nodes and layout
 - [ ] flexible path edges
 - [ ] Scale layout X and Y node distances
 - [ ] Touch for zoom and pan
-- [ ] Stable render graph update on large changes (e.g. "one deleted node does not shift everything")
-- [ ] Fetch JSON from URL + jsonpath for field
-- [ ] Fetch JSONL from URL
-- [ ] Update graph without re-rendering whole
+- [ ] WISH: Fetch JSON from URL + jsonpath for field
+- [ ] WISH: Fetch JSONL from URL
+- [ ] WISH: Update graph without re-rendering whole
+- [ ] WISH: Try native Go complex numbers for vectors
+- [ ] WISH: Add centerer that puts center of mass + 95% of density at center of screen
 
 ## References
 

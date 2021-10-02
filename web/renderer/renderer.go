@@ -16,10 +16,13 @@ type layoutUpdater interface {
 	UpdateGraphLayout(g render.Graph)
 }
 
-// Renderer bridge between input, svg output, and browser controls.
-// Changes are of two types: structural (what is connected to what) and contents (node contents).
-// We re-compute layout when structural changes or large enough visual changes.
-// We do not re-compute layout on content changes.
+// Renderer is a bridge between input, svg output, and browser controls.
+// It registers handlers and invokes rendering.
+// It combines all UI components together.
+//
+// Changes are of two types: structural — what is connected to what; and contents — node contents.
+// Re-render on all changes.
+// Re-layout on structural changes and big visual changes only.
 type Renderer struct {
 	graphData     graph.Graph   // what graph contains
 	graphRender   render.Graph  // how graph is rendered
@@ -53,8 +56,8 @@ func NewRenderer(
 	js.Global().Get("document").Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChange))
 	js.Global().Get("document").Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(true)))
 	js.Global().Get("document").Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(false)))
-	js.Global().Get("document").Call("getElementById", "btnCollapseAllNodes").Set("onclick", js.FuncOf(renderer.OnCollapseAllNodes))
-	js.Global().Get("document").Call("getElementById", "btnExpandAllNodes").Set("onclick", js.FuncOf(renderer.OnExpandAllNodes))
+	js.Global().Get("document").Call("getElementById", "btnCollapseAllNodes").Set("onclick", js.FuncOf(renderer.NewExpandAllNodesHandler(false)))
+	js.Global().Get("document").Call("getElementById", "btnExpandAllNodes").Set("onclick", js.FuncOf(renderer.NewExpandAllNodesHandler(true)))
 
 	layoutOptions := []LayoutOption{
 		GridLayoutOption,
@@ -67,81 +70,6 @@ func NewRenderer(
 	}
 
 	return renderer
-}
-
-type LayoutOption string
-
-const (
-	GridLayoutOption   LayoutOption = "layoutOptionGrid"
-	ForcesLayoutOption LayoutOption = "layoutOptionForces"
-	EadesLayoutOption  LayoutOption = "layoutOptionEades"
-	IsomapLayoutOption LayoutOption = "layoutOptionIsomap"
-)
-
-// TODO: read options of layout from UI
-func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Value, _ []js.Value) interface{} {
-	return func(_ js.Value, _ []js.Value) interface{} {
-		switch layoutOption {
-		case GridLayoutOption:
-			r.layoutUpdater = render.BasicGridLayout{
-				RowLength: 5,
-				Margin:    25,
-			}
-		case ForcesLayoutOption:
-			render.InitRandom(r.graphRender)
-			r.layoutUpdater = render.ForceGraphLayout{
-				Delta:    1,
-				MaxSteps: 5000,
-				Epsilon:  1.5,
-				Forces: []render.Force{
-					render.GravityForce{
-						K:         -50,
-						EdgesOnly: false,
-					},
-					render.SpringForce{
-						K:         0.2,
-						L:         200,
-						EdgesOnly: true,
-					},
-				},
-			}
-		case EadesLayoutOption:
-			r.layoutUpdater = render.EadesGonumLayout{
-				Repulsion: 1,
-				Rate:      0.05,
-				Updates:   30,
-				Theta:     0.2,
-				ScaleX:    0.5,
-				ScaleY:    0.5,
-			}
-		case IsomapLayoutOption:
-			r.layoutUpdater = render.IsomapR2GonumLayout{
-				ScaleX: 0.5,
-				ScaleY: 0.5,
-			}
-		}
-
-		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-		centerGraph(r.graphRender, r.scaler)
-		r.Render()
-		return nil
-	}
-}
-
-// centerGraph will reset transformations, center it and apply zoom.
-func centerGraph(g render.Graph, scaler *svgpanzoom.PanZoomer) {
-	wScreen := js.Global().Get("document").Call("width")
-	hScreen := js.Global().Get("document").Call("height")
-
-	wGraph := float64(g.Width())
-	hGraph := float64(g.Height())
-
-	log.Printf("screen (%f x %f) graph (%f x %f)", wScreen, hScreen, wGraph, hGraph)
-
-	dx := 0.0
-	dy := 0.0
-
-	scaler.Reset().Shift(dx, dy).Zoom(1)
 }
 
 func (r *Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value, _ []js.Value) interface{} {
@@ -175,7 +103,7 @@ func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	// update layout only on structural changes.
 	if tracker.HasChanged(r.graphData) {
 		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-		centerGraph(r.graphRender, r.scaler)
+		CenterGraph(r.graphRender, r.scaler)
 	}
 
 	r.Render()
@@ -198,26 +126,17 @@ func (r *Renderer) NewJSONFormatButtonHandler(prettify bool) func(_ js.Value, _ 
 	}
 }
 
-// collapsing all nodes changes graph a lot, so re-copmuting layout
-func (r *Renderer) OnCollapseAllNodes(_ js.Value, _ []js.Value) interface{} {
-	for i := range r.graphRender.Nodes {
-		r.graphRender.Nodes[i].ShowData = false
+// collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
+func (r *Renderer) NewExpandAllNodesHandler(expand bool) func(_ js.Value, _ []js.Value) interface{} {
+	return func(_ js.Value, _ []js.Value) interface{} {
+		for i := range r.graphRender.Nodes {
+			r.graphRender.Nodes[i].ShowData = expand
+		}
+		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
+		CenterGraph(r.graphRender, r.scaler)
+		r.Render()
+		return nil
 	}
-	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-	centerGraph(r.graphRender, r.scaler)
-	r.Render()
-	return nil
-}
-
-// expanding all nodes changes graph a lot, so re-copmuting layout
-func (r *Renderer) OnExpandAllNodes(_ js.Value, _ []js.Value) interface{} {
-	for i := range r.graphRender.Nodes {
-		r.graphRender.Nodes[i].ShowData = true
-	}
-	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-	centerGraph(r.graphRender, r.scaler)
-	r.Render()
-	return nil
 }
 
 func (r *Renderer) Render() {

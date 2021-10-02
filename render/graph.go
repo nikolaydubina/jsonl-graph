@@ -67,32 +67,36 @@ func (g Graph) TotalNodesHeight() int {
 	return h
 }
 
-// Width returns expected highest X coordinate needed to render graph.
-func (g Graph) Width() int {
-	if len(g.Nodes) == 0 {
-		return 0
-	}
-	var x int
+// BoundingBox coordinates that should fit whole graph.
+func (g Graph) BoundingBox() (minx, miny, maxx, maxy int) {
 	for _, node := range g.Nodes {
-		cx := node.LeftBottom.X + node.Width()
-		if cx > x {
-			x = cx
+		nx := node.LeftBottom.X
+		ny := node.LeftBottom.Y
+
+		if nx < minx {
+			minx = nx
+		}
+		if (nx + node.Width()) > maxx {
+			maxx = nx + node.Width()
+		}
+		if ny < miny {
+			miny = ny
+		}
+		if (ny + node.Height()) > maxy {
+			maxy = ny + node.Height()
 		}
 	}
-	return x
+	return minx, miny, maxx, maxy
 }
 
-// Width returns expected highest Y coordinate needed to render graph.
+// Width returns expected highest X coordinate needed to render graph.
+func (g Graph) Width() int {
+	minx, _, maxx, _ := g.BoundingBox()
+	return maxx - minx
+}
+
+// Height returns expected highest Y coordinate needed to render graph.
 func (g Graph) Height() int {
-	if len(g.Nodes) == 0 {
-		return 0
-	}
-	var y int
-	for _, node := range g.Nodes {
-		cy := node.LeftBottom.Y + node.Height()
-		if cy > y {
-			y = cy
-		}
-	}
-	return y
+	_, miny, _, maxy := g.BoundingBox()
+	return maxy - miny
 }

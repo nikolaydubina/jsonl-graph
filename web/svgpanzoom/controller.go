@@ -104,9 +104,9 @@ func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{}
 
 	// move to center, apply zoom, move back
 	k := identity()
-	k.Mul(translate(-x, -y, 0), k)
+	k.Mul(translate(-x, -y), k)
 	k.Mul(scale(z), k)
-	k.Mul(translate(x, y, 0), k)
+	k.Mul(translate(x, y), k)
 
 	p.transform.Mul(k, p.transform)
 	p.SetRootTranslation()
@@ -130,7 +130,7 @@ func (p *PanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
 	// revert to original scaling, compute translation, move back to new scaling
 	var k mat.Dense
 	k.Inverse(p.transformBeforeDrag)
-	k.Mul(&k, translate(x-ox, y-oy, 0))
+	k.Mul(&k, translate(x-ox, y-oy))
 	k.Mul(p.transformBeforeDrag, &k)
 
 	// add new scaling
@@ -159,12 +159,17 @@ func (p *PanZoomer) Reset() *PanZoomer {
 	return p
 }
 
-func (p *PanZoomer) Shift(dx, dy float64) *PanZoomer {
-	p.transform.Mul(p.transform, translate(dx, dy, 0))
+func (p *PanZoomer) Translate(dx, dy float64) *PanZoomer {
+	p.transform.Mul(p.transform, translate(dx, dy))
 	return p
 }
 
-func (p *PanZoomer) Zoom(z float64) *PanZoomer {
-	p.transform.Mul(p.transform, scale(z))
+func (p *PanZoomer) ScaleAt(z, x, y float64) *PanZoomer {
+	k := identity()
+	k.Mul(translate(-x, -y), k)
+	k.Mul(scale(z), k)
+	k.Mul(translate(x, y), k)
+
+	p.transform.Mul(k, p.transform)
 	return p
 }

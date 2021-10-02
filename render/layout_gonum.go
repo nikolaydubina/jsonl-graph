@@ -52,7 +52,7 @@ func updateGraphByGonumLayout(g Graph, gnLayout gnLayoutGetter, scaleX float64, 
 	// get width and height of our expected layout
 	w := getSquareLayoutSize(g) * scaleX
 	h := w * scaleY
-	log.Printf("gonum layout(%f x %f) our layout (%f x %f)", gnw, gnh, w, h)
+	log.Printf("update gonum layout: gonum layout(%f x %f) our layout (%f x %f)", gnw, gnh, w, h)
 
 	// update our coodinates and scale
 	for nodeID := range g.Nodes {

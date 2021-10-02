@@ -30,12 +30,12 @@ func NewGraphTracker(g Graph) GraphTracker {
 
 func (og GraphTracker) HasChanged(g Graph) bool {
 	if len(g.Nodes) != len(og.oldNodes) {
-		log.Printf("num nodes canged from(%d) to(%d)", len(g.Nodes), len(og.oldNodes))
+		log.Printf("graph tracker: num nodes canged from(%d) to(%d)", len(og.oldNodes), len(g.Nodes))
 		return true
 	}
 	for id := range g.Nodes {
 		if !og.oldNodes[id] {
-			log.Printf("new node not found(%d)", id)
+			log.Printf("graph tracker: new node not found(%d)", id)
 			return true
 		}
 	}
@@ -45,13 +45,13 @@ func (og GraphTracker) HasChanged(g Graph) bool {
 		numEdges += len(tos)
 	}
 	if numEdges != len(og.oldEdges) {
-		log.Printf("num edges canged from(%d) to(%d)", numEdges, len(og.oldEdges))
+		log.Printf("graph tracker: num edges canged from(%d) to(%d)", numEdges, len(og.oldEdges))
 		return true
 	}
 	for from, tos := range g.Edges {
 		for to := range tos {
 			if !og.oldEdges[[2]uint64{from, to}] {
-				log.Printf("new edge not found(%d, %d)", from, to)
+				log.Printf("graph tracker: new edge not found(%d, %d)", from, to)
 				return true
 			}
 		}
