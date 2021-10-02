@@ -100,3 +100,23 @@ func (g Graph) Height() int {
 	_, miny, _, maxy := g.BoundingBox()
 	return maxy - miny
 }
+
+// Copy returns deep copy of current graph.
+// TODO: make sure node and edges copied.
+func (g Graph) Copy() Graph {
+	other := NewGraph()
+	for i := range g.Nodes {
+		node := *g.Nodes[i]
+		other.Nodes[i] = &node
+	}
+	for from, tos := range g.Edges {
+		if _, ok := other.Edges[from]; !ok {
+			other.Edges[from] = make(map[uint64]*Edge, len(tos))
+		}
+		for to := range tos {
+			edge := *g.Edges[from][to]
+			other.Edges[from][to] = &edge
+		}
+	}
+	return other
+}

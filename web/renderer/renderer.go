@@ -2,6 +2,7 @@ package renderer
 
 import (
 	"bytes"
+	"fmt"
 	"log"
 	"strings"
 	"syscall/js"
@@ -11,10 +12,6 @@ import (
 	"github.com/nikolaydubina/jsonl-graph/web/svgpanzoom"
 	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
 )
-
-type layoutUpdater interface {
-	UpdateGraphLayout(g render.Graph)
-}
 
 // Renderer is a bridge between input, svg output, and browser controls.
 // It registers handlers and invokes rendering.
@@ -26,48 +23,59 @@ type layoutUpdater interface {
 type Renderer struct {
 	graphData     graph.Graph   // what graph contains
 	graphRender   render.Graph  // how graph is rendered
-	layoutUpdater layoutUpdater // how to make render graph
+	layoutUpdater render.Layout // how to arrange graph
 	containerID   string
 	svgID         string
 	rootID        string
 	scaler        *svgpanzoom.PanZoomer
 	hasLayout     bool
 	expandNodes   bool
+	scalerLayout  render.MemoLayout
 }
 
 func NewRenderer(
 	graphData graph.Graph,
 	graphRender render.Graph,
-	layoutUpdater layoutUpdater,
 	containerID string,
 	svgID string,
 	rootID string,
 	scaler *svgpanzoom.PanZoomer,
 ) *Renderer {
+	scalerLayout := render.ScalerLayout{Scale: 1}
+
 	renderer := &Renderer{
-		graphData:     graphData,
-		graphRender:   graphRender,
-		layoutUpdater: layoutUpdater,
-		containerID:   containerID,
-		svgID:         svgID,
-		rootID:        rootID,
-		scaler:        scaler,
-		expandNodes:   false,
+		graphData:   graphData,
+		graphRender: graphRender,
+		layoutUpdater: render.CompositeLayout{
+			Layouts: []render.Layout{
+				render.BasicGridLayout{
+					RowLength: 5,
+					Margin:    25,
+				},
+				&scalerLayout,
+			},
+		},
+		containerID: containerID,
+		svgID:       svgID,
+		rootID:      rootID,
+		scaler:      scaler,
+		expandNodes: false,
+		scalerLayout: render.MemoLayout{
+			Layout: &scalerLayout,
+			Graph:  graphRender,
+		},
 	}
 
-	js.Global().Get("document").Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChange))
-	js.Global().Get("document").Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(true)))
-	js.Global().Get("document").Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(false)))
-	js.Global().Get("document").Call("getElementById", "switchExpandNodes").Set("onchange", js.FuncOf(renderer.SwitchExpandNodesHandler))
+	document := js.Global().Get("document")
 
-	layoutOptions := []LayoutOption{
-		GridLayoutOption,
-		ForcesLayoutOption,
-		EadesLayoutOption,
-		IsomapLayoutOption,
-	}
-	for _, l := range layoutOptions {
-		js.Global().Get("document").Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
+	document.Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChange))
+	document.Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(true)))
+	document.Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(false)))
+	document.Call("getElementById", "switchExpandNodes").Set("onchange", js.FuncOf(renderer.SwitchExpandNodesHandler))
+	document.Call("getElementById", "rangeNodeDistance").Set("oninput", js.FuncOf(renderer.NodeDistanceRangeHandler))
+
+	for _, l := range AllLayoutOptions() {
+		document.Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
 	}
 
 	renderer.OnDataChange(js.Value{}, nil)             // populating with data
@@ -107,6 +115,7 @@ func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	// update layout only on structural changes.
 	if tracker.HasChanged(r.graphData) {
 		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
+		r.scalerLayout.Graph = r.graphRender.Copy() // memoize for scaling
 		CenterGraph(r.graphRender, r.scaler)
 	}
 
@@ -130,6 +139,28 @@ func (r *Renderer) NewJSONFormatButtonHandler(prettify bool) func(_ js.Value, _ 
 	}
 }
 
+func (r *Renderer) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interface{} {
+	rawval := args[0].Get("target").Get("value").String()
+	val := 1.0
+	if n, err := fmt.Sscanf(rawval, "%f", &val); n != 1 || err != nil {
+		log.Printf("handler: node distance range: error: %s", err)
+		return nil
+	}
+
+	log.Printf("handler: node distance range: new value(%f)", val)
+
+	// updating parameter for scaling
+	if v, ok := r.scalerLayout.Layout.(*render.ScalerLayout); ok {
+		v.Scale = val
+	}
+
+	// only running memoized scaling layout
+	r.scalerLayout.UpdateGraphLayout(r.graphRender)
+
+	r.Render()
+	return nil
+}
+
 // collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
 func (r *Renderer) SwitchExpandNodesHandler(_ js.Value, _ []js.Value) interface{} {
 	r.expandNodes = !r.expandNodes
@@ -138,20 +169,18 @@ func (r *Renderer) SwitchExpandNodesHandler(_ js.Value, _ []js.Value) interface{
 		r.graphRender.Nodes[i].ShowData = r.expandNodes
 	}
 	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
+	r.scalerLayout.Graph = r.graphRender.Copy() // memoize for scaling
 	CenterGraph(r.graphRender, r.scaler)
 	r.Render()
 	return nil
 }
 
 func (r *Renderer) Render() {
-	js.Global().
-		Get("document").
-		Call("getElementById", r.containerID).
-		Set("innerHTML", r.graphRender.Render(r.svgID, r.rootID))
+	document := js.Global().Get("document")
+	document.Call("getElementById", r.containerID).Set("innerHTML", r.graphRender.Render(r.svgID, r.rootID))
 
 	for _, node := range r.graphRender.Nodes {
-		nodeTitleID := node.NodeTitleID()
-		js.Global().Get("document").Call("getElementById", nodeTitleID).Set("onclick", js.FuncOf(r.NewOnNodeTitleClickHandler(nodeTitleID)))
+		document.Call("getElementById", node.TitleID()).Set("onclick", js.FuncOf(r.NewOnNodeTitleClickHandler(node.TitleID())))
 	}
 
 	r.scaler.SetupHandlers()

@@ -92,7 +92,6 @@ $ cat '
 
 ## TODO
 
-- [ ] Scale layout node distances
 - [ ] Coloring of nodes contents
 - [ ] UI for coloring input
 - [ ] Layered layout

@@ -2,18 +2,16 @@ package render
 
 import (
 	"image"
-	"math"
 	"math/rand"
 	"sort"
 )
 
+// randomize positions
 func InitRandom(g Graph) {
-	// randomize positions
-	graphWidth := math.Sqrt(float64(g.TotalNodesWidth()))
-	graphHeight := math.Sqrt(float64(g.TotalNodesHeight()))
+	d := getSquareLayoutSize(g)
 	for i := range g.Nodes {
-		g.Nodes[i].LeftBottom.X = int(rand.Float64() * graphWidth)
-		g.Nodes[i].LeftBottom.Y = int(rand.Float64() * graphHeight)
+		g.Nodes[i].LeftBottom.X = int(rand.Float64() * d)
+		g.Nodes[i].LeftBottom.Y = int(rand.Float64() * d)
 	}
 }
 

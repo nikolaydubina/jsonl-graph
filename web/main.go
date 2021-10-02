@@ -13,10 +13,6 @@ func main() {
 	renderer.NewRenderer(
 		graph.NewGraph(),
 		render.NewGraph(),
-		render.BasicGridLayout{
-			RowLength: 5,
-			Margin:    25,
-		},
 		"output-container",
 		"svg-jsonl-graph",
 		"svg-jsonl-graph-root",

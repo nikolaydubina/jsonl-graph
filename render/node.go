@@ -19,7 +19,7 @@ type Node struct {
 	NodeData   map[string]interface{}
 }
 
-func (n Node) NodeTitleID() string {
+func (n Node) TitleID() string {
 	return fmt.Sprintf("svg:graph:node:title:%s", n.ID)
 }
 

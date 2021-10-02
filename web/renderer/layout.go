@@ -15,19 +15,30 @@ const (
 	IsomapLayoutOption LayoutOption = "layoutOptionIsomap"
 )
 
+func AllLayoutOptions() []LayoutOption {
+	return []LayoutOption{
+		GridLayoutOption,
+		ForcesLayoutOption,
+		EadesLayoutOption,
+		IsomapLayoutOption,
+	}
+}
+
 // NewLayoutOptionUpdater constructs new handler for layout option.
 // TODO: read options of layout from UI
 func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Value, _ []js.Value) interface{} {
 	return func(_ js.Value, _ []js.Value) interface{} {
+		var mainLayout render.Layout
+
 		switch layoutOption {
 		case GridLayoutOption:
-			r.layoutUpdater = render.BasicGridLayout{
+			mainLayout = render.BasicGridLayout{
 				RowLength: 5,
 				Margin:    25,
 			}
 		case ForcesLayoutOption:
 			render.InitRandom(r.graphRender)
-			r.layoutUpdater = render.ForceGraphLayout{
+			mainLayout = render.ForceGraphLayout{
 				Delta:    1,
 				MaxSteps: 5000,
 				Epsilon:  1.5,
@@ -44,7 +55,7 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 				},
 			}
 		case EadesLayoutOption:
-			r.layoutUpdater = render.EadesGonumLayout{
+			mainLayout = render.EadesGonumLayout{
 				Repulsion: 1,
 				Rate:      0.05,
 				Updates:   30,
@@ -53,14 +64,25 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 				ScaleY:    0.5,
 			}
 		case IsomapLayoutOption:
-			r.layoutUpdater = render.IsomapR2GonumLayout{
+			mainLayout = render.IsomapR2GonumLayout{
 				ScaleX: 0.5,
 				ScaleY: 0.5,
 			}
 		}
 
+		r.layoutUpdater = render.CompositeLayout{
+			Layouts: []render.Layout{
+				mainLayout,
+				r.scalerLayout.Layout, // inner layout without memoization
+			},
+		}
+
 		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
 		CenterGraph(r.graphRender, r.scaler)
+
+		// update memoized graph for scaling
+		r.scalerLayout.Graph = r.graphRender.Copy()
+
 		r.Render()
 		return nil
 	}

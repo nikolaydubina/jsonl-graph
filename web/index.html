@@ -87,20 +87,6 @@
                 <form id="inputConfig">
                     <div class="d-grid gap-1">
                         <div class="mb-3">
-                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionGrid" autocomplete="off" checked>
-                            <label class="btn btn-outline-secondary" for="layoutOptionGrid">Grid</label>
-
-                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionForces" autocomplete="off">
-                            <label class="btn btn-outline-secondary" for="layoutOptionForces">Forces</label>
-
-                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionEades" autocomplete="off">
-                            <label class="btn btn-outline-secondary" for="layoutOptionEades">Eades</label>
-
-                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionIsomap" autocomplete="off">
-                            <label class="btn btn-outline-secondary" for="layoutOptionIsomap">Isomap</label>
-                        </div>
-
-                        <div class="mb-3">
                             <textarea class="form-control" id="inputData" rows="10" style="resize: both; width: 100%; height: auto; min-height: 128px; min-width: 440px;">
                                 {"awesomelists_is_mentioned":true,"can_get_git":true,"can_get_github":true,"can_run_tests":true,"codecov_coverage":98.67,"codecov_files":41,"codecov_lines":2036,"codecov_url":"https://app.codecov.io/gh/gin-gonic/gin","files_has_benchmarks":true,"files_has_tests":true,"git_last_commit":"2021-04-21","git_last_commit_days_since":4,"git_num_contributors":321,"git_url":"https://github.com/gin-gonic/gin","github_repo_stars":47520,"github_url":"https://github.com/gin-gonic/gin","goreportcard_average":0.99,"goreportcard_files":83,"goreportcard_grade":"A+","goreportcard_issues":6,"gotest_all_tests_passed":true,"gotest_has_tests":true,"gotest_num_packages":6,"gotest_num_packages_tests_passed":4,"gotest_num_packages_with_tests":4,"gotest_package_coverage_avg":98.9,"id":"github.com/gin-gonic/gin"}
                                 {"can_get_git":true,"can_get_github":true,"can_run_tests":true,"codecov_coverage":90.65,"codecov_files":3,"codecov_lines":107,"codecov_url":"https://app.codecov.io/gh/gin-contrib/sse","files_has_benchmarks":true,"files_has_tests":true,"git_last_commit":"2020-08-15","git_last_commit_days_since":252,"git_num_contributors":3,"git_url":"https://github.com/gin-contrib/sse","github_repo_stars":56,"github_url":"https://github.com/gin-contrib/sse","goreportcard_average":0.93,"goreportcard_files":5,"goreportcard_grade":"A+","goreportcard_issues":3,"gotest_all_tests_passed":true,"gotest_has_tests":true,"gotest_num_packages":1,"gotest_num_packages_tests_passed":1,"gotest_num_packages_with_tests":1,"gotest_package_coverage_avg":94.1,"id":"github.com/gin-contrib/sse"}
@@ -168,43 +154,31 @@
 
                         <div class="mb-3">
                             <button type="button" class="btn btn-light" id="btnPrettifyJSON" style="width: 49%;">Prettify</button>
-                            <button type="button" class="btn btn-light" id="btnCollapseJSON" style="width: 50%;">Collapse</button>
-                        </div>
-
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="switchExpandNodes" checked>
-                            <label class="form-check-label" for="switchExpandNodes">Expand Nodes</label>
+                            <button type="button" class="btn btn-light" id="btnCollapseJSON" style="width: 49%;">Collapse</button>
                         </div>
 
                         <div class="mb-3">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="switchMon" checked>
-                                <label class="form-check-label" for="switchMon">Mon</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="switchTue">
-                                <label class="form-check-label" for="switchTue">Tue</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="switchWed" checked>
-                                <label class="form-check-label" for="switchWed">Wed</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="switchThu">
-                                <label class="form-check-label" for="switchThu">Thu</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="switchFri" checked>
-                                <label class="form-check-label" for="switchFri">Fri</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="switchSat">
-                                <label class="form-check-label" for="switchSat">Sat</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="switchSun">
-                                <label class="form-check-label" for="switchSun">Sun</label>
-                            </div>
+                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionGrid" autocomplete="off" checked>
+                            <label class="btn btn-outline-secondary" for="layoutOptionGrid">Grid</label>
+
+                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionForces" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="layoutOptionForces">Forces</label>
+
+                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionEades" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="layoutOptionEades">Eades</label>
+
+                            <input type="radio" class="btn-check" name="layoutOption" id="layoutOptionIsomap" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="layoutOptionIsomap">Isomap</label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="switchExpandNodes">Expand Nodes</label>
+                            <input class="form-check-input" type="checkbox" id="switchExpandNodes" autocomplete="off" checked>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="rangeNodeDistance" class="form-label" style="width: 49%;">Node Distance</label>
+                            <input type="range" class="form-range" id="rangeNodeDistance" min="0.02" max="1.9" step="0.1" value="1" autocomplete="off" style="width: 49%; vertical-align: middle;">
                         </div>
 
                         <a id="downloadLink" download="" href="" class="btn btn-primary" role="button">
