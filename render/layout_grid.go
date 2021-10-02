@@ -6,12 +6,14 @@ import (
 	"sort"
 )
 
-// randomize positions
+// InitRandom positions for nodes.
+// Size is determined such that there is enough space to avoid overlaps.
+// Centered around (0,0), 50% of values will be negative.
 func InitRandom(g Graph) {
 	d := getSquareLayoutSize(g)
 	for i := range g.Nodes {
-		g.Nodes[i].LeftBottom.X = int(rand.Float64() * d)
-		g.Nodes[i].LeftBottom.Y = int(rand.Float64() * d)
+		g.Nodes[i].LeftBottom.X = int((rand.Float64() - 0.5) * d)
+		g.Nodes[i].LeftBottom.Y = int((rand.Float64() - 0.5) * d)
 	}
 }
 
