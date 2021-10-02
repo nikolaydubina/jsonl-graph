@@ -92,14 +92,14 @@ $ cat '
 
 ## TODO
 
-- [ ] UI collapseable sections
-- [ ] coloring of nodes contents
+- [ ] Scale layout node distances
+- [ ] Coloring of nodes contents
 - [ ] UI for coloring input
 - [ ] Layered layout
 - [ ] Subway map style edges ports in nodes and layout
-- [ ] flexible path edges
-- [ ] Scale layout X and Y node distances
+- [ ] Flexible path edges
 - [ ] Touch for zoom and pan
+- [ ] WISH: UI collapsible sections
 - [ ] WISH: Fetch JSON from URL + jsonpath for field
 - [ ] WISH: Fetch JSONL from URL
 - [ ] WISH: Update graph without re-rendering whole
