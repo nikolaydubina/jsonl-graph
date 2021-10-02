@@ -151,3 +151,20 @@ func (p *PanZoomer) handleMouseUp(_ js.Value, _ []js.Value) interface{} {
 	p.state = NotActive
 	return nil
 }
+
+func (p *PanZoomer) Reset() *PanZoomer {
+	p.transform = identity()
+	p.transformBeforeDrag = nil
+	p.origin = nil
+	return p
+}
+
+func (p *PanZoomer) Shift(dx, dy float64) *PanZoomer {
+	p.transform.Mul(p.transform, translate(-dx, -dy, 0))
+	return p
+}
+
+func (p *PanZoomer) Zoom(z float64) *PanZoomer {
+	p.transform.Mul(p.transform, scale(z))
+	return p
+}

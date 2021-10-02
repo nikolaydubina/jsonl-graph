@@ -19,7 +19,6 @@ type layoutUpdater interface {
 // Changes are of two types: structural (what is connected to what) and contents (node contents).
 // We re-compute layout when structural changes or large enough visual changes.
 // We do not re-compute layout on content changes.
-// TODO: make layouts smart enough that they update smoothly on content changes (right now gonum is jumping).
 type Renderer struct {
 	graphData     graph.Graph   // what graph contains
 	graphRender   render.Graph  // how graph is rendered
@@ -122,6 +121,7 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 		}
 
 		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
+		r.scaler.Reset().Shift(100, 100).Zoom(10)
 		r.Render()
 		return nil
 	}
