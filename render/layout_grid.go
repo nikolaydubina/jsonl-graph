@@ -48,7 +48,7 @@ func (l BasicGridLayout) UpdateGraphLayout(g Graph) {
 		} else {
 			x += g.Nodes[id].Width() + l.Margin
 			if h := g.Nodes[id].Height(); h > yf {
-				yf = g.Nodes[id].Height()
+				yf = h
 			}
 		}
 	}

@@ -32,6 +32,7 @@ type Renderer struct {
 	rootID        string
 	scaler        *svgpanzoom.PanZoomer
 	hasLayout     bool
+	expandNodes   bool
 }
 
 func NewRenderer(
@@ -51,13 +52,13 @@ func NewRenderer(
 		svgID:         svgID,
 		rootID:        rootID,
 		scaler:        scaler,
+		expandNodes:   false,
 	}
 
 	js.Global().Get("document").Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChange))
 	js.Global().Get("document").Call("getElementById", "btnPrettifyJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(true)))
 	js.Global().Get("document").Call("getElementById", "btnCollapseJSON").Set("onclick", js.FuncOf(renderer.NewJSONFormatButtonHandler(false)))
-	js.Global().Get("document").Call("getElementById", "btnCollapseAllNodes").Set("onclick", js.FuncOf(renderer.NewExpandAllNodesHandler(false)))
-	js.Global().Get("document").Call("getElementById", "btnExpandAllNodes").Set("onclick", js.FuncOf(renderer.NewExpandAllNodesHandler(true)))
+	js.Global().Get("document").Call("getElementById", "switchExpandNodes").Set("onchange", js.FuncOf(renderer.SwitchExpandNodesHandler))
 
 	layoutOptions := []LayoutOption{
 		GridLayoutOption,
@@ -68,6 +69,9 @@ func NewRenderer(
 	for _, l := range layoutOptions {
 		js.Global().Get("document").Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
 	}
+
+	renderer.OnDataChange(js.Value{}, nil)             // populating with data
+	renderer.SwitchExpandNodesHandler(js.Value{}, nil) // expanding nodes
 
 	return renderer
 }
@@ -127,16 +131,16 @@ func (r *Renderer) NewJSONFormatButtonHandler(prettify bool) func(_ js.Value, _ 
 }
 
 // collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
-func (r *Renderer) NewExpandAllNodesHandler(expand bool) func(_ js.Value, _ []js.Value) interface{} {
-	return func(_ js.Value, _ []js.Value) interface{} {
-		for i := range r.graphRender.Nodes {
-			r.graphRender.Nodes[i].ShowData = expand
-		}
-		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-		CenterGraph(r.graphRender, r.scaler)
-		r.Render()
-		return nil
+func (r *Renderer) SwitchExpandNodesHandler(_ js.Value, _ []js.Value) interface{} {
+	r.expandNodes = !r.expandNodes
+
+	for i := range r.graphRender.Nodes {
+		r.graphRender.Nodes[i].ShowData = r.expandNodes
 	}
+	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
+	CenterGraph(r.graphRender, r.scaler)
+	r.Render()
+	return nil
 }
 
 func (r *Renderer) Render() {

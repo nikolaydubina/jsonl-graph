@@ -1,8 +1,6 @@
 package main
 
 import (
-	"syscall/js"
-
 	"github.com/nikolaydubina/jsonl-graph/graph"
 	"github.com/nikolaydubina/jsonl-graph/render"
 	"github.com/nikolaydubina/jsonl-graph/web/renderer"
@@ -12,7 +10,7 @@ import (
 func main() {
 	c := make(chan bool)
 
-	renderer := renderer.NewRenderer(
+	renderer.NewRenderer(
 		graph.NewGraph(),
 		render.NewGraph(),
 		render.BasicGridLayout{
@@ -28,8 +26,6 @@ func main() {
 			0.2,
 		),
 	)
-
-	renderer.OnDataChange(js.Value{}, nil)
 
 	<-c
 }
