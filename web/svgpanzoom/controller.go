@@ -160,7 +160,7 @@ func (p *PanZoomer) Reset() *PanZoomer {
 }
 
 func (p *PanZoomer) Shift(dx, dy float64) *PanZoomer {
-	p.transform.Mul(p.transform, translate(-dx, -dy, 0))
+	p.transform.Mul(p.transform, translate(dx, dy, 0))
 	return p
 }
 
