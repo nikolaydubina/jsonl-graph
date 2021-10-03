@@ -7,7 +7,12 @@ import (
 	"strings"
 )
 
-const nodeFontSize int = 9
+const (
+	nodeFontSize         int     = 9
+	padding              int     = 10
+	textHeightMultiplier int     = 2
+	textWidthMultiplier  float64 = 0.8
+)
 
 // Node is rendered point.
 // Can render contents as table.
@@ -25,7 +30,6 @@ func (n Node) TitleID() string {
 
 // Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject
 func (n Node) Render() string {
-	padding := 10
 	body := ""
 	if n.ShowData {
 		body = NodeDataTable{NodeData: n.NodeData, FontSize: nodeFontSize}.Render()
@@ -50,7 +54,7 @@ func (n Node) Render() string {
 }
 
 func (n Node) Width() int {
-	w := int(float64(nodeFontSize*len(n.Title)) * 0.8)
+	w := int(float64(nodeFontSize*len(n.Title)) * textWidthMultiplier)
 	if !n.ShowData {
 		return w
 	}
@@ -63,7 +67,7 @@ func (n Node) Width() int {
 }
 
 func (n Node) Height() int {
-	titleHeight := 2 * nodeFontSize
+	titleHeight := nodeFontSize * textHeightMultiplier
 	if !n.ShowData {
 		return titleHeight
 	}
@@ -107,7 +111,7 @@ func (n NodeDataTable) Width() int {
 			maxlen = currLen
 		}
 	}
-	return int(float64(nodeFontSize*maxlen) * 0.8)
+	return int(float64(nodeFontSize*maxlen) * textWidthMultiplier)
 }
 
 func (n NodeDataTable) Height() int {
@@ -118,7 +122,7 @@ func (n NodeDataTable) Height() int {
 		}
 		nrows++
 	}
-	return nodeFontSize * nrows * 2
+	return nodeFontSize * nrows * textHeightMultiplier
 }
 
 func (n NodeDataTable) Render() string {
