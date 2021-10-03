@@ -12,9 +12,9 @@ func (l GravityForce) AddForce(g Graph, fx map[uint64]float64, fy map[uint64]flo
 	for i := range g.Nodes {
 		var js []uint64
 		if l.EdgesOnly {
-			if toIDs, ok := g.Edges[i]; ok {
-				for j := range toIDs {
-					js = append(js, j)
+			for e := range g.Edges {
+				if e[0] == i {
+					js = append(js, e[1])
 				}
 			}
 		} else {

@@ -15,10 +15,8 @@ func gonumNodeID(id uint64) int64 {
 
 func toGonumGraph(g Graph) *gnsimple.UndirectedGraph {
 	gn := gnsimple.NewUndirectedGraph()
-	for fromID, toIDs := range g.Edges {
-		for toID := range toIDs {
-			gn.SetEdge(gn.NewEdge(gnsimple.Node(gonumNodeID(fromID)), gnsimple.Node(gonumNodeID(toID))))
-		}
+	for e := range g.Edges {
+		gn.SetEdge(gn.NewEdge(gnsimple.Node(gonumNodeID(e[0])), gnsimple.Node(gonumNodeID(e[1]))))
 	}
 	return gn
 }
@@ -65,14 +63,10 @@ func updateGraphByGonumLayout(g Graph, gnLayout gnLayoutGetter, scaleX float64, 
 		g.Nodes[nodeID].LeftBottom.Y = int(y)
 	}
 
-	//  direct simple edges
-	for idFrom, toEdges := range g.Edges {
-		for idTo := range toEdges {
-			edge := DirectEdge(*g.Nodes[idFrom], *g.Nodes[idTo])
-			g.Edges[idFrom][idTo] = &edge
-		}
+	for e := range g.Edges {
+		edge := DirectEdge(*g.Nodes[e[0]], *g.Nodes[e[1]])
+		g.Edges[e] = &edge
 	}
-
 }
 
 // This works, but not as pretty.

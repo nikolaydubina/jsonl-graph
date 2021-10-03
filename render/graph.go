@@ -8,14 +8,14 @@ import (
 // Graph is rendered graph.
 type Graph struct {
 	Nodes map[uint64]*Node
-	Edges map[uint64]map[uint64]*Edge
+	Edges map[[2]uint64]*Edge
 }
 
 // NewGraph initializes empty Graph.
 func NewGraph() Graph {
 	return Graph{
 		Nodes: map[uint64]*Node{},
-		Edges: map[uint64]map[uint64]*Edge{},
+		Edges: map[[2]uint64]*Edge{},
 	}
 }
 
@@ -25,10 +25,8 @@ func (g Graph) RenderSVGRoot(rootID string) string {
 		fmt.Sprintf(`<g id="%s">`, rootID),
 	}
 
-	for _, tos := range g.Edges {
-		for _, edge := range tos {
-			body = append(body, edge.Render())
-		}
+	for _, edge := range g.Edges {
+		body = append(body, edge.Render())
 	}
 
 	// draw nodes always on top of edges
@@ -109,14 +107,9 @@ func (g Graph) Copy() Graph {
 		node := *g.Nodes[i]
 		other.Nodes[i] = &node
 	}
-	for from, tos := range g.Edges {
-		if _, ok := other.Edges[from]; !ok {
-			other.Edges[from] = make(map[uint64]*Edge, len(tos))
-		}
-		for to := range tos {
-			edge := *g.Edges[from][to]
-			other.Edges[from][to] = &edge
-		}
+	for e := range g.Edges {
+		edge := *g.Edges[e]
+		other.Edges[e] = &edge
 	}
 	return other
 }

@@ -28,10 +28,8 @@ func (l MemoLayout) UpdateGraphLayout(g Graph) {
 	for i := range g.Nodes {
 		g.Nodes[i].LeftBottom = newgraph.Nodes[i].LeftBottom
 	}
-	for from, tos := range g.Edges {
-		for to := range tos {
-			edge := *newgraph.Edges[from][to]
-			g.Edges[from][to] = &edge
-		}
+	for e := range g.Edges {
+		edge := *newgraph.Edges[e]
+		g.Edges[e] = &edge
 	}
 }
