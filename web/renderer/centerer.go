@@ -8,6 +8,8 @@ import (
 	"github.com/nikolaydubina/jsonl-graph/web/svgpanzoom"
 )
 
+// CenterGraph will update scaler with transformations such that
+// given graph will be in the center and fills the screen.
 func CenterGraph(g render.Graph, scaler *svgpanzoom.PanZoomer) {
 	minx, miny, maxx, maxy := g.BoundingBox()
 	wScreen := js.Global().Get("window").Get("innerWidth").Float()
