@@ -30,25 +30,17 @@ func UpdateRenderGraphWithDataGraph(graphData graph.Graph, graphRender render.Gr
 	}
 
 	// update edges with new data, preserve rest. add new edges.
-	for fromID, edges := range graphData.Edges {
-		// check all new data edges
-		for toID := range edges {
-			// new edge, creating new edge
-			if _, ok := graphRender.Edges[[2]uint64{fromID, toID}]; !ok {
-				graphRender.Edges[[2]uint64{fromID, toID}] = &render.Edge{}
-			}
-			// existing edge. skipping, no fields to update.
+	for e := range graphData.Edges {
+		// new edge, creating new edge
+		if _, ok := graphRender.Edges[e]; !ok {
+			graphRender.Edges[e] = &render.Edge{}
 		}
+		// existing edge. skipping, no fields to update.
 	}
 
 	// delete render graph edges that no longer present
 	for e := range graphRender.Edges {
-		dEdges, ok := graphData.Edges[e[0]]
-		if !ok {
-			delete(graphRender.Edges, e)
-			continue
-		}
-		if _, ok := dEdges[e[1]]; !ok {
+		if _, ok := graphData.Edges[e]; !ok {
 			delete(graphRender.Edges, e)
 		}
 	}

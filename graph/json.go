@@ -64,7 +64,7 @@ func (c orNodeDataEdgeData) cast() (*NodeData, *EdgeData, error) {
 // Graph is graph structure
 type Graph struct {
 	Nodes     map[uint64]NodeData
-	Edges     map[uint64]map[uint64]EdgeData
+	Edges     map[[2]uint64]EdgeData
 	IDStorage MapIDStorage
 }
 
@@ -72,7 +72,7 @@ type Graph struct {
 func NewGraph() Graph {
 	return Graph{
 		Nodes:     map[uint64]NodeData{},
-		Edges:     map[uint64]map[uint64]EdgeData{},
+		Edges:     map[[2]uint64]EdgeData{},
 		IDStorage: NewMapIDStorage(),
 	}
 }
@@ -101,12 +101,7 @@ func (g Graph) AddEdge(edge EdgeData) {
 		toID = g.IDStorage.Get(edge.To())
 	}
 
-	// generate maps if not present
-	if _, ok := g.Edges[fromID]; !ok {
-		g.Edges[fromID] = map[uint64]EdgeData{}
-	}
-
-	g.Edges[fromID][toID] = edge
+	g.Edges[[2]uint64{fromID, toID}] = edge
 }
 
 // ReplaceFrom will move data from other graph while preserving
@@ -116,10 +111,8 @@ func (g Graph) ReplaceFrom(other Graph) {
 	for _, node := range other.Nodes {
 		g.AddNode(node)
 	}
-	for _, edges := range other.Edges {
-		for _, edge := range edges {
-			g.AddEdge(edge)
-		}
+	for _, e := range other.Edges {
+		g.AddEdge(e)
 	}
 
 	// delete nodes not in other
@@ -131,19 +124,10 @@ func (g Graph) ReplaceFrom(other Graph) {
 	}
 
 	// delete edges not in other
-	for fromID, edges := range g.Edges {
-		otherFromID := other.IDStorage.Get(g.Nodes[fromID].ID())
-		if otherFromID == 0 || len(other.Edges[otherFromID]) == 0 {
-			delete(g.Edges, fromID)
-			continue
-		}
-
-		for toID := range edges {
-			otherToID := other.IDStorage.Get(g.Nodes[toID].ID())
-			if _, ok := other.Edges[otherFromID][otherToID]; !ok {
-				delete(g.Edges[fromID], toID)
-			}
-		}
+	for e := range g.Edges {
+		otherFrom := other.IDStorage.Get(g.Nodes[e[0]].ID())
+		otherTo := other.IDStorage.Get(g.Nodes[e[1]].ID())
+		delete(g.Edges, [2]uint64{otherFrom, otherTo})
 	}
 }
 

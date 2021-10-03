@@ -196,7 +196,7 @@ func TestParser(t *testing.T) {
 			t.Errorf("bad NodeData %#v", g.Nodes)
 		}
 
-		edge := g.Edges[from][to]
+		edge := g.Edges[[2]uint64{from, to}]
 		if edge["from"] != "123" || edge["to"] != "321" {
 			t.Errorf("bad EdgeData %#v", edge)
 		}
