@@ -12,13 +12,18 @@
 $ go install github.com/nikolaydubina/jsonl-graph@latest
 ```
 
-Self contained graph renderer.
-This can be an alternative to Graphviz, however it supports it as an output target too.
+.. or visit TODO: web URL
+
+Self-contained SVG graph renderer.
+This can be an alternative to Graphviz.
+However, it supports Graphviz as an output target too.
+
+## [JSONL](https://jsonlines.org/) Graph?
 
 Graph is represented as JSONL of nodes and edges.
 
 Node has `id` and any fields:
-```
+```json
 {
     "id": "github.com/gin-gonic/gin",
     "can_get_github": true,
@@ -33,21 +38,41 @@ Edge has `from` and `to` of node `id`:
 ```json
 {
     "from": "github.com/gin-gonic/gin",
-    "to": "golang.org/x/tools"
+    "to": "golang.org/x/tools",
+    ...
 }
 ```
 
-Why [JSONL](https://jsonlines.org/)? It is a perfect fit for storing graphs:
+This data encoding is a perfect fit for storing graphs:
 - can append new nodes and edges by concatenating files
 - nodes and edges can have any data
 - schema-less
-- any subset of lines is a valid graph
+- any subset of (compressed) lines is a valid graph
 
-## Examples
+## Features
 
-Website TODO: link here
+- [x] SVG output
+- [x] Graphviz output
+- [x] Coloring of fields with filters
+- [x] Layout: Gravity Force
+- [x] Layout: Spring Force
+- [x] Layout: Isomap
+- [x] Layout: Eades
+- [ ] Layout: Magnetic Force
+- [ ] Layout: Layers
+- [ ] Metro-style edges
+- [x] Interactive Web UI with WebAssembly
+- [x] CLI
+- [x] 100% Go
+- [x] 100% offline
+- [x] Self contained (..almost)
 
+## Example Web UI
+
+TODO: link here
 TODO: screenshot here
+
+## Example CLI
 
 To illustrate, I am using data from [import-graph](github.com/nikolaydubina/import-graph). 
 
@@ -94,7 +119,6 @@ $ cat '
 
 - [ ] Coloring of nodes contents
 - [ ] UI for coloring input
-- [ ] Layered layout
 - [ ] Subway map style edges ports in nodes and layout
 - [ ] Flexible path edges
 - [ ] Touch for zoom and pan
@@ -104,6 +128,10 @@ $ cat '
 - [ ] WISH: Update graph without re-rendering whole
 - [ ] WISH: Try native Go complex numbers for vectors
 - [ ] WISH: Add centerer that puts center of mass + 95% of density at center of screen
+
+## Missing Features? Want to add something?
+
+Contributions welcomed!
 
 ## References
 
