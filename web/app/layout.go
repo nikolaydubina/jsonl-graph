@@ -1,4 +1,4 @@
-package renderer
+package app
 
 import (
 	"syscall/js"
@@ -26,7 +26,7 @@ func AllLayoutOptions() []LayoutOption {
 
 // NewLayoutOptionUpdater constructs new handler for layout option.
 // TODO: read options of layout from UI
-func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Value, _ []js.Value) interface{} {
+func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Value, _ []js.Value) interface{} {
 	return func(_ js.Value, _ []js.Value) interface{} {
 		var mainLayout render.Layout
 

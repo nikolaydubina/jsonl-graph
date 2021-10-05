@@ -1,4 +1,4 @@
-package renderer
+package app
 
 import (
 	"github.com/nikolaydubina/jsonl-graph/graph"

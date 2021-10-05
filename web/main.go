@@ -3,14 +3,14 @@ package main
 import (
 	"github.com/nikolaydubina/jsonl-graph/graph"
 	"github.com/nikolaydubina/jsonl-graph/render"
-	"github.com/nikolaydubina/jsonl-graph/web/renderer"
+	"github.com/nikolaydubina/jsonl-graph/web/app"
 	"github.com/nikolaydubina/jsonl-graph/web/svgpanzoom"
 )
 
 func main() {
 	c := make(chan bool)
 
-	renderer.NewRenderer(
+	app.NewBridge(
 		graph.NewGraph(),
 		render.NewGraph(),
 		"output-container",

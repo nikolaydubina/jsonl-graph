@@ -1,4 +1,4 @@
-package renderer
+package app
 
 import (
 	"bytes"
@@ -13,14 +13,14 @@ import (
 	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
 )
 
-// Renderer is a bridge between input, svg output, and browser controls.
+// Bridge between input, svg output, and browser controls.
 // It registers handlers and invokes rendering.
 // It combines all UI components together.
 //
 // Changes are of two types: structural — what is connected to what; and contents — node contents.
 // Re-render on all changes.
 // Re-layout on structural changes and big visual changes only.
-type Renderer struct {
+type Bridge struct {
 	graphData     graph.Graph   // what graph contains
 	graphRender   render.Graph  // how graph is rendered
 	layoutUpdater render.Layout // how to arrange graph
@@ -34,17 +34,17 @@ type Renderer struct {
 	scalerLayout  render.MemoLayout
 }
 
-func NewRenderer(
+func NewBridge(
 	graphData graph.Graph,
 	graphRender render.Graph,
 	containerID string,
 	svgID string,
 	rootID string,
 	scaler *svgpanzoom.PanZoomer,
-) *Renderer {
+) *Bridge {
 	scalerLayout := render.ScalerLayout{Scale: 1}
 
-	renderer := &Renderer{
+	renderer := &Bridge{
 		graphData:   graphData,
 		graphRender: graphRender,
 		layoutUpdater: render.CompositeLayout{
@@ -86,7 +86,7 @@ func NewRenderer(
 	return renderer
 }
 
-func (r *Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value, _ []js.Value) interface{} {
+func (r *Bridge) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value, _ []js.Value) interface{} {
 	return func(_ js.Value, _ []js.Value) interface{} {
 		// natural id
 		idParts := strings.Split(nodeTitleID, ":")
@@ -101,7 +101,7 @@ func (r *Renderer) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Valu
 	}
 }
 
-func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
+func (r *Bridge) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	tracker := graph.NewGraphTracker(r.graphData)
 
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
@@ -128,7 +128,7 @@ func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 	return nil
 }
 
-func (r *Renderer) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interface{} {
+func (r *Bridge) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interface{} {
 	rawval := args[0].Get("target").Get("value").String()
 	val := 1.0
 	if n, err := fmt.Sscanf(rawval, "%f", &val); n != 1 || err != nil {
@@ -150,7 +150,7 @@ func (r *Renderer) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interfa
 	return nil
 }
 
-func (r *Renderer) SwitchPrettifyJSONHandler(_ js.Value, _ []js.Value) interface{} {
+func (r *Bridge) SwitchPrettifyJSONHandler(_ js.Value, _ []js.Value) interface{} {
 	r.prettifyJSON = !r.prettifyJSON
 
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value")
@@ -167,7 +167,7 @@ func (r *Renderer) SwitchPrettifyJSONHandler(_ js.Value, _ []js.Value) interface
 }
 
 // collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
-func (r *Renderer) SwitchExpandNodesHandler(_ js.Value, _ []js.Value) interface{} {
+func (r *Bridge) SwitchExpandNodesHandler(_ js.Value, _ []js.Value) interface{} {
 	r.expandNodes = !r.expandNodes
 
 	for i := range r.graphRender.Nodes {
@@ -180,7 +180,7 @@ func (r *Renderer) SwitchExpandNodesHandler(_ js.Value, _ []js.Value) interface{
 	return nil
 }
 
-func (r *Renderer) Render() {
+func (r *Bridge) Render() {
 	document := js.Global().Get("document")
 	document.Call("getElementById", r.containerID).Set("innerHTML", r.graphRender.Render(r.svgID, r.rootID))
 
