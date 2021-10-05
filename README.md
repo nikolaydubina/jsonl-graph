@@ -51,10 +51,10 @@ This data encoding is a perfect fit for storing graphs:
 ⏳ Coloring of fields with filters  
 ✅ Layout: Gravity Force  
 ✅ Layout: Spring Force  
-✅ Layout: Isomap (gonum)  
-✅ Layout: Eades (gonum)  
-⏳ Layout: Magnetic Force (Kozo Sugiyama)  
-✅ Layout: Layers (Kozo Sugiyama)  
+✅ Layout: Isomap
+✅ Layout: Eades
+⏳ Layout: Magnetic Force, Kozo Sugiyama  
+✅ Layout: Layers, Kozo Sugiyama, Brandes Köpf
 ⏳ Metro-style edges  
 ✅ Interactive Web UI with WebAssembly  
 ⏳ Touch for zoom and pan in Web UI  
@@ -140,3 +140,5 @@ Contributions welcomed!
 - Realistic Node Sizes (Gasner, North 1998)
 - [Minsky's Theorem](https://en.wikipedia.org/wiki/Mirsky%27s_theorem)
 - Magnetic Spring graph drawing, Kozo Sugiyama
+- [Handbook of Graph Drawing and Visualization](https://cs.brown.edu/people/rtamassi/gdhandbook/), Roberto Tamassia, Brown, Ch.13
+- [Fast and Simple Horizontal Coordinate Assignment](https://link.springer.com/content/pdf/10.1007/3-540-45848-4_3.pdf), U. Brandes, Boris Köpf
