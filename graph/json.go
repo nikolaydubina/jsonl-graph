@@ -125,9 +125,13 @@ func (g Graph) ReplaceFrom(other Graph) {
 
 	// delete edges not in other
 	for e := range g.Edges {
-		otherFrom := other.IDStorage.Get(g.Nodes[e[0]].ID())
-		otherTo := other.IDStorage.Get(g.Nodes[e[1]].ID())
-		delete(g.Edges, [2]uint64{otherFrom, otherTo})
+		oe := [2]uint64{
+			other.IDStorage.Get(g.Nodes[e[0]].ID()),
+			other.IDStorage.Get(g.Nodes[e[1]].ID()),
+		}
+		if _, ok := other.Edges[oe]; !ok {
+			delete(g.Edges, e)
+		}
 	}
 }
 
@@ -163,4 +167,15 @@ func NewGraphFromJSONL(r io.Reader) (Graph, error) {
 	}
 
 	return g, scanner.Err()
+}
+
+func (g Graph) String() string {
+	out := fmt.Sprintf("nodes(%d) edges(%d)\n", len(g.Nodes), len(g.Edges))
+	for id, node := range g.Nodes {
+		out += fmt.Sprintf("node(%d): %s\n", id, node.ID())
+	}
+	for e := range g.Edges {
+		out += fmt.Sprintf("edge(%d -> %d): %s -> %s\n", e[0], e[1], g.Nodes[e[0]].ID(), g.Nodes[e[1]].ID())
+	}
+	return out
 }

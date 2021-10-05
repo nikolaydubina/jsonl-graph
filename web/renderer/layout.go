@@ -13,6 +13,7 @@ const (
 	ForcesLayoutOption LayoutOption = "layoutOptionForces"
 	EadesLayoutOption  LayoutOption = "layoutOptionEades"
 	IsomapLayoutOption LayoutOption = "layoutOptionIsomap"
+	LayersLayoutOption LayoutOption = "layoutOptionLayers"
 )
 
 func AllLayoutOptions() []LayoutOption {
@@ -21,6 +22,7 @@ func AllLayoutOptions() []LayoutOption {
 		ForcesLayoutOption,
 		EadesLayoutOption,
 		IsomapLayoutOption,
+		LayersLayoutOption,
 	}
 }
 
@@ -67,6 +69,13 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 			mainLayout = render.IsomapR2GonumLayout{
 				ScaleX: 0.5,
 				ScaleY: 0.5,
+			}
+		case LayersLayoutOption:
+			mainLayout = render.BasicLayersLayout{
+				MarginX:        25,
+				MarginY:        25,
+				FakeNodeWidth:  25,
+				FakeNodeHeight: 25,
 			}
 		}
 

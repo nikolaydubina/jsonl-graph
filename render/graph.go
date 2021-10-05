@@ -2,6 +2,7 @@ package render
 
 import (
 	"fmt"
+	"image"
 	"strings"
 )
 
@@ -17,6 +18,17 @@ func NewGraph() Graph {
 		Nodes: map[uint64]*Node{},
 		Edges: map[[2]uint64]*Edge{},
 	}
+}
+
+func (g Graph) String() string {
+	out := fmt.Sprintf("nodes(%d) edges(%d)\n", len(g.Nodes), len(g.Edges))
+	for id, node := range g.Nodes {
+		out += fmt.Sprintf("node(%d): %s\n", id, node.Title)
+	}
+	for e := range g.Edges {
+		out += fmt.Sprintf("edge(%d -> %d): %s -> %s\n", e[0], e[1], g.Nodes[e[0]].Title, g.Nodes[e[1]].Title)
+	}
+	return out
 }
 
 // Render creates root svg element
@@ -100,16 +112,49 @@ func (g Graph) Height() int {
 }
 
 // Copy returns deep copy of current graph.
-// TODO: make sure node and edges copied.
 func (g Graph) Copy() Graph {
 	other := NewGraph()
 	for i := range g.Nodes {
+		// TODO: make sure node copied.
 		node := *g.Nodes[i]
 		other.Nodes[i] = &node
 	}
 	for e := range g.Edges {
-		edge := *g.Edges[e]
-		other.Edges[e] = &edge
+		other.Edges[e] = &Edge{Points: make([]image.Point, len(g.Edges[e].Points))}
+		for i, ne := range g.Edges[e].Points {
+			other.Edges[e].Points[i] = ne
+		}
 	}
 	return other
+}
+
+// GetRoots if graph is directed, will return nodes that do not have parent.
+func (g Graph) GetRoots() []uint64 {
+	var roots []uint64
+	for n := range g.Nodes {
+		hasParents := false
+		for e := range g.Edges {
+			if e[1] == n {
+				hasParents = true
+				break
+			}
+		}
+		if !hasParents {
+			roots = append(roots, n)
+		}
+	}
+	return roots
+}
+
+func (g Graph) AddNode(node *Node) (newID uint64) {
+	newID = 0
+	for n := range g.Nodes {
+		if n > newID {
+			newID = n
+		}
+	}
+	newID++
+
+	g.Nodes[newID] = node
+	return newID
 }

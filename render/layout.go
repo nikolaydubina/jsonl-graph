@@ -1,5 +1,7 @@
 package render
 
+import "image"
+
 type Layout interface {
 	UpdateGraphLayout(g Graph)
 }
@@ -29,7 +31,9 @@ func (l MemoLayout) UpdateGraphLayout(g Graph) {
 		g.Nodes[i].LeftBottom = newgraph.Nodes[i].LeftBottom
 	}
 	for e := range g.Edges {
-		edge := *newgraph.Edges[e]
-		g.Edges[e] = &edge
+		g.Edges[e] = &Edge{Points: make([]image.Point, len(newgraph.Edges[e].Points))}
+		for i, ne := range newgraph.Edges[e].Points {
+			g.Edges[e].Points[i] = ne
+		}
 	}
 }

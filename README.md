@@ -51,18 +51,19 @@ This data encoding is a perfect fit for storing graphs:
 
 ## Features
 
-- [x] SVG output
-- [x] Graphviz output
-- [x] Coloring of fields with filters
+- [x] Target: SVG
+- [x] Target: Graphviz
+- [ ] Coloring of fields with filters
 - [x] Layout: Gravity Force
 - [x] Layout: Spring Force
-- [x] Layout: Isomap
-- [x] Layout: Eades
-- [ ] Layout: Magnetic Force
-- [ ] Layout: Layers
+- [x] Layout: Isomap (gonum)
+- [x] Layout: Eades (gonum)
+- [ ] Layout: Magnetic Force (Kozo Sugiyama)
+- [ ] Layout: Layers (Kozo Sugiyama)
 - [ ] Metro-style edges
 - [x] Interactive Web UI with WebAssembly
-- [x] CLI
+- [ ] Touch for zoom and pan in Web UI
+- [ ] CLI
 - [x] 100% Go
 - [x] 100% offline
 - [x] Self contained (..almost)
@@ -115,19 +116,13 @@ $ cat '
 
 ![small](./docs/small.svg)
 
-## TODO
+## TODO Wishlist
 
-- [ ] Coloring of nodes contents
-- [ ] UI for coloring input
-- [ ] Subway map style edges ports in nodes and layout
-- [ ] Flexible path edges
-- [ ] Touch for zoom and pan
-- [ ] WISH: UI collapsible sections
-- [ ] WISH: Fetch JSON from URL + jsonpath for field
-- [ ] WISH: Fetch JSONL from URL
-- [ ] WISH: Update graph without re-rendering whole
-- [ ] WISH: Try native Go complex numbers for vectors
-- [ ] WISH: Add centerer that puts center of mass + 95% of density at center of screen
+- [ ] Add centerer that puts center of mass + 95% of density at center of screen
+- [ ] UI collapsible sections
+- [ ] Fetch JSON from URL + jsonpath for field
+- [ ] Fetch JSONL from URL
+- [ ] Update graph without re-rendering whole
 
 ## Missing Features? Want to add something?
 
@@ -135,8 +130,6 @@ Contributions welcomed!
 
 ## References
 
-- Magnetic Spring graph drawing, Kozo Sugiyama
-- [Layered Graph](https://en.wikipedia.org/wiki/Layered_graph_drawing)
 - [Graph Drawing](https://en.wikipedia.org/wiki/Graph_drawing)
 - [google/pprof svg](https://github.com/google/pprof/blob/master/internal/driver/svg.go)
 - [google/pprof svgpan](https://github.com/google/pprof/blob/master/third_party/svgpan/svgpan.go)
@@ -146,6 +139,9 @@ Contributions welcomed!
 - [gonum eades layout](https://github.com/gonum/gonum/blob/master/graph/layout/eades.go)
 - [Booststrap](https://getbootstrap.com)
 - [Go WebAssembly](https://github.com/golang/go/wiki/WebAssembly#debugging)
+- [Layered Graph](https://en.wikipedia.org/wiki/Layered_graph_drawing)
 - Fruchterman & Reingold forces
 - Lombarding-Spring-Embedder (Chernobleskiy, 2012)
 - Realistic Node Sizes (Gasner, North 1998)
+- [Minsky's Theorem](https://en.wikipedia.org/wiki/Mirsky%27s_theorem)
+- Magnetic Spring graph drawing, Kozo Sugiyama

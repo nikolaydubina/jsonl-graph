@@ -7,4 +7,9 @@ require (
 	gonum.org/v1/gonum v0.9.3
 )
 
-require golang.org/x/exp v0.0.0-20191002040644-a1355ae1e2c3 // indirect
+require (
+	go.uber.org/multierr v1.7.0
+	golang.org/x/exp v0.0.0-20191002040644-a1355ae1e2c3 // indirect
+)
+
+require go.uber.org/atomic v1.7.0 // indirect

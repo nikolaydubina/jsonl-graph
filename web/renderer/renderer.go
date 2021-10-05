@@ -108,13 +108,16 @@ func (r *Renderer) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 		log.Printf("bad input: %s", err)
 		return nil
 	}
+	log.Printf("new graph data: %s", g)
 
 	r.graphData.ReplaceFrom(g)
+	log.Printf("new graph data: %s", r.graphData)
 	UpdateRenderGraphWithDataGraph(r.graphData, r.graphRender)
 
 	// update layout only on structural changes.
 	if tracker.HasChanged(r.graphData) {
 		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
+		log.Printf("new graph layout: %s", r.graphRender)
 		r.scalerLayout.Graph = r.graphRender.Copy() // memoize for scaling
 		CenterGraph(r.graphRender, r.scaler)
 	}
