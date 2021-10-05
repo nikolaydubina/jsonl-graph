@@ -49,9 +49,11 @@ func NewRenderer(
 		graphRender: graphRender,
 		layoutUpdater: render.CompositeLayout{
 			Layouts: []render.Layout{
-				render.BasicGridLayout{
-					RowLength: 5,
-					Margin:    25,
+				render.BasicLayersLayout{
+					MarginX:        25,
+					MarginY:        25,
+					FakeNodeWidth:  25,
+					FakeNodeHeight: 25,
 				},
 				&scalerLayout,
 			},

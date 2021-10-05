@@ -9,7 +9,6 @@ import (
 type LayoutOption string
 
 const (
-	GridLayoutOption   LayoutOption = "layoutOptionGrid"
 	ForcesLayoutOption LayoutOption = "layoutOptionForces"
 	EadesLayoutOption  LayoutOption = "layoutOptionEades"
 	IsomapLayoutOption LayoutOption = "layoutOptionIsomap"
@@ -18,7 +17,6 @@ const (
 
 func AllLayoutOptions() []LayoutOption {
 	return []LayoutOption{
-		GridLayoutOption,
 		ForcesLayoutOption,
 		EadesLayoutOption,
 		IsomapLayoutOption,
@@ -33,11 +31,6 @@ func (r *Renderer) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.V
 		var mainLayout render.Layout
 
 		switch layoutOption {
-		case GridLayoutOption:
-			mainLayout = render.BasicGridLayout{
-				RowLength: 5,
-				Margin:    25,
-			}
 		case ForcesLayoutOption:
 			render.InitRandom(r.graphRender)
 			mainLayout = render.ForceGraphLayout{
