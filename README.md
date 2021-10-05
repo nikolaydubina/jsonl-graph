@@ -1,4 +1,4 @@
-# JSONL Graph Tools
+# [JSONL](https://jsonlines.org/) Graph Tools
 
 > Convenient to use with `jq`
 
@@ -16,13 +16,11 @@ $ go install github.com/nikolaydubina/jsonl-graph@latest
 
 Self-contained SVG graph renderer.
 This can be an alternative to Graphviz.
-However, it supports Graphviz as an output target too.
-
-## [JSONL](https://jsonlines.org/) Graph?
+However, it supports it as an output target too.
 
 Graph is represented as JSONL of nodes and edges.
-
-Node has `id` and any fields:
+Node has `id` and any fields.
+Edge has `from` and `to`.
 ```
 {
     "id": "github.com/gin-gonic/gin",
@@ -32,10 +30,7 @@ Node has `id` and any fields:
     "git_num_contributors": 321,
     ...
 }
-```
-
-Edge has `from` and `to` of node `id`:
-```
+...
 {
     "from": "github.com/gin-gonic/gin",
     "to": "golang.org/x/tools",
@@ -47,26 +42,26 @@ This data encoding is a perfect fit for storing graphs:
 - can append new nodes and edges by concatenating files
 - nodes and edges can have any data
 - schema-less
-- any subset of (compressed) lines is a valid graph
+- any subset of lines is a valid graph
 
 ## Features
 
-- [x] Target: SVG
-- [x] Target: Graphviz
-- [ ] Coloring of fields with filters
-- [x] Layout: Gravity Force
-- [x] Layout: Spring Force
-- [x] Layout: Isomap (gonum)
-- [x] Layout: Eades (gonum)
-- [ ] Layout: Magnetic Force (Kozo Sugiyama)
-- [x] Layout: Layers (Kozo Sugiyama)
-- [ ] Metro-style edges
-- [x] Interactive Web UI with WebAssembly
-- [ ] Touch for zoom and pan in Web UI
-- [ ] CLI
-- [x] 100% Go
-- [x] 100% offline
-- [x] Self contained (..almost)
+✅ Target: SVG  
+✅ Target: Graphviz  
+⏳ Coloring of fields with filters  
+✅ Layout: Gravity Force  
+✅ Layout: Spring Force  
+✅ Layout: Isomap (gonum)  
+✅ Layout: Eades (gonum)  
+⏳ Layout: Magnetic Force (Kozo Sugiyama)  
+✅ Layout: Layers (Kozo Sugiyama)  
+⏳ Metro-style edges  
+✅ Interactive Web UI with WebAssembly  
+⏳ Touch for zoom and pan in Web UI  
+⏳ CLI  
+✅ 100% Go  
+✅ 100% offline  
+✅ Self contained (..almost)  
 
 ## Example Web UI
 
@@ -116,7 +111,7 @@ $ cat '
 
 ![small](./docs/small.svg)
 
-## TODO Wishlist
+## Wishlist
 
 - [ ] Add centerer that puts center of mass + 95% of density at center of screen
 - [ ] UI collapsible sections
@@ -124,7 +119,7 @@ $ cat '
 - [ ] Fetch JSONL from URL
 - [ ] Update graph without re-rendering whole
 
-## Missing Features? Want to add something?
+## Missing Features?
 
 Contributions welcomed!
 
