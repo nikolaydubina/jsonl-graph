@@ -23,7 +23,7 @@ However, it supports Graphviz as an output target too.
 Graph is represented as JSONL of nodes and edges.
 
 Node has `id` and any fields:
-```json
+```
 {
     "id": "github.com/gin-gonic/gin",
     "can_get_github": true,
@@ -35,7 +35,7 @@ Node has `id` and any fields:
 ```
 
 Edge has `from` and `to` of node `id`:
-```json
+```
 {
     "from": "github.com/gin-gonic/gin",
     "to": "golang.org/x/tools",
@@ -59,7 +59,7 @@ This data encoding is a perfect fit for storing graphs:
 - [x] Layout: Isomap (gonum)
 - [x] Layout: Eades (gonum)
 - [ ] Layout: Magnetic Force (Kozo Sugiyama)
-- [ ] Layout: Layers (Kozo Sugiyama)
+- [x] Layout: Layers (Kozo Sugiyama)
 - [ ] Metro-style edges
 - [x] Interactive Web UI with WebAssembly
 - [ ] Touch for zoom and pan in Web UI
