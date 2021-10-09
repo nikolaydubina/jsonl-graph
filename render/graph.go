@@ -136,7 +136,6 @@ func (g Graph) GetRoots() []uint64 {
 		for e := range g.Edges {
 			if e[1] == n {
 				hasParents = true
-				break
 			}
 		}
 		if !hasParents {

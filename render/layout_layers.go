@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"image"
 	"log"
-	"math/rand"
-	"sort"
 
+	"github.com/nikolaydubina/jsonl-graph/render/brandeskopf"
 	"go.uber.org/multierr"
 )
 
@@ -22,25 +21,39 @@ type BasicLayersLayout struct {
 }
 
 func (l BasicLayersLayout) UpdateGraphLayout(g Graph) {
-	// 1. assign to layers by depth
+	// assign to layers by depth
 	nodeYX := getLayersXY(g)
 	if err := validateLayers(g, nodeYX); err != nil {
 		log.Printf("got wrong layers: %s", err)
 	}
 	log.Printf("basic layers: made layers:\n%s", NewLayers(nodeYX))
 
-	// 2. add fake nodes when edges cross layers
+	// add fake nodes when edges cross layers
 	edgeFakeNodes := addFakeNodesLayers(g, nodeYX)
 	fakeNodes := getFakeMapFromEdgeFakeNodes(edgeFakeNodes)
 	log.Printf("basic layers: added fake nodes(%v) for edges(%v):\n%s", fakeNodes, edgeFakeNodes, NewLayers(nodeYX))
 
-	// 3. find allocation within layers to minimize crosses
+	// find allocation within layers to minimize crosses
 	log.Printf("basic layers: number of crossings before optimization: %d", numCrossings(g, nodeYX))
-	nodeYX = NewLayers(nodeYX).AssingRandomXLayers().ToNodeYX()
-	avgUpdateLayersX(g, nodeYX)
+	nodeYX = randomLayersOrderingOptimizer(g, nodeYX, 50)
 	log.Printf("basic layers: number of crossings after optimization: %d\n%s", numCrossings(g, nodeYX), NewLayers(nodeYX))
 
-	// 4. draw real nodes
+	// horizontal coordinate assignment
+	segments := make(map[[2]uint64]bool, len(g.Edges))
+	for e := range g.Edges {
+		segments[e] = true
+	}
+	x := brandeskopf.BrandesKopfLayersHorizontalAssignment(
+		brandeskopf.LayeredGraph{
+			Segments: segments,
+			Dummy:    fakeNodes,
+			NodeYX:   brandeskopf.NodeYX(nodeYX),
+			Layers:   brandeskopf.Layers(NewLayers(nodeYX)),
+		},
+		l.MarginX,
+	)
+
+	// draw real nodes
 	yOffset := 0
 	for _, nodes := range NewLayers(nodeYX) {
 		xOffset := 0
@@ -58,10 +71,10 @@ func (l BasicLayersLayout) UpdateGraphLayout(g Graph) {
 				h = g.Nodes[node].Height()
 			}
 
-			g.Nodes[node].LeftBottom.X = xOffset
+			g.Nodes[node].LeftBottom.X = x[node]
 			g.Nodes[node].LeftBottom.Y = yOffset
 
-			xOffset += w + l.MarginX
+			xOffset += w
 			if h > hMax {
 				hMax = h
 			}
@@ -70,10 +83,7 @@ func (l BasicLayersLayout) UpdateGraphLayout(g Graph) {
 		yOffset += hMax + l.MarginY
 	}
 
-	// 5. minimize edges betwen layers length
-	// TODO
-
-	// 6. draw real edges and edges through fake nodes
+	// draw real edges and edges through fake nodes
 	for e := range g.Edges {
 		if ns, hasFake := edgeFakeNodes[e]; hasFake {
 			var points []image.Point
@@ -99,7 +109,7 @@ func (l BasicLayersLayout) UpdateGraphLayout(g Graph) {
 		}
 	}
 
-	// 7. delete fake nodes
+	// delete fake nodes
 	for node := range fakeNodes {
 		delete(g.Nodes, node)
 	}
@@ -108,14 +118,16 @@ func (l BasicLayersLayout) UpdateGraphLayout(g Graph) {
 type NodeYX map[uint64][2]int
 
 func getLayersXY(g Graph) NodeYX {
-	layers := make(map[uint64][2]int, len(g.Nodes))
+	nodeYX := make(map[uint64][2]int, len(g.Nodes))
+	for node := range g.Nodes {
+		nodeYX[node] = [2]int{0, 0}
+	}
 
 	for _, root := range g.GetRoots() {
-		//log.Printf("get layers: root(%d) %s", root, g.Nodes[root].Title)
-
-		que := []uint64{root}
-		visited := make(map[uint64]bool, len(g.Nodes))
-		for len(que) > 0 {
+		log.Printf("root(%d): %s", root, g.Nodes[root].ID)
+		visited := map[uint64]bool{}
+		nodeYX[root] = [2]int{0, 0}
+		for que := []uint64{root}; len(que) > 0; {
 			// pop
 			p := que[0]
 			if len(que) > 1 {
@@ -123,38 +135,28 @@ func getLayersXY(g Graph) NodeYX {
 			} else {
 				que = nil
 			}
-			//log.Printf("get layers: bfs: p(%d) que(%v) visited(%v) layers(%v)", p, que, visited, layers)
 
 			if visited[p] {
 				continue
 			}
 			visited[p] = true
 
-			// if first time, set level to 0
-			if _, ok := layers[p]; !ok {
-				layers[p] = [2]int{0, 0}
-			}
-
-			// update current node to max of its parents
-			hParent := -1
+			// set max depth for each child
 			for e := range g.Edges {
-				// edge to current node, update layers depth
-				if e[1] == p {
-					if v := layers[e[0]]; v[0] >= hParent {
-						hParent = v[0]
-					}
-				}
+				if e[0] == p {
+					child := e[1]
 
-				// edge from current node, add children to que
-				if e[0] == p && !visited[e[1]] {
-					que = append(que, e[1])
+					if nodeYX[child][0] < (nodeYX[p][0] + 1) {
+						nodeYX[child] = [2]int{nodeYX[p][0] + 1, 0}
+					}
+
+					que = append(que, child)
 				}
 			}
-			layers[p] = [2]int{hParent + 1, 0}
 		}
 	}
 
-	return layers
+	return nodeYX
 }
 
 func validateLayers(g Graph, layers NodeYX) error {
@@ -200,28 +202,52 @@ func getFakeMapFromEdgeFakeNodes(edgeFakeNodes map[[2]uint64][]uint64) map[uint6
 	return fakeNodes
 }
 
-// This heuristic will take avg of parents x per each node.
-// Will assign random to roots.
-func avgUpdateLayersX(g Graph, nodeYX NodeYX) {
+func randomLayersOrderingOptimizer(g Graph, nodeYX NodeYX, tries int) NodeYX {
+	var bestNodeYX *NodeYX
+	bestnc := -1
+
+	for i := 0; i < tries; i++ {
+		currNodeYX := NewLayers(nodeYX).AssingRandomX().ToNodeYX()
+		medianLayersOrderingOptimizer(g, currNodeYX)
+
+		currnc := 0
+
+		if bestnc == -1 {
+			bestNodeYX = &currNodeYX
+			bestnc = numCrossings(g, *bestNodeYX)
+		} else {
+			currnc = numCrossings(g, currNodeYX)
+			if currnc < bestnc {
+				bestnc = currnc
+				bestNodeYX = &currNodeYX
+			}
+		}
+
+		log.Printf("random updater nodes levels order: min_crossings(%d) trial(%d) crossings(%d)", bestnc, i, currnc)
+	}
+	return *bestNodeYX
+}
+
+// This heuristic takes medium of upper neighbors.
+// Median has property of stable vertical edges.
+func medianLayersOrderingOptimizer(g Graph, nodeYX NodeYX) {
 	for node, yx := range nodeYX {
 		// first level there is no parent. skip
 		if yx[0] == 0 {
 			continue
 		}
 
-		// avg location of parents
-		totalParentX := 0
-		numParents := 0
+		// median of parents
+		var parents []uint64
 		for e := range g.Edges {
-			// parent
 			if e[1] == node {
-				totalParentX += nodeYX[e[0]][1]
-				numParents++
+				parents = append(parents, e[0])
 			}
 		}
 
-		if numParents > 0 {
-			nodeYX[node] = [2]int{yx[0], totalParentX / numParents}
+		if len(parents) > 0 {
+			median := parents[len(parents)/2]
+			nodeYX[node] = [2]int{yx[0], nodeYX[median][1]}
 		}
 	}
 
@@ -230,72 +256,6 @@ func avgUpdateLayersX(g Graph, nodeYX NodeYX) {
 	for node, yx := range NewLayers(nodeYX).ToNodeYX() {
 		nodeYX[node] = yx
 	}
-}
-
-// Layers is more easy form of working with layers and x coordinate of nodes.
-// Useful for printing.
-// Example:
-// 0: 1 8 11
-// 1: 5 2
-// 2: 11 2 3
-type Layers [][]uint64
-
-func NewLayers(nodeYX NodeYX) Layers {
-	numLayers := 0
-	for _, yx := range nodeYX {
-		if yx[0] > numLayers {
-			numLayers = yx[0]
-		}
-	}
-
-	layers := make([][]uint64, numLayers+1)
-	for y := 0; y < len(layers); y++ {
-		// collect to layer
-		for node, yx := range nodeYX {
-			if yx[0] == y {
-				layers[y] = append(layers[y], node)
-			}
-		}
-
-		// sort within layer
-		sort.Slice(layers[y], func(i, j int) bool { return nodeYX[layers[y][i]][1] < nodeYX[layers[y][j]][1] })
-	}
-
-	return layers
-}
-
-func (l Layers) ToNodeYX() NodeYX {
-	nodeYX := map[uint64][2]int{}
-	for y, layer := range l {
-		for x, node := range layer {
-			nodeYX[node] = [2]int{y, x}
-		}
-	}
-	return nodeYX
-}
-
-func (l Layers) AssingRandomXLayers() Layers {
-	for i := range l {
-		n := len(l[i])
-		ordered := make([]uint64, n)
-		for from, to := range rand.Perm(n) {
-			ordered[to] = uint64(l[i][from])
-		}
-		copy(l[i], ordered)
-	}
-	return l
-}
-
-func (s Layers) String() string {
-	out := ""
-	for l, nodes := range s {
-		vs := ""
-		for _, node := range nodes {
-			vs += fmt.Sprintf(" %d", node)
-		}
-		out += fmt.Sprintf("%d: %s\n", l, vs)
-	}
-	return out
 }
 
 func numCrossings(g Graph, nodeYX NodeYX) int {

@@ -54,14 +54,18 @@ This data encoding is a perfect fit for storing graphs:
 ✅ Layout: Isomap
 ✅ Layout: Eades
 ⏳ Layout: Magnetic Force, Kozo Sugiyama  
-✅ Layout: Layers, Kozo Sugiyama, Brandes Köpf
+✅ Layout: Layers Kozo Sugiyama
+✅ Layout: Layers Brandes-Köpf
 ⏳ Metro-style edges  
 ✅ Interactive Web UI with WebAssembly  
 ⏳ Touch for zoom and pan in Web UI  
 ⏳ CLI  
 ✅ 100% Go  
-✅ 100% offline  
+✅ 100% offline
+✅ No cgo 
 ✅ Self contained (..almost)  
+
+TODO: run layers per each connected component stack by opposite direction of layers
 
 ## Example Web UI
 
@@ -69,6 +73,10 @@ TODO: link here
 TODO: screenshot here
 
 ## Example CLI
+
+K8S example
+
+TODO:
 
 To illustrate, I am using data from [import-graph](github.com/nikolaydubina/import-graph). 
 
