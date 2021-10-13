@@ -84,6 +84,7 @@ func TestReferenceGraphFromPaper(t *testing.T) {
 		{10, 15},
 		{11, 15},
 		{11, 16},
+		{12, 20},
 		{13, 17},
 		{14, 17},
 		{14, 18},

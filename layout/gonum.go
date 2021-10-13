@@ -1,4 +1,4 @@
-package render
+package layout
 
 import (
 	"log"
@@ -28,7 +28,7 @@ type gnLayoutGetter interface {
 // will make dimension such that all nodes data fits into square of the same area
 // this is for pretty layouts.
 func getSquareLayoutSize(g Graph) float64 {
-	s := g.TotalNodesWidth() * g.TotalNodesHeight()
+	s := totalNodesWidth(g) * totalNodesHeight(g)
 	return math.Sqrt(float64(s))
 }
 
@@ -59,13 +59,11 @@ func updateGraphByGonumLayout(g Graph, gnLayout gnLayoutGetter, scaleX float64, 
 		x := gnNode.X * w / gnw
 		y := gnNode.Y * h / gnh
 
-		g.Nodes[nodeID].LeftBottom.X = int(x)
-		g.Nodes[nodeID].LeftBottom.Y = int(y)
-	}
-
-	for e := range g.Edges {
-		edge := DirectEdge(*g.Nodes[e[0]], *g.Nodes[e[1]])
-		g.Edges[e] = &edge
+		g.Nodes[nodeID] = Node{
+			XY: [2]int{int(x), int(y)},
+			W:  g.Nodes[nodeID].W,
+			H:  g.Nodes[nodeID].H,
+		}
 	}
 }
 

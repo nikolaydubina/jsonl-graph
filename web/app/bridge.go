@@ -8,6 +8,7 @@ import (
 	"syscall/js"
 
 	"github.com/nikolaydubina/jsonl-graph/graph"
+	"github.com/nikolaydubina/jsonl-graph/layout"
 	"github.com/nikolaydubina/jsonl-graph/render"
 	"github.com/nikolaydubina/jsonl-graph/web/svgpanzoom"
 	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
@@ -23,7 +24,7 @@ import (
 type Bridge struct {
 	graphData     graph.Graph   // what graph contains
 	graphRender   render.Graph  // how graph is rendered
-	layoutUpdater render.Layout // how to arrange graph
+	layoutUpdater layout.Layout // how to arrange graph
 	containerID   string
 	svgID         string
 	rootID        string
@@ -31,7 +32,7 @@ type Bridge struct {
 	hasLayout     bool
 	expandNodes   bool
 	prettifyJSON  bool
-	scalerLayout  render.MemoLayout
+	scalerLayout  layout.MemoLayout
 }
 
 func NewBridge(
@@ -42,19 +43,14 @@ func NewBridge(
 	rootID string,
 	scaler *svgpanzoom.PanZoomer,
 ) *Bridge {
-	scalerLayout := render.ScalerLayout{Scale: 1}
+	scalerLayout := layout.ScalerLayout{Scale: 1}
 
 	renderer := &Bridge{
 		graphData:   graphData,
 		graphRender: graphRender,
-		layoutUpdater: render.CompositeLayout{
-			Layouts: []render.Layout{
-				render.BasicLayersLayout{
-					MarginX:        25,
-					MarginY:        25,
-					FakeNodeWidth:  25,
-					FakeNodeHeight: 25,
-				},
+		layoutUpdater: layout.CompositeLayout{
+			Layouts: []layout.Layout{
+				layout.NewBasicSugiyamaLayersGraphLayout(),
 				&scalerLayout,
 			},
 		},
@@ -63,7 +59,7 @@ func NewBridge(
 		rootID:      rootID,
 		scaler:      scaler,
 		expandNodes: false,
-		scalerLayout: render.MemoLayout{
+		scalerLayout: layout.MemoLayout{
 			Layout: &scalerLayout,
 			Graph:  graphRender,
 		},

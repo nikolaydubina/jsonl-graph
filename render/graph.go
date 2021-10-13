@@ -128,23 +128,6 @@ func (g Graph) Copy() Graph {
 	return other
 }
 
-// GetRoots if graph is directed, will return nodes that do not have parent.
-func (g Graph) GetRoots() []uint64 {
-	var roots []uint64
-	for n := range g.Nodes {
-		hasParents := false
-		for e := range g.Edges {
-			if e[1] == n {
-				hasParents = true
-			}
-		}
-		if !hasParents {
-			roots = append(roots, n)
-		}
-	}
-	return roots
-}
-
 func (g Graph) AddNode(node *Node) (newID uint64) {
 	newID = 0
 	for n := range g.Nodes {

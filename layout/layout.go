@@ -1,6 +1,4 @@
-package render
-
-import "image"
+package layout
 
 type Layout interface {
 	UpdateGraphLayout(g Graph)
@@ -17,23 +15,31 @@ func (l CompositeLayout) UpdateGraphLayout(g Graph) {
 	}
 }
 
-// MemoLayout computes layout for memoized and stores to target.
+// MemoLayout applies layout updaters to memoized graph and stores to destination.
 type MemoLayout struct {
 	Graph  Graph
 	Layout Layout
 }
 
 func (l MemoLayout) UpdateGraphLayout(g Graph) {
-	newgraph := l.Graph.Copy()
+	// copy memoized
+	newgraph := copyGraph(l.Graph)
+
+	// run laytout
 	l.Layout.UpdateGraphLayout(newgraph)
 
+	// apply to target graph
 	for i := range g.Nodes {
-		g.Nodes[i].LeftBottom = newgraph.Nodes[i].LeftBottom
+		g.Nodes[i] = Node{
+			XY: newgraph.Nodes[i].XY,
+			W:  g.Nodes[i].W,
+			H:  g.Nodes[i].H,
+		}
 	}
 	for e := range g.Edges {
-		g.Edges[e] = &Edge{Points: make([]image.Point, len(newgraph.Edges[e].Points))}
-		for i, ne := range newgraph.Edges[e].Points {
-			g.Edges[e].Points[i] = ne
+		g.Edges[e] = Edge{Path: make([][2]int, len(newgraph.Edges[e].Path))}
+		for i, ne := range newgraph.Edges[e].Path {
+			g.Edges[e].Path[i] = ne
 		}
 	}
 }
