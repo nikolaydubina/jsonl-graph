@@ -1,6 +1,7 @@
 package app
 
 import (
+	"log"
 	"syscall/js"
 
 	"github.com/nikolaydubina/jsonl-graph/layout"
@@ -28,12 +29,9 @@ func AllLayoutOptions() []LayoutOption {
 // TODO: read options of layout from UI
 func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Value, _ []js.Value) interface{} {
 	return func(_ js.Value, _ []js.Value) interface{} {
-		var mainLayout layout.Layout
-
 		switch layoutOption {
 		case ForcesLayoutOption:
-			layout.InitRandom(r.graphRender)
-			mainLayout = layout.ForceGraphLayout{
+			r.layoutUpdater = layout.ForceGraphLayout{
 				Delta:    1,
 				MaxSteps: 5000,
 				Epsilon:  1.5,
@@ -50,7 +48,7 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				},
 			}
 		case EadesLayoutOption:
-			mainLayout = layout.EadesGonumLayout{
+			r.layoutUpdater = layout.EadesGonumLayout{
 				Repulsion: 1,
 				Rate:      0.05,
 				Updates:   30,
@@ -59,28 +57,27 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				ScaleY:    0.5,
 			}
 		case IsomapLayoutOption:
-			mainLayout = layout.IsomapR2GonumLayout{
+			r.layoutUpdater = layout.IsomapR2GonumLayout{
 				ScaleX: 0.5,
 				ScaleY: 0.5,
 			}
 		case LayersLayoutOption:
-			mainLayout = layout.NewBasicSugiyamaLayersGraphLayout()
+			r.layoutUpdater = layout.NewBasicSugiyamaLayersGraphLayout()
+		default:
+			log.Printf("unexpected layout option(%s)", layoutOption)
 		}
 
-		r.layoutUpdater = layout.CompositeLayout{
-			Layouts: []layout.Layout{
-				mainLayout,
-				r.scalerLayout.Layout, // inner layout without memoization
-			},
-		}
-
-		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-		CenterGraph(r.graphRender, r.scaler)
-
-		// update memoized graph for scaling
-		r.scalerLayout.Graph = r.graphRender.Copy()
-
+		r.SetInitialUpdateGraphLayout()
 		r.Render()
 		return nil
 	}
+}
+
+// SetInitialUpdateGraphLayout sets layout to what it should look like at the begging for a layout.
+func (r *Bridge) SetInitialUpdateGraphLayout() {
+	r.layoutUpdater.UpdateGraphLayout(r.graphLayout)
+	r.scalerLayout.UpdateGraphLayout(r.graphLayout)
+
+	r.scalerLayout.Graph = layout.CopyGraph(r.graphLayout)
+	CenterGraph(r.graphRender, r.scaler)
 }

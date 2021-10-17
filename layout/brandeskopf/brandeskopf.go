@@ -5,10 +5,6 @@ import (
 	"math"
 )
 
-type NodeYX map[uint64][2]int
-
-type Layers [][]uint64
-
 // LayeredGraph is graph with Dummy nodes such that there is no long edges.
 // Short edge is between nodes in Layers next to each other.
 // Long edge is between nodes in 1+ Layers between each other.
@@ -17,8 +13,8 @@ type Layers [][]uint64
 type LayeredGraph struct {
 	Segments map[[2]uint64]bool // segment is an edge in layered graph, can be real edge or piece of fake edge
 	Dummy    map[uint64]bool    // fake nodes
-	NodeYX   NodeYX             // node -> {layer, ordering in layer}
-	Layers   Layers             // same as NodeYX but different form
+	NodeYX   map[uint64][2]int  // node -> {layer, ordering in layer}
+	Layers   [][]uint64         // same as NodeYX but different form
 }
 
 // IsInnerSegment tells when edge is between two Dummy nodes.

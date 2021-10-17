@@ -28,7 +28,7 @@ func NewBasicSugiyamaLayersGraphLayout() SugiyamaLayersStrategyGraphLayout {
 				Epochs: 5,
 			},
 		}.Optimize,
-		XAssigner: BrandesKopfXAssigner{
+		XAssigner: BrandesKopfHorizontalAssigner{
 			Delta: 25,
 		}.AssignX,
 		EdgePathAssigner: StraightEdgePathAssigner{

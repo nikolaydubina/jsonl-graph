@@ -17,7 +17,7 @@ type Edge struct {
 
 // utils, do not bind them as methods to emphasize that structs are pure data containers.
 
-func copyGraph(g Graph) Graph {
+func CopyGraph(g Graph) Graph {
 	ng := Graph{}
 	for id, n := range g.Nodes {
 		ng.Nodes[id] = n

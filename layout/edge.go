@@ -4,11 +4,11 @@ package layout
 func DirectEdge(from, to Node) Edge {
 	return Edge{
 		Path: [][2]int{
-			[2]int{
+			{
 				from.XY[0] + (from.W / 2),
 				from.XY[1] + (from.H / 2),
 			},
-			[2]int{
+			{
 				to.XY[0] + (to.W / 2),
 				to.XY[1] + (to.H / 2),
 			},

@@ -22,7 +22,7 @@ func makeLongEdge(from, to uint64, n int) [][2]uint64 {
 	return segments
 }
 
-func toNodeYX(layers Layers) NodeYX {
+func toNodeYX(layers [][]uint64) map[uint64][2]int {
 	nodeYX := map[uint64][2]int{}
 	for y, layer := range layers {
 		for x, node := range layer {
@@ -38,7 +38,7 @@ func sortuint64(v []uint64) []uint64 {
 }
 
 func TestReferenceGraphFromPaper(t *testing.T) {
-	layers := Layers{
+	layers := [][]uint64{
 		{1, 2},
 		{fake(1, 13, 1), fake(1, 21, 1), fake(1, 4, 1), 3, fake(2, 20, 1)},
 		{fake(1, 13, 2), fake(1, 21, 2), 4, 5, fake(3, 23, 1), fake(2, 20, 2)},

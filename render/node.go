@@ -2,7 +2,6 @@ package render
 
 import (
 	"fmt"
-	"image"
 	"sort"
 	"strings"
 )
@@ -17,11 +16,11 @@ const (
 // Node is rendered point.
 // Can render contents as table.
 type Node struct {
-	ID         string      // used to make DOM IDs
-	LeftBottom image.Point // lowest X and Y coordinate of node box
-	ShowData   bool        // if true then render contents of node besides title
-	Title      string
-	NodeData   map[string]interface{}
+	ID       string // used to make DOM IDs
+	XY       [2]int // lowest X and Y coordinate of node box
+	ShowData bool   // if true then render contents of node besides title
+	Title    string
+	NodeData map[string]interface{}
 }
 
 func (n Node) TitleID() string {
@@ -44,8 +43,8 @@ func (n Node) Render() string {
 			</foreignObject>
 		</g>
 		`,
-		n.LeftBottom.X,
-		n.LeftBottom.Y,
+		n.XY[0],
+		n.XY[1],
 		n.Width()+padding,
 		n.Height()+padding,
 		NodeTitle{ID: fmt.Sprintf("svg:graph:node:title:%s", n.ID), Title: n.Title, FontSize: nodeFontSize}.Render(),

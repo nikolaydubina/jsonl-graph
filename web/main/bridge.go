@@ -21,8 +21,11 @@ import (
 // Changes are of two types: structural — what is connected to what; and contents — node contents.
 // Re-render on all changes.
 // Re-layout on structural changes and big visual changes only.
+//
+// JSONL -> Data Graph -> Layout Graph -> Render Graph -> SVG
 type Bridge struct {
 	graphData     graph.Graph   // what graph contains
+	graphLayout   layout.Graph  // how graph data is located
 	graphRender   render.Graph  // how graph is rendered
 	layoutUpdater layout.Layout // how to arrange graph
 	containerID   string
@@ -36,32 +39,29 @@ type Bridge struct {
 }
 
 func NewBridge(
-	graphData graph.Graph,
-	graphRender render.Graph,
 	containerID string,
 	svgID string,
 	rootID string,
-	scaler *svgpanzoom.PanZoomer,
 ) *Bridge {
-	scalerLayout := layout.ScalerLayout{Scale: 1}
+	graphLayout := layout.Graph{}
 
-	renderer := &Bridge{
-		graphData:   graphData,
-		graphRender: graphRender,
-		layoutUpdater: layout.CompositeLayout{
-			Layouts: []layout.Layout{
-				layout.NewBasicSugiyamaLayersGraphLayout(),
-				&scalerLayout,
-			},
-		},
-		containerID: containerID,
-		svgID:       svgID,
-		rootID:      rootID,
-		scaler:      scaler,
-		expandNodes: false,
+	renderer := Bridge{
+		graphData:     graph.NewGraph(),
+		graphLayout:   graphLayout,
+		graphRender:   render.NewGraph(),
+		layoutUpdater: layout.NewBasicSugiyamaLayersGraphLayout(),
+		containerID:   containerID,
+		svgID:         svgID,
+		rootID:        rootID,
+		expandNodes:   false,
+		scaler: svgpanzoom.NewPanZoomer(
+			svgID,
+			rootID,
+			0.2,
+		),
 		scalerLayout: layout.MemoLayout{
-			Layout: &scalerLayout,
-			Graph:  graphRender,
+			Layout: &layout.ScalerLayout{Scale: 1},
+			Graph:  graphLayout,
 		},
 	}
 
@@ -79,7 +79,7 @@ func NewBridge(
 	renderer.OnDataChange(js.Value{}, nil)             // populating with data
 	renderer.SwitchExpandNodesHandler(js.Value{}, nil) // expanding nodes
 
-	return renderer
+	return &renderer
 }
 
 func (r *Bridge) NewOnNodeTitleClickHandler(nodeTitleID string) func(_ js.Value, _ []js.Value) interface{} {
@@ -114,9 +114,9 @@ func (r *Bridge) OnDataChange(_ js.Value, _ []js.Value) interface{} {
 
 	// update layout only on structural changes.
 	if tracker.HasChanged(r.graphData) {
-		r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-		log.Printf("new graph layout: %s", r.graphRender)
-		r.scalerLayout.Graph = r.graphRender.Copy() // memoize for scaling
+		r.layoutUpdater.UpdateGraphLayout(r.graphLayout)
+		log.Printf("new graph layout: %s", r.graphLayout)
+		r.scalerLayout.Graph = layout.CopyGraph(r.graphLayout) // memoize for scaling
 		CenterGraph(r.graphRender, r.scaler)
 	}
 
@@ -135,12 +135,12 @@ func (r *Bridge) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interface
 	log.Printf("handler: node distance range: new value(%f)", val)
 
 	// updating parameter for scaling
-	if v, ok := r.scalerLayout.Layout.(*render.ScalerLayout); ok {
+	if v, ok := r.scalerLayout.Layout.(*layout.ScalerLayout); ok {
 		v.Scale = val
 	}
 
 	// only running memoized scaling layout
-	r.scalerLayout.UpdateGraphLayout(r.graphRender)
+	r.scalerLayout.UpdateGraphLayout(r.graphLayout)
 
 	r.Render()
 	return nil
@@ -169,9 +169,8 @@ func (r *Bridge) SwitchExpandNodesHandler(_ js.Value, _ []js.Value) interface{} 
 	for i := range r.graphRender.Nodes {
 		r.graphRender.Nodes[i].ShowData = r.expandNodes
 	}
-	r.layoutUpdater.UpdateGraphLayout(r.graphRender)
-	r.scalerLayout.Graph = r.graphRender.Copy() // memoize for scaling
-	CenterGraph(r.graphRender, r.scaler)
+
+	r.SetInitialUpdateGraphLayout()
 	r.Render()
 	return nil
 }

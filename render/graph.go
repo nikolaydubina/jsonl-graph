@@ -80,8 +80,8 @@ func (g Graph) TotalNodesHeight() int {
 // BoundingBox coordinates that should fit whole graph.
 func (g Graph) BoundingBox() (minx, miny, maxx, maxy int) {
 	for _, node := range g.Nodes {
-		nx := node.LeftBottom.X
-		ny := node.LeftBottom.Y
+		nx := node.XY[0]
+		ny := node.XY[1]
 
 		if nx < minx {
 			minx = nx

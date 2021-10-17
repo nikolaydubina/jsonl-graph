@@ -22,10 +22,8 @@ type MemoLayout struct {
 }
 
 func (l MemoLayout) UpdateGraphLayout(g Graph) {
-	// copy memoized
-	newgraph := copyGraph(l.Graph)
+	newgraph := CopyGraph(l.Graph)
 
-	// run laytout
 	l.Layout.UpdateGraphLayout(newgraph)
 
 	// apply to target graph
