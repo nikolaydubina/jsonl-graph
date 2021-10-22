@@ -1,6 +1,7 @@
 package render
 
 import (
+	"encoding/json"
 	"fmt"
 	"sort"
 	"strings"
@@ -18,7 +19,6 @@ const (
 type Node struct {
 	ID       string // used to make DOM IDs
 	XY       [2]int // lowest X and Y coordinate of node box
-	ShowData bool   // if true then render contents of node besides title
 	Title    string
 	NodeData map[string]interface{}
 }
@@ -27,12 +27,13 @@ func (n Node) TitleID() string {
 	return fmt.Sprintf("svg:graph:node:title:%s", n.ID)
 }
 
-// Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject
 func (n Node) Render() string {
 	body := ""
-	if n.ShowData {
+	if len(n.NodeData) > 0 {
 		body = NodeDataTable{NodeData: n.NodeData, FontSize: nodeFontSize}.Render()
 	}
+
+	// https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject
 	return fmt.Sprintf(`
 		<g>
 			<foreignObject x="%d" y="%d" width="%d" height="%d">
@@ -54,7 +55,7 @@ func (n Node) Render() string {
 
 func (n Node) Width() int {
 	w := int(float64(nodeFontSize*len(n.Title)) * textWidthMultiplier)
-	if !n.ShowData {
+	if len(n.NodeData) == 0 {
 		return w
 	}
 
@@ -67,7 +68,7 @@ func (n Node) Width() int {
 
 func (n Node) Height() int {
 	titleHeight := nodeFontSize * textHeightMultiplier
-	if !n.ShowData {
+	if len(n.NodeData) == 0 {
 		return titleHeight
 	}
 
@@ -157,4 +158,17 @@ func (n NodeDataTable) Render() string {
 		n.FontSize,
 		strings.Join(rows, "\n"),
 	)
+}
+
+// RenderValue coerces to json.Number and tries to avoid adding decimal points to integers
+func RenderValue(v interface{}) string {
+	if v, ok := v.(json.Number); ok {
+		if vInt, err := v.Int64(); err == nil {
+			return fmt.Sprintf("%d", vInt)
+		}
+		if v, err := v.Float64(); err == nil {
+			return fmt.Sprintf("%.2f", v)
+		}
+	}
+	return fmt.Sprintf("%v", v)
 }

@@ -2,7 +2,9 @@ package layout
 
 import (
 	"fmt"
+	"log"
 	"sort"
+	"strings"
 
 	"go.uber.org/multierr"
 )
@@ -37,22 +39,17 @@ func NewLayeredGraph(g Graph) LayeredGraph {
 			} else {
 				que = nil
 			}
-
-			if visited[p] {
-				continue
-			}
 			visited[p] = true
 
 			// set max depth for each child
 			for e := range g.Edges {
-				if e[0] == p {
-					child := e[1]
-
-					if nodeYX[child][0] < (nodeYX[p][0] + 1) {
-						nodeYX[child] = [2]int{nodeYX[p][0] + 1, 0}
+				if parent, child := e[0], e[1]; parent == p {
+					if l := nodeYX[parent][0] + 1; nodeYX[child][0] < l {
+						nodeYX[child] = [2]int{l, 0}
 					}
-
-					que = append(que, child)
+					if !visited[child] {
+						que = append(que, child)
+					}
 				}
 			}
 		}
@@ -69,6 +66,7 @@ func NewLayeredGraph(g Graph) LayeredGraph {
 		Segments: segments,
 		Dummy:    map[uint64]bool{},
 	}
+	log.Printf("layered graph: %s\n", lg)
 
 	if err := lg.Validate(); err != nil {
 		panic(fmt.Sprintf("got wrong layers: %s", err))
@@ -104,10 +102,9 @@ func (g LayeredGraph) Layers() Layers {
 func (g LayeredGraph) Validate() error {
 	var errs []error
 
-	layers := g.Layers()
 	for e := range g.Segments {
-		from := layers[e[0]][0]
-		to := layers[e[1]][0]
+		from := g.NodeYX[e[0]][0]
+		to := g.NodeYX[e[1]][0]
 		if from >= to {
 			errs = append(errs, fmt.Errorf("edge(%v) is wrong direction, got from level(%d) to level(%d)", e, from, to))
 		}
@@ -120,7 +117,13 @@ func (g LayeredGraph) String() string {
 	out := ""
 
 	out += fmt.Sprintf("fake nodes: %v\n", g.Dummy)
-	out += fmt.Sprintf("segments: %v\n", g.Segments)
+
+	segments := []string{}
+	for e := range g.Segments {
+		segments = append(segments, fmt.Sprintf("%d->%d", e[0], e[1]))
+	}
+	sort.Strings(segments)
+	out += fmt.Sprintf("segments: %s\n", strings.Join(segments, " "))
 
 	layers := g.Layers()
 	for l, nodes := range layers {

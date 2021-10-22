@@ -27,7 +27,7 @@ func NewGraphTracker(g Graph) GraphTracker {
 	}
 }
 
-func (og GraphTracker) HasChanged(g Graph) bool {
+func (og GraphTracker) HasStructureChanged(g Graph) bool {
 	if len(g.Nodes) != len(og.nodes) {
 		log.Printf("graph tracker: num nodes canged from(%d) to(%d)", len(og.nodes), len(g.Nodes))
 		return true

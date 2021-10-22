@@ -1,4 +1,4 @@
-package render
+package svgpanzoom
 
 // CenterBox computes coordinates on how to center box.
 // Negative box coordinates are allowed.
@@ -13,7 +13,7 @@ func CenterBox(wscreen, hscreen, minx, miny, maxx, maxy float64) (dx, dy, zoom f
 	dy = 0.0
 	zoom = 1.0
 
-	// move to 0,0 beggining of graph
+	// move to 0,0 beggining of box
 	if minx < 0 {
 		dx += -float64(minx)
 	}
@@ -21,11 +21,11 @@ func CenterBox(wscreen, hscreen, minx, miny, maxx, maxy float64) (dx, dy, zoom f
 		dy += -float64(miny)
 	}
 
-	// graph bounding box dimensions
+	// bounding box dimensions
 	wbox := maxx - minx
 	hbox := maxy - miny
 
-	// align centers of graph bounding box and screen
+	// align centers of bounding box and screen
 	dx += (wscreen - wbox) / 2
 	dy += (hscreen - hbox) / 2
 

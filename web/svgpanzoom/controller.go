@@ -44,7 +44,6 @@ func NewPanZoomer(
 
 func (p *PanZoomer) SetupHandlers() {
 	container := js.Global().Get("document").Call("getElementById", p.svgID)
-
 	container.Call("addEventListener", "mouseup", js.FuncOf(p.handleMouseUp))
 	container.Call("addEventListener", "mousedown", js.FuncOf(p.handleMouseDown))
 	container.Call("addEventListener", "mousemove", js.FuncOf(p.handleMouseMove))
@@ -171,5 +170,15 @@ func (p *PanZoomer) ScaleAt(z, x, y float64) *PanZoomer {
 	k.Mul(translate(x, y), k)
 
 	p.transform.Mul(k, p.transform)
+	return p
+}
+
+// CenterBox makes given bounding box in the center and fill the screen.
+func (p *PanZoomer) CenterBox(minx, miny, maxx, maxy float64) *PanZoomer {
+	wScreen := js.Global().Get("window").Get("innerWidth").Float()
+	hScreen := js.Global().Get("window").Get("innerHeight").Float()
+
+	dx, dy, zoom := CenterBox(wScreen, hScreen, minx, miny, maxx, maxy)
+	p.Reset().Translate(dx, dy).ScaleAt(zoom, wScreen/2, hScreen/2)
 	return p
 }

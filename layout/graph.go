@@ -18,7 +18,10 @@ type Edge struct {
 // utils, do not bind them as methods to emphasize that structs are pure data containers.
 
 func CopyGraph(g Graph) Graph {
-	ng := Graph{}
+	ng := Graph{
+		Nodes: make(map[uint64]Node, len(g.Nodes)),
+		Edges: make(map[[2]uint64]Edge, len(g.Edges)),
+	}
 	for id, n := range g.Nodes {
 		ng.Nodes[id] = n
 	}
@@ -62,4 +65,26 @@ func totalNodesHeight(g Graph) int {
 		h += node.H
 	}
 	return h
+}
+
+// BoundingBox coordinates that should fit whole graph.
+func BoundingBox(g Graph) (minx, miny, maxx, maxy int) {
+	for _, node := range g.Nodes {
+		nx := node.XY[0]
+		ny := node.XY[1]
+
+		if nx < minx {
+			minx = nx
+		}
+		if x := nx + node.W; x > maxx {
+			maxx = x
+		}
+		if ny < miny {
+			miny = ny
+		}
+		if y := ny + node.H; y > maxy {
+			maxy = y
+		}
+	}
+	return minx, miny, maxx, maxy
 }

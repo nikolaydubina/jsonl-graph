@@ -79,5 +79,5 @@ func (r *Bridge) SetInitialUpdateGraphLayout() {
 	r.scalerLayout.UpdateGraphLayout(r.graphLayout)
 
 	r.scalerLayout.Graph = layout.CopyGraph(r.graphLayout)
-	CenterGraph(r.graphRender, r.scaler)
+	r.CenterGraph()
 }
