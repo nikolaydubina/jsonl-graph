@@ -1,11 +1,13 @@
 package layout
 
-type LevelsAssigner func(g Graph) LayeredGraph
+type CycleRemover interface {
+	RemoveCycles(g Graph)
+	Restore(g Graph)
+}
 
 // Kozo Sugiyama algorithm breaks down layered graph construction in phases.
-// Expects directed acyclic graph.
-// TODO: add preprocessing for un-directed/cyclic graphs.
 type SugiyamaLayersStrategyGraphLayout struct {
+	CycleRemover     CycleRemover
 	LevelsAssigner   func(g Graph) LayeredGraph
 	OrderingAssigner func(g Graph, lg LayeredGraph)
 	XAssigner        func(g Graph, lg LayeredGraph)
@@ -13,14 +15,17 @@ type SugiyamaLayersStrategyGraphLayout struct {
 }
 
 func (l SugiyamaLayersStrategyGraphLayout) UpdateGraphLayout(g Graph) {
+	l.CycleRemover.RemoveCycles(g)
 	lg := l.LevelsAssigner(g)
 	l.OrderingAssigner(g, lg)
 	l.XAssigner(g, lg)
 	l.EdgePathAssigner(g, lg)
+	l.CycleRemover.Restore(g)
 }
 
 func NewBasicSugiyamaLayersGraphLayout() SugiyamaLayersStrategyGraphLayout {
 	return SugiyamaLayersStrategyGraphLayout{
+		CycleRemover:   NewSimpleCycleRemover(),
 		LevelsAssigner: NewLayeredGraph,
 		OrderingAssigner: LBLOrderingOptimizer{
 			Epochs: 10,

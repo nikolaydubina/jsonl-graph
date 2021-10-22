@@ -23,7 +23,7 @@ func (o LBLOrderingOptimizer) Optimize(g Graph, lg LayeredGraph) {
 	}
 
 	bestNumCrossings := lg.NumCrossings()
-	bestNodeYX := make(NodeYX, len(lg.NodeYX))
+	bestNodeYX := make(map[uint64][2]int, len(lg.NodeYX))
 	for node, yx := range lg.NodeYX {
 		bestNodeYX[node] = yx
 	}
@@ -58,7 +58,7 @@ type RandomLayerOrderingOptimizer struct {
 
 func (o RandomLayerOrderingOptimizer) Optimize(_ Graph, lg LayeredGraph, layerIdx int) {
 	bestNumCrossings := lg.NumCrossingsAtLayer(layerIdx)
-	bestNodeYX := make(NodeYX, len(lg.NodeYX))
+	bestNodeYX := make(map[uint64][2]int, len(lg.NodeYX))
 	for node, yx := range lg.NodeYX {
 		bestNodeYX[node] = yx
 	}

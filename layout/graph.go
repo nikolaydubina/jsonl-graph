@@ -36,15 +36,14 @@ func CopyGraph(g Graph) Graph {
 }
 
 func roots(g Graph) []uint64 {
+	hasParent := make(map[uint64]bool, len(g.Nodes))
+	for e := range g.Edges {
+		hasParent[e[1]] = true
+	}
+
 	var roots []uint64
 	for n := range g.Nodes {
-		hasParents := false
-		for e := range g.Edges {
-			if e[1] == n {
-				hasParents = true
-			}
-		}
-		if !hasParents {
+		if !hasParent[n] {
 			roots = append(roots, n)
 		}
 	}

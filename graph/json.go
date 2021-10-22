@@ -7,6 +7,8 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"sort"
+	"strings"
 
 	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
 )
@@ -171,11 +173,20 @@ func NewGraphFromJSONL(r io.Reader) (Graph, error) {
 
 func (g Graph) String() string {
 	out := fmt.Sprintf("nodes(%d) edges(%d)\n", len(g.Nodes), len(g.Edges))
+
+	nodes := []string{}
 	for id, node := range g.Nodes {
-		out += fmt.Sprintf("node(%d): %s\n", id, node.ID())
+		nodes = append(nodes, fmt.Sprintf("node(%d): %s", id, node.ID()))
 	}
+	sort.Strings(nodes)
+	out += strings.Join(nodes, "\n") + "\n"
+
+	edges := []string{}
 	for e := range g.Edges {
-		out += fmt.Sprintf("edge(%d -> %d): %s -> %s\n", e[0], e[1], g.Nodes[e[0]].ID(), g.Nodes[e[1]].ID())
+		edges = append(edges, fmt.Sprintf("edge(%d -> %d): %s -> %s", e[0], e[1], g.Nodes[e[0]].ID(), g.Nodes[e[1]].ID()))
 	}
+	sort.Strings(edges)
+	out += strings.Join(edges, "\n") + "\n"
+
 	return out
 }

@@ -9,27 +9,19 @@ import (
 	"go.uber.org/multierr"
 )
 
-type Layers [][]uint64
-
-type NodeYX map[uint64][2]int
-
 // Does not store exact XY coordinates.
 // Does not store paths for edges.
 type LayeredGraph struct {
 	Segments map[[2]uint64]bool // segment is an edge in layered graph, can be real edge or piece of fake edge
 	Dummy    map[uint64]bool    // fake nodes
-	NodeYX   NodeYX             // node -> {layer, ordering in layer}
+	NodeYX   map[uint64][2]int  // node -> {layer, ordering in layer}
 }
 
+// Expects that graph g does not have cycles.
 func NewLayeredGraph(g Graph) LayeredGraph {
-	// node YX
 	nodeYX := make(map[uint64][2]int, len(g.Nodes))
-	for node := range g.Nodes {
-		nodeYX[node] = [2]int{0, 0}
-	}
 
 	for _, root := range roots(g) {
-		visited := map[uint64]bool{}
 		nodeYX[root] = [2]int{0, 0}
 		for que := []uint64{root}; len(que) > 0; {
 			// pop
@@ -39,17 +31,14 @@ func NewLayeredGraph(g Graph) LayeredGraph {
 			} else {
 				que = nil
 			}
-			visited[p] = true
 
 			// set max depth for each child
 			for e := range g.Edges {
 				if parent, child := e[0], e[1]; parent == p {
-					if l := nodeYX[parent][0] + 1; nodeYX[child][0] < l {
+					if l := nodeYX[parent][0] + 1; l > nodeYX[child][0] {
 						nodeYX[child] = [2]int{l, 0}
 					}
-					if !visited[child] {
-						que = append(que, child)
-					}
+					que = append(que, child)
 				}
 			}
 		}
@@ -75,7 +64,7 @@ func NewLayeredGraph(g Graph) LayeredGraph {
 	return lg
 }
 
-func (g LayeredGraph) Layers() Layers {
+func (g LayeredGraph) Layers() [][]uint64 {
 	maxY := 0
 	for _, yx := range g.NodeYX {
 		if yx[0] > maxY {

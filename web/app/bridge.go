@@ -93,7 +93,7 @@ func (r *Bridge) OnDataChangeHandler(_ js.Value, _ []js.Value) interface{} {
 	log.Printf("got new graph data: %s\n", r.graphData)
 
 	if tracker.HasStructureChanged(r.graphData) {
-		// compute w and h for nodes
+		// compute w and h for nodes, since width and height of node depends on content
 		rgraph := render.NewGraph()
 		for id, node := range r.graphData.Nodes {
 			rgraph.Nodes[id] = render.Node{
