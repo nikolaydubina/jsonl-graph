@@ -16,16 +16,17 @@ import (
 
 // Bridge between input, svg output, and browser controls.
 type Bridge struct {
-	graphData     graph.Graph           // what graph contains
-	graphLayout   layout.Graph          // how nodes located and what are edge paths
-	layoutUpdater layout.Layout         // how to arrange graph
-	expandNodes   map[uint64]bool       // which nodes to expand
-	scaler        *svgpanzoom.PanZoomer // how to scale and zoom svg
-	scalerLayout  layout.MemoLayout     // how distance between nodes is done for given layout
-	containerID   string
-	svgID         string
-	rootID        string
-	prettifyJSON  bool
+	graphData        graph.Graph           // what graph contains
+	graphLayout      layout.Graph          // how nodes located and what are edge paths
+	layoutUpdater    layout.Layout         // how to arrange graph
+	expandNodeSwitch bool                  // value of expand all nodes switch
+	expandNodes      map[uint64]bool       // which nodes to expand
+	scaler           *svgpanzoom.PanZoomer // how to scale and zoom svg
+	scalerLayout     layout.MemoLayout     // how distance between nodes is done for given layout
+	containerID      string
+	svgID            string
+	rootID           string
+	prettifyJSON     bool
 }
 
 func NewBridge(
@@ -51,6 +52,7 @@ func NewBridge(
 			Layout: &layout.ScalerLayout{Scale: 1},
 			Graph:  graphLayout,
 		},
+		expandNodeSwitch: false, // deafult is true, switching to true bellow after data is loaded
 	}
 
 	document := js.Global().Get("document")
@@ -96,8 +98,13 @@ func (r *Bridge) OnDataChangeHandler(_ js.Value, _ []js.Value) interface{} {
 		// compute w and h for nodes, since width and height of node depends on content
 		rgraph := render.NewGraph()
 		for id, node := range r.graphData.Nodes {
+			rnode := node
+			if !r.expandNodes[id] {
+				rnode = nil
+			}
 			rgraph.Nodes[id] = render.Node{
-				NodeData: node,
+				Title:    node.ID(),
+				NodeData: rnode,
 			}
 		}
 
@@ -175,8 +182,11 @@ func (r *Bridge) SwitchPrettifyJSONHandler(_ js.Value, _ []js.Value) interface{}
 }
 
 // collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
-func (r *Bridge) SwitchExpandNodesHandler(_ js.Value, _ []js.Value) interface{} {
-	r.expandNodes = newExpandAllNodesForGraph(r.graphData)
+func (r *Bridge) SwitchExpandNodesHandler(_ js.Value, e []js.Value) interface{} {
+	r.expandNodeSwitch = !r.expandNodeSwitch
+	for k := range r.expandNodes {
+		r.expandNodes[k] = r.expandNodeSwitch
+	}
 	r.SetInitialUpdateGraphLayout()
 	r.Render()
 	return nil
@@ -191,14 +201,17 @@ func (r *Bridge) Render() {
 	graph := render.NewGraph()
 	graph.ID = r.rootID
 
-	// add nodes data
-	// add nodes positions
+	// add nodes data and positions
 	for id, node := range r.graphData.Nodes {
+		nodeData := node
+		if !r.expandNodes[id] {
+			nodeData = nil
+		}
 		graph.Nodes[id] = render.Node{
 			ID:       fmt.Sprintf("%d", id),
 			XY:       r.graphLayout.Nodes[id].XY,
 			Title:    node.ID(),
-			NodeData: node,
+			NodeData: nodeData,
 		}
 	}
 
