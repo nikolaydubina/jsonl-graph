@@ -20,13 +20,13 @@ type Bridge struct {
 	graphLayout      layout.Graph          // how nodes located and what are edge paths
 	layoutUpdater    layout.Layout         // how to arrange graph
 	expandNodeSwitch bool                  // value of expand all nodes switch
+	prettifyJSON     bool                  // format JSON input
 	expandNodes      map[uint64]bool       // which nodes to expand
 	scaler           *svgpanzoom.PanZoomer // how to scale and zoom svg
 	scalerLayout     layout.MemoLayout     // how distance between nodes is done for given layout
 	containerID      string
 	svgID            string
 	rootID           string
-	prettifyJSON     bool
 }
 
 func NewBridge(
@@ -34,7 +34,10 @@ func NewBridge(
 	svgID string,
 	rootID string,
 ) *Bridge {
-	graphLayout := layout.Graph{}
+	graphLayout := layout.Graph{
+		Nodes: make(map[uint64]layout.Node),
+		Edges: make(map[[2]uint64]layout.Edge),
+	}
 
 	renderer := Bridge{
 		graphData:     graph.NewGraph(),
@@ -94,35 +97,43 @@ func (r *Bridge) OnDataChangeHandler(_ js.Value, _ []js.Value) interface{} {
 	r.graphData.ReplaceFrom(g)
 	log.Printf("got new graph data: %s\n", r.graphData)
 
-	if tracker.HasStructureChanged(r.graphData) {
+	// update nodes and add new ones
+	for id, node := range r.graphData.Nodes {
 		// compute w and h for nodes, since width and height of node depends on content
-		rgraph := render.NewGraph()
-		for id, node := range r.graphData.Nodes {
-			rnode := node
-			if !r.expandNodes[id] {
-				rnode = nil
-			}
-			rgraph.Nodes[id] = render.Node{
-				Title:    node.ID(),
-				NodeData: rnode,
-			}
+		rnodeData := node
+		if !r.expandNodes[id] {
+			rnodeData = nil
 		}
+		rnode := render.Node{
+			Title:    node.ID(),
+			NodeData: rnodeData,
+		}
+		w := rnode.Width()
+		h := rnode.Height()
 
-		// update graph layout graph
-		r.graphLayout = layout.Graph{
-			Nodes: make(map[uint64]layout.Node, len(r.graphData.Nodes)),
-			Edges: make(map[[2]uint64]layout.Edge, len(r.graphData.Edges)),
-		}
-		for id := range r.graphData.Nodes {
-			r.graphLayout.Nodes[id] = layout.Node{
-				W: rgraph.Nodes[id].Width(),
-				H: rgraph.Nodes[id].Height(),
-			}
-		}
-		for e := range r.graphData.Edges {
-			r.graphLayout.Edges[e] = layout.Edge{}
-		}
+		r.graphLayout.Nodes[id] = layout.Node{W: w, H: h}
+	}
 
+	// remove old nodes
+	for id := range r.graphLayout.Nodes {
+		if _, ok := r.graphData.Nodes[id]; !ok {
+			delete(r.graphLayout.Nodes, id)
+		}
+	}
+
+	// add new edges
+	for e := range r.graphData.Edges {
+		r.graphLayout.Edges[e] = layout.Edge{}
+	}
+
+	// remove non existent edges
+	for e := range r.graphLayout.Edges {
+		if _, ok := r.graphData.Edges[e]; !ok {
+			delete(r.graphLayout.Edges, e)
+		}
+	}
+
+	if tracker.HasStructureChanged(r.graphData) {
 		// expand nodes
 		if r.expandNodes == nil {
 			r.expandNodes = newExpandAllNodesForGraph(r.graphData)
@@ -167,17 +178,13 @@ func (r *Bridge) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interface
 
 func (r *Bridge) SwitchPrettifyJSONHandler(_ js.Value, _ []js.Value) interface{} {
 	r.prettifyJSON = !r.prettifyJSON
-
 	inputString := js.Global().Get("document").Call("getElementById", "inputData").Get("value").String()
-
 	var out bytes.Buffer
 	if err := mjsonl.FormatJSONL(strings.NewReader(inputString), &out, r.prettifyJSON); err != nil {
 		log.Printf("bad input: %s", err)
 		return nil
 	}
 	js.Global().Get("document").Call("getElementById", "inputData").Set("value", out.String())
-
-	r.OnDataChangeHandler(js.Value{}, nil)
 	return nil
 }
 

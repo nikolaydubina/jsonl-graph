@@ -23,6 +23,7 @@ func (l SugiyamaLayersStrategyGraphLayout) UpdateGraphLayout(g Graph) {
 	l.CycleRemover.Restore(g)
 }
 
+// TODO: resolve vertical coordinate
 func NewBasicSugiyamaLayersGraphLayout() SugiyamaLayersStrategyGraphLayout {
 	return SugiyamaLayersStrategyGraphLayout{
 		CycleRemover:   NewSimpleCycleRemover(),
@@ -34,7 +35,7 @@ func NewBasicSugiyamaLayersGraphLayout() SugiyamaLayersStrategyGraphLayout {
 			},
 		}.Optimize,
 		XAssigner: BrandesKopfHorizontalAssigner{
-			Delta: 25,
+			Delta: 25, // TODO: dynamically from graph width
 		}.AssignX,
 		EdgePathAssigner: StraightEdgePathAssigner{
 			MarginY:        25,
