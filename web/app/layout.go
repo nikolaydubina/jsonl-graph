@@ -74,10 +74,10 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 }
 
 // SetInitialUpdateGraphLayout sets layout to what it should look like at the begging for a layout.
+// TODO: add edge direct path layout to basic layouts
 func (r *Bridge) SetInitialUpdateGraphLayout() {
 	r.layoutUpdater.UpdateGraphLayout(r.graphLayout)
-	r.scalerLayout.UpdateGraphLayout(r.graphLayout)
-
 	r.scalerLayout.Graph = layout.CopyGraph(r.graphLayout)
+	r.scalerLayout.UpdateGraphLayout(r.graphLayout)
 	r.CenterGraph()
 }
