@@ -25,15 +25,21 @@
         }
         
         #input-container {
+            -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
             -webkit-backdrop-filter: blur(18px);
+            -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
             backdrop-filter: blur(18px);
+            background-color: white;
             border-color: black;
             border-radius: 5px;
+            border-radius: 5px;
             border: 1px solid lightgrey;
+            box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
             left: 50px;
             margin-top: 15px;
             min-width: 440px;
             padding: 15px;
+            padding: 20px;
             position: absolute;
             z-index: 1;
         }
@@ -43,6 +49,14 @@
             position: absolute;
             width: 100%;
             z-index: -1;
+        }
+        
+        .form-control {
+            resize: both;
+            width: 100%;
+            height: auto;
+            min-height: 128px;
+            min-width: 440px;
         }
     </style>
 
@@ -87,7 +101,7 @@
                 <form id="inputConfig">
                     <div class="d-grid gap-1">
                         <div class="mb-3">
-                            <textarea class="form-control" id="inputData" rows="10" style="resize: both; width: 100%; height: auto; min-height: 128px; min-width: 440px;">
+                            <textarea class="form-control" id="inputData" rows="10">
                                 {"awesomelists_is_mentioned":true,"can_get_git":true,"can_get_github":true,"can_run_tests":true,"codecov_coverage":98.67,"codecov_files":41,"codecov_lines":2036,"codecov_url":"https://app.codecov.io/gh/gin-gonic/gin","files_has_benchmarks":true,"files_has_tests":true,"git_last_commit":"2021-04-21","git_last_commit_days_since":4,"git_num_contributors":321,"git_url":"https://github.com/gin-gonic/gin","github_repo_stars":47520,"github_url":"https://github.com/gin-gonic/gin","goreportcard_average":0.99,"goreportcard_files":83,"goreportcard_grade":"A+","goreportcard_issues":6,"gotest_all_tests_passed":true,"gotest_has_tests":true,"gotest_num_packages":6,"gotest_num_packages_tests_passed":4,"gotest_num_packages_with_tests":4,"gotest_package_coverage_avg":98.9,"id":"github.com/gin-gonic/gin"}
                                 {"can_get_git":true,"can_get_github":true,"can_run_tests":true,"codecov_coverage":90.65,"codecov_files":3,"codecov_lines":107,"codecov_url":"https://app.codecov.io/gh/gin-contrib/sse","files_has_benchmarks":true,"files_has_tests":true,"git_last_commit":"2020-08-15","git_last_commit_days_since":252,"git_num_contributors":3,"git_url":"https://github.com/gin-contrib/sse","github_repo_stars":56,"github_url":"https://github.com/gin-contrib/sse","goreportcard_average":0.93,"goreportcard_files":5,"goreportcard_grade":"A+","goreportcard_issues":3,"gotest_all_tests_passed":true,"gotest_has_tests":true,"gotest_num_packages":1,"gotest_num_packages_tests_passed":1,"gotest_num_packages_with_tests":1,"gotest_package_coverage_avg":94.1,"id":"github.com/gin-contrib/sse"}
                                 {"awesomelists_is_mentioned":true,"can_get_git":true,"can_get_github":true,"can_run_tests":true,"files_has_benchmarks":true,"files_has_tests":true,"git_last_commit":"2021-04-07","git_last_commit_days_since":18,"git_num_contributors":116,"git_url":"https://github.com/go-playground/validator","github_repo_stars":7569,"github_url":"https://github.com/go-playground/validator","goreportcard_average":0.87,"goreportcard_files":48,"goreportcard_grade":"A","goreportcard_issues":28,"gotest_all_tests_passed":true,"gotest_has_tests":true,"gotest_num_packages":14,"gotest_num_packages_tests_passed":14,"gotest_num_packages_with_tests":14,"gotest_package_coverage_avg":73.70714285714287,"id":"github.com/go-playground/validator/v10"}
