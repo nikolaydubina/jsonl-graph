@@ -1,6 +1,6 @@
-# [JSONL](https://jsonlines.org/) Graph Tools
+# [JSONL-Graph](https://example.com) Tools
 
-> Convenient to use with `jq`
+> SVG/Graphviz graph renderer tailored for WebAssembly, CLI and `jq`
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/nikolaydubina/jsonl-graph.svg)](https://pkg.go.dev/github.com/nikolaydubina/jsonl-graph)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nikolaydubina/jsonl-graph)](https://goreportcard.com/report/github.com/nikolaydubina/jsonl-graph)
@@ -12,15 +12,7 @@
 $ go install github.com/nikolaydubina/jsonl-graph@latest
 ```
 
-.. or visit TODO: web URL
-
-Self-contained SVG graph renderer.
-This can be an alternative to Graphviz.
-However, it supports it as an output target too.
-
-Graph is represented as JSONL of nodes and edges.
-Node has `id` and any fields.
-Edge has `from` and `to`.
+What is JSONL graph? Node has `id`. Edge has `from` and `to`.
 ```
 {
     "id": "github.com/gin-gonic/gin",
@@ -38,41 +30,24 @@ Edge has `from` and `to`.
 }
 ```
 
-This data encoding is a perfect fit for storing graphs:
-- can append new nodes and edges by concatenating files
-- nodes and edges can have any data
-- schema-less
-- any subset of lines is a valid graph
-
 ## Features
 
-✅ Target: SVG  
-✅ Target: Graphviz  
-⏳ Coloring of fields with filters  
-✅ Layout: Gravity Force  
-✅ Layout: Spring Force  
-✅ Layout: Isomap  
-✅ Layout: Eades  
-⏳ Layout: Magnetic Force, Kozo Sugiyama  
-✅ Layout: Layers Kozo Sugiyama  
-✅ Layout: Layers Brandes-Köpf  
+✅ Schema-less  
+✅ SVG, Graphviz  
+✅ Coloring  
 ⏳ Metro-style edges  
-✅ Interactive Web UI with WebAssembly  
-⏳ Touch for zoom and pan in Web UI  
-⏳ CLI  
-✅ 100% Go  
-✅ 100% offline  
-✅ No cgo 
-✅ Minimal dependencies  
+✅ Gravity, Spring force (Magnetic force coming next)    
+✅ Isomap, Eades  
+✅ Kozo Sugiyama layers  
+✅ Brandes-Köpf horizontal layers assignment  
+✅ 100% Go, no JS, no `cgo`, 100% offline, minimal dependencies  
 
-TODO: run layers per each connected component stack by opposite direction of layers
-
-## Example Web UI
+## Web UI with WebAssembly
 
 TODO: link here
 TODO: screenshot here
 
-## Example CLI
+## CLI
 
 K8S example
 
@@ -118,14 +93,6 @@ $ cat '
 ```
 
 ![small](./testdata/small.svg)
-
-## Wishlist
-
-- [ ] Add centerer that puts center of mass + 95% of density at center of screen
-- [ ] UI collapsible sections
-- [ ] Fetch JSON from URL + jsonpath for field
-- [ ] Fetch JSONL from URL
-- [ ] Update graph without re-rendering whole
 
 ## Missing Features?
 

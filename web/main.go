@@ -1,4 +1,3 @@
-//go:build js && wasm
 package main
 
 import (
@@ -8,9 +7,9 @@ import (
 	"strings"
 	"syscall/js"
 
+	svgpan "github.com/nikolaydubina/go-svgpan"
 	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
 
-	"github.com/nikolaydubina/go-svgpan"
 	"github.com/nikolaydubina/jsonl-graph/graph"
 	"github.com/nikolaydubina/jsonl-graph/layout"
 	"github.com/nikolaydubina/jsonl-graph/svg"

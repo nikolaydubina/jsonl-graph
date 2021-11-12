@@ -9,77 +9,53 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 300)">
 <title>G</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-300 1100,-300 1100,4 -4,4"/>
-<!-- bytes -->
+<!-- bufio -->
 <g id="node1" class="node">
-<title>bytes</title>
+<title>bufio</title>
 <polygon fill="none" stroke="black" points="126,-0.5 126,-46.5 180,-46.5 180,-0.5 126,-0.5"/>
-<text text-anchor="middle" x="153" y="-31.3" font-family="Times,serif" font-size="14.00">bytes</text>
+<text text-anchor="middle" x="153" y="-31.3" font-family="Times,serif" font-size="14.00">bufio</text>
 <polyline fill="none" stroke="black" points="126,-23.5 180,-23.5 "/>
 <text text-anchor="middle" x="153" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
-<!-- io -->
+<!-- io/ioutil -->
 <g id="node2" class="node">
+<title>io/ioutil</title>
+<polygon fill="none" stroke="black" points="778.5,-83.5 778.5,-129.5 839.5,-129.5 839.5,-83.5 778.5,-83.5"/>
+<text text-anchor="middle" x="809" y="-114.3" font-family="Times,serif" font-size="14.00">io/ioutil</text>
+<polyline fill="none" stroke="black" points="778.5,-106.5 839.5,-106.5 "/>
+<text text-anchor="middle" x="809" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- text/template -->
+<g id="node3" class="node">
+<title>text/template</title>
+<polygon fill="none" stroke="black" points="896,-83.5 896,-129.5 986,-129.5 986,-83.5 896,-83.5"/>
+<text text-anchor="middle" x="941" y="-114.3" font-family="Times,serif" font-size="14.00">text/template</text>
+<polyline fill="none" stroke="black" points="896,-106.5 986,-106.5 "/>
+<text text-anchor="middle" x="941" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- io -->
+<g id="node4" class="node">
 <title>io</title>
 <polygon fill="none" stroke="black" points="0,-0.5 0,-46.5 54,-46.5 54,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="27" y="-31.3" font-family="Times,serif" font-size="14.00">io</text>
 <polyline fill="none" stroke="black" points="0,-23.5 54,-23.5 "/>
 <text text-anchor="middle" x="27" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot -->
-<g id="node3" class="node">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot</title>
-<polygon fill="none" stroke="black" points="502.5,-166.5 502.5,-212.5 755.5,-212.5 755.5,-166.5 502.5,-166.5"/>
-<text text-anchor="middle" x="629" y="-197.3" font-family="Times,serif" font-size="14.00">github.com/nikolaydubina/jsonl&#45;graph/dot</text>
-<polyline fill="none" stroke="black" points="502.5,-189.5 755.5,-189.5 "/>
-<text text-anchor="middle" x="629" y="-174.3" font-family="Times,serif" font-size="14.00"> </text>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;io -->
-<g id="edge16" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;io</title>
-<path fill="none" stroke="black" d="M502.38,-183.79C340.98,-176.57 78.79,-160.32 46,-130 26.24,-111.73 22.74,-80.44 23.44,-56.67"/>
-<polygon fill="black" stroke="black" points="26.93,-56.85 23.98,-46.67 19.94,-56.47 26.93,-56.85"/>
-</g>
-<!-- embed -->
-<g id="node4" class="node">
-<title>embed</title>
-<polygon fill="none" stroke="black" points="792,-83.5 792,-129.5 846,-129.5 846,-83.5 792,-83.5"/>
-<text text-anchor="middle" x="819" y="-114.3" font-family="Times,serif" font-size="14.00">embed</text>
-<polyline fill="none" stroke="black" points="792,-106.5 846,-106.5 "/>
-<text text-anchor="middle" x="819" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;embed -->
-<g id="edge3" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;embed</title>
-<path fill="none" stroke="black" d="M690.28,-166.46C717.48,-156.16 749.69,-143.26 778,-130 779.57,-129.27 781.16,-128.5 782.76,-127.71"/>
-<polygon fill="black" stroke="black" points="784.61,-130.69 791.9,-123 781.41,-124.46 784.61,-130.69"/>
-</g>
-<!-- image/color -->
-<g id="node5" class="node">
-<title>image/color</title>
-<polygon fill="none" stroke="black" points="902.5,-83.5 902.5,-129.5 985.5,-129.5 985.5,-83.5 902.5,-83.5"/>
-<text text-anchor="middle" x="944" y="-114.3" font-family="Times,serif" font-size="14.00">image/color</text>
-<polyline fill="none" stroke="black" points="902.5,-106.5 985.5,-106.5 "/>
-<text text-anchor="middle" x="944" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;image/color -->
-<g id="edge15" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;image/color</title>
-<path fill="none" stroke="black" d="M744.8,-166.48C789.91,-156.83 841.79,-144.4 888,-130 889.62,-129.5 891.25,-128.97 892.9,-128.42"/>
-<polygon fill="black" stroke="black" points="894.1,-131.7 902.37,-125.07 891.78,-125.1 894.1,-131.7"/>
-</g>
 <!-- strings -->
-<g id="node6" class="node">
+<g id="node5" class="node">
 <title>strings</title>
 <polygon fill="none" stroke="black" points="1042,-83.5 1042,-129.5 1096,-129.5 1096,-83.5 1042,-83.5"/>
 <text text-anchor="middle" x="1069" y="-114.3" font-family="Times,serif" font-size="14.00">strings</text>
 <polyline fill="none" stroke="black" points="1042,-106.5 1096,-106.5 "/>
 <text text-anchor="middle" x="1069" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;strings -->
-<g id="edge18" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;strings</title>
-<path fill="none" stroke="black" d="M755.67,-167.42C758.81,-166.94 761.92,-166.46 765,-166 881.65,-148.37 915.97,-167 1028,-130 1029.45,-129.52 1030.9,-128.99 1032.35,-128.43"/>
-<polygon fill="black" stroke="black" points="1034.14,-131.46 1041.84,-124.18 1031.28,-125.07 1034.14,-131.46"/>
+<!-- log -->
+<g id="node6" class="node">
+<title>log</title>
+<polygon fill="none" stroke="black" points="749,-166.5 749,-212.5 803,-212.5 803,-166.5 749,-166.5"/>
+<text text-anchor="middle" x="776" y="-197.3" font-family="Times,serif" font-size="14.00">log</text>
+<polyline fill="none" stroke="black" points="749,-189.5 803,-189.5 "/>
+<text text-anchor="middle" x="776" y="-174.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph/graph -->
 <g id="node7" class="node">
@@ -89,28 +65,120 @@
 <polyline fill="none" stroke="black" points="55.5,-106.5 322.5,-106.5 "/>
 <text text-anchor="middle" x="189" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/graph -->
-<g id="edge4" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/graph</title>
-<path fill="none" stroke="black" d="M509.35,-166.47C450.29,-155.6 378.95,-142.47 318.6,-131.36"/>
-<polygon fill="black" stroke="black" points="319.1,-127.89 308.63,-129.52 317.83,-134.77 319.1,-127.89"/>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;bufio -->
+<g id="edge5" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;bufio</title>
+<path fill="none" stroke="black" d="M179.16,-83.37C175.39,-74.88 171.02,-65.04 166.93,-55.85"/>
+<polygon fill="black" stroke="black" points="170.09,-54.32 162.83,-46.61 163.69,-57.17 170.09,-54.32"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;io -->
+<g id="edge21" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;io</title>
+<path fill="none" stroke="black" d="M144.73,-83.37C119.26,-70.63 87.64,-54.82 63.58,-42.79"/>
+<polygon fill="black" stroke="black" points="64.94,-39.56 54.44,-38.22 61.81,-45.82 64.94,-39.56"/>
+</g>
+<!-- bytes -->
+<g id="node8" class="node">
+<title>bytes</title>
+<polygon fill="none" stroke="black" points="198,-0.5 198,-46.5 252,-46.5 252,-0.5 198,-0.5"/>
+<text text-anchor="middle" x="225" y="-31.3" font-family="Times,serif" font-size="14.00">bytes</text>
+<polyline fill="none" stroke="black" points="198,-23.5 252,-23.5 "/>
+<text text-anchor="middle" x="225" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;bytes -->
+<g id="edge11" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;bytes</title>
+<path fill="none" stroke="black" d="M198.84,-83.37C202.61,-74.88 206.98,-65.04 211.07,-55.85"/>
+<polygon fill="black" stroke="black" points="214.31,-57.17 215.17,-46.61 207.91,-54.32 214.31,-57.17"/>
+</g>
+<!-- encoding/json -->
+<g id="node9" class="node">
+<title>encoding/json</title>
+<polygon fill="none" stroke="black" points="504.5,-0.5 504.5,-46.5 599.5,-46.5 599.5,-0.5 504.5,-0.5"/>
+<text text-anchor="middle" x="552" y="-31.3" font-family="Times,serif" font-size="14.00">encoding/json</text>
+<polyline fill="none" stroke="black" points="504.5,-23.5 599.5,-23.5 "/>
+<text text-anchor="middle" x="552" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;encoding/json -->
+<g id="edge12" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;encoding/json</title>
+<path fill="none" stroke="black" d="M287.71,-83.47C353.92,-68.7 438.84,-49.75 494.3,-37.38"/>
+<polygon fill="black" stroke="black" points="495.3,-40.74 504.3,-35.14 493.78,-33.91 495.3,-40.74"/>
 </g>
 <!-- errors -->
-<g id="node8" class="node">
+<g id="node14" class="node">
 <title>errors</title>
-<polygon fill="none" stroke="black" points="521,-0.5 521,-46.5 575,-46.5 575,-0.5 521,-0.5"/>
-<text text-anchor="middle" x="548" y="-31.3" font-family="Times,serif" font-size="14.00">errors</text>
-<polyline fill="none" stroke="black" points="521,-23.5 575,-23.5 "/>
-<text text-anchor="middle" x="548" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
+<polygon fill="none" stroke="black" points="747,-0.5 747,-46.5 801,-46.5 801,-0.5 747,-0.5"/>
+<text text-anchor="middle" x="774" y="-31.3" font-family="Times,serif" font-size="14.00">errors</text>
+<polyline fill="none" stroke="black" points="747,-23.5 801,-23.5 "/>
+<text text-anchor="middle" x="774" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;errors -->
+<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;errors -->
+<g id="edge13" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;errors</title>
+<path fill="none" stroke="black" d="M322.57,-84.37C325.74,-83.9 328.89,-83.45 332,-83 454.89,-65.35 485.94,-63.39 609,-47 652.83,-41.16 703.19,-34.27 736.62,-29.67"/>
+<polygon fill="black" stroke="black" points="737.43,-33.09 746.85,-28.26 736.47,-26.15 737.43,-33.09"/>
+</g>
+<!-- fmt -->
+<g id="node15" class="node">
+<title>fmt</title>
+<polygon fill="none" stroke="black" points="921,-0.5 921,-46.5 975,-46.5 975,-0.5 921,-0.5"/>
+<text text-anchor="middle" x="948" y="-31.3" font-family="Times,serif" font-size="14.00">fmt</text>
+<polyline fill="none" stroke="black" points="921,-23.5 975,-23.5 "/>
+<text text-anchor="middle" x="948" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;fmt -->
 <g id="edge14" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;errors</title>
-<path fill="none" stroke="black" d="M702.58,-166.46C719.35,-157.84 735.13,-146.04 745,-130 755.95,-112.21 757.49,-99.74 745,-83 725.89,-57.39 637.04,-38.97 585.43,-30.22"/>
-<polygon fill="black" stroke="black" points="585.76,-26.73 575.32,-28.56 584.62,-33.64 585.76,-26.73"/>
+<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;fmt</title>
+<path fill="none" stroke="black" d="M322.54,-84.14C325.72,-83.74 328.88,-83.36 332,-83 543.62,-58.42 598.45,-72.17 810,-47 844.31,-42.92 883.12,-36.42 910.82,-31.46"/>
+<polygon fill="black" stroke="black" points="911.65,-34.86 920.87,-29.64 910.4,-27.98 911.65,-34.86"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot -->
+<g id="node10" class="node">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot</title>
+<polygon fill="none" stroke="black" points="477.5,-166.5 477.5,-212.5 730.5,-212.5 730.5,-166.5 477.5,-166.5"/>
+<text text-anchor="middle" x="604" y="-197.3" font-family="Times,serif" font-size="14.00">github.com/nikolaydubina/jsonl&#45;graph/dot</text>
+<polyline fill="none" stroke="black" points="477.5,-189.5 730.5,-189.5 "/>
+<text text-anchor="middle" x="604" y="-174.3" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;io/ioutil -->
+<g id="edge2" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;io/ioutil</title>
+<path fill="none" stroke="black" d="M669.66,-166.38C698.85,-156.07 733.45,-143.17 764,-130 765.6,-129.31 767.22,-128.59 768.86,-127.85"/>
+<polygon fill="black" stroke="black" points="770.66,-130.87 778.23,-123.46 767.69,-124.53 770.66,-130.87"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;text/template -->
+<g id="edge15" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;text/template</title>
+<path fill="none" stroke="black" d="M729.24,-166.49C777.41,-156.89 832.67,-144.5 882,-130 883.41,-129.58 884.84,-129.15 886.28,-128.7"/>
+<polygon fill="black" stroke="black" points="887.43,-132.01 895.83,-125.55 885.23,-125.36 887.43,-132.01"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;io -->
+<g id="edge17" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;io</title>
+<path fill="none" stroke="black" d="M477.48,-183.16C322.61,-175.43 76.98,-158.77 46,-130 26.28,-111.69 22.78,-80.4 23.46,-56.64"/>
+<polygon fill="black" stroke="black" points="26.96,-56.83 24,-46.65 19.97,-56.45 26.96,-56.83"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;strings -->
+<g id="edge19" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;strings</title>
+<path fill="none" stroke="black" d="M730.66,-167.38C733.8,-166.91 736.92,-166.45 740,-166 867.66,-147.47 905.28,-169.74 1028,-130 1029.45,-129.53 1030.9,-129.01 1032.36,-128.45"/>
+<polygon fill="black" stroke="black" points="1034.13,-131.49 1041.85,-124.23 1031.29,-125.09 1034.13,-131.49"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/graph -->
+<g id="edge8" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/graph</title>
+<path fill="none" stroke="black" d="M491.15,-166.47C435.67,-155.65 368.71,-142.58 311.94,-131.5"/>
+<polygon fill="black" stroke="black" points="312.32,-128 301.83,-129.52 310.97,-134.87 312.32,-128"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;encoding/json -->
+<g id="edge22" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;encoding/json</title>
+<path fill="none" stroke="black" d="M687.35,-166.44C704.6,-157.9 720.66,-146.15 731,-130 742.26,-112.41 743.26,-99.91 731,-83 703.57,-45.18 651,-31.36 609.89,-26.52"/>
+<polygon fill="black" stroke="black" points="610.01,-23.02 599.71,-25.48 609.3,-29.98 610.01,-23.02"/>
 </g>
 <!-- net/http -->
-<g id="node9" class="node">
+<g id="node11" class="node">
 <title>net/http</title>
 <polygon fill="none" stroke="black" points="340.5,-83.5 340.5,-129.5 399.5,-129.5 399.5,-83.5 340.5,-83.5"/>
 <text text-anchor="middle" x="370" y="-114.3" font-family="Times,serif" font-size="14.00">net/http</text>
@@ -118,206 +186,138 @@
 <text text-anchor="middle" x="370" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;net/http -->
-<g id="edge5" class="edge">
+<g id="edge9" class="edge">
 <title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;net/http</title>
-<path fill="none" stroke="black" d="M523.62,-166.47C486.67,-157.19 445.35,-145.01 409,-130 408.91,-129.96 408.81,-129.92 408.72,-129.88"/>
-<polygon fill="black" stroke="black" points="410.38,-126.79 399.83,-125.76 407.43,-133.14 410.38,-126.79"/>
-</g>
-<!-- text/template -->
-<g id="node10" class="node">
-<title>text/template</title>
-<polygon fill="none" stroke="black" points="418,-83.5 418,-129.5 508,-129.5 508,-83.5 418,-83.5"/>
-<text text-anchor="middle" x="463" y="-114.3" font-family="Times,serif" font-size="14.00">text/template</text>
-<polyline fill="none" stroke="black" points="418,-106.5 508,-106.5 "/>
-<text text-anchor="middle" x="463" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;text/template -->
-<g id="edge10" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;text/template</title>
-<path fill="none" stroke="black" d="M583.64,-166.37C563.06,-156.32 538.57,-144.37 517.04,-133.87"/>
-<polygon fill="black" stroke="black" points="518.54,-130.71 508.02,-129.47 515.47,-137 518.54,-130.71"/>
-</g>
-<!-- encoding/json -->
-<g id="node13" class="node">
-<title>encoding/json</title>
-<polygon fill="none" stroke="black" points="727.5,-0.5 727.5,-46.5 822.5,-46.5 822.5,-0.5 727.5,-0.5"/>
-<text text-anchor="middle" x="775" y="-31.3" font-family="Times,serif" font-size="14.00">encoding/json</text>
-<polyline fill="none" stroke="black" points="727.5,-23.5 822.5,-23.5 "/>
-<text text-anchor="middle" x="775" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;encoding/json -->
-<g id="edge13" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;encoding/json</title>
-<path fill="none" stroke="black" d="M738.28,-166.45C792.1,-154.48 847.17,-140.12 855,-130 867.79,-113.48 864.45,-101.63 855,-83 848.92,-71.02 839.1,-60.9 828.4,-52.63"/>
-<polygon fill="black" stroke="black" points="830.25,-49.65 820.08,-46.66 826.17,-55.34 830.25,-49.65"/>
+<path fill="none" stroke="black" d="M514.61,-166.38C480.89,-156.83 442.59,-144.49 409,-130 408.91,-129.96 408.81,-129.92 408.72,-129.88"/>
+<polygon fill="black" stroke="black" points="410.41,-126.81 399.88,-125.66 407.39,-133.12 410.41,-126.81"/>
 </g>
 <!-- sort -->
-<g id="node14" class="node">
+<g id="node12" class="node">
 <title>sort</title>
-<polygon fill="none" stroke="black" points="526,-83.5 526,-129.5 580,-129.5 580,-83.5 526,-83.5"/>
-<text text-anchor="middle" x="553" y="-114.3" font-family="Times,serif" font-size="14.00">sort</text>
-<polyline fill="none" stroke="black" points="526,-106.5 580,-106.5 "/>
-<text text-anchor="middle" x="553" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
+<polygon fill="none" stroke="black" points="418,-83.5 418,-129.5 472,-129.5 472,-83.5 418,-83.5"/>
+<text text-anchor="middle" x="445" y="-114.3" font-family="Times,serif" font-size="14.00">sort</text>
+<polyline fill="none" stroke="black" points="418,-106.5 472,-106.5 "/>
+<text text-anchor="middle" x="445" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;sort -->
-<g id="edge9" class="edge">
+<g id="edge18" class="edge">
 <title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;sort</title>
-<path fill="none" stroke="black" d="M608.23,-166.37C599.77,-157.35 589.86,-146.79 580.79,-137.12"/>
-<polygon fill="black" stroke="black" points="583.14,-134.5 573.74,-129.61 578.03,-139.29 583.14,-134.5"/>
+<path fill="none" stroke="black" d="M554.27,-166.43C533.74,-156.95 509.66,-145.37 481.27,-129.94"/>
+<polygon fill="black" stroke="black" points="482.77,-126.77 472.32,-125.03 479.4,-132.91 482.77,-126.77"/>
 </g>
-<!-- fmt -->
-<g id="node18" class="node">
-<title>fmt</title>
-<polygon fill="none" stroke="black" points="932,-0.5 932,-46.5 986,-46.5 986,-0.5 932,-0.5"/>
-<text text-anchor="middle" x="959" y="-31.3" font-family="Times,serif" font-size="14.00">fmt</text>
-<polyline fill="none" stroke="black" points="932,-23.5 986,-23.5 "/>
-<text text-anchor="middle" x="959" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;errors -->
+<g id="edge23" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;errors</title>
+<path fill="none" stroke="black" d="M725.19,-166.44C782.62,-154.76 840.58,-140.66 849,-130 861.94,-113.6 858.16,-101.77 849,-83 840.7,-66.01 824.82,-52.51 809.8,-42.78"/>
+<polygon fill="black" stroke="black" points="811.48,-39.71 801.12,-37.49 807.84,-45.68 811.48,-39.71"/>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;fmt -->
-<g id="edge23" class="edge">
+<g id="edge7" class="edge">
 <title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;fmt</title>
-<path fill="none" stroke="black" d="M755.68,-167.5C758.82,-167 761.93,-166.49 765,-166 816.08,-157.78 961.37,-169.31 995,-130 1013.19,-108.75 999.36,-77.86 983.87,-55"/>
-<polygon fill="black" stroke="black" points="986.58,-52.77 977.92,-46.66 980.89,-56.84 986.58,-52.77"/>
+<path fill="none" stroke="black" d="M730.67,-167.44C733.81,-166.95 736.92,-166.47 740,-166 796.57,-157.33 957.47,-173.2 995,-130 1014.06,-108.06 996.48,-77.16 977.63,-54.46"/>
+<polygon fill="black" stroke="black" points="980.18,-52.06 970.97,-46.81 974.9,-56.65 980.18,-52.06"/>
 </g>
-<!-- io/ioutil -->
-<g id="node19" class="node">
-<title>io/ioutil</title>
-<polygon fill="none" stroke="black" points="598.5,-83.5 598.5,-129.5 659.5,-129.5 659.5,-83.5 598.5,-83.5"/>
-<text text-anchor="middle" x="629" y="-114.3" font-family="Times,serif" font-size="14.00">io/ioutil</text>
-<polyline fill="none" stroke="black" points="598.5,-106.5 659.5,-106.5 "/>
-<text text-anchor="middle" x="629" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
+<!-- embed -->
+<g id="node16" class="node">
+<title>embed</title>
+<polygon fill="none" stroke="black" points="490,-83.5 490,-129.5 544,-129.5 544,-83.5 490,-83.5"/>
+<text text-anchor="middle" x="517" y="-114.3" font-family="Times,serif" font-size="14.00">embed</text>
+<polyline fill="none" stroke="black" points="490,-106.5 544,-106.5 "/>
+<text text-anchor="middle" x="517" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;io/ioutil -->
-<g id="edge17" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;io/ioutil</title>
-<path fill="none" stroke="black" d="M629,-166.37C629,-158.15 629,-148.66 629,-139.73"/>
-<polygon fill="black" stroke="black" points="632.5,-139.61 629,-129.61 625.5,-139.61 632.5,-139.61"/>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;embed -->
+<g id="edge1" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;embed</title>
+<path fill="none" stroke="black" d="M580.23,-166.37C570.35,-157.17 558.75,-146.37 548.2,-136.55"/>
+<polygon fill="black" stroke="black" points="550.45,-133.86 540.74,-129.61 545.68,-138.98 550.45,-133.86"/>
+</g>
+<!-- image/color -->
+<g id="node17" class="node">
+<title>image/color</title>
+<polygon fill="none" stroke="black" points="562.5,-83.5 562.5,-129.5 645.5,-129.5 645.5,-83.5 562.5,-83.5"/>
+<text text-anchor="middle" x="604" y="-114.3" font-family="Times,serif" font-size="14.00">image/color</text>
+<polyline fill="none" stroke="black" points="562.5,-106.5 645.5,-106.5 "/>
+<text text-anchor="middle" x="604" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;image/color -->
+<g id="edge24" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;image/color</title>
+<path fill="none" stroke="black" d="M604,-166.37C604,-158.15 604,-148.66 604,-139.73"/>
+<polygon fill="black" stroke="black" points="607.5,-139.61 604,-129.61 600.5,-139.61 607.5,-139.61"/>
 </g>
 <!-- strconv -->
-<g id="node20" class="node">
+<g id="node18" class="node">
 <title>strconv</title>
-<polygon fill="none" stroke="black" points="678,-83.5 678,-129.5 736,-129.5 736,-83.5 678,-83.5"/>
-<text text-anchor="middle" x="707" y="-114.3" font-family="Times,serif" font-size="14.00">strconv</text>
-<polyline fill="none" stroke="black" points="678,-106.5 736,-106.5 "/>
-<text text-anchor="middle" x="707" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
+<polygon fill="none" stroke="black" points="664,-83.5 664,-129.5 722,-129.5 722,-83.5 664,-83.5"/>
+<text text-anchor="middle" x="693" y="-114.3" font-family="Times,serif" font-size="14.00">strconv</text>
+<polyline fill="none" stroke="black" points="664,-106.5 722,-106.5 "/>
+<text text-anchor="middle" x="693" y="-91.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;strconv -->
-<g id="edge24" class="edge">
+<g id="edge10" class="edge">
 <title>github.com/nikolaydubina/jsonl&#45;graph/dot&#45;&gt;strconv</title>
-<path fill="none" stroke="black" d="M650.31,-166.37C659.08,-157.26 669.37,-146.58 678.75,-136.83"/>
-<polygon fill="black" stroke="black" points="681.3,-139.24 685.71,-129.61 676.25,-134.38 681.3,-139.24"/>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;bytes -->
-<g id="edge12" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;bytes</title>
-<path fill="none" stroke="black" d="M179.16,-83.37C175.39,-74.88 171.02,-65.04 166.93,-55.85"/>
-<polygon fill="black" stroke="black" points="170.09,-54.32 162.83,-46.61 163.69,-57.17 170.09,-54.32"/>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;io -->
-<g id="edge2" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;io</title>
-<path fill="none" stroke="black" d="M144.73,-83.37C119.26,-70.63 87.64,-54.82 63.58,-42.79"/>
-<polygon fill="black" stroke="black" points="64.94,-39.56 54.44,-38.22 61.81,-45.82 64.94,-39.56"/>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;errors -->
-<g id="edge7" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;errors</title>
-<path fill="none" stroke="black" d="M286.62,-83.47C360.79,-66.74 458.68,-44.65 511.1,-32.83"/>
-<polygon fill="black" stroke="black" points="511.98,-36.22 520.96,-30.6 510.43,-29.39 511.98,-36.22"/>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;encoding/json -->
-<g id="edge1" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;encoding/json</title>
-<path fill="none" stroke="black" d="M322.57,-84.38C325.74,-83.91 328.89,-83.45 332,-83 470.01,-63.03 632.62,-42.26 717.24,-31.66"/>
-<polygon fill="black" stroke="black" points="717.93,-35.11 727.42,-30.39 717.06,-28.16 717.93,-35.11"/>
-</g>
-<!-- bufio -->
-<g id="node17" class="node">
-<title>bufio</title>
-<polygon fill="none" stroke="black" points="198,-0.5 198,-46.5 252,-46.5 252,-0.5 198,-0.5"/>
-<text text-anchor="middle" x="225" y="-31.3" font-family="Times,serif" font-size="14.00">bufio</text>
-<polyline fill="none" stroke="black" points="198,-23.5 252,-23.5 "/>
-<text text-anchor="middle" x="225" y="-8.3" font-family="Times,serif" font-size="14.00"> </text>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;bufio -->
-<g id="edge22" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;bufio</title>
-<path fill="none" stroke="black" d="M198.84,-83.37C202.61,-74.88 206.98,-65.04 211.07,-55.85"/>
-<polygon fill="black" stroke="black" points="214.31,-57.17 215.17,-46.61 207.91,-54.32 214.31,-57.17"/>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;fmt -->
-<g id="edge8" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph/graph&#45;&gt;fmt</title>
-<path fill="none" stroke="black" d="M322.54,-84.13C325.72,-83.73 328.88,-83.36 332,-83 553.35,-57.66 610.9,-74.47 832,-47 862.47,-43.21 896.73,-37.03 921.98,-32.1"/>
-<polygon fill="black" stroke="black" points="922.74,-35.52 931.87,-30.15 921.38,-28.65 922.74,-35.52"/>
+<path fill="none" stroke="black" d="M628.32,-166.37C638.42,-157.17 650.29,-146.37 661.08,-136.55"/>
+<polygon fill="black" stroke="black" points="663.67,-138.93 668.71,-129.61 658.96,-133.75 663.67,-138.93"/>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph -->
-<g id="node11" class="node">
+<g id="node13" class="node">
 <title>github.com/nikolaydubina/jsonl&#45;graph</title>
-<polygon fill="none" stroke="black" points="599,-249.5 599,-295.5 831,-295.5 831,-249.5 599,-249.5"/>
-<text text-anchor="middle" x="715" y="-280.3" font-family="Times,serif" font-size="14.00">github.com/nikolaydubina/jsonl&#45;graph</text>
-<polyline fill="none" stroke="black" points="599,-272.5 831,-272.5 "/>
-<text text-anchor="middle" x="715" y="-257.3" font-family="Times,serif" font-size="14.00"> </text>
+<polygon fill="none" stroke="black" points="574,-249.5 574,-295.5 806,-295.5 806,-249.5 574,-249.5"/>
+<text text-anchor="middle" x="690" y="-280.3" font-family="Times,serif" font-size="14.00">github.com/nikolaydubina/jsonl&#45;graph</text>
+<polyline fill="none" stroke="black" points="574,-272.5 806,-272.5 "/>
+<text text-anchor="middle" x="690" y="-257.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;io -->
-<g id="edge20" class="edge">
+<g id="edge4" class="edge">
 <title>github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;io</title>
-<path fill="none" stroke="black" d="M598.76,-265.49C419.91,-253.48 90.57,-219.5 21,-130 5.01,-109.43 8.61,-79.23 14.98,-56.4"/>
-<polygon fill="black" stroke="black" points="18.33,-57.39 17.93,-46.81 11.64,-55.33 18.33,-57.39"/>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/dot -->
-<g id="edge19" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/dot</title>
-<path fill="none" stroke="black" d="M691.5,-249.37C681.74,-240.17 670.27,-229.37 659.84,-219.55"/>
-<polygon fill="black" stroke="black" points="662.15,-216.92 652.47,-212.61 657.35,-222.01 662.15,-216.92"/>
-</g>
-<!-- github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/graph -->
-<g id="edge25" class="edge">
-<title>github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/graph</title>
-<path fill="none" stroke="black" d="M625.59,-249.44C585.2,-239.07 536.99,-226.11 494,-213 412.22,-188.07 319.57,-155.38 258.07,-133.03"/>
-<polygon fill="black" stroke="black" points="259.06,-129.67 248.47,-129.54 256.67,-136.25 259.06,-129.67"/>
-</g>
-<!-- log -->
-<g id="node12" class="node">
-<title>log</title>
-<polygon fill="none" stroke="black" points="774,-166.5 774,-212.5 828,-212.5 828,-166.5 774,-166.5"/>
-<text text-anchor="middle" x="801" y="-197.3" font-family="Times,serif" font-size="14.00">log</text>
-<polyline fill="none" stroke="black" points="774,-189.5 828,-189.5 "/>
-<text text-anchor="middle" x="801" y="-174.3" font-family="Times,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" d="M573.98,-264.55C400.62,-251.42 87.2,-216.12 21,-130 5.12,-109.35 8.7,-79.15 15.04,-56.35"/>
+<polygon fill="black" stroke="black" points="18.4,-57.35 17.98,-46.77 11.7,-55.3 18.4,-57.35"/>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;log -->
-<g id="edge21" class="edge">
+<g id="edge6" class="edge">
 <title>github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;log</title>
-<path fill="none" stroke="black" d="M738.5,-249.37C748.26,-240.17 759.73,-229.37 770.16,-219.55"/>
-<polygon fill="black" stroke="black" points="772.65,-222.01 777.53,-212.61 767.85,-216.92 772.65,-222.01"/>
+<path fill="none" stroke="black" d="M713.5,-249.37C723.26,-240.17 734.73,-229.37 745.16,-219.55"/>
+<polygon fill="black" stroke="black" points="747.65,-222.01 752.53,-212.61 742.85,-216.92 747.65,-222.01"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/graph -->
+<g id="edge16" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/graph</title>
+<path fill="none" stroke="black" d="M598.27,-249.44C558.3,-239.26 511.06,-226.45 469,-213 393.46,-188.84 308.44,-155.98 252.11,-133.38"/>
+<polygon fill="black" stroke="black" points="253.21,-130.05 242.63,-129.57 250.6,-136.55 253.21,-130.05"/>
+</g>
+<!-- github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/dot -->
+<g id="edge3" class="edge">
+<title>github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;github.com/nikolaydubina/jsonl&#45;graph/dot</title>
+<path fill="none" stroke="black" d="M666.5,-249.37C656.74,-240.17 645.27,-229.37 634.84,-219.55"/>
+<polygon fill="black" stroke="black" points="637.15,-216.92 627.47,-212.61 632.35,-222.01 637.15,-216.92"/>
 </g>
 <!-- flag -->
-<g id="node15" class="node">
+<g id="node19" class="node">
 <title>flag</title>
-<polygon fill="none" stroke="black" points="846,-166.5 846,-212.5 900,-212.5 900,-166.5 846,-166.5"/>
-<text text-anchor="middle" x="873" y="-197.3" font-family="Times,serif" font-size="14.00">flag</text>
-<polyline fill="none" stroke="black" points="846,-189.5 900,-189.5 "/>
-<text text-anchor="middle" x="873" y="-174.3" font-family="Times,serif" font-size="14.00"> </text>
+<polygon fill="none" stroke="black" points="821,-166.5 821,-212.5 875,-212.5 875,-166.5 821,-166.5"/>
+<text text-anchor="middle" x="848" y="-197.3" font-family="Times,serif" font-size="14.00">flag</text>
+<polyline fill="none" stroke="black" points="821,-189.5 875,-189.5 "/>
+<text text-anchor="middle" x="848" y="-174.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;flag -->
-<g id="edge6" class="edge">
+<g id="edge20" class="edge">
 <title>github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;flag</title>
-<path fill="none" stroke="black" d="M764.31,-249.38C784.67,-239.9 808.56,-228.32 836.77,-212.92"/>
-<polygon fill="black" stroke="black" points="838.6,-215.91 845.67,-208.02 835.22,-209.78 838.6,-215.91"/>
+<path fill="none" stroke="black" d="M739.31,-249.38C759.67,-239.9 783.56,-228.32 811.77,-212.92"/>
+<polygon fill="black" stroke="black" points="813.6,-215.91 820.67,-208.02 810.22,-209.78 813.6,-215.91"/>
 </g>
 <!-- os -->
-<g id="node16" class="node">
+<g id="node20" class="node">
 <title>os</title>
-<polygon fill="none" stroke="black" points="918,-166.5 918,-212.5 972,-212.5 972,-166.5 918,-166.5"/>
-<text text-anchor="middle" x="945" y="-197.3" font-family="Times,serif" font-size="14.00">os</text>
-<polyline fill="none" stroke="black" points="918,-189.5 972,-189.5 "/>
-<text text-anchor="middle" x="945" y="-174.3" font-family="Times,serif" font-size="14.00"> </text>
+<polygon fill="none" stroke="black" points="893,-166.5 893,-212.5 947,-212.5 947,-166.5 893,-166.5"/>
+<text text-anchor="middle" x="920" y="-197.3" font-family="Times,serif" font-size="14.00">os</text>
+<polyline fill="none" stroke="black" points="893,-189.5 947,-189.5 "/>
+<text text-anchor="middle" x="920" y="-174.3" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;os -->
-<g id="edge11" class="edge">
+<g id="edge25" class="edge">
 <title>github.com/nikolaydubina/jsonl&#45;graph&#45;&gt;os</title>
-<path fill="none" stroke="black" d="M806.16,-249.41C836.8,-240.69 870.98,-229.55 908.75,-212.65"/>
-<polygon fill="black" stroke="black" points="910.26,-215.81 917.9,-208.48 907.35,-209.45 910.26,-215.81"/>
+<path fill="none" stroke="black" d="M781.16,-249.41C811.8,-240.69 845.98,-229.55 883.75,-212.65"/>
+<polygon fill="black" stroke="black" points="885.26,-215.81 892.9,-208.48 882.35,-209.45 885.26,-215.81"/>
 </g>
 </g>
 </svg>
