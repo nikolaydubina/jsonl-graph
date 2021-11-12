@@ -1,3 +1,4 @@
+//go:build js && wasm
 package main
 
 import (
@@ -9,7 +10,7 @@ import (
 
 	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
 
-	"github.com/nikolaydubina/jsonl-graph/go-svgpanzoom"
+	"github.com/nikolaydubina/go-svgpan"
 	"github.com/nikolaydubina/jsonl-graph/graph"
 	"github.com/nikolaydubina/jsonl-graph/layout"
 	"github.com/nikolaydubina/jsonl-graph/svg"
@@ -17,14 +18,14 @@ import (
 
 // Bridge between input, svg output, and browser controls.
 type Bridge struct {
-	graphData        graph.Graph              // what graph contains
-	graphLayout      layout.Graph             // how nodes located and what are edge paths
-	layoutUpdater    layout.Layout            // how to arrange graph
-	expandNodeSwitch bool                     // value of expand all nodes switch
-	prettifyJSON     bool                     // format JSON input
-	expandNodes      map[uint64]bool          // which nodes to expand
-	scaler           *svgpanzoom.SVGPanZoomer // how to scale and zoom svg
-	scalerLayout     layout.MemoLayout        // how distance between nodes is done for given layout
+	graphData        graph.Graph          // what graph contains
+	graphLayout      layout.Graph         // how nodes located and what are edge paths
+	layoutUpdater    layout.Layout        // how to arrange graph
+	expandNodeSwitch bool                 // value of expand all nodes switch
+	prettifyJSON     bool                 // format JSON input
+	expandNodes      map[uint64]bool      // which nodes to expand
+	scaler           *svgpan.SVGPanZoomer // how to scale and zoom svg
+	scalerLayout     layout.MemoLayout    // how distance between nodes is done for given layout
 	containerID      string
 	svgID            string
 	rootID           string
@@ -47,7 +48,7 @@ func NewBridge(
 		containerID:   containerID,
 		svgID:         svgID,
 		rootID:        rootID,
-		scaler: svgpanzoom.NewSVGPanZoomer(
+		scaler: svgpan.NewSVGPanZoomer(
 			svgID,
 			rootID,
 			0.2,
