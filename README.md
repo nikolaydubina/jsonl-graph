@@ -42,7 +42,7 @@ What is JSONL graph? Node has `id`. Edge has `from` and `to`.
 ✅ Brandes-Köpf horizontal layers assignment  
 ✅ 100% Go, no JS, no `cgo`, 100% offline, minimal dependencies  
 
-## Web UI with WebAssembly
+## WebAssembly
 
 TODO: link here
 TODO: screenshot here
@@ -96,7 +96,7 @@ $ cat '
 
 ## Missing Features?
 
-Contributions welcomed!
+Contributions welcomed! 🙌🏻
 
 ## References
 
