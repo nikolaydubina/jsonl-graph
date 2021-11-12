@@ -9,40 +9,41 @@ import (
 	"gonum.org/v1/gonum/mat"
 )
 
-type State string
+type state string
 
 const (
-	Drag      State = "drag"
-	NotActive State = ""
+	drag      state = "drag"
+	notActive state = ""
 )
 
-// PanZoomer handles updates to SVG based
+// SVGPanZoomer does zooming and panning of SVG using JS events.
 // This is port of https://github.com/aleofreddi/svgpan
 // Which is also as of 2021-09-19 inlined in https://github.com/google/pprof/blob/master/third_party/svgpan/svgpan.go
-type PanZoomer struct {
+type SVGPanZoomer struct {
 	svgID               string
 	rootID              string
 	zoomScale           float64
-	state               State
+	state               state
 	transform           *mat.Dense
 	transformBeforeDrag *mat.Dense
 	origin              *mat.Dense
 }
 
-func NewPanZoomer(
+func NewSVGPanZoomer(
 	svgID string,
 	rootID string,
 	zoomScale float64,
-) *PanZoomer {
-	return &PanZoomer{
+) SVGPanZoomer {
+	return SVGPanZoomer{
 		svgID:     svgID,
 		rootID:    rootID,
 		zoomScale: zoomScale,
 		transform: identity(),
+		state:     notActive,
 	}
 }
 
-func (p *PanZoomer) SetupHandlers() {
+func (p SVGPanZoomer) SetupHandlers() {
 	container := js.Global().Get("document").Call("getElementById", p.svgID)
 	container.Call("addEventListener", "mouseup", js.FuncOf(p.handleMouseUp))
 	container.Call("addEventListener", "mousedown", js.FuncOf(p.handleMouseDown))
@@ -68,7 +69,7 @@ func getEventPoint(event js.Value) *mat.Dense {
 }
 
 // setRootTranslation updates translation matrix of root svg element
-func (p *PanZoomer) SetRootTranslation() {
+func (p SVGPanZoomer) SetRootTranslation() {
 	a := p.transform.At(0, 0)
 	b := p.transform.At(1, 0)
 	c := p.transform.At(0, 1)
@@ -81,7 +82,7 @@ func (p *PanZoomer) SetRootTranslation() {
 }
 
 // will make zoom at currently pointing at mouse
-func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{} {
+func (p SVGPanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{} {
 	event := args[0]
 	delta := 0.0
 	if event.Get("wheelDelta").Truthy() {
@@ -112,11 +113,11 @@ func (p *PanZoomer) handleMouseWheel(this js.Value, args []js.Value) interface{}
 	return nil
 }
 
-func (p *PanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
+func (p SVGPanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
 	event := args[0]
 	point := getEventPoint(event)
 
-	if p.state != Drag {
+	if p.state != drag {
 		p.origin = point
 		return nil
 	}
@@ -138,32 +139,32 @@ func (p *PanZoomer) handleMouseMove(_ js.Value, args []js.Value) interface{} {
 	return nil
 }
 
-func (p *PanZoomer) handleMouseDown(_ js.Value, args []js.Value) interface{} {
-	p.state = Drag
+func (p SVGPanZoomer) handleMouseDown(_ js.Value, args []js.Value) interface{} {
+	p.state = drag
 	event := args[0]
 	p.origin = getEventPoint(event)
 	p.transformBeforeDrag = mat.DenseCopyOf(p.transform)
 	return nil
 }
 
-func (p *PanZoomer) handleMouseUp(_ js.Value, _ []js.Value) interface{} {
-	p.state = NotActive
+func (p SVGPanZoomer) handleMouseUp(_ js.Value, _ []js.Value) interface{} {
+	p.state = notActive
 	return nil
 }
 
-func (p *PanZoomer) Reset() *PanZoomer {
+func (p SVGPanZoomer) Reset() SVGPanZoomer {
 	p.transform = identity()
 	p.transformBeforeDrag = nil
 	p.origin = nil
 	return p
 }
 
-func (p *PanZoomer) Translate(dx, dy float64) *PanZoomer {
+func (p SVGPanZoomer) Translate(dx, dy float64) SVGPanZoomer {
 	p.transform.Mul(p.transform, translate(dx, dy))
 	return p
 }
 
-func (p *PanZoomer) ScaleAt(z, x, y float64) *PanZoomer {
+func (p SVGPanZoomer) ScaleAt(z, x, y float64) SVGPanZoomer {
 	k := identity()
 	k.Mul(translate(-x, -y), k)
 	k.Mul(scale(z), k)
@@ -174,11 +175,11 @@ func (p *PanZoomer) ScaleAt(z, x, y float64) *PanZoomer {
 }
 
 // CenterBox makes given bounding box in the center and fill the screen.
-func (p *PanZoomer) CenterBox(minx, miny, maxx, maxy float64) *PanZoomer {
+func (p SVGPanZoomer) CenterBox(minx, miny, maxx, maxy float64) SVGPanZoomer {
 	wScreen := js.Global().Get("window").Get("innerWidth").Float()
 	hScreen := js.Global().Get("window").Get("innerHeight").Float()
 
-	dx, dy, zoom := CenterBox(wScreen, hScreen, minx, miny, maxx, maxy)
+	dx, dy, zoom := centerBox(wScreen, hScreen, minx, miny, maxx, maxy)
 	p.Reset().Translate(dx, dy).ScaleAt(zoom, wScreen/2, hScreen/2)
 	return p
 }

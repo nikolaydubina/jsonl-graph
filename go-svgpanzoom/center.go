@@ -1,6 +1,6 @@
 package svgpanzoom
 
-// CenterBox computes coordinates on how to center box.
+// centerBox computes coordinates on how to center box.
 // Negative box coordinates are allowed.
 // This is three step process:
 //  1. Move bounding box to start from 0,0.
@@ -8,7 +8,7 @@ package svgpanzoom
 //  3. Zoom bounding box until it fits one of dimensions of the screen.
 //
 // You have to fist move by dx and dy, and then apply zoom at center point of screen.
-func CenterBox(wscreen, hscreen, minx, miny, maxx, maxy float64) (dx, dy, zoom float64) {
+func centerBox(wscreen, hscreen, minx, miny, maxx, maxy float64) (dx, dy, zoom float64) {
 	dx = 0.0
 	dy = 0.0
 	zoom = 1.0

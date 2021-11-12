@@ -3,15 +3,15 @@ build:
 
 clean:
 	-rm jsonl-graph
-	-rm docs/*.svg docs/*.dot
+	-rm testdata/*.svg testdata/*.dot
 
 docs: clean build
-	cat docs/gin.jsonl | ./jsonl-graph > docs/gin_nocolor.dot
-	cat docs/gin_nocolor.dot | dot -Tsvg > docs/gin_nocolor.svg
-	cat docs/gin.jsonl | ./jsonl-graph -color-scheme=file://$$PWD/docs/basic-colors.json > docs/gin_color.dot
-	cat docs/gin_color.dot | dot -Tsvg > docs/gin_color.svg
-	cat docs/small.jsonl | ./jsonl-graph > docs/small.dot
-	cat docs/small.dot | dot -Tsvg > docs/small.svg
+	cat testdata/gin.jsonl | ./jsonl-graph > testdata/gin_nocolor.dot
+	cat testdata/gin_nocolor.dot | dot -Tsvg > testdata/gin_nocolor.svg
+	cat testdata/gin.jsonl | ./jsonl-graph -color-scheme=file://$$PWD/testdata/colors.json > testdata/gin_color.dot
+	cat testdata/gin_color.dot | dot -Tsvg > testdata/gin_color.svg
+	cat testdata/small.jsonl | ./jsonl-graph > testdata/small.dot
+	cat testdata/small.dot | dot -Tsvg > testdata/small.svg
 
 test:
 	go test -race -coverprofile=coverage.out -covermode=atomic ./...
@@ -23,4 +23,4 @@ web: clean
 serve:
 	cd web; python3 -m http.server 8000
 
-.PHONY: docs clean build
+.PHONY: build clean docs test web serve

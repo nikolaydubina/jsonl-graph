@@ -1,4 +1,4 @@
-package render
+package svg
 
 import (
 	"encoding/json"

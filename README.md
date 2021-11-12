@@ -51,19 +51,19 @@ This data encoding is a perfect fit for storing graphs:
 ⏳ Coloring of fields with filters  
 ✅ Layout: Gravity Force  
 ✅ Layout: Spring Force  
-✅ Layout: Isomap
-✅ Layout: Eades
+✅ Layout: Isomap  
+✅ Layout: Eades  
 ⏳ Layout: Magnetic Force, Kozo Sugiyama  
-✅ Layout: Layers Kozo Sugiyama
-✅ Layout: Layers Brandes-Köpf
+✅ Layout: Layers Kozo Sugiyama  
+✅ Layout: Layers Brandes-Köpf  
 ⏳ Metro-style edges  
 ✅ Interactive Web UI with WebAssembly  
 ⏳ Touch for zoom and pan in Web UI  
 ⏳ CLI  
 ✅ 100% Go  
-✅ 100% offline
+✅ 100% offline  
 ✅ No cgo 
-✅ Self contained (..almost)  
+✅ Minimal dependencies  
 
 TODO: run layers per each connected component stack by opposite direction of layers
 
@@ -88,9 +88,9 @@ $ cat '
 ...
 {"from":"github.com/gin-gonic/gin","to":"golang.org/x/tools"}
 {"from":"github.com/gin-gonic/gin","to":"github.com/go-playground/validator/v10"}
-' | jsonl-graph -color-scheme=file://$PWD/docs/colors.json | dot -Tsvg > colored.svg
+' | jsonl-graph -color-scheme=file://$PWD/testdata/colors.json | dot -Tsvg > colored.svg
 ```
-![gin-color](./docs/gin_color.svg)
+![gin-color](./testdata/gin_color.svg)
 
 By default, no coloring is applied.
 ```bash
@@ -102,7 +102,7 @@ $ cat '
 {"from":"github.com/gin-gonic/gin","to":"github.com/go-playground/validator/v10"}
 ' | jsonl-graph | dot -Tsvg > basic.svg
 ```
-![gin-nocolor](./docs/gin_nocolor.svg)
+![gin-nocolor](./testdata/gin_nocolor.svg)
 
 If nodes have less fields, then adjusting graph
 
@@ -117,7 +117,7 @@ $ cat '
 ' | jsonl-graph | dot -Tsvg > small.svg
 ```
 
-![small](./docs/small.svg)
+![small](./testdata/small.svg)
 
 ## Wishlist
 
