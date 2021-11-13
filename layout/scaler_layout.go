@@ -25,6 +25,11 @@ func (l *ScalerLayout) UpdateGraphLayout(g Graph) {
 			g.Edges[e].Path[p] = [2]int{int(x * l.Scale), int(y * l.Scale)}
 		}
 
+		// if edge was not previously set adding at least two nodes for start and end
+		if len(g.Edges[e].Path) == 0 {
+			g.Edges[e] = Edge{Path: make([][2]int, 2)}
+		}
+
 		// end and start should use center coordinates of nodes
 		// note, this overrites ports for edges
 		g.Edges[e].Path[0] = g.Nodes[e[0]].CenterXY()

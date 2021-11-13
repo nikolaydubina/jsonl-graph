@@ -36,7 +36,7 @@ What is JSONL graph? Node has `id`. Edge has `from` and `to`.
 ✅ SVG, Graphviz  
 ✅ Coloring  
 ⏳ Metro-style edges  
-✅ Gravity, Spring force (Magnetic is next!)  
+✅ Gravity, Spring force  
 ✅ Isomap, Eades  
 ✅ Kozo Sugiyama layers  
 ✅ Brandes-Köpf horizontal layers assignment  

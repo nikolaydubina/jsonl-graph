@@ -29,10 +29,10 @@ type Bridge struct {
 	graphRenderer    GraphRenderer        // how to set graph SVG into HTML and bind handlers
 }
 
-func newExpandAllNodesForGraph(g graph.Graph) map[uint64]bool {
+func setExpandForAllNodes(g graph.Graph, expand bool) map[uint64]bool {
 	nodes := make(map[uint64]bool, len(g.Nodes))
 	for n := range g.Nodes {
-		nodes[n] = true
+		nodes[n] = expand
 	}
 	return nodes
 }
@@ -48,51 +48,35 @@ func (r *Bridge) OnDataChangeHandler(_ js.Value, _ []js.Value) interface{} {
 	}
 
 	r.graphData.ReplaceFrom(g)
-	log.Printf("got new graph data: %s\n", r.graphData)
 
 	if r.expandNodes == nil {
-		r.expandNodes = newExpandAllNodesForGraph(r.graphData)
+		r.expandNodes = setExpandForAllNodes(r.graphData, r.expandNodeSwitch)
 	}
 
-	// update nodes and add new ones
-	for id, node := range r.graphData.Nodes {
-		// compute w and h for nodes, since width and height of node depends on content
-		rnodeData := node
-		if !r.expandNodes[id] {
-			rnodeData = nil
+	if changed, what := tracker.HasStructureChanged(r.graphData); changed {
+		log.Printf("input graph has changed structurally: %s\n", what)
+
+		// remove old nodes
+		for id := range r.graphLayout.Nodes {
+			if _, ok := r.graphData.Nodes[id]; !ok {
+				delete(r.graphLayout.Nodes, id)
+			}
 		}
-		rnode := svg.Node{
-			Title:    node.ID(),
-			NodeData: rnodeData,
+
+		// add new edges
+		for e := range r.graphData.Edges {
+			r.graphLayout.Edges[e] = layout.Edge{}
 		}
-		w := rnode.Width()
-		h := rnode.Height()
-		r.graphLayout.Nodes[id] = layout.Node{W: w, H: h}
-	}
 
-	// remove old nodes
-	for id := range r.graphLayout.Nodes {
-		if _, ok := r.graphData.Nodes[id]; !ok {
-			delete(r.graphLayout.Nodes, id)
+		// remove non existent edges
+		for e := range r.graphLayout.Edges {
+			if _, ok := r.graphData.Edges[e]; !ok {
+				delete(r.graphLayout.Edges, e)
+			}
 		}
-	}
 
-	// add new edges
-	for e := range r.graphData.Edges {
-		r.graphLayout.Edges[e] = layout.Edge{}
-	}
-
-	// remove non existent edges
-	for e := range r.graphLayout.Edges {
-		if _, ok := r.graphData.Edges[e]; !ok {
-			delete(r.graphLayout.Edges, e)
-		}
-	}
-
-	if tracker.HasStructureChanged(r.graphData) {
-		r.layoutUpdater.UpdateGraphLayout(r.graphLayout)
-		r.scalerLayout.Graph = r.graphLayout.Copy() // memoize for scaling
-		r.CenterGraph()
+		r.RecomputeNodeDimensions()
+		r.SetInitialUpdateGraphLayout()
 	}
 
 	r.Render()
@@ -139,12 +123,29 @@ func (r *Bridge) NewOnNodeTitleClickHandler(id uint64) func(_ js.Value, _ []js.V
 	}
 }
 
+func (r *Bridge) RecomputeNodeDimensions() {
+	for id, node := range r.graphData.Nodes {
+		// compute w and h for nodes, since width and height of node depends on content
+		rnodeData := node
+		if !r.expandNodes[id] {
+			rnodeData = nil
+		}
+		rnode := svg.Node{
+			Title:    node.ID(),
+			NodeData: rnodeData,
+		}
+		r.graphLayout.Nodes[id] = layout.Node{W: rnode.Width(), H: rnode.Height()}
+	}
+}
+
 func (r *Bridge) SwitchExpandNodesHandler(_ js.Value, e []js.Value) interface{} {
 	// collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
 	r.expandNodeSwitch = !r.expandNodeSwitch
 	for k := range r.expandNodes {
 		r.expandNodes[k] = r.expandNodeSwitch
 	}
+
+	r.RecomputeNodeDimensions()
 	r.SetInitialUpdateGraphLayout()
 	r.Render()
 	return nil
@@ -358,7 +359,7 @@ func main() {
 			},
 			Graph: graphLayout,
 		},
-		expandNodeSwitch: false, // deafult is true, switching to true bellow after data is loaded
+		expandNodeSwitch: true,
 	}
 	graphRenderer := GraphRenderer{
 		containerID:                      containerID,

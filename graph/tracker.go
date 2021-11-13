@@ -1,6 +1,8 @@
 package graph
 
-import "log"
+import (
+	"fmt"
+)
 
 // GraphTracker tells if graph has changed structurally.
 // Not considering contents of nodes or edges.
@@ -27,29 +29,26 @@ func NewGraphTracker(g Graph) GraphTracker {
 	}
 }
 
-func (og GraphTracker) HasStructureChanged(g Graph) bool {
+func (og GraphTracker) HasStructureChanged(g Graph) (bool, string) {
 	if len(g.Nodes) != len(og.nodes) {
-		log.Printf("graph tracker: num nodes canged from(%d) to(%d)", len(og.nodes), len(g.Nodes))
-		return true
+		return true, fmt.Sprintf("num nodes canged from(%d) to(%d)", len(og.nodes), len(g.Nodes))
 	}
 
 	if len(g.Edges) != len(og.edges) {
-		log.Printf("graph tracker: num edges canged from(%d) to(%d)", len(og.edges), len(g.Edges))
-		return true
+		return true, fmt.Sprintf("num edges canged from(%d) to(%d)", len(og.edges), len(g.Edges))
 	}
 
 	for id := range g.Nodes {
 		if !og.nodes[id] {
-			log.Printf("graph tracker: new node not found(%d)", id)
-			return true
+			return true, fmt.Sprintf("new node not found(%d)", id)
 		}
 	}
 
 	for e := range g.Edges {
 		if !og.edges[e] {
-			log.Printf("graph tracker: new edge not found(%v)", e)
-			return true
+			return true, fmt.Sprintf("new edge not found(%v)", e)
 		}
 	}
-	return false
+
+	return false, ""
 }
