@@ -76,51 +76,6 @@ func (g LayeredGraph) String() string {
 	return out
 }
 
-// NumCrossingsAtLayer between layer and its upper and lower layer.
-func (g LayeredGraph) NumCrossingsAtLayer(layer int) int {
-	count := 0
-
-	for e1 := range g.Segments {
-		for e2 := range g.Segments {
-			// both edges from same level, to same next level
-			if !(g.NodeYX[e1[0]][0] == g.NodeYX[e2[0]][0] && g.NodeYX[e1[1]][0] == g.NodeYX[e2[1]][0]) {
-				continue
-			}
-
-			// either top or bottom layer has to be our target layer
-			if !(g.NodeYX[e1[0]][0] == layer || g.NodeYX[e1[0]][1] == layer) {
-				continue
-			}
-
-			// e1   e2
-			//    x
-			// e2   e1
-			if (g.NodeYX[e1[0]][1] < g.NodeYX[e2[0]][1]) && (g.NodeYX[e1[1]][1] > g.NodeYX[e2[1]][1]) {
-				count++
-				continue
-			}
-
-			// e2   e1
-			//    x
-			// e1   e2
-			if (g.NodeYX[e2[0]][1] < g.NodeYX[e1[0]][1]) && (g.NodeYX[e2[1]][1] > g.NodeYX[e1[1]][1]) {
-				count++
-				continue
-			}
-		}
-	}
-
-	return count
-}
-
-func (g LayeredGraph) NumCrossings() int {
-	count := 0
-	for i := range g.Layers() {
-		count += g.NumCrossingsAtLayer(i)
-	}
-	return count
-}
-
 // IsInnerSegment tells when edge is between two Dummy nodes.
 func (g LayeredGraph) IsInnerSegment(segment [2]uint64) bool {
 	return g.Dummy[segment[0]] && g.Dummy[segment[1]]

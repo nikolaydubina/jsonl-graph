@@ -286,9 +286,9 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				CycleRemover:   layout.NewSimpleCycleRemover(),
 				LevelsAssigner: layout.NewLayeredGraph,
 				OrderingAssigner: layout.LBLOrderingOptimizer{
-					Epochs: 20,
+					Epochs: 100,
 					LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
-						Epochs: 10,
+						Epochs: 30,
 					},
 				}.Optimize,
 				NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{

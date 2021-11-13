@@ -2,11 +2,10 @@ package layout
 
 import (
 	"math/rand"
-	"sort"
 )
 
 type LayerOrderingOptimizer interface {
-	Optimize(g Graph, lg LayeredGraph, layer int)
+	Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int)
 }
 
 // LBLOrderingOptimizer is layer-by-layer sweep ordering optimizer.
@@ -18,144 +17,117 @@ type LBLOrderingOptimizer struct {
 }
 
 func (o LBLOrderingOptimizer) Optimize(g Graph, lg LayeredGraph) {
-	for i := range lg.Layers() {
-		RandomLayerOrderingAssigner{}.Assign(g, lg, i)
-	}
+	layers := lg.Layers()
 
-	bestNumCrossings := lg.NumCrossings()
-	bestNodeYX := make(map[uint64][2]int, len(lg.NodeYX))
-	for node, yx := range lg.NodeYX {
-		bestNodeYX[node] = yx
+	for i := range layers {
+		randomizeLayer(layers[i])
 	}
 
 	for t := 0; t < o.Epochs; t++ {
-		layers := lg.Layers()
 		for i := range layers {
 			j := i
-			if (i % 2) == 0 {
+			if (t % 2) == 0 {
 				j = len(layers) - 1 - i
 			}
-			o.LayerOrderingOptimizer.Optimize(g, lg, j)
-		}
-
-		if numCrossings := lg.NumCrossings(); numCrossings < bestNumCrossings {
-			bestNumCrossings = numCrossings
-			for node, yx := range lg.NodeYX {
-				bestNodeYX[node] = yx
-			}
+			o.LayerOrderingOptimizer.Optimize(lg.Segments, layers, j)
 		}
 	}
-
-	for node, yx := range bestNodeYX {
-		lg.NodeYX[node] = yx
-	}
-}
-
-// RandomLayerOrderingOptimizer picks best out of epochs random orderings.
-type RandomLayerOrderingOptimizer struct {
-	Epochs int
-}
-
-func (o RandomLayerOrderingOptimizer) Optimize(_ Graph, lg LayeredGraph, layerIdx int) {
-	bestNumCrossings := lg.NumCrossingsAtLayer(layerIdx)
-	bestNodeYX := make(map[uint64][2]int, len(lg.NodeYX))
-	for node, yx := range lg.NodeYX {
-		bestNodeYX[node] = yx
-	}
-
-	for i := 0; i < o.Epochs; i++ {
-		layers := lg.Layers()
-		layer := make([]uint64, len(layers[layerIdx]))
-
-		// permute
-		for iold, inew := range rand.Perm(len(layer)) {
-			layer[inew] = layers[layerIdx][iold]
-		}
-
-		// update layers data
-		for i, node := range layer {
-			lg.NodeYX[node] = [2]int{layerIdx, i}
-		}
-
-		// check if it is better then best
-		if numCrossings := lg.NumCrossingsAtLayer(layerIdx); numCrossings < bestNumCrossings {
-			bestNumCrossings = numCrossings
-			for node, yx := range lg.NodeYX {
-				bestNodeYX[node] = yx
-			}
-		}
-	}
-
-	for node, yx := range bestNodeYX {
-		lg.NodeYX[node] = yx
-	}
-}
-
-// MedianLayerOrderingOptimizer takes medium of upper (or lower) level neighbors for each node in layer.
-// Median has property of stable vertical edges which is especially useful for "long" edges (fake nodes).
-// Eades and Wormald, 1994
-type MedianLayerOrderingOptimizer struct {
-	AlignLowerLevel bool
-}
-
-func (o MedianLayerOrderingOptimizer) Optimize(_ Graph, lg LayeredGraph, layerIdx int) {
-	var layer []uint64
-
-	for node, yx := range lg.NodeYX {
-		// first layer does not have higher layer
-		if o.AlignLowerLevel && yx[0] == 0 {
-			continue
-		}
-		// bottom layer does not have lower layer
-		if !o.AlignLowerLevel && yx[0] == len(lg.Layers()) {
-			continue
-		}
-
-		if yx[0] != layerIdx {
-			continue
-		}
-
-		// median of target level connected nodes
-		var targets []uint64
-		for e := range lg.Segments {
-			target := e[0]
-			if o.AlignLowerLevel {
-				target = e[1]
-			}
-			if target == node {
-				targets = append(targets, target)
-			}
-		}
-
-		if len(targets) > 0 {
-			median := targets[len(targets)/2]
-			lg.NodeYX[node] = [2]int{yx[0], lg.NodeYX[median][1]}
-		}
-	}
-
-	sort.Slice(layer, func(i, j int) bool { return layer[i] < layer[j] })
-
-	for i, node := range layer {
-		lg.NodeYX[node] = [2]int{layerIdx, i}
-	}
-}
-
-// RandomLayerOrderingAssigner will assign random permutation to nodes in layer.
-type RandomLayerOrderingAssigner struct{}
-
-func (g RandomLayerOrderingAssigner) Assign(_ Graph, lg LayeredGraph, layerIdx int) {
-	layers := lg.Layers()
-
-	n := len(layers[layerIdx])
-	ordered := make([]uint64, n)
-	for from, to := range rand.Perm(n) {
-		ordered[to] = uint64(layers[layerIdx][from])
-	}
-	copy(layers[layerIdx], ordered)
 
 	for y, layer := range layers {
 		for x, node := range layer {
 			lg.NodeYX[node] = [2]int{y, x}
 		}
 	}
+}
+
+// RandomLayerOrderingOptimizer picks best out of epochs random orderings.
+// Will store inplace in destination best result.
+type RandomLayerOrderingOptimizer struct {
+	Epochs int
+}
+
+func (o RandomLayerOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int) {
+	if idx == 0 {
+		return
+	}
+
+	bestNum := numCrossingsBetweenLayers(segments, layers[idx-1], layers[idx])
+	layer := make([]uint64, len(layers[idx]))
+
+	for i := 0; i < o.Epochs; i++ {
+		copy(layer, layers[idx])
+		randomizeLayer(layer)
+
+		numCrossings := numCrossingsBetweenLayers(segments, layers[idx-1], layer)
+
+		// check if it is better then best
+		if numCrossings < bestNum {
+			bestNum = numCrossings
+			copy(layers[idx], layer)
+		}
+	}
+}
+
+// MedianLayerOrderingOptimizer takes medium of upper (or lower) level neighbors for each node in layer.
+// Median has property of stable vertical edges which is especially useful for "long" edges (fake nodes).
+// Eades and Wormald, 1994
+type MedianLayerOrderingOptimizer struct{}
+
+func (o MedianLayerOrderingOptimizer) Optimize(_ Graph, _ LayeredGraph, _ int) {
+	panic("TODO: implement this efficiently")
+}
+
+// time: O(N)
+// space: O(N)
+func randomizeLayer(layer []uint64) {
+	n := len(layer)
+	ordered := make([]uint64, n)
+	for from, to := range rand.Perm(n) {
+		ordered[to] = uint64(layer[from])
+	}
+	copy(layer, ordered)
+}
+
+// time: O(ntop ^ 2 * nbot ^ 2)
+// memory: O(1)
+func numCrossingsBetweenLayers(segments map[[2]uint64]bool, ltop, lbottom []uint64) int {
+	count := 0
+
+	// e1 top is always to the left from e2 top
+	for idxE1T, e1t := range ltop {
+		for idxE1B, e1b := range lbottom {
+			if _, ok := segments[[2]uint64{e1t, e1b}]; !ok {
+				continue
+			}
+			for idxE2T := idxE1T + 1; idxE2T < len(ltop); idxE2T++ {
+				for idxE2B := 0; idxE2B < len(lbottom); idxE2B++ {
+					if _, ok := segments[[2]uint64{ltop[idxE2T], lbottom[idxE2B]}]; !ok {
+						continue
+					}
+
+					// e1   e2
+					//    x
+					// e2   e1
+					if idxE1B > idxE2B {
+						count++
+					}
+				}
+			}
+		}
+	}
+
+	return count
+}
+
+// time: O(?)
+// memory: O(1)
+func numCrossings(segments map[[2]uint64]bool, layers [][]uint64) int {
+	count := 0
+	for i := range layers {
+		if i == 0 {
+			continue
+		}
+		count += numCrossingsBetweenLayers(segments, layers[i-1], layers[i])
+	}
+	return count
 }
