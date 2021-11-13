@@ -12,6 +12,10 @@ docs: clean build
 	cat testdata/gin_color.dot | dot -Tsvg > testdata/gin_color.svg
 	cat testdata/small.jsonl | ./jsonl-graph > testdata/small.dot
 	cat testdata/small.dot | dot -Tsvg > testdata/small.svg
+	cat testdata/small.jsonl | ./jsonl-graph -lr > testdata/small_lr.dot
+	cat testdata/small_lr.dot | dot -Tsvg > testdata/small_lr.svg
+	cat testdata/small.jsonl | ./jsonl-graph -tb > testdata/small_tb.dot
+	cat testdata/small_tb.dot | dot -Tsvg > testdata/small_tb.svg
 
 test:
 	go test -race -coverprofile=coverage.out -covermode=atomic ./...
