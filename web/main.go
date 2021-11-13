@@ -29,7 +29,6 @@ type Bridge struct {
 	graphRenderer    GraphRenderer        // how to set graph SVG into HTML and bind handlers
 }
 
-// newExpandAllNodesForGraph will make expand node tracking structure with all nodes expanded for graph.
 func newExpandAllNodesForGraph(g graph.Graph) map[uint64]bool {
 	nodes := make(map[uint64]bool, len(g.Nodes))
 	for n := range g.Nodes {
@@ -142,8 +141,8 @@ func (r *Bridge) NewOnNodeTitleClickHandler(id uint64) func(_ js.Value, _ []js.V
 	}
 }
 
-// collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
 func (r *Bridge) SwitchExpandNodesHandler(_ js.Value, e []js.Value) interface{} {
+	// collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
 	r.expandNodeSwitch = !r.expandNodeSwitch
 	for k := range r.expandNodes {
 		r.expandNodes[k] = r.expandNodeSwitch
@@ -312,7 +311,6 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 }
 
 // SetInitialUpdateGraphLayout sets layout to what it should look like at the begging for a layout.
-// TODO: add edge direct path layout to basic layouts
 func (r *Bridge) SetInitialUpdateGraphLayout() {
 	r.layoutUpdater.UpdateGraphLayout(r.graphLayout)
 	r.scalerLayout.Graph = r.graphLayout.Copy()
