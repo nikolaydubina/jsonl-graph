@@ -10,7 +10,6 @@ import (
 // Computes horizontal coordinate in layered graph, given ordering within each layer.
 // Produces result such that neighbors are close and long edges cross Layers are straight.
 // Works on fully connected graphs.
-// This is Alg 4 in paper.
 // Assuming nodes do not have width.
 type BrandesKopfLayersNodesHorizontalAssigner struct {
 	Delta int // distance between nodes, including fake ones
@@ -29,7 +28,8 @@ func (s BrandesKopfLayersNodesHorizontalAssigner) NodesHorizontalCoordinates(_ l
 
 // Alg 1.
 // Type 1 conflicts arise when a non-inner segment (normal edge) crosses an inner segment (edge between two fake nodes).
-// The algorithm traverses Layers from left to right (index l) while maintaining the upper neighbors, v(i)_k0 and v(i)_k1, of the two closest inner Segments.
+// The algorithm traverses Layers from left to right (index l) while maintaining the upper neighbors,
+// v(i)_k0 and v(i)_k1, of the two closest inner Segments.
 func preprocessing(g layout.LayeredGraph) (typeOneSegments map[[2]uint64]bool) {
 	typeOneSegments = map[[2]uint64]bool{}
 

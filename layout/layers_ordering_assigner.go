@@ -1,6 +1,7 @@
 package layout
 
 import (
+	"log"
 	"math/rand"
 )
 
@@ -30,6 +31,9 @@ func (o LBLOrderingOptimizer) Optimize(g Graph, lg LayeredGraph) {
 				j = len(layers) - 1 - i
 			}
 			o.LayerOrderingOptimizer.Optimize(lg.Segments, layers, j)
+
+			currnum := numCrossings(lg.Segments, layers)
+			log.Printf("layer-by-layer ordering optimizer: epoch(%d): number of crossings(%d)\n", t, currnum)
 		}
 	}
 

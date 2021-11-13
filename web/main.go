@@ -50,6 +50,10 @@ func (r *Bridge) OnDataChangeHandler(_ js.Value, _ []js.Value) interface{} {
 	r.graphData.ReplaceFrom(g)
 	log.Printf("got new graph data: %s\n", r.graphData)
 
+	if r.expandNodes == nil {
+		r.expandNodes = newExpandAllNodesForGraph(r.graphData)
+	}
+
 	// update nodes and add new ones
 	for id, node := range r.graphData.Nodes {
 		// compute w and h for nodes, since width and height of node depends on content
@@ -63,7 +67,6 @@ func (r *Bridge) OnDataChangeHandler(_ js.Value, _ []js.Value) interface{} {
 		}
 		w := rnode.Width()
 		h := rnode.Height()
-
 		r.graphLayout.Nodes[id] = layout.Node{W: w, H: h}
 	}
 
@@ -87,11 +90,6 @@ func (r *Bridge) OnDataChangeHandler(_ js.Value, _ []js.Value) interface{} {
 	}
 
 	if tracker.HasStructureChanged(r.graphData) {
-		// expand nodes
-		if r.expandNodes == nil {
-			r.expandNodes = newExpandAllNodesForGraph(r.graphData)
-		}
-
 		r.layoutUpdater.UpdateGraphLayout(r.graphLayout)
 		r.scalerLayout.Graph = r.graphLayout.Copy() // memoize for scaling
 		r.CenterGraph()
@@ -384,7 +382,6 @@ func main() {
 	// invoke events on start
 	renderer.NewLayoutOptionUpdater(LayersLayoutOption)(js.Value{}, nil) // setting default updater
 	renderer.OnDataChangeHandler(js.Value{}, nil)                        // populating with data
-	renderer.SwitchExpandNodesHandler(js.Value{}, nil)                   // expanding nodes
 
 	// do not exit
 	c := make(chan bool)
