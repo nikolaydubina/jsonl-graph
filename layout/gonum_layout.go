@@ -28,7 +28,7 @@ type gnLayoutGetter interface {
 // will make dimension such that all nodes data fits into square of the same area
 // this is for pretty layouts.
 func getSquareLayoutSize(g Graph) float64 {
-	s := totalNodesWidth(g) * totalNodesHeight(g)
+	s := g.TotalNodesWidth() * g.TotalNodesHeight()
 	return math.Sqrt(float64(s))
 }
 

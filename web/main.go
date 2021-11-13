@@ -7,15 +7,16 @@ import (
 	"strings"
 	"syscall/js"
 
-	svgpan "github.com/nikolaydubina/go-svgpan"
+	"github.com/nikolaydubina/go-svgpan"
 	"github.com/nikolaydubina/multiline-jsonl/mjsonl"
 
 	"github.com/nikolaydubina/jsonl-graph/graph"
 	"github.com/nikolaydubina/jsonl-graph/layout"
+	"github.com/nikolaydubina/jsonl-graph/layout/brandeskopf"
 	"github.com/nikolaydubina/jsonl-graph/svg"
 )
 
-// Bridge between input, svg output, and browser controls.
+// Bridge between browser input, layout computation, and browser svg output.
 type Bridge struct {
 	graphData        graph.Graph          // what graph contains
 	graphLayout      layout.Graph         // how nodes located and what are edge paths
@@ -24,56 +25,30 @@ type Bridge struct {
 	prettifyJSON     bool                 // format JSON input
 	expandNodes      map[uint64]bool      // which nodes to expand
 	scaler           *svgpan.SVGPanZoomer // how to scale and zoom svg
-	scalerLayout     layout.MemoLayout    // how distance between nodes is done for given layout
-	containerID      string
-	svgID            string
-	rootID           string
+	scalerLayout     MemoLayout           // how distance between nodes is done for given layout
+	graphRenderer    GraphRenderer        // how to set graph SVG into HTML and bind handlers
 }
 
-func NewBridge(
-	containerID string,
-	svgID string,
-	rootID string,
-) *Bridge {
-	graphLayout := layout.Graph{
-		Nodes: make(map[uint64]layout.Node),
-		Edges: make(map[[2]uint64]layout.Edge),
-	}
-
-	renderer := Bridge{
-		graphData:     graph.NewGraph(),
-		graphLayout:   graphLayout,
-		layoutUpdater: layout.NewBasicSugiyamaLayersGraphLayout(),
-		containerID:   containerID,
-		svgID:         svgID,
-		rootID:        rootID,
-		scaler: svgpan.NewSVGPanZoomer(
-			svgID,
-			rootID,
-			0.2,
-		),
-		scalerLayout: layout.MemoLayout{
-			Layout: &layout.ScalerLayout{Scale: 1},
-			Graph:  graphLayout,
+func NewBasicSugiyamaLayersGraphLayout() layout.SugiyamaLayersStrategyGraphLayout {
+	return layout.SugiyamaLayersStrategyGraphLayout{
+		CycleRemover:   layout.NewSimpleCycleRemover(),
+		LevelsAssigner: layout.NewLayeredGraph,
+		OrderingAssigner: layout.LBLOrderingOptimizer{
+			Epochs: 10,
+			LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
+				Epochs: 5,
+			},
+		}.Optimize,
+		NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{
+			Delta: 25, // TODO: get dynamically from graph width
 		},
-		expandNodeSwitch: false, // deafult is true, switching to true bellow after data is loaded
+		EdgePathAssigner: layout.StraightEdgePathAssigner{
+			MarginY:        25,
+			MarginX:        25,
+			FakeNodeWidth:  25,
+			FakeNodeHeight: 25,
+		}.UpdateGraphLayout,
 	}
-
-	document := js.Global().Get("document")
-
-	document.Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChangeHandler))
-	document.Call("getElementById", "switchPrettifyJSON").Set("onchange", js.FuncOf(renderer.SwitchPrettifyJSONHandler))
-	document.Call("getElementById", "switchExpandNodes").Set("onchange", js.FuncOf(renderer.SwitchExpandNodesHandler))
-	document.Call("getElementById", "rangeNodeDistance").Set("oninput", js.FuncOf(renderer.NodeDistanceRangeHandler))
-
-	for _, l := range AllLayoutOptions() {
-		document.Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
-	}
-
-	renderer.OnDataChangeHandler(js.Value{}, nil)      // populating with data
-	renderer.SwitchExpandNodesHandler(js.Value{}, nil) // expanding nodes
-
-	return &renderer
 }
 
 // newExpandAllNodesForGraph will make expand node tracking structure with all nodes expanded for graph.
@@ -141,20 +116,12 @@ func (r *Bridge) OnDataChangeHandler(_ js.Value, _ []js.Value) interface{} {
 		}
 
 		r.layoutUpdater.UpdateGraphLayout(r.graphLayout)
-		r.scalerLayout.Graph = layout.CopyGraph(r.graphLayout) // memoize for scaling
+		r.scalerLayout.Graph = r.graphLayout.Copy() // memoize for scaling
 		r.CenterGraph()
 	}
 
 	r.Render()
 	return nil
-}
-
-func (r *Bridge) NewOnNodeTitleClickHandler(id uint64) func(_ js.Value, _ []js.Value) interface{} {
-	return func(_ js.Value, _ []js.Value) interface{} {
-		r.expandNodes[id] = !r.expandNodes[id]
-		r.Render()
-		return nil
-	}
 }
 
 func (r *Bridge) NodeDistanceRangeHandler(_ js.Value, args []js.Value) interface{} {
@@ -189,6 +156,14 @@ func (r *Bridge) SwitchPrettifyJSONHandler(_ js.Value, _ []js.Value) interface{}
 	return nil
 }
 
+func (r *Bridge) NewOnNodeTitleClickHandler(id uint64) func(_ js.Value, _ []js.Value) interface{} {
+	return func(_ js.Value, _ []js.Value) interface{} {
+		r.expandNodes[id] = !r.expandNodes[id]
+		r.Render()
+		return nil
+	}
+}
+
 // collapsing or expanding all nodes changes graph a lot, so re-copmuting layout
 func (r *Bridge) SwitchExpandNodesHandler(_ js.Value, e []js.Value) interface{} {
 	r.expandNodeSwitch = !r.expandNodeSwitch
@@ -201,30 +176,44 @@ func (r *Bridge) SwitchExpandNodesHandler(_ js.Value, e []js.Value) interface{} 
 }
 
 func (r *Bridge) CenterGraph() {
-	minx, miny, maxx, maxy := layout.BoundingBox(r.graphLayout)
+	minx, miny, maxx, maxy := r.graphLayout.BoundingBox()
 	r.scaler.CenterBox(float64(minx), float64(miny), float64(maxx), float64(maxy))
 }
 
 func (r *Bridge) Render() {
+	r.graphRenderer.RenderGraph(r.graphData, r.graphLayout, r.expandNodes)
+	r.scaler.SetupHandlers()
+	r.scaler.SetRootTranslation()
+}
+
+// GraphRenderer renders graph data based on layout and display options into HTML and binds JS handlers.
+type GraphRenderer struct {
+	containerID                      string
+	svgID                            string
+	rootID                           string
+	nodeTitleClickHandlerConstructor func(id uint64) func(_ js.Value, _ []js.Value) interface{}
+}
+
+func (r GraphRenderer) RenderGraph(g graph.Graph, gl layout.Graph, expandNodes map[uint64]bool) {
 	graph := svg.NewGraph()
 	graph.ID = r.rootID
 
 	// add nodes data and positions
-	for id, node := range r.graphData.Nodes {
+	for id, node := range g.Nodes {
 		nodeData := node
-		if !r.expandNodes[id] {
+		if !expandNodes[id] {
 			nodeData = nil
 		}
 		graph.Nodes[id] = svg.Node{
 			ID:       fmt.Sprintf("%d", id),
-			XY:       r.graphLayout.Nodes[id].XY,
+			XY:       gl.Nodes[id].XY,
 			Title:    node.ID(),
 			NodeData: nodeData,
 		}
 	}
 
 	// update graph layout graph
-	for e, edata := range r.graphLayout.Edges {
+	for e, edata := range gl.Edges {
 		graph.Edges[e] = svg.Edge{
 			Path: edata.Path,
 		}
@@ -238,14 +227,13 @@ func (r *Bridge) Render() {
 		Body: graph,
 	}
 
+	// set content of HTML
 	js.Global().Get("document").Call("getElementById", r.containerID).Set("innerHTML", svgContainer.Render())
 
+	// bind handlers
 	for id, node := range graph.Nodes {
-		js.Global().Get("document").Call("getElementById", node.TitleID()).Set("onclick", js.FuncOf(r.NewOnNodeTitleClickHandler(id)))
+		js.Global().Get("document").Call("getElementById", node.TitleID()).Set("onclick", js.FuncOf(r.nodeTitleClickHandlerConstructor(id)))
 	}
-
-	r.scaler.SetupHandlers()
-	r.scaler.SetRootTranslation()
 }
 
 type LayoutOption string
@@ -267,7 +255,6 @@ func AllLayoutOptions() []LayoutOption {
 }
 
 // NewLayoutOptionUpdater constructs new handler for layout option.
-// TODO: read options of layout from UI
 func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Value, _ []js.Value) interface{} {
 	return func(_ js.Value, _ []js.Value) interface{} {
 		switch layoutOption {
@@ -303,7 +290,7 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				ScaleY: 0.5,
 			}
 		case LayersLayoutOption:
-			r.layoutUpdater = layout.NewBasicSugiyamaLayersGraphLayout()
+			r.layoutUpdater = NewBasicSugiyamaLayersGraphLayout()
 		default:
 			log.Printf("unexpected layout option(%s)", layoutOption)
 		}
@@ -318,17 +305,83 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 // TODO: add edge direct path layout to basic layouts
 func (r *Bridge) SetInitialUpdateGraphLayout() {
 	r.layoutUpdater.UpdateGraphLayout(r.graphLayout)
-	r.scalerLayout.Graph = layout.CopyGraph(r.graphLayout)
+	r.scalerLayout.Graph = r.graphLayout.Copy()
 	r.scalerLayout.UpdateGraphLayout(r.graphLayout)
 	r.CenterGraph()
 }
 
+// MemoLayout applies layout updaters to memoized graph and stores to destination.
+type MemoLayout struct {
+	Graph  layout.Graph
+	Layout layout.Layout
+}
+
+func (l MemoLayout) UpdateGraphLayout(g layout.Graph) {
+	newgraph := l.Graph.Copy()
+	l.Layout.UpdateGraphLayout(newgraph)
+
+	// apply to target graph
+	for i := range g.Nodes {
+		g.Nodes[i] = layout.Node{
+			XY: newgraph.Nodes[i].XY,
+			W:  g.Nodes[i].W,
+			H:  g.Nodes[i].H,
+		}
+	}
+	for e := range g.Edges {
+		g.Edges[e] = layout.Edge{Path: make([][2]int, len(newgraph.Edges[e].Path))}
+		for i, ne := range newgraph.Edges[e].Path {
+			g.Edges[e].Path[i] = ne
+		}
+	}
+}
+
 func main() {
-	NewBridge(
-		"output-container",
-		"svg-jsonl-graph",
-		"svg-jsonl-graph-root",
-	)
+	containerID := "output-container"
+	svgID := "svg-jsonl-graph"
+	rootID := "svg-jsonl-graph-root"
+
+	graphLayout := layout.Graph{
+		Nodes: make(map[uint64]layout.Node),
+		Edges: make(map[[2]uint64]layout.Edge),
+	}
+
+	renderer := Bridge{
+		graphData:     graph.NewGraph(),
+		graphLayout:   graphLayout,
+		layoutUpdater: NewBasicSugiyamaLayersGraphLayout(),
+		scaler: svgpan.NewSVGPanZoomer(
+			svgID,
+			rootID,
+			0.2,
+		),
+		scalerLayout: MemoLayout{
+			Layout: &layout.ScalerLayout{Scale: 1},
+			Graph:  graphLayout,
+		},
+		expandNodeSwitch: false, // deafult is true, switching to true bellow after data is loaded
+	}
+	graphRenderer := GraphRenderer{
+		containerID:                      containerID,
+		svgID:                            svgID,
+		rootID:                           rootID,
+		nodeTitleClickHandlerConstructor: renderer.NewOnNodeTitleClickHandler,
+	}
+	renderer.graphRenderer = graphRenderer
+
+	document := js.Global().Get("document")
+
+	document.Call("getElementById", "inputData").Set("onkeyup", js.FuncOf(renderer.OnDataChangeHandler))
+	document.Call("getElementById", "switchPrettifyJSON").Set("onchange", js.FuncOf(renderer.SwitchPrettifyJSONHandler))
+	document.Call("getElementById", "switchExpandNodes").Set("onchange", js.FuncOf(renderer.SwitchExpandNodesHandler))
+	document.Call("getElementById", "rangeNodeDistance").Set("oninput", js.FuncOf(renderer.NodeDistanceRangeHandler))
+
+	for _, l := range AllLayoutOptions() {
+		document.Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
+	}
+
+	renderer.OnDataChangeHandler(js.Value{}, nil)      // populating with data
+	renderer.SwitchExpandNodesHandler(js.Value{}, nil) // expanding nodes
 
 	// do not exit
 	c := make(chan bool)

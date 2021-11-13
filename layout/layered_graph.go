@@ -2,66 +2,19 @@ package layout
 
 import (
 	"fmt"
-	"log"
 	"sort"
 	"strings"
-
-	"go.uber.org/multierr"
 )
 
-// Does not store exact XY coordinates.
-// Does not store paths for edges.
+// LayeredGraph is graph with dummy nodes such that there is no long edges.
+// Short edge is between nodes in Layers next to each other.
+// Long edge is between nodes in 1+ Layers between each other.
+// Segment is either a short edge or a long edge.
+// Top layer has lowest layer number.
 type LayeredGraph struct {
 	Segments map[[2]uint64]bool // segment is an edge in layered graph, can be real edge or piece of fake edge
 	Dummy    map[uint64]bool    // fake nodes
 	NodeYX   map[uint64][2]int  // node -> {layer, ordering in layer}
-}
-
-// Expects that graph g does not have cycles.
-func NewLayeredGraph(g Graph) LayeredGraph {
-	nodeYX := make(map[uint64][2]int, len(g.Nodes))
-
-	for _, root := range roots(g) {
-		nodeYX[root] = [2]int{0, 0}
-		for que := []uint64{root}; len(que) > 0; {
-			// pop
-			p := que[0]
-			if len(que) > 1 {
-				que = que[1:]
-			} else {
-				que = nil
-			}
-
-			// set max depth for each child
-			for e := range g.Edges {
-				if parent, child := e[0], e[1]; parent == p {
-					if l := nodeYX[parent][0] + 1; l > nodeYX[child][0] {
-						nodeYX[child] = [2]int{l, 0}
-					}
-					que = append(que, child)
-				}
-			}
-		}
-	}
-
-	// segments
-	segments := map[[2]uint64]bool{}
-	for e := range g.Edges {
-		segments[e] = true
-	}
-
-	lg := LayeredGraph{
-		NodeYX:   nodeYX,
-		Segments: segments,
-		Dummy:    map[uint64]bool{},
-	}
-	log.Printf("layered graph: %s\n", lg)
-
-	if err := lg.Validate(); err != nil {
-		panic(fmt.Sprintf("got wrong layers: %s", err))
-	}
-
-	return lg
 }
 
 func (g LayeredGraph) Layers() [][]uint64 {
@@ -89,17 +42,14 @@ func (g LayeredGraph) Layers() [][]uint64 {
 }
 
 func (g LayeredGraph) Validate() error {
-	var errs []error
-
 	for e := range g.Segments {
 		from := g.NodeYX[e[0]][0]
 		to := g.NodeYX[e[1]][0]
 		if from >= to {
-			errs = append(errs, fmt.Errorf("edge(%v) is wrong direction, got from level(%d) to level(%d)", e, from, to))
+			return fmt.Errorf("edge(%v) is wrong direction, got from level(%d) to level(%d)", e, from, to)
 		}
 	}
-
-	return multierr.Combine(errs...)
+	return nil
 }
 
 func (g LayeredGraph) String() string {
@@ -210,4 +160,35 @@ func (g LayeredGraph) AddFakeNodes() {
 			g.Segments[[2]uint64{nextFakeNodeID - 1, e[1]}] = true
 		}
 	}
+}
+
+// IsInnerSegment tells when edge is between two Dummy nodes.
+func (g LayeredGraph) IsInnerSegment(segment [2]uint64) bool {
+	return g.Dummy[segment[0]] && g.Dummy[segment[1]]
+}
+
+// UpperNeighbors are nodes in upper layer that are connected to given node.
+func (g LayeredGraph) UpperNeighbors(node uint64) []uint64 {
+	var nodes []uint64
+	for e := range g.Segments {
+		if e[1] == node {
+			if g.NodeYX[e[0]][0] == (g.NodeYX[e[1]][0] - 1) {
+				nodes = append(nodes, e[0])
+			}
+		}
+	}
+	return nodes
+}
+
+// LowerNeighbors are nodes in lower layer that are connected to given node.
+func (g LayeredGraph) LowerNeighbors(node uint64) []uint64 {
+	var nodes []uint64
+	for e := range g.Segments {
+		if e[0] == node {
+			if g.NodeYX[e[0]][0] == (g.NodeYX[e[1]][0] - 1) {
+				nodes = append(nodes, e[0])
+			}
+		}
+	}
+	return nodes
 }

@@ -42,7 +42,7 @@ func getCycleDFS(g Graph, que []uint64) []uint64 {
 }
 
 func getCycle(g Graph) []uint64 {
-	for _, root := range roots(g) {
+	for _, root := range g.Roots() {
 		if t := getCycleDFS(g, []uint64{root}); len(t) > 0 {
 			return t
 		}

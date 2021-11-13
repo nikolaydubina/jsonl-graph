@@ -1,23 +1,24 @@
 package layout
 
+// Graph tells how to position nodes and paths for edges
 type Graph struct {
 	Edges map[[2]uint64]Edge
 	Nodes map[uint64]Node
 }
 
+// Node is how to position node and its dimensions
 type Node struct {
 	XY [2]int // smallest x,y corner
 	W  int
 	H  int
 }
 
+// Edge is path of points that edge goes through
 type Edge struct {
 	Path [][2]int // [start: {x,y}, ... finish: {x,y}]
 }
 
-// utils, do not bind them as methods to emphasize that structs are pure data containers.
-
-func CopyGraph(g Graph) Graph {
+func (g Graph) Copy() Graph {
 	ng := Graph{
 		Nodes: make(map[uint64]Node, len(g.Nodes)),
 		Edges: make(map[[2]uint64]Edge, len(g.Edges)),
@@ -35,7 +36,7 @@ func CopyGraph(g Graph) Graph {
 	return ng
 }
 
-func roots(g Graph) []uint64 {
+func (g Graph) Roots() []uint64 {
 	hasParent := make(map[uint64]bool, len(g.Nodes))
 	for e := range g.Edges {
 		hasParent[e[1]] = true
@@ -50,7 +51,7 @@ func roots(g Graph) []uint64 {
 	return roots
 }
 
-func totalNodesWidth(g Graph) int {
+func (g Graph) TotalNodesWidth() int {
 	w := 0
 	for _, node := range g.Nodes {
 		w += node.W
@@ -58,7 +59,7 @@ func totalNodesWidth(g Graph) int {
 	return w
 }
 
-func totalNodesHeight(g Graph) int {
+func (g Graph) TotalNodesHeight() int {
 	h := 0
 	for _, node := range g.Nodes {
 		h += node.H
@@ -67,7 +68,8 @@ func totalNodesHeight(g Graph) int {
 }
 
 // BoundingBox coordinates that should fit whole graph.
-func BoundingBox(g Graph) (minx, miny, maxx, maxy int) {
+// Does not consider edges.
+func (g Graph) BoundingBox() (minx, miny, maxx, maxy int) {
 	for _, node := range g.Nodes {
 		nx := node.XY[0]
 		ny := node.XY[1]
