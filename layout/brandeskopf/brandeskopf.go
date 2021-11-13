@@ -1,7 +1,6 @@
 package brandeskopf
 
 import (
-	"log"
 	"math"
 
 	"github.com/nikolaydubina/jsonl-graph/layout"
@@ -11,7 +10,6 @@ import (
 // Computes horizontal coordinate in layered graph, given ordering within each layer.
 // Produces result such that neighbors are close and long edges cross Layers are straight.
 // Works on fully connected graphs.
-// delta is minimum horizontal separation between nodes.
 // This is Alg 4 in paper.
 // Assuming nodes do not have width.
 type BrandesKopfLayersNodesHorizontalAssigner struct {
@@ -22,13 +20,8 @@ func (s BrandesKopfLayersNodesHorizontalAssigner) NodesHorizontalCoordinates(_ l
 	x := make(map[uint64]int, len(g.NodeYX))
 
 	typeOneSegments := preprocessing(g)
-	for _, vdirection := range []int{-1, 1} {
-		for _, hdirection := range []int{-1, 1} {
-			log.Printf("%v %v\n", vdirection, hdirection)
-			root, align := verticalAlignment(g, typeOneSegments)
-			x = horizontalCompaction(g, root, align, s.Delta)
-		}
-	}
+	root, align := verticalAlignment(g, typeOneSegments)
+	x = horizontalCompaction(g, root, align, s.Delta)
 
 	// TODO: balancing by taking median for every node.
 	return x

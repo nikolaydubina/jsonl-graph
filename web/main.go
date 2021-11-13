@@ -328,8 +328,12 @@ func (l MemoLayout) UpdateGraphLayout(g layout.Graph) {
 	newgraph := l.Graph.Copy()
 	l.Layout.UpdateGraphLayout(newgraph)
 
-	g.Nodes = newgraph.Nodes
-	g.Edges = newgraph.Edges
+	for n, node := range newgraph.Nodes {
+		g.Nodes[n] = node
+	}
+	for e, edge := range newgraph.Edges {
+		g.Edges[e] = edge
+	}
 }
 
 func main() {
