@@ -20,7 +20,7 @@ docs: clean build
 test:
 	go test -race -coverprofile=coverage.out -covermode=atomic ./...
 
-web: clean
+web:
 	cp "$$(go env GOROOT)/misc/wasm/wasm_exec.js" web/
 	cd web; GOARCH=wasm GOOS=js go build -ldflags="-s -w" -o main.wasm main.go
 

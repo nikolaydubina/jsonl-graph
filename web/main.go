@@ -29,28 +29,6 @@ type Bridge struct {
 	graphRenderer    GraphRenderer        // how to set graph SVG into HTML and bind handlers
 }
 
-func NewBasicSugiyamaLayersGraphLayout() layout.SugiyamaLayersStrategyGraphLayout {
-	return layout.SugiyamaLayersStrategyGraphLayout{
-		CycleRemover:   layout.NewSimpleCycleRemover(),
-		LevelsAssigner: layout.NewLayeredGraph,
-		OrderingAssigner: layout.LBLOrderingOptimizer{
-			Epochs: 10,
-			LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
-				Epochs: 5,
-			},
-		}.Optimize,
-		NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{
-			Delta: 25, // TODO: get dynamically from graph width
-		},
-		EdgePathAssigner: layout.StraightEdgePathAssigner{
-			MarginY:        25,
-			MarginX:        25,
-			FakeNodeWidth:  25,
-			FakeNodeHeight: 25,
-		}.UpdateGraphLayout,
-	}
-}
-
 // newExpandAllNodesForGraph will make expand node tracking structure with all nodes expanded for graph.
 func newExpandAllNodesForGraph(g graph.Graph) map[uint64]bool {
 	nodes := make(map[uint64]bool, len(g.Nodes))
@@ -254,43 +232,75 @@ func AllLayoutOptions() []LayoutOption {
 	}
 }
 
-// NewLayoutOptionUpdater constructs new handler for layout option.
 func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Value, _ []js.Value) interface{} {
 	return func(_ js.Value, _ []js.Value) interface{} {
 		switch layoutOption {
 		case ForcesLayoutOption:
-			r.layoutUpdater = layout.ForceGraphLayout{
-				Delta:    1,
-				MaxSteps: 5000,
-				Epsilon:  1.5,
-				Forces: []layout.Force{
-					layout.GravityForce{
-						K:         -50,
-						EdgesOnly: false,
+			r.layoutUpdater = layout.SequenceLayout{
+				Layouts: []layout.Layout{
+					layout.ForceGraphLayout{
+						Delta:    1,
+						MaxSteps: 5000,
+						Epsilon:  1.5,
+						Forces: []layout.Force{
+							layout.GravityForce{
+								K:         -50,
+								EdgesOnly: false,
+							},
+							layout.SpringForce{
+								K:         0.2,
+								L:         200,
+								EdgesOnly: true,
+							},
+						},
 					},
-					layout.SpringForce{
-						K:         0.2,
-						L:         200,
-						EdgesOnly: true,
-					},
+					layout.DirectEdgesLayout{},
 				},
 			}
 		case EadesLayoutOption:
-			r.layoutUpdater = layout.EadesGonumLayout{
-				Repulsion: 1,
-				Rate:      0.05,
-				Updates:   30,
-				Theta:     0.2,
-				ScaleX:    0.5,
-				ScaleY:    0.5,
+			r.layoutUpdater = layout.SequenceLayout{
+				Layouts: []layout.Layout{
+					layout.EadesGonumLayout{
+						Repulsion: 1,
+						Rate:      0.05,
+						Updates:   30,
+						Theta:     0.2,
+						ScaleX:    0.5,
+						ScaleY:    0.5,
+					},
+					layout.DirectEdgesLayout{},
+				},
 			}
 		case IsomapLayoutOption:
-			r.layoutUpdater = layout.IsomapR2GonumLayout{
-				ScaleX: 0.5,
-				ScaleY: 0.5,
+			r.layoutUpdater = layout.SequenceLayout{
+				Layouts: []layout.Layout{
+					layout.IsomapR2GonumLayout{
+						ScaleX: 0.5,
+						ScaleY: 0.5,
+					},
+					layout.DirectEdgesLayout{},
+				},
 			}
 		case LayersLayoutOption:
-			r.layoutUpdater = NewBasicSugiyamaLayersGraphLayout()
+			r.layoutUpdater = layout.SugiyamaLayersStrategyGraphLayout{
+				CycleRemover:   layout.NewSimpleCycleRemover(),
+				LevelsAssigner: layout.NewLayeredGraph,
+				OrderingAssigner: layout.LBLOrderingOptimizer{
+					Epochs: 10,
+					LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
+						Epochs: 5,
+					},
+				}.Optimize,
+				NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{
+					Delta: 25, // TODO: get dynamically from graph width
+				},
+				EdgePathAssigner: layout.StraightEdgePathAssigner{
+					MarginY:        25,
+					MarginX:        25,
+					FakeNodeWidth:  25,
+					FakeNodeHeight: 25,
+				}.UpdateGraphLayout,
+			}
 		default:
 			log.Printf("unexpected layout option(%s)", layoutOption)
 		}
@@ -347,9 +357,8 @@ func main() {
 	}
 
 	renderer := Bridge{
-		graphData:     graph.NewGraph(),
-		graphLayout:   graphLayout,
-		layoutUpdater: NewBasicSugiyamaLayersGraphLayout(),
+		graphData:   graph.NewGraph(),
+		graphLayout: graphLayout,
 		scaler: svgpan.NewSVGPanZoomer(
 			svgID,
 			rootID,
@@ -380,8 +389,10 @@ func main() {
 		document.Call("getElementById", string(l)).Set("onclick", js.FuncOf(renderer.NewLayoutOptionUpdater(l)))
 	}
 
-	renderer.OnDataChangeHandler(js.Value{}, nil)      // populating with data
-	renderer.SwitchExpandNodesHandler(js.Value{}, nil) // expanding nodes
+	// invoke events on start
+	renderer.NewLayoutOptionUpdater(LayersLayoutOption)(js.Value{}, nil) // setting default updater
+	renderer.OnDataChangeHandler(js.Value{}, nil)                        // populating with data
+	renderer.SwitchExpandNodesHandler(js.Value{}, nil)                   // expanding nodes
 
 	// do not exit
 	c := make(chan bool)
