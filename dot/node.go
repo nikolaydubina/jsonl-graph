@@ -52,10 +52,14 @@ func (r BasicNodeLabel) Render() string {
 		rows = append(rows, fmt.Sprintf(`{%v\l | %s\r}`, k, Value{v: v}.Render()))
 	}
 
+	if len(rows) == 0 {
+		return fmt.Sprintf(`"{ %s }"`, r.n.ID())
+	}
+
 	// this will sort by key, since key is first
 	sort.Strings(rows)
 
-	return fmt.Sprintf(`"{ %s | %s }"`, r.n["id"], strings.Join(rows, " | "))
+	return fmt.Sprintf(`"{ %s | %s }"`, r.n.ID(), strings.Join(rows, " | "))
 }
 
 // Value coerces to json.Number and tries to avoid adding decimal points to integers

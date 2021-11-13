@@ -1,148 +1,148 @@
 digraph G {
 rankdir=LR
-"text/template"
-[
-shape=record
-label="{ text/template |  }"
-]
-
-"net/http"
-[
-shape=record
-label="{ net/http |  }"
-]
-
-"sort"
-[
-shape=record
-label="{ sort |  }"
-]
-
-"strconv"
-[
-shape=record
-label="{ strconv |  }"
-]
-
-"strings"
-[
-shape=record
-label="{ strings |  }"
-]
-
-"io/ioutil"
-[
-shape=record
-label="{ io/ioutil |  }"
-]
-
-"github.com/nikolaydubina/jsonl-graph"
-[
-shape=record
-label="{ github.com/nikolaydubina/jsonl-graph |  }"
-]
-
-"flag"
-[
-shape=record
-label="{ flag |  }"
-]
-
-"bufio"
-[
-shape=record
-label="{ bufio |  }"
-]
-
-"errors"
-[
-shape=record
-label="{ errors |  }"
-]
-
-"io"
-[
-shape=record
-label="{ io |  }"
-]
-
-"github.com/nikolaydubina/jsonl-graph/dot"
-[
-shape=record
-label="{ github.com/nikolaydubina/jsonl-graph/dot |  }"
-]
-
-"github.com/nikolaydubina/jsonl-graph/graph"
-[
-shape=record
-label="{ github.com/nikolaydubina/jsonl-graph/graph |  }"
-]
-
-"embed"
-[
-shape=record
-label="{ embed |  }"
-]
-
-"log"
-[
-shape=record
-label="{ log |  }"
-]
-
-"os"
-[
-shape=record
-label="{ os |  }"
-]
-
 "bytes"
 [
 shape=record
-label="{ bytes |  }"
-]
-
-"encoding/json"
-[
-shape=record
-label="{ encoding/json |  }"
+label="{ bytes }"
 ]
 
 "fmt"
 [
 shape=record
-label="{ fmt |  }"
+label="{ fmt }"
+]
+
+"io"
+[
+shape=record
+label="{ io }"
+]
+
+"strings"
+[
+shape=record
+label="{ strings }"
+]
+
+"github.com/nikolaydubina/jsonl-graph"
+[
+shape=record
+label="{ github.com/nikolaydubina/jsonl-graph }"
+]
+
+"flag"
+[
+shape=record
+label="{ flag }"
+]
+
+"github.com/nikolaydubina/jsonl-graph/graph"
+[
+shape=record
+label="{ github.com/nikolaydubina/jsonl-graph/graph }"
+]
+
+"text/template"
+[
+shape=record
+label="{ text/template }"
+]
+
+"net/http"
+[
+shape=record
+label="{ net/http }"
 ]
 
 "image/color"
 [
 shape=record
-label="{ image/color |  }"
+label="{ image/color }"
 ]
 
-"github.com/nikolaydubina/jsonl-graph/dot" -> "sort"
-"github.com/nikolaydubina/jsonl-graph" -> "io"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "embed"
+"sort"
+[
+shape=record
+label="{ sort }"
+]
+
+"log"
+[
+shape=record
+label="{ log }"
+]
+
+"encoding/json"
+[
+shape=record
+label="{ encoding/json }"
+]
+
+"errors"
+[
+shape=record
+label="{ errors }"
+]
+
+"github.com/nikolaydubina/jsonl-graph/dot"
+[
+shape=record
+label="{ github.com/nikolaydubina/jsonl-graph/dot }"
+]
+
+"embed"
+[
+shape=record
+label="{ embed }"
+]
+
+"io/ioutil"
+[
+shape=record
+label="{ io/ioutil }"
+]
+
+"strconv"
+[
+shape=record
+label="{ strconv }"
+]
+
+"os"
+[
+shape=record
+label="{ os }"
+]
+
+"bufio"
+[
+shape=record
+label="{ bufio }"
+]
+
 "github.com/nikolaydubina/jsonl-graph/dot" -> "github.com/nikolaydubina/jsonl-graph/graph"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "encoding/json"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "errors"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "image/color"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "text/template"
-"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/dot"
-"github.com/nikolaydubina/jsonl-graph" -> "log"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "bufio"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "bytes"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "io/ioutil"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "net/http"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "strconv"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "strings"
 "github.com/nikolaydubina/jsonl-graph" -> "flag"
-"github.com/nikolaydubina/jsonl-graph" -> "os"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "fmt"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "bufio"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "encoding/json"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "errors"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "errors"
+"github.com/nikolaydubina/jsonl-graph" -> "io"
+"github.com/nikolaydubina/jsonl-graph" -> "log"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "encoding/json"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "fmt"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "io"
-"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/graph"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "errors"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "embed"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "image/color"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "net/http"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "sort"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "text/template"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "bytes"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "fmt"
 "github.com/nikolaydubina/jsonl-graph/graph" -> "io"
+"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/dot"
+"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/graph"
+"github.com/nikolaydubina/jsonl-graph" -> "os"
 }
