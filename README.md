@@ -99,10 +99,10 @@ $ cat '
 - [Wiki Layered Graph Drawing](https://en.wikipedia.org/wiki/Layered_graph_drawing)
 - [Wiki Coffman-Graham algorithm](https://en.wikipedia.org/wiki/Coffman–Graham_algorithm)
 - [Graph Compact Orthogonal Layout Algorithm](https://arxiv.org/pdf/1807.09368.pdf)
-- [gonum isomap layout](https://github.com/gonum/gonum/blob/master/graph/layout/isomap.go)
-- [gonum eades layout](https://github.com/gonum/gonum/blob/master/graph/layout/eades.go)
+- [Go gonum isomap layout](https://github.com/gonum/gonum/blob/master/graph/layout/isomap.go)
+- [Go gonum eades layout](https://github.com/gonum/gonum/blob/master/graph/layout/eades.go)
+- [Go WebAssembly](https://github.com/golang/go/wiki/WebAssembly)
 - [Booststrap](https://getbootstrap.com)
-- [Go WebAssembly](https://github.com/golang/go/wiki/WebAssembly#debugging)
 - Fruchterman & Reingold forces
 - "Lombarding-Spring-Embedder", Chernobleskiy, 2012
 - "Realistic Node Sizes", Gasner, North 1998
