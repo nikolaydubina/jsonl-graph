@@ -44,13 +44,9 @@ What is JSONL graph? Node has `id`. Edge has `from` and `to`.
 
 ## Examples
 
-K8S example
+TODO: K8S example
 
-TODO:
-
-To illustrate, I am using data from [import-graph](github.com/nikolaydubina/import-graph). 
-
-[Graphviz](https://graphviz.org/download/) renderer also supported. If you pass color scheme, then values will be colored.
+Graphviz with lots nodes having lots of fields and color scheme
 ```bash
 $ cat '
 {"id":"github.com/gin-gonic/gin","can_get_git":true, ... }
@@ -62,20 +58,7 @@ $ cat '
 ```
 ![gin-color](./testdata/gin_color.svg)
 
-By default, no coloring is applied.
-```bash
-$ cat '
-{"id":"github.com/gin-gonic/gin","can_get_git":true, ... }
-{"id":"github.com/gin-contrib/sse","can_get_git":true,"can_run_tests":true ... }
-...
-{"from":"github.com/gin-gonic/gin","to":"golang.org/x/tools"}
-{"from":"github.com/gin-gonic/gin","to":"github.com/go-playground/validator/v10"}
-' | jsonl-graph | dot -Tsvg > basic.svg
-```
-![gin-nocolor](./testdata/gin_nocolor.svg)
-
-If nodes have less fields, then adjusting graph
-
+Graphviz when nodes have no fields
 ```bash
 $ cat '
 {"from":"github.com/nikolaydubina/jsonl-graph/graph","to":"bufio"}
