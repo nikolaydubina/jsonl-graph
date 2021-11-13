@@ -13,6 +13,12 @@ type Node struct {
 	H  int
 }
 
+func (n Node) CenterXY() [2]int {
+	x := n.XY[0] + n.W/2
+	y := n.XY[1] + n.H/2
+	return [2]int{x, y}
+}
+
 // Edge is path of points that edge goes through
 type Edge struct {
 	Path [][2]int // [start: {x,y}, ... finish: {x,y}]
@@ -27,11 +33,8 @@ func (g Graph) Copy() Graph {
 		ng.Nodes[id] = n
 	}
 	for id, e := range g.Edges {
-		nedges := make([][2]int, len(e.Path))
-		copy(nedges, e.Path)
-		ng.Edges[id] = Edge{
-			Path: nedges,
-		}
+		ng.Edges[id] = Edge{Path: make([][2]int, len(e.Path))}
+		copy(ng.Edges[id].Path, e.Path)
 	}
 	return ng
 }

@@ -1,9 +1,8 @@
 package layout
 
-// ScalerLayout will scale existing layout by constant factor for nodes and recompute edges layout.
+// ScalerLayout will scale existing layout by constant factor.
 type ScalerLayout struct {
-	Scale      float64
-	EdgeLayout Layout
+	Scale float64
 }
 
 func (l *ScalerLayout) UpdateGraphLayout(g Graph) {
@@ -18,5 +17,17 @@ func (l *ScalerLayout) UpdateGraphLayout(g Graph) {
 		}
 	}
 
-	l.EdgeLayout.UpdateGraphLayout(g)
+	// can not recompute edge layout as some paths are complex and not direct
+	for e := range g.Edges {
+		for p, xy := range g.Edges[e].Path {
+			x := float64(xy[0])
+			y := float64(xy[1])
+			g.Edges[e].Path[p] = [2]int{int(x * l.Scale), int(y * l.Scale)}
+		}
+
+		// end and start should use center coordinates of nodes
+		// note, this overrites ports for edges
+		g.Edges[e].Path[0] = g.Nodes[e[0]].CenterXY()
+		g.Edges[e].Path[len(g.Edges[e].Path)-1] = g.Nodes[e[1]].CenterXY()
+	}
 }

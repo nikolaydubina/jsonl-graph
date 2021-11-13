@@ -356,8 +356,7 @@ func main() {
 		),
 		scalerLayout: MemoLayout{
 			Layout: &layout.ScalerLayout{
-				Scale:      1,
-				EdgeLayout: layout.DirectEdgesLayout{},
+				Scale: 1,
 			},
 			Graph: graphLayout,
 		},
