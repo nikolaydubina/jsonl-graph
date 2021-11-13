@@ -1,6 +1,9 @@
 package layout
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 // StraightEdgePathAssigner will check node locations for each fake/real node in path and set edge path to go through middle of it.
 type StraightEdgePathAssigner struct{}
@@ -15,9 +18,10 @@ func (l StraightEdgePathAssigner) UpdateGraphLayout(g Graph, lg LayeredGraph, al
 		path := make([][2]int, len(nodes))
 		for i, n := range nodes {
 			xy := allNodesXY[n]
+			log.Printf("edge(%v): node(%v) xy(%v)", e, n, xy)
 			path[i] = [2]int{
-				xy[1] + (g.Nodes[n].W / 2),
-				xy[0] + (g.Nodes[n].H / 2),
+				xy[0] + (g.Nodes[n].W / 2),
+				xy[1] + (g.Nodes[n].H / 2),
 			}
 		}
 

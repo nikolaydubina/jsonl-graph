@@ -172,8 +172,11 @@ type GraphRenderer struct {
 }
 
 func (r GraphRenderer) RenderGraph(g graph.Graph, gl layout.Graph, expandNodes map[uint64]bool) {
-	graph := svg.NewGraph()
-	graph.ID = r.rootID
+	graph := svg.Graph{
+		ID:    r.rootID,
+		Nodes: map[uint64]svg.Node{},
+		Edges: map[[2]uint64]svg.Edge{},
+	}
 
 	// add nodes data and positions
 	for id, node := range g.Nodes {
@@ -188,8 +191,6 @@ func (r GraphRenderer) RenderGraph(g graph.Graph, gl layout.Graph, expandNodes m
 			NodeData: nodeData,
 		}
 	}
-
-	// update graph layout graph
 	for e, edata := range gl.Edges {
 		graph.Edges[e] = svg.Edge{
 			Path: edata.Path,
@@ -285,9 +286,9 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				CycleRemover:   layout.NewSimpleCycleRemover(),
 				LevelsAssigner: layout.NewLayeredGraph,
 				OrderingAssigner: layout.LBLOrderingOptimizer{
-					Epochs: 10,
+					Epochs: 20,
 					LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
-						Epochs: 3,
+						Epochs: 10,
 					},
 				}.Optimize,
 				NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{
@@ -317,7 +318,7 @@ func (r *Bridge) SetInitialUpdateGraphLayout() {
 	r.CenterGraph()
 }
 
-// MemoLayout applies layout updaters to memoized graph and stores to destination.
+// MemoLayout applies layout to memoized graph and copies to destination.
 type MemoLayout struct {
 	Graph  layout.Graph
 	Layout layout.Layout
@@ -327,20 +328,8 @@ func (l MemoLayout) UpdateGraphLayout(g layout.Graph) {
 	newgraph := l.Graph.Copy()
 	l.Layout.UpdateGraphLayout(newgraph)
 
-	// apply to target graph
-	for i := range g.Nodes {
-		g.Nodes[i] = layout.Node{
-			XY: newgraph.Nodes[i].XY,
-			W:  g.Nodes[i].W,
-			H:  g.Nodes[i].H,
-		}
-	}
-	for e := range g.Edges {
-		g.Edges[e] = layout.Edge{Path: make([][2]int, len(newgraph.Edges[e].Path))}
-		for i, ne := range newgraph.Edges[e].Path {
-			g.Edges[e].Path[i] = ne
-		}
-	}
+	g.Nodes = newgraph.Nodes
+	g.Edges = newgraph.Edges
 }
 
 func main() {

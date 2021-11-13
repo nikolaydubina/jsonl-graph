@@ -12,14 +12,6 @@ type Graph struct {
 	Edges map[[2]uint64]Edge
 }
 
-// NewGraph initializes empty Graph.
-func NewGraph() Graph {
-	return Graph{
-		Nodes: map[uint64]Node{},
-		Edges: map[[2]uint64]Edge{},
-	}
-}
-
 // Render creates root svg element
 func (g Graph) Render() string {
 	body := []string{
