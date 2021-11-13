@@ -12,9 +12,10 @@ import (
 // Segment is either a short edge or a long edge.
 // Top layer has lowest layer number.
 type LayeredGraph struct {
-	Segments map[[2]uint64]bool // segment is an edge in layered graph, can be real edge or piece of fake edge
-	Dummy    map[uint64]bool    // fake nodes
-	NodeYX   map[uint64][2]int  // node -> {layer, ordering in layer}
+	Segments map[[2]uint64]bool     // segment is an edge in layered graph, can be real edge or piece of fake edge
+	Dummy    map[uint64]bool        // fake nodes
+	NodeYX   map[uint64][2]int      // node -> {layer, ordering in layer}
+	Edges    map[[2]uint64][]uint64 // real long/short edge -> {real, fake, fake, fake, real} nodes
 }
 
 func (g LayeredGraph) Layers() [][]uint64 {
@@ -118,48 +119,6 @@ func (g LayeredGraph) NumCrossings() int {
 		count += g.NumCrossingsAtLayer(i)
 	}
 	return count
-}
-
-// AddFakeNodes and edges to the graph and add them to layers structure.
-func (g LayeredGraph) AddFakeNodes() {
-	var maxNodeID uint64
-	for e := range g.Segments {
-		if e[0] > maxNodeID {
-			maxNodeID = e[0]
-		}
-		if e[1] > maxNodeID {
-			maxNodeID = e[1]
-		}
-	}
-	nextFakeNodeID := maxNodeID + 1
-
-	g.Dummy = map[uint64]bool{}
-
-	for e := range g.Segments {
-		from := g.NodeYX[e[0]][0]
-		to := g.NodeYX[e[1]][0]
-
-		if (to - from) > 1 {
-			// edge to first fake node
-			g.Segments[[2]uint64{e[0], nextFakeNodeID}] = true
-
-			for layer := from + 1; layer < to; layer++ {
-				g.Dummy[nextFakeNodeID] = true
-
-				g.NodeYX[nextFakeNodeID] = [2]int{layer, 0}
-
-				// edge between fakes
-				if (layer > (from + 1)) && (layer < (to - 1)) {
-					g.Segments[[2]uint64{nextFakeNodeID - 1, nextFakeNodeID + 1}] = true
-				}
-
-				nextFakeNodeID++
-			}
-
-			// edge to last fake node
-			g.Segments[[2]uint64{nextFakeNodeID - 1, e[1]}] = true
-		}
-	}
 }
 
 // IsInnerSegment tells when edge is between two Dummy nodes.

@@ -6,7 +6,11 @@ type CycleRemover interface {
 }
 
 type NodesHorizontalCoordinatesAssigner interface {
-	NodesHorizontalCoordinates(g LayeredGraph) map[uint64]int
+	NodesHorizontalCoordinates(g Graph, lg LayeredGraph) map[uint64]int
+}
+
+type NodesVerticalCoordinatesAssigner interface {
+	NodesVerticalCoordinates(g Graph, lg LayeredGraph) map[uint64]int
 }
 
 // Kozo Sugiyama algorithm breaks down layered graph construction in phases.
@@ -15,32 +19,38 @@ type SugiyamaLayersStrategyGraphLayout struct {
 	LevelsAssigner                     func(g Graph) LayeredGraph
 	OrderingAssigner                   func(g Graph, lg LayeredGraph)
 	NodesHorizontalCoordinatesAssigner NodesHorizontalCoordinatesAssigner
-	EdgePathAssigner                   func(g Graph, lg LayeredGraph)
+	NodesVerticalCoordinatesAssigner   NodesVerticalCoordinatesAssigner
+	EdgePathAssigner                   func(g Graph, lg LayeredGraph, allNodesXY map[uint64][2]int)
 }
 
 // UpdateGraphLayout breaks down layered graph construction in phases.
 func (l SugiyamaLayersStrategyGraphLayout) UpdateGraphLayout(g Graph) {
 	l.CycleRemover.RemoveCycles(g)
 
-	// assign levels to graph
 	lg := l.LevelsAssigner(g)
 	if err := lg.Validate(); err != nil {
 		panic(err)
 	}
 
-	// assign order withing levels
 	l.OrderingAssigner(g, lg)
 
-	// calculate nodes horizontal coordinates
-	nodeX := l.NodesHorizontalCoordinatesAssigner.NodesHorizontalCoordinates(lg)
-	for node, x := range nodeX {
-		yx := lg.NodeYX[node]
-		yx[1] = x
-		lg.NodeYX[node] = yx
+	nodeX := l.NodesHorizontalCoordinatesAssigner.NodesHorizontalCoordinates(g, lg)
+	nodeY := l.NodesVerticalCoordinatesAssigner.NodesVerticalCoordinates(g, lg)
+
+	// real and fake nodes coordinates
+	allNodesXY := make(map[uint64][2]int, len(g.Nodes))
+	for n := range lg.NodeYX {
+		allNodesXY[n] = [2]int{nodeX[n], nodeY[n]}
 	}
 
-	// TODO: resolve vertical coordinate
+	for n, node := range g.Nodes {
+		g.Nodes[n] = Node{
+			XY: [2]int{nodeX[n], nodeY[n]},
+			W:  node.W,
+			H:  node.H,
+		}
+	}
 
-	l.EdgePathAssigner(g, lg)
+	l.EdgePathAssigner(g, lg, allNodesXY)
 	l.CycleRemover.Restore(g)
 }

@@ -287,18 +287,17 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				OrderingAssigner: layout.LBLOrderingOptimizer{
 					Epochs: 10,
 					LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
-						Epochs: 5,
+						Epochs: 3,
 					},
 				}.Optimize,
 				NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{
 					Delta: 25, // TODO: get dynamically from graph width
 				},
-				EdgePathAssigner: layout.StraightEdgePathAssigner{
-					MarginY:        25,
-					MarginX:        25,
-					FakeNodeWidth:  25,
+				NodesVerticalCoordinatesAssigner: layout.BasicNodesVerticalCoordinatesAssigner{
+					MarginLayers:   25,
 					FakeNodeHeight: 25,
-				}.UpdateGraphLayout,
+				},
+				EdgePathAssigner: layout.StraightEdgePathAssigner{}.UpdateGraphLayout,
 			}
 		default:
 			log.Printf("unexpected layout option(%s)", layoutOption)

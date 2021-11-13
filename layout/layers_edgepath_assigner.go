@@ -1,48 +1,31 @@
 package layout
 
-type StraightEdgePathAssigner struct {
-	MarginY        int
-	MarginX        int
-	FakeNodeWidth  int
-	FakeNodeHeight int
-}
+import "fmt"
 
-func (l StraightEdgePathAssigner) UpdateGraphLayout(g Graph, lg LayeredGraph) {
-	yOffset := 0
-	for _, nodes := range lg.Layers() {
-		xOffset := 0
-		hMax := 0
+// StraightEdgePathAssigner will check node locations for each fake/real node in path and set edge path to go through middle of it.
+type StraightEdgePathAssigner struct{}
 
-		for _, node := range nodes {
-			w := 0
-			h := 0
+func (l StraightEdgePathAssigner) UpdateGraphLayout(g Graph, lg LayeredGraph, allNodesXY map[uint64][2]int) {
+	numAssignedEdges := 0
+	for e, nodes := range lg.Edges {
+		if _, ok := g.Edges[e]; !ok {
+			panic(fmt.Errorf("layered graph edge(%v) is not found in the original graph", e))
+		}
 
-			if lg.Dummy[node] {
-				w = l.FakeNodeWidth
-				h = l.FakeNodeHeight
-			} else {
-				w = g.Nodes[node].W
-				h = g.Nodes[node].H
-			}
-
-			g.Nodes[node] = Node{
-				XY: [2]int{lg.NodeYX[node][1], yOffset},
-				W:  g.Nodes[node].W,
-				H:  g.Nodes[node].H,
-			}
-
-			xOffset += w
-			if h > hMax {
-				hMax = h
+		path := make([][2]int, len(nodes))
+		for i, n := range nodes {
+			xy := allNodesXY[n]
+			path[i] = [2]int{
+				xy[1] + (g.Nodes[n].W / 2),
+				xy[0] + (g.Nodes[n].H / 2),
 			}
 		}
 
-		yOffset += hMax + l.MarginY
+		g.Edges[e] = Edge{Path: path}
+		numAssignedEdges++
 	}
 
-	DirectEdgesLayout{}.UpdateGraphLayout(g)
-
-	for node := range lg.Dummy {
-		delete(g.Nodes, node)
+	if numAssignedEdges != len(g.Edges) {
+		panic(fmt.Errorf("layered graph has wrong number of edges(%d) vs graph num edges (%d)", numAssignedEdges, len(g.Edges)))
 	}
 }

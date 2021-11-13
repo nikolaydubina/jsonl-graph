@@ -15,10 +15,10 @@ import (
 // This is Alg 4 in paper.
 // Assuming nodes do not have width.
 type BrandesKopfLayersNodesHorizontalAssigner struct {
-	Delta int // distance between nodes
+	Delta int // distance between nodes, including fake ones
 }
 
-func (s BrandesKopfLayersNodesHorizontalAssigner) NodesHorizontalCoordinates(g layout.LayeredGraph) map[uint64]int {
+func (s BrandesKopfLayersNodesHorizontalAssigner) NodesHorizontalCoordinates(_ layout.Graph, g layout.LayeredGraph) map[uint64]int {
 	x := make(map[uint64]int, len(g.NodeYX))
 
 	typeOneSegments := preprocessing(g)
