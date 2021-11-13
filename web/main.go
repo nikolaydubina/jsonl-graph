@@ -365,8 +365,11 @@ func main() {
 			0.2,
 		),
 		scalerLayout: MemoLayout{
-			Layout: &layout.ScalerLayout{Scale: 1},
-			Graph:  graphLayout,
+			Layout: &layout.ScalerLayout{
+				Scale:      1,
+				EdgeLayout: layout.DirectEdgesLayout{},
+			},
+			Graph: graphLayout,
 		},
 		expandNodeSwitch: false, // deafult is true, switching to true bellow after data is loaded
 	}
