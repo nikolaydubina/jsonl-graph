@@ -58,5 +58,5 @@ func main() {
 		}
 	}
 
-	os.Stdout.Write([]byte(r.Render()))
+	os.Stdout.WriteString(r.Render())
 }
