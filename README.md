@@ -94,3 +94,4 @@ $ cat '
 - ["Fast and Simple Horizontal Coordinate Assignment"](https://link.springer.com/content/pdf/10.1007/3-540-45848-4_3.pdf), U. Brandes, Boris Köpf
 - "Methods for visual understanding of hierarchical system structures", Sugiyama, Kozo; Tagawa, Shôjirô; Toda, Mitsuhiko, 1981
 - "Graph Drawing by the Magnetic Spring Model", Kozo Sugiyama, 1995
+- ["A Technique for Drawing Directed Graphs"](https://ieeexplore.ieee.org/document/221135) / dot / Graphviz, Emden R. Gansner Eleftherios Koutsofios Stephen C. North Kiem-Phong Vo, AT&T Bell Laboratories, 1993

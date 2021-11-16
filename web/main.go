@@ -284,10 +284,11 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 			r.layoutUpdater = layout.SugiyamaLayersStrategyGraphLayout{
 				CycleRemover:   layout.NewSimpleCycleRemover(),
 				LevelsAssigner: layout.NewLayeredGraph,
-				OrderingAssigner: layout.LBLOrderingOptimizer{
-					Epochs: 100,
+				OrderingAssigner: layout.WarfieldOrderingOptimizer{
+					Epochs:                   50,
+					LayerOrderingInitializer: layout.BFSOrderingInitializer{},
 					LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
-						Epochs: 30,
+						Epochs: 10,
 					},
 				}.Optimize,
 				NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{
