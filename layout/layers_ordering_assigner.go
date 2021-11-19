@@ -11,7 +11,7 @@ type LayerOrderingInitializer interface {
 }
 
 type LayerOrderingOptimizer interface {
-	Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int)
+	Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int, downUp bool)
 }
 
 // WarfieldOrderingOptimizer is heuristic based strategy for ordering optimization.
@@ -24,23 +24,6 @@ type WarfieldOrderingOptimizer struct {
 	LayerOrderingOptimizer   LayerOrderingOptimizer
 }
 
-// newLayersFrom makes new layers with content identical to source.
-func newLayersFrom(src [][]uint64) (dst [][]uint64) {
-	dst = make([][]uint64, len(src))
-	for i, l := range src {
-		dst[i] = make([]uint64, len(l))
-		copy(dst[i], l)
-	}
-	return dst
-}
-
-// copyLayers copies from src to destination
-func copyLayers(dst, src [][]uint64) {
-	for i := range src {
-		copy(dst[i], src[i])
-	}
-}
-
 func (o WarfieldOrderingOptimizer) Optimize(g Graph, lg LayeredGraph) {
 	// layers is temporary layers
 	layers := lg.Layers()
@@ -49,15 +32,14 @@ func (o WarfieldOrderingOptimizer) Optimize(g Graph, lg LayeredGraph) {
 	bestN := -1
 	bestLayers := newLayersFrom(layers)
 
-	// TODO store best export best
 	for t := 0; t < o.Epochs; t++ {
-		up := (t % 2) == 0
+		downUp := (t % 2) == 0
 		for i := range layers {
 			j := i
-			if up {
+			if downUp {
 				j = len(layers) - 1 - i
 			}
-			o.LayerOrderingOptimizer.Optimize(lg.Segments, layers, j)
+			o.LayerOrderingOptimizer.Optimize(lg.Segments, layers, j, downUp)
 		}
 
 		N := numCrossings(lg.Segments, layers)
@@ -138,12 +120,72 @@ func (o RandomLayerOrderingInitializer) Init(_ map[[2]uint64]bool, layers [][]ui
 	}
 }
 
+// WMedianOrderingOptimizer takes median of upper (or lower) level neighbors for each node in layer.
+// Median has property of stable vertical edges which is especially useful for "long" edges (fake nodes).
+// Eades and Wormald, 1994
+// This is used in dot/Graphviz, Figure 3-2 in Graphviz dot paper TSE93.
+type WMedianOrderingOptimizer struct{}
+
+func (o WMedianOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int, downUp bool) {
+	w := map[uint64]float64{}
+	for i, x := range layers[idx] {
+		var nidxs []int
+		if downUp {
+			nidxs = lowerNeighbors(segments, layers, idx, i)
+		} else {
+			nidxs = upperNeighbors(segments, layers, idx, i)
+		}
+
+		P := make([]float64, len(nidxs))
+		for i, v := range nidxs {
+			P[i] = float64(v)
+		}
+
+		w[x] = median(P)
+	}
+	sort.Slice(layers[idx], func(i, j int) bool { return w[layers[idx][i]] < w[layers[idx][j]] })
+}
+
+func lowerNeighbors(segments map[[2]uint64]bool, layers [][]uint64, y int, x int) []int {
+	if y == (len(layers) - 1) {
+		return nil
+	}
+	var idxs []int
+	for ...
+	return idxs
+}
+
+func upperNeighbors(segments map[[2]uint64]bool, layers [][]uint64, y int, x int) []int {
+	if y == 0 {
+		return nil
+	}
+	var idxs []int
+	for ...
+	return idxs
+}
+
+func median(P []float64) float64 {
+	m := len(P) / 2
+	switch {
+	case len(P) == 0:
+		return -1
+	case len(P)%2 == 1:
+		return P[m]
+	case len(P) == 2:
+		return (P[0] + P[1]) / 2
+	default:
+		left := P[m-1] - P[0]
+		right := P[len(P)-1] - P[m]
+		return (P[m-1]*right + P[m]*left) / (left + right)
+	}
+}
+
 // RandomLayerOrderingOptimizer picks best out of epochs random orderings.
 type RandomLayerOrderingOptimizer struct {
 	Epochs int
 }
 
-func (o RandomLayerOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int) {
+func (o RandomLayerOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int, _ bool) {
 	bestN := -1
 	layer := make([]uint64, len(layers[idx]))
 	copy(layer, layers[idx])
@@ -208,14 +250,4 @@ func numCrossings(segments map[[2]uint64]bool, layers [][]uint64) int {
 		count += numCrossingsBetweenLayers(segments, layers[i-1], layers[i])
 	}
 	return count
-}
-
-// MedianLayerOrderingOptimizer takes medium of upper (or lower) level neighbors for each node in layer.
-// Median has property of stable vertical edges which is especially useful for "long" edges (fake nodes).
-// Eades and Wormald, 1994
-// This is used in dot/Graphviz.
-type MedianLayerOrderingOptimizer struct{}
-
-func (o MedianLayerOrderingOptimizer) Optimize(_ Graph, _ LayeredGraph, _ int) {
-	panic("TODO: implement this efficiently")
 }

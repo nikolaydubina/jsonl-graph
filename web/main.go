@@ -285,7 +285,7 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				CycleRemover:   layout.NewSimpleCycleRemover(),
 				LevelsAssigner: layout.NewLayeredGraph,
 				OrderingAssigner: layout.WarfieldOrderingOptimizer{
-					Epochs:                   50,
+					Epochs:                   500,
 					LayerOrderingInitializer: layout.BFSOrderingInitializer{},
 					LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
 						Epochs: 10,

@@ -106,3 +106,20 @@ func (g LayeredGraph) LowerNeighbors(node uint64) []uint64 {
 	}
 	return nodes
 }
+
+// newLayersFrom makes new layers with content identical to source.
+func newLayersFrom(src [][]uint64) (dst [][]uint64) {
+	dst = make([][]uint64, len(src))
+	for i, l := range src {
+		dst[i] = make([]uint64, len(l))
+		copy(dst[i], l)
+	}
+	return dst
+}
+
+// copyLayers copies from src to destination
+func copyLayers(dst, src [][]uint64) {
+	for i := range src {
+		copy(dst[i], src[i])
+	}
+}
