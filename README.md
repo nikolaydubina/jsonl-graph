@@ -78,20 +78,9 @@ $ cat '
 
 ## References
 
-- [Wiki Graph Drawing](https://en.wikipedia.org/wiki/Graph_drawing)
 - [Wiki Layered Graph Drawing](https://en.wikipedia.org/wiki/Layered_graph_drawing)
-- [Wiki Coffman-Graham algorithm](https://en.wikipedia.org/wiki/Coffman–Graham_algorithm)
-- [Graph Compact Orthogonal Layout Algorithm](https://arxiv.org/pdf/1807.09368.pdf)
-- [Go gonum isomap layout](https://github.com/gonum/gonum/blob/master/graph/layout/isomap.go)
-- [Go gonum eades layout](https://github.com/gonum/gonum/blob/master/graph/layout/eades.go)
-- [Go WebAssembly](https://github.com/golang/go/wiki/WebAssembly)
-- [Booststrap](https://getbootstrap.com)
-- Fruchterman & Reingold forces
-- "Lombarding-Spring-Embedder", Chernobleskiy, 2012
-- "Realistic Node Sizes", Gasner, North 1998
-- [Minsky's Theorem](https://en.wikipedia.org/wiki/Mirsky%27s_theorem)
-- [Handbook of Graph Drawing and Visualization](https://cs.brown.edu/people/rtamassi/gdhandbook/), Roberto Tamassia, Brown, Ch.13
+- ["Handbook of Graph Drawing and Visualization"](https://cs.brown.edu/people/rtamassi/gdhandbook/), Roberto Tamassia, Brown, Ch.13
 - ["Fast and Simple Horizontal Coordinate Assignment"](https://link.springer.com/content/pdf/10.1007/3-540-45848-4_3.pdf), U. Brandes, Boris Köpf
 - "Methods for visual understanding of hierarchical system structures", Sugiyama, Kozo; Tagawa, Shôjirô; Toda, Mitsuhiko, 1981
 - "Graph Drawing by the Magnetic Spring Model", Kozo Sugiyama, 1995
-- ["A Technique for Drawing Directed Graphs"](https://ieeexplore.ieee.org/document/221135) / dot / Graphviz, Emden R. Gansner Eleftherios Koutsofios Stephen C. North Kiem-Phong Vo, AT&T Bell Laboratories, 1993
+- ["A Technique for Drawing Directed Graphs"](https://ieeexplore.ieee.org/document/221135), Emden R. Gansner Eleftherios Koutsofios Stephen C. North Kiem-Phong Vo, AT&T Bell Laboratories, 1993
