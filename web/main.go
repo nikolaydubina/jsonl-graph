@@ -287,7 +287,12 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				OrderingAssigner: layout.WarfieldOrderingOptimizer{
 					Epochs:                   100,
 					LayerOrderingInitializer: layout.BFSOrderingInitializer{},
-					LayerOrderingOptimizer:   layout.WMedianOrderingOptimizer{},
+					LayerOrderingOptimizer: layout.CompositeLayerOrderingOptimizer{
+						Optimizers: []layout.LayerOrderingOptimizer{
+							layout.WMedianOrderingOptimizer{},
+							layout.SwitchAdjacentOrderingOptimizer{},
+						},
+					},
 				}.Optimize,
 				NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{
 					Delta: 25, // TODO: get dynamically from graph width

@@ -14,6 +14,16 @@ type LayerOrderingOptimizer interface {
 	Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int, downUp bool)
 }
 
+type CompositeLayerOrderingOptimizer struct {
+	Optimizers []LayerOrderingOptimizer
+}
+
+func (o CompositeLayerOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int, downUp bool) {
+	for _, q := range o.Optimizers {
+		q.Optimize(segments, layers, idx, downUp)
+	}
+}
+
 // WarfieldOrderingOptimizer is heuristic based strategy for ordering optimization.
 // Goes up and down number of iterations across all layers.
 // Considers upper and lower fixed and permutes ordering in layer.
@@ -201,12 +211,55 @@ func median(P []float64) float64 {
 	}
 }
 
+// SwitchAdjacentOrderingOptimizer will try swapping two adjacent nodes in a layer will improve crossings.
+// This is used in dot/Graphviz, Figure 3-3 in Graphviz dot paper TSE93 and called "transpose".
+type SwitchAdjacentOrderingOptimizer struct{}
+
+func (o SwitchAdjacentOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, y int, downUp bool) {
+	if len(layers[y]) < 2 {
+		return
+	}
+
+	// does not have bellow
+	if downUp && y == (len(layers)-1) {
+		return
+	}
+
+	// does not have above
+	if !downUp && y == 0 {
+		return
+	}
+
+	for i := 0; i < (len(layers[y]) - 1); i++ {
+		j := i + 1
+
+		var ltop, lbottom []uint64
+		if downUp {
+			ltop = layers[y]
+			lbottom = layers[y+1]
+		} else {
+			ltop = layers[y-1]
+			lbottom = layers[y]
+		}
+
+		currCrossings := numCrossingsBetweenLayers(segments, ltop, lbottom)
+
+		// swap
+		layers[y][i], layers[y][j] = layers[y][j], layers[y][i]
+		swapCrossings := numCrossingsBetweenLayers(segments, ltop, lbottom)
+
+		if swapCrossings > currCrossings {
+			layers[y][i], layers[y][j] = layers[y][j], layers[y][i]
+		}
+	}
+}
+
 // RandomLayerOrderingOptimizer picks best out of epochs random orderings.
 type RandomLayerOrderingOptimizer struct {
 	Epochs int
 }
 
-func (o RandomLayerOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int, _ bool) {
+func (o RandomLayerOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int, downUp bool) {
 	bestN := -1
 	layer := make([]uint64, len(layers[idx]))
 	copy(layer, layers[idx])
