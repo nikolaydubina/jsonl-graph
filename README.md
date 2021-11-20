@@ -1,6 +1,6 @@
 # [JSONL-Graph](https://example.com) Tools
 
-> SVG/Graphviz graph renderer tailored for WebAssembly, CLI and `jq`
+> SVG/Graphviz graph renderer for WebAssembly, CLI and `jq`
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/nikolaydubina/jsonl-graph.svg)](https://pkg.go.dev/github.com/nikolaydubina/jsonl-graph)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nikolaydubina/jsonl-graph)](https://goreportcard.com/report/github.com/nikolaydubina/jsonl-graph)
