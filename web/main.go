@@ -285,11 +285,9 @@ func (r *Bridge) NewLayoutOptionUpdater(layoutOption LayoutOption) func(_ js.Val
 				CycleRemover:   layout.NewSimpleCycleRemover(),
 				LevelsAssigner: layout.NewLayeredGraph,
 				OrderingAssigner: layout.WarfieldOrderingOptimizer{
-					Epochs:                   500,
+					Epochs:                   100,
 					LayerOrderingInitializer: layout.BFSOrderingInitializer{},
-					LayerOrderingOptimizer: layout.RandomLayerOrderingOptimizer{
-						Epochs: 10,
-					},
+					LayerOrderingOptimizer:   layout.WMedianOrderingOptimizer{},
 				}.Optimize,
 				NodesHorizontalCoordinatesAssigner: brandeskopf.BrandesKopfLayersNodesHorizontalAssigner{
 					Delta: 25, // TODO: get dynamically from graph width

@@ -126,42 +126,63 @@ func (o RandomLayerOrderingInitializer) Init(_ map[[2]uint64]bool, layers [][]ui
 // This is used in dot/Graphviz, Figure 3-2 in Graphviz dot paper TSE93.
 type WMedianOrderingOptimizer struct{}
 
-func (o WMedianOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, idx int, downUp bool) {
+func (o WMedianOrderingOptimizer) Optimize(segments map[[2]uint64]bool, layers [][]uint64, y int, downUp bool) {
 	w := map[uint64]float64{}
-	for i, x := range layers[idx] {
-		var nidxs []int
+
+	for i, node := range layers[y] {
+		var xs []int
 		if downUp {
-			nidxs = lowerNeighbors(segments, layers, idx, i)
+			xs = lowerNeighborsX(segments, layers, i, y)
 		} else {
-			nidxs = upperNeighbors(segments, layers, idx, i)
+			xs = upperNeighborsX(segments, layers, i, y)
 		}
 
-		P := make([]float64, len(nidxs))
-		for i, v := range nidxs {
+		P := make([]float64, len(xs))
+		for i, v := range xs {
 			P[i] = float64(v)
 		}
-
-		w[x] = median(P)
+		w[node] = median(P)
 	}
-	sort.Slice(layers[idx], func(i, j int) bool { return w[layers[idx][i]] < w[layers[idx][j]] })
+
+	sort.Slice(layers[y], func(i, j int) bool { return w[layers[y][i]] < w[layers[y][j]] })
 }
 
-func lowerNeighbors(segments map[[2]uint64]bool, layers [][]uint64, y int, x int) []int {
+// time: O(len(layer))
+// space: O(len(layer))
+func lowerNeighborsX(segments map[[2]uint64]bool, layers [][]uint64, x int, y int) []int {
 	if y == (len(layers) - 1) {
 		return nil
 	}
-	var idxs []int
-	for ...
-	return idxs
+
+	t := layers[y][x]
+
+	var nx []int
+	for i, n := range layers[y+1] {
+		if segments[[2]uint64{t, n}] {
+			nx = append(nx, i)
+		}
+	}
+
+	return nx
 }
 
-func upperNeighbors(segments map[[2]uint64]bool, layers [][]uint64, y int, x int) []int {
+// time: O(len(layer))
+// space: O(len(layer))
+func upperNeighborsX(segments map[[2]uint64]bool, layers [][]uint64, x int, y int) []int {
 	if y == 0 {
 		return nil
 	}
-	var idxs []int
-	for ...
-	return idxs
+
+	t := layers[y][x]
+
+	var nx []int
+	for i, n := range layers[y-1] {
+		if segments[[2]uint64{n, t}] {
+			nx = append(nx, i)
+		}
+	}
+
+	return nx
 }
 
 func median(P []float64) float64 {
