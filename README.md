@@ -33,6 +33,14 @@ What is JSONL graph? Node has `id`. Edge has `from` and `to`.
 
 ## Examples
 
+Kubernetes Pod Owners
+
+```bash
+$ kubectl get pods -o json | jq '.items[] | {to: (.kind + ":" + .metadata.name), from: (.metadata.ownerReferences[].kind + ":" + .metadata.ownerReferences[].name)}' | ./jsonl-graph | dot -Tsvg > k8s_pod_owners.svg
+```
+
+![k8s_pod_owners](./testdata/k8s_pod_owners.svg)
+
 Large nodes and color scheme
 ```bash
 $ cat '
