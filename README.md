@@ -73,7 +73,7 @@ All Kubernetes Pod Owners with details
 $ kubectl get pods -o json | jq '.items[] | {to: .metadata.name, from: .metadata.ownerReferences[].name}' > k8s_pod_owners_details.jsonl
 $ kubectl get rs -o json | jq '.items[] | .id += .metadata.name' >> k8s_pod_owners_details.jsonl
 $ kubectl get pods -o json | jq '.items[] | .id += .metadata.name' >> k8s_pod_owners_details.jsonl
-$ cat k8s_pod_owners_details.json | jq '. as $in | reduce leaf_paths as $path ({}; . + { ($path | map(tostring) | join(".")): $in | getpath($path) })' # flatten nested objects
+$ cat k8s_pod_owners_details.jsonl | jq '. as $in | reduce leaf_paths as $path ({}; . + { ($path | map(tostring) | join(".")): $in | getpath($path) })' # flatten nested objects
 $ cat k8s_pod_owners_details.jsonl | jsonl-graph | dot -Tsvg > k8s_pod_owners.svg
 ```
 
