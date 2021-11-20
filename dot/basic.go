@@ -1,74 +1,76 @@
 package dot
 
 import (
-	// embed
-	_ "embed"
-	"encoding/json"
 	"fmt"
-	"io"
-	"sort"
-	"strings"
-	"text/template"
 
 	"github.com/nikolaydubina/jsonl-graph/graph"
 )
 
-//go:embed templates/basic.dot
-var basicTemplate string
+type Renderable interface {
+	Render() string
+}
 
-// BasicRenderer contains methods to transform input to  format
+// Orientation should match Graphviz allowed values
+type Orientation string
+
+const (
+	LR Orientation = "LR"
+	TB Orientation = "TB"
+)
+
+// BasicGraph renders graph to Dot without colors with simples syntax without HTML.
 // TODO: consider adding colors in background https://stackoverflow.com/questions/17765301/-dot-how-to-change-the-colour-of-one-record-in-multi-record-shape
-type BasicRenderer struct {
-	Template *template.Template
+type BasicGraph struct {
+	orientation Orientation
+	nodes       []Renderable
+	edges       []Renderable
 }
 
-// NewBasicRenderer initializes template for reuse
-func NewBasicRenderer() BasicRenderer {
-	return BasicRenderer{
-		Template: template.Must(template.New("basicDotTemplate").Funcs(template.FuncMap{
-			"nodeLabelBasic": RenderBasicLabel,
-		}).Parse(basicTemplate)),
+// NewBasicGraph creates renderable graph from graph data
+func NewBasicGraph(
+	graph graph.Graph,
+	orientation Orientation,
+) BasicGraph {
+	nodes := make([]Renderable, 0, len(graph.Nodes))
+	for _, n := range graph.Nodes {
+		node := Node{id: n.ID(), shape: RecordShape, label: BasicNodeLabel{n: n}}
+		nodes = append(nodes, node)
+	}
+
+	edges := make([]Renderable, 0, len(graph.Edges))
+	for _, e := range graph.Edges {
+		edges = append(edges, BasicEdge{from: e.From(), to: e.To()})
+	}
+
+	return BasicGraph{
+		orientation: orientation,
+		nodes:       nodes,
+		edges:       edges,
 	}
 }
 
-// Render writes graph in  format to writer
-func (g BasicRenderer) Render(params TemplateParams, w io.Writer) error {
-	params.UpdateOrientation()
-	return g.Template.Execute(w, params)
-}
+func (r BasicGraph) Render() string {
+	s := "digraph G {\n"
+	s += "rankdir=" + string(r.orientation) + "\n"
 
-// RenderValue coerces to json.Number and tries to avoid adding decimal points to integers
-func RenderValue(v interface{}) string {
-	if v, ok := v.(json.Number); ok {
-		if vInt, err := v.Int64(); err == nil {
-			return fmt.Sprintf("%d", vInt)
-		}
-		if v, err := v.Float64(); err == nil {
-			return fmt.Sprintf("%.2f", v)
-		}
-	}
-	return fmt.Sprintf("%v", v)
-}
-
-// RenderBasicLabel makes  string for a single node
-// This is pretty complex to write in Go template language due to map structure.
-func RenderBasicLabel(n graph.Node) string {
-	rows := []string{}
-	for k, v := range n {
-		if k == "id" {
-			continue
-		}
-
-		if strings.HasSuffix(k, "_url") {
-			// URLs tend to be big and clutter dot outputs
-			continue
-		}
-
-		rows = append(rows, fmt.Sprintf(`{%v\l | %s\r}`, k, RenderValue(v)))
+	for _, n := range r.nodes {
+		s += n.Render() + "\n"
 	}
 
-	// this will sort by key, since key is first
-	sort.Strings(rows)
+	for _, e := range r.edges {
+		s += e.Render() + "\n"
+	}
 
-	return fmt.Sprintf("{ %s | %s }", n["id"], strings.Join(rows, " | "))
+	s += "}\n"
+
+	return s
+}
+
+type BasicEdge struct {
+	from string
+	to   string
+}
+
+func (r BasicEdge) Render() string {
+	return fmt.Sprintf(`"%s" -> "%s"`, r.from, r.to)
 }

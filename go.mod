@@ -1,5 +1,5 @@
 module github.com/nikolaydubina/jsonl-graph
 
-go 1.16
+go 1.17
 
-require go.uber.org/multierr v1.7.0
+require github.com/nikolaydubina/multiline-jsonl v1.0.3

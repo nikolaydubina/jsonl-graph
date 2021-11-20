@@ -1,0 +1,1410 @@
+digraph G {
+rankdir=TB
+"nginx-6799fc88d8"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">nginx-6799fc88d8</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">apps/v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">kind</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ReplicaSet</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.annotations.deployment.kubernetes.io/desired-replicas</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.annotations.deployment.kubernetes.io/max-replicas</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.annotations.deployment.kubernetes.io/revision</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.creationTimestamp</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:05Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.generation</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.labels.app</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.labels.pod-template-hash</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.namespace</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">apps/v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.blockOwnerDeletion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.controller</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.kind</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Deployment</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.uid</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ff112402-67b5-4e25-b13a-f51241c79290</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.resourceVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4836</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.uid</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">f982b6b2-32c9-467c-8022-7ac5de3576f1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.replicas</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.selector.matchLabels.app</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.selector.matchLabels.pod-template-hash</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.metadata.labels.app</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.metadata.labels.pod-template-hash</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.containers.0.image</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.containers.0.imagePullPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Always</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.containers.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.containers.0.terminationMessagePath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">/dev/termination-log</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.containers.0.terminationMessagePolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">File</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.dnsPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ClusterFirst</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.restartPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Always</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.schedulerName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default-scheduler</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.template.spec.terminationGracePeriodSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">30</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.availableReplicas</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.fullyLabeledReplicas</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.observedGeneration</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.readyReplicas</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.replicas</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+</table>>
+]
+
+"nginx-6799fc88d8-j4vv8"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">nginx-6799fc88d8-j4vv8</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">kind</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Pod</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.creationTimestamp</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:05Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.generateName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8-</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.labels.app</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.labels.pod-template-hash</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8-j4vv8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.namespace</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">apps/v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.blockOwnerDeletion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.controller</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.kind</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ReplicaSet</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.uid</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">f982b6b2-32c9-467c-8022-7ac5de3576f1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.resourceVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4777</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.uid</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5041be7b-f293-4b5f-9503-515252828fbd</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.image</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.imagePullPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Always</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.terminationMessagePath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">/dev/termination-log</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.terminationMessagePolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">File</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.mountPath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">/var/run/secrets/kubernetes.io/serviceaccount</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-api-access-jnlxc</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.readOnly</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.dnsPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ClusterFirst</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.enableServiceLinks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.nodeName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">minikube</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.preemptionPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">PreemptLowerPriority</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.priority</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.restartPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Always</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.schedulerName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default-scheduler</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.serviceAccount</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.serviceAccountName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.terminationGracePeriodSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">30</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.effect</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">NoExecute</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">node.kubernetes.io/not-ready</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.operator</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Exists</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.tolerationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">300</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.effect</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">NoExecute</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">node.kubernetes.io/unreachable</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.operator</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Exists</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.tolerationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">300</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-api-access-jnlxc</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.defaultMode</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">420</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.0.serviceAccountToken.expirationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3607</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.0.serviceAccountToken.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">token</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.items.0.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.items.0.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-root-ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.fieldRef.apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.fieldRef.fieldPath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">metadata.namespace</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">namespace</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:05Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Initialized</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:19Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Ready</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:19Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ContainersReady</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:05Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">PodScheduled</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.containerID</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">docker://cae2f93f4dff57afbb69fe4de63b26b5f4215cfd7cd8ffad6cb2a38247739761</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.image</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx:latest</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.imageID</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">docker-pullable://nginx@sha256:097c3a0913d7e3a5b01b6c685a60c03632fc7a2b50bc8e35bcaa3691d788226e</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.ready</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.restartCount</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.started</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.state.running.startedAt</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:19Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.hostIP</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">192.168.49.2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.phase</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Running</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.podIP</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">172.17.0.4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.podIPs.0.ip</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">172.17.0.4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.qosClass</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">BestEffort</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.startTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:05Z</td>
+			</tr>
+</table>>
+]
+
+"nginx-6799fc88d8-np6b7"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">nginx-6799fc88d8-np6b7</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">kind</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Pod</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.creationTimestamp</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:40Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.generateName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8-</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.labels.app</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.labels.pod-template-hash</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8-np6b7</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.namespace</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">apps/v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.blockOwnerDeletion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.controller</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.kind</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ReplicaSet</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.uid</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">f982b6b2-32c9-467c-8022-7ac5de3576f1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.resourceVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4827</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.uid</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">e006115a-b8ce-402a-86f4-087eea6b0e02</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.image</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.imagePullPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Always</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.terminationMessagePath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">/dev/termination-log</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.terminationMessagePolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">File</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.mountPath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">/var/run/secrets/kubernetes.io/serviceaccount</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-api-access-przh9</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.readOnly</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.dnsPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ClusterFirst</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.enableServiceLinks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.nodeName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">minikube</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.preemptionPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">PreemptLowerPriority</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.priority</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.restartPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Always</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.schedulerName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default-scheduler</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.serviceAccount</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.serviceAccountName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.terminationGracePeriodSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">30</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.effect</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">NoExecute</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">node.kubernetes.io/not-ready</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.operator</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Exists</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.tolerationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">300</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.effect</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">NoExecute</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">node.kubernetes.io/unreachable</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.operator</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Exists</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.tolerationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">300</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-api-access-przh9</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.defaultMode</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">420</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.0.serviceAccountToken.expirationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3607</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.0.serviceAccountToken.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">token</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.items.0.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.items.0.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-root-ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.fieldRef.apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.fieldRef.fieldPath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">metadata.namespace</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">namespace</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:40Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Initialized</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:45Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Ready</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:45Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ContainersReady</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:40Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">PodScheduled</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.containerID</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">docker://418b0a78769bece2177f1b4338847a14d6120d5d65d327fde2f984f5e7e7a15d</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.image</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx:latest</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.imageID</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">docker-pullable://nginx@sha256:097c3a0913d7e3a5b01b6c685a60c03632fc7a2b50bc8e35bcaa3691d788226e</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.ready</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.restartCount</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.started</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.state.running.startedAt</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:45Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.hostIP</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">192.168.49.2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.phase</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Running</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.podIP</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">172.17.0.5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.podIPs.0.ip</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">172.17.0.5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.qosClass</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">BestEffort</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.startTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:40Z</td>
+			</tr>
+</table>>
+]
+
+"nginx-6799fc88d8-xjd9w"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">nginx-6799fc88d8-xjd9w</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">kind</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Pod</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.creationTimestamp</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:40Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.generateName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8-</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.labels.app</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.labels.pod-template-hash</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8-xjd9w</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.namespace</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">apps/v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.blockOwnerDeletion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.controller</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.kind</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ReplicaSet</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx-6799fc88d8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.uid</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">f982b6b2-32c9-467c-8022-7ac5de3576f1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.resourceVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4835</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">metadata.uid</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">32e16775-ef19-43bd-8c4f-e9ce258c0afa</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.image</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.imagePullPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Always</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.terminationMessagePath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">/dev/termination-log</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.terminationMessagePolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">File</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.mountPath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">/var/run/secrets/kubernetes.io/serviceaccount</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-api-access-jw6j7</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.readOnly</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.dnsPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ClusterFirst</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.enableServiceLinks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.nodeName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">minikube</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.preemptionPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">PreemptLowerPriority</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.priority</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.restartPolicy</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Always</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.schedulerName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default-scheduler</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.serviceAccount</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.serviceAccountName</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">default</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.terminationGracePeriodSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">30</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.effect</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">NoExecute</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">node.kubernetes.io/not-ready</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.operator</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Exists</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.0.tolerationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">300</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.effect</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">NoExecute</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">node.kubernetes.io/unreachable</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.operator</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Exists</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.tolerations.1.tolerationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">300</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-api-access-jw6j7</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.defaultMode</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">420</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.0.serviceAccountToken.expirationSeconds</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3607</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.0.serviceAccountToken.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">token</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.items.0.key</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.items.0.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.1.configMap.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">kube-root-ca.crt</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.fieldRef.apiVersion</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">v1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.fieldRef.fieldPath</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">metadata.namespace</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">spec.volumes.0.projected.sources.2.downwardAPI.items.0.path</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">namespace</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:40Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.0.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Initialized</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:49Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.1.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Ready</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:49Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.2.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">ContainersReady</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.lastTransitionTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:40Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.status</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">True</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.conditions.3.type</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">PodScheduled</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.containerID</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">docker://920e9b3972c5af74c0c49cc64a63a12f2c08b96cce4195ae61eef2476bcfb764</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.image</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx:latest</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.imageID</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">docker-pullable://nginx@sha256:097c3a0913d7e3a5b01b6c685a60c03632fc7a2b50bc8e35bcaa3691d788226e</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.name</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">nginx</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.ready</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.restartCount</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.started</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.containerStatuses.0.state.running.startedAt</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:49Z</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.hostIP</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">192.168.49.2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.phase</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">Running</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.podIP</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">172.17.0.6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.podIPs.0.ip</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">172.17.0.6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.qosClass</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">BestEffort</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">status.startTime</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-11-20T12:04:40Z</td>
+			</tr>
+</table>>
+]
+
+"nginx-6799fc88d8" -> "nginx-6799fc88d8-j4vv8"
+"nginx-6799fc88d8" -> "nginx-6799fc88d8-np6b7"
+"nginx-6799fc88d8" -> "nginx-6799fc88d8-xjd9w"
+}

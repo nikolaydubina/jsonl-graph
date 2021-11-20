@@ -1,0 +1,12 @@
+{
+  "to": "Pod:nginx-6799fc88d8-j4vv8",
+  "from": "ReplicaSet:nginx-6799fc88d8"
+}
+{
+  "to": "Pod:nginx-6799fc88d8-np6b7",
+  "from": "ReplicaSet:nginx-6799fc88d8"
+}
+{
+  "to": "Pod:nginx-6799fc88d8-xjd9w",
+  "from": "ReplicaSet:nginx-6799fc88d8"
+}

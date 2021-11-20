@@ -3,17 +3,25 @@ build:
 
 clean:
 	-rm jsonl-graph
-	-rm docs/*.svg docs/*.dot
+	-rm testdata/*.svg testdata/*.dot
 
 docs: clean build
-	cat docs/gin.jsonl | ./jsonl-graph > docs/gin_nocolor.dot
-	cat docs/gin_nocolor.dot | dot -Tsvg > docs/gin_nocolor.svg
-	cat docs/gin.jsonl | ./jsonl-graph -color-scheme=file://$$PWD/docs/basic-colors.json > docs/gin_color.dot
-	cat docs/gin_color.dot | dot -Tsvg > docs/gin_color.svg
-	cat docs/small.jsonl | ./jsonl-graph > docs/small.dot
-	cat docs/small.dot | dot -Tsvg > docs/small.svg
+	cat testdata/gin.jsonl | ./jsonl-graph > testdata/gin_nocolor.dot
+	cat testdata/gin_nocolor.dot | dot -Tsvg > testdata/gin_nocolor.svg
+	cat testdata/gin.jsonl | ./jsonl-graph -color-scheme=file://$$PWD/testdata/colors.json > testdata/gin_color.dot
+	cat testdata/gin_color.dot | dot -Tsvg > testdata/gin_color.svg
+	cat testdata/small.jsonl | ./jsonl-graph > testdata/small.dot
+	cat testdata/small.dot | dot -Tsvg > testdata/small.svg
+	cat testdata/small.jsonl | ./jsonl-graph -lr > testdata/small_lr.dot
+	cat testdata/small_lr.dot | dot -Tsvg > testdata/small_lr.svg
+	cat testdata/small.jsonl | ./jsonl-graph -tb > testdata/small_tb.dot
+	cat testdata/small_tb.dot | dot -Tsvg > testdata/small_tb.svg
+	cat testdata/k8s_pod_owners.jsonl | ./jsonl-graph > testdata/k8s_pod_owners.dot
+	cat testdata/k8s_pod_owners.dot | dot -Tsvg > testdata/k8s_pod_owners.svg
+	cat testdata/k8s_pod_owners_details.jsonl | ./jsonl-graph > testdata/k8s_pod_owners_details.dot
+	cat testdata/k8s_pod_owners_details.dot | dot -Tsvg > testdata/k8s_pod_owners_details.svg
 
 test:
 	go test -race -coverprofile=coverage.out -covermode=atomic ./...
 
-.PHONY: docs clean build
+.PHONY: build clean docs
