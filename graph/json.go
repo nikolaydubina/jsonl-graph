@@ -106,37 +106,6 @@ func (g Graph) AddEdge(edge EdgeData) {
 	g.Edges[[2]uint64{fromID, toID}] = edge
 }
 
-// ReplaceFrom will move data from other graph while preserving
-// IDs from nodes that match "id", "from", "to" keys.
-// Nodes and Edges not found in other graph will be removed.
-func (g Graph) ReplaceFrom(other Graph) {
-	for _, node := range other.Nodes {
-		g.AddNode(node)
-	}
-	for _, e := range other.Edges {
-		g.AddEdge(e)
-	}
-
-	// delete nodes not in other
-	for id, node := range g.Nodes {
-		// not found
-		if other.IDStorage.Get(node.ID()) == 0 {
-			delete(g.Nodes, id)
-		}
-	}
-
-	// delete edges not in other
-	for e := range g.Edges {
-		oe := [2]uint64{
-			other.IDStorage.Get(g.Nodes[e[0]].ID()),
-			other.IDStorage.Get(g.Nodes[e[1]].ID()),
-		}
-		if _, ok := other.Edges[oe]; !ok {
-			delete(g.Edges, e)
-		}
-	}
-}
-
 // NewGraphFromJSONL parses multiple JSON objects separated by new line.
 // JSON objects do not have to be single line.
 // Objects are separated by new lines and whitespaces

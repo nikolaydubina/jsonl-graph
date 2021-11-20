@@ -55,7 +55,6 @@ func (r BasicGraph) Render() string {
 
 	for _, n := range r.nodes {
 		s += n.Render() + "\n"
-
 	}
 
 	for _, e := range r.edges {

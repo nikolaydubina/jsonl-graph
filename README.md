@@ -36,10 +36,22 @@ What is JSONL graph? Node has `id`. Edge has `from` and `to`.
 Kubernetes Pod Owners
 
 ```bash
-$ kubectl get pods -o json | jq '.items[] | {to: (.kind + ":" + .metadata.name), from: (.metadata.ownerReferences[].kind + ":" + .metadata.ownerReferences[].name)}' | ./jsonl-graph | dot -Tsvg > k8s_pod_owners.svg
+$ kubectl get pods -o json | jq '.items[] | {to: (.kind + ":" + .metadata.name), from: (.metadata.ownerReferences[].kind + ":" + .metadata.ownerReferences[].name)}' | jsonl-graph | dot -Tsvg > k8s_pod_owners.svg
 ```
 
 ![k8s_pod_owners](./testdata/k8s_pod_owners.svg)
+
+Kubernetes Pod Owners with details
+
+```bash
+$ kubectl get pods -o json | jq '.items[] | {to: .metadata.name, from: .metadata.ownerReferences[].name}' > k8s_pod_owners_details.jsonl
+$ kubectl get rs -o json | jq '.items[] | .id += .metadata.name' >> k8s_pod_owners_details.jsonl
+$ kubectl get pods -o json | jq '.items[] | .id += .metadata.name' >> k8s_pod_owners_details.jsonl
+$ cat k8s_pod_owners_details.json | jq '. as $in | reduce leaf_paths as $path ({}; . + { ($path | map(tostring) | join(".")): $in | getpath($path) })' # flatten nested objects
+$ cat k8s_pod_owners_details.jsonl | jsonl-graph | dot -Tsvg > k8s_pod_owners.svg
+```
+
+![k8s_pod_owners_details](./testdata/k8s_pod_owners_details.svg)
 
 Large nodes and color scheme
 ```bash

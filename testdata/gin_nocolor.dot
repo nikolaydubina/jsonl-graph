@@ -1,194 +1,2719 @@
 digraph G {
 rankdir=TB
-"golang.org/x/net"
-[
-shape=record
-label="{ golang.org/x/net | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | false\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-04-20\r} | {git_last_commit_days_since\l | 4\r} | {git_num_contributors\l | 196\r} | {goreportcard_average\l | 0.98\r} | {goreportcard_files\l | 432\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 73\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 33\r} | {gotest_num_packages_tests_passed\l | 30\r} | {gotest_num_packages_with_tests\l | 30\r} | {gotest_package_coverage_avg\l | 71.36\r} }"
-]
-
-"github.com/gin-contrib/sse"
-[
-shape=record
-label="{ github.com/gin-contrib/sse | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {codecov_coverage\l | 90.65\r} | {codecov_files\l | 3\r} | {codecov_lines\l | 107\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2020-08-15\r} | {git_last_commit_days_since\l | 252\r} | {git_num_contributors\l | 3\r} | {github_repo_stars\l | 56\r} | {goreportcard_average\l | 0.93\r} | {goreportcard_files\l | 5\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 3\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 1\r} | {gotest_num_packages_tests_passed\l | 1\r} | {gotest_num_packages_with_tests\l | 1\r} | {gotest_package_coverage_avg\l | 94.10\r} }"
-]
-
-"github.com/go-playground/universal-translator"
-[
-shape=record
-label="{ github.com/go-playground/universal-translator | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2019-11-12\r} | {git_last_commit_days_since\l | 530\r} | {git_num_contributors\l | 7\r} | {github_repo_stars\l | 205\r} | {goreportcard_average\l | 0.95\r} | {goreportcard_files\l | 10\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 4\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 1\r} | {gotest_num_packages_tests_passed\l | 1\r} | {gotest_num_packages_with_tests\l | 1\r} | {gotest_package_coverage_avg\l | 99\r} }"
-]
-
 "github.com/leodido/go-urn"
 [
-shape=record
-label="{ github.com/leodido/go-urn | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {codecov_coverage\l | 100\r} | {codecov_files\l | 1\r} | {codecov_lines\l | 34\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2020-12-14\r} | {git_last_commit_days_since\l | 132\r} | {git_num_contributors\l | 3\r} | {github_repo_stars\l | 32\r} | {goreportcard_average\l | 0.84\r} | {goreportcard_files\l | 6\r} | {goreportcard_grade\l | A\r} | {goreportcard_issues\l | 3\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 1\r} | {gotest_num_packages_tests_passed\l | 1\r} | {gotest_num_packages_with_tests\l | 1\r} | {gotest_package_coverage_avg\l | 45.50\r} }"
-]
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
-"golang.org/x/crypto"
-[
-shape=record
-label="{ golang.org/x/crypto | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | false\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2020-11-25\r} | {git_last_commit_days_since\l | 151\r} | {git_num_contributors\l | 255\r} | {goreportcard_average\l | 0.96\r} | {goreportcard_files\l | 324\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 84\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 55\r} | {gotest_num_packages_tests_passed\l | 48\r} | {gotest_num_packages_with_tests\l | 48\r} | {gotest_package_coverage_avg\l | 82.68\r} }"
-]
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/leodido/go-urn</td>
+				</tr>
 
-"github.com/davecgh/go-spew"
-[
-shape=record
-label="{ github.com/davecgh/go-spew | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | false\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2018-08-31\r} | {git_last_commit_days_since\l | 968\r} | {git_num_contributors\l | 20\r} | {github_repo_stars\l | 4389\r} | {goreportcard_average\l | 0.98\r} | {goreportcard_files\l | 17\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 4\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
 
-"github.com/modern-go/concurrent"
-[
-shape=record
-label="{ github.com/modern-go/concurrent | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | false\r} | {codecov_coverage\l | 79.71\r} | {codecov_files\l | 3\r} | {codecov_lines\l | 69\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2018-03-06\r} | {git_last_commit_days_since\l | 1146\r} | {git_num_contributors\l | 2\r} | {github_repo_stars\l | 187\r} | {goreportcard_average\l | 0.85\r} | {goreportcard_files\l | 7\r} | {goreportcard_grade\l | A\r} | {goreportcard_issues\l | 3\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
 
-"github.com/mattn/go-isatty"
-[
-shape=record
-label="{ github.com/mattn/go-isatty | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {codecov_coverage\l | 100\r} | {codecov_files\l | 1\r} | {codecov_lines\l | 3\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-01-18\r} | {git_last_commit_days_since\l | 96\r} | {git_num_contributors\l | 23\r} | {github_repo_stars\l | 511\r} | {goreportcard_average\l | 1.00\r} | {goreportcard_files\l | 10\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 1\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 1\r} | {gotest_num_packages_tests_passed\l | 1\r} | {gotest_num_packages_with_tests\l | 1\r} | {gotest_package_coverage_avg\l | 100\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
 
-"github.com/ugorji/go/codec"
-[
-shape=record
-label="{ github.com/ugorji/go/codec | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | false\r} | {codecov_coverage\l | 90.06\r} | {codecov_files\l | 29\r} | {codecov_lines\l | 11645\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-04-19\r} | {git_last_commit_days_since\l | 5\r} | {git_num_contributors\l | 13\r} | {github_repo_stars\l | 1532\r} | {goreportcard_average\l | 0.93\r} | {goreportcard_files\l | 69\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 24\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">100</td>
+			</tr>
 
-"github.com/go-playground/assert/v2"
-[
-shape=record
-label="{ github.com/go-playground/assert/v2 | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2019-10-18\r} | {git_last_commit_days_since\l | 555\r} | {git_num_contributors\l | 4\r} | {github_repo_stars\l | 32\r} | {goreportcard_average\l | 1.00\r} | {goreportcard_files\l | 3\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 0\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 1\r} | {gotest_num_packages_tests_passed\l | 1\r} | {gotest_num_packages_with_tests\l | 1\r} | {gotest_package_coverage_avg\l | 70.40\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
 
-"github.com/go-playground/locales"
-[
-shape=record
-label="{ github.com/go-playground/locales | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2020-09-28\r} | {git_last_commit_days_since\l | 209\r} | {git_num_contributors\l | 10\r} | {github_repo_stars\l | 174\r} | {goreportcard_average\l | 0.46\r} | {goreportcard_files\l | 1477\r} | {goreportcard_grade\l | E\r} | {goreportcard_issues\l | 924\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 739\r} | {gotest_num_packages_tests_passed\l | 736\r} | {gotest_num_packages_with_tests\l | 736\r} | {gotest_package_coverage_avg\l | 8.75\r} }"
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">34</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2020-12-14</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">132</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">32</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.84</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">45.50</td>
+			</tr>
+</table>>
 ]
 
 "github.com/google/gofuzz"
 [
-shape=record
-label="{ github.com/google/gofuzz | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-01-06\r} | {git_last_commit_days_since\l | 109\r} | {git_num_contributors\l | 19\r} | {github_repo_stars\l | 1036\r} | {goreportcard_average\l | 0.94\r} | {goreportcard_files\l | 6\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 2\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 2\r} | {gotest_num_packages_tests_passed\l | 2\r} | {gotest_num_packages_with_tests\l | 2\r} | {gotest_package_coverage_avg\l | 86.70\r} }"
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/google/gofuzz</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-01-06</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">109</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">19</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1036</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.94</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">86.70</td>
+			</tr>
+</table>>
 ]
 
-"github.com/modern-go/reflect2"
+"github.com/modern-go/concurrent"
 [
-shape=record
-label="{ github.com/modern-go/reflect2 | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | false\r} | {codecov_coverage\l | 65.29\r} | {codecov_files\l | 19\r} | {codecov_lines\l | 533\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | false\r} | {git_last_commit\l | 2021-01-09\r} | {git_last_commit_days_since\l | 106\r} | {git_num_contributors\l | 7\r} | {github_repo_stars\l | 413\r} | {goreportcard_average\l | 0.93\r} | {goreportcard_files\l | 22\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 10\r} }"
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/modern-go/concurrent</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">79.71</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">69</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2018-03-06</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1146</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">187</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.85</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">7</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+</table>>
 ]
 
 "golang.org/x/sys"
 [
-shape=record
-label="{ golang.org/x/sys | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | false\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-04-20\r} | {git_last_commit_days_since\l | 5\r} | {git_num_contributors\l | 212\r} | {goreportcard_average\l | 0.99\r} | {goreportcard_files\l | 381\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 23\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 5\r} | {gotest_num_packages_tests_passed\l | 4\r} | {gotest_num_packages_with_tests\l | 4\r} | {gotest_package_coverage_avg\l | 40.33\r} }"
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">golang.org/x/sys</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-04-20</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">212</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.99</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">381</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">23</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">40.33</td>
+			</tr>
+</table>>
 ]
 
-"github.com/stretchr/objx"
+"github.com/go-playground/locales"
 [
-shape=record
-label="{ github.com/stretchr/objx | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-02-08\r} | {git_last_commit_days_since\l | 75\r} | {git_num_contributors\l | 12\r} | {github_repo_stars\l | 364\r} | {goreportcard_average\l | 0.97\r} | {goreportcard_files\l | 21\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 4\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 1\r} | {gotest_num_packages_tests_passed\l | 1\r} | {gotest_num_packages_with_tests\l | 1\r} | {gotest_package_coverage_avg\l | 99.10\r} }"
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/go-playground/locales</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2020-09-28</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">209</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">10</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">174</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.46</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1477</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">E</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">924</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">739</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">736</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">736</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">8.75</td>
+			</tr>
+</table>>
 ]
 
-"github.com/gin-gonic/gin"
+"github.com/go-playground/universal-translator"
 [
-shape=record
-label="{ github.com/gin-gonic/gin | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {codecov_coverage\l | 98.67\r} | {codecov_files\l | 41\r} | {codecov_lines\l | 2036\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-04-21\r} | {git_last_commit_days_since\l | 4\r} | {git_num_contributors\l | 321\r} | {github_repo_stars\l | 47520\r} | {goreportcard_average\l | 0.99\r} | {goreportcard_files\l | 83\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 6\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 6\r} | {gotest_num_packages_tests_passed\l | 4\r} | {gotest_num_packages_with_tests\l | 4\r} | {gotest_package_coverage_avg\l | 98.90\r} }"
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/go-playground/universal-translator</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2019-11-12</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">530</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">7</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">205</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.95</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">10</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">99</td>
+			</tr>
+</table>>
 ]
 
-"github.com/json-iterator/go"
+"github.com/modern-go/reflect2"
 [
-shape=record
-label="{ github.com/json-iterator/go | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | false\r} | {codecov_coverage\l | 86.37\r} | {codecov_files\l | 41\r} | {codecov_lines\l | 5115\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2020-11-18\r} | {git_last_commit_days_since\l | 158\r} | {git_num_contributors\l | 55\r} | {github_repo_stars\l | 9204\r} | {goreportcard_average\l | 0.95\r} | {goreportcard_files\l | 127\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 47\r} }"
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/modern-go/reflect2</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">65.29</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">19</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">533</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-01-09</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">106</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">7</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">413</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.93</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">22</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">10</td>
+			</tr>
+</table>>
 ]
 
-"gopkg.in/check.v1"
+"github.com/gin-contrib/sse"
 [
-shape=record
-label="{ gopkg.in/check.v1 | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | false\r} | {can_get_github\l | false\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | true\r} | {goreportcard_average\l | 0.89\r} | {goreportcard_files\l | 19\r} | {goreportcard_grade\l | A\r} | {goreportcard_issues\l | 8\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 1\r} | {gotest_num_packages_tests_passed\l | 1\r} | {gotest_num_packages_with_tests\l | 1\r} | {gotest_package_coverage_avg\l | 92.60\r} }"
-]
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
-"golang.org/x/tools"
-[
-shape=record
-label="{ golang.org/x/tools | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | false\r} | {can_run_tests\l | false\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-04-20\r} | {git_last_commit_days_since\l | 4\r} | {git_num_contributors\l | 389\r} | {goreportcard_average\l | 0.94\r} | {goreportcard_files\l | 832\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 346\r} }"
-]
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/gin-contrib/sse</td>
+				</tr>
 
-"github.com/stretchr/testify"
-[
-shape=record
-label="{ github.com/stretchr/testify | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2020-11-09\r} | {git_last_commit_days_since\l | 167\r} | {git_num_contributors\l | 217\r} | {github_repo_stars\l | 13106\r} | {goreportcard_average\l | 0.98\r} | {goreportcard_files\l | 36\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 6\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 6\r} | {gotest_num_packages_tests_passed\l | 5\r} | {gotest_num_packages_with_tests\l | 5\r} | {gotest_package_coverage_avg\l | 54.26\r} | {readme_deprecated\l | true\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
 
-"gopkg.in/yaml.v2"
-[
-shape=record
-label="{ gopkg.in/yaml.v2 | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | false\r} | {can_run_tests\l | false\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2020-11-17\r} | {git_last_commit_days_since\l | 158\r} | {git_num_contributors\l | 47\r} | {goreportcard_average\l | 0.75\r} | {goreportcard_files\l | 18\r} | {goreportcard_grade\l | B\r} | {goreportcard_issues\l | 15\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
 
-"github.com/pmezard/go-difflib"
-[
-shape=record
-label="{ github.com/pmezard/go-difflib | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | false\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2018-12-26\r} | {git_last_commit_days_since\l | 850\r} | {git_num_contributors\l | 6\r} | {github_repo_stars\l | 263\r} | {goreportcard_average\l | 0.53\r} | {goreportcard_files\l | 2\r} | {goreportcard_grade\l | D\r} | {goreportcard_issues\l | 2\r} | {readme_deprecated\l | true\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
 
-"github.com/ugorji/go"
-[
-shape=record
-label="{ github.com/ugorji/go | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | false\r} | {codecov_coverage\l | 90.06\r} | {codecov_files\l | 29\r} | {codecov_lines\l | 11645\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-04-19\r} | {git_last_commit_days_since\l | 5\r} | {git_num_contributors\l | 13\r} | {github_repo_stars\l | 1532\r} | {goreportcard_average\l | 0.93\r} | {goreportcard_files\l | 69\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 24\r} }"
-]
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">90.65</td>
+			</tr>
 
-"golang.org/x/text"
-[
-shape=record
-label="{ golang.org/x/text | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | false\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-04-11\r} | {git_last_commit_days_since\l | 14\r} | {git_num_contributors\l | 56\r} | {goreportcard_average\l | 0.94\r} | {goreportcard_files\l | 375\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 125\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 63\r} | {gotest_num_packages_tests_passed\l | 48\r} | {gotest_num_packages_with_tests\l | 48\r} | {gotest_package_coverage_avg\l | 81.48\r} | {readme_deprecated\l | true\r} }"
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">107</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2020-08-15</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">252</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">56</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.93</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">94.10</td>
+			</tr>
+</table>>
 ]
 
 "github.com/go-playground/validator/v10"
 [
-shape=record
-label="{ github.com/go-playground/validator/v10 | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | true\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-04-07\r} | {git_last_commit_days_since\l | 18\r} | {git_num_contributors\l | 116\r} | {github_repo_stars\l | 7569\r} | {goreportcard_average\l | 0.87\r} | {goreportcard_files\l | 48\r} | {goreportcard_grade\l | A\r} | {goreportcard_issues\l | 28\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 14\r} | {gotest_num_packages_tests_passed\l | 14\r} | {gotest_num_packages_with_tests\l | 14\r} | {gotest_package_coverage_avg\l | 73.71\r} }"
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/go-playground/validator/v10</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-04-07</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">18</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">116</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">7569</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.87</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">48</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">28</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">14</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">14</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">14</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">73.71</td>
+			</tr>
+</table>>
+]
+
+"github.com/stretchr/testify"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/stretchr/testify</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2020-11-09</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">167</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">217</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">13106</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.98</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">36</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">54.26</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">readme_deprecated</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+</table>>
+]
+
+"github.com/ugorji/go/codec"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/ugorji/go/codec</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">90.06</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">29</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">11645</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-04-19</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">13</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1532</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.93</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">69</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">24</td>
+			</tr>
+</table>>
+]
+
+"gopkg.in/yaml.v2"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">gopkg.in/yaml.v2</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2020-11-17</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">158</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">47</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.75</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">18</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">B</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">15</td>
+			</tr>
+</table>>
+]
+
+"github.com/stretchr/objx"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/stretchr/objx</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-02-08</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">75</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">12</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">364</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.97</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">21</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">99.10</td>
+			</tr>
+</table>>
+]
+
+"github.com/ugorji/go"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/ugorji/go</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">90.06</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">29</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">11645</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-04-19</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">13</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1532</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.93</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">69</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">24</td>
+			</tr>
+</table>>
+]
+
+"golang.org/x/text"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">golang.org/x/text</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-04-11</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">14</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">56</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.94</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">375</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">125</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">63</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">48</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">48</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">81.48</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">readme_deprecated</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+</table>>
+]
+
+"golang.org/x/net"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">golang.org/x/net</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-04-20</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">196</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.98</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">432</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">73</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">33</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">30</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">30</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">71.36</td>
+			</tr>
+</table>>
+]
+
+"github.com/json-iterator/go"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/json-iterator/go</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">86.37</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">41</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5115</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2020-11-18</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">158</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">55</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">9204</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.95</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">127</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">47</td>
+			</tr>
+</table>>
+]
+
+"github.com/mattn/go-isatty"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/mattn/go-isatty</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">100</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-01-18</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">96</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">23</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">511</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1.00</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">10</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">100</td>
+			</tr>
+</table>>
+]
+
+"github.com/go-playground/assert/v2"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/go-playground/assert/v2</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2019-10-18</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">555</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">32</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1.00</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">3</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">70.40</td>
+			</tr>
+</table>>
+]
+
+"golang.org/x/crypto"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">golang.org/x/crypto</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2020-11-25</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">151</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">255</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.96</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">324</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">84</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">55</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">48</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">48</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">82.68</td>
+			</tr>
+</table>>
+]
+
+"github.com/davecgh/go-spew"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/davecgh/go-spew</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2018-08-31</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">968</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">20</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4389</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.98</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">17</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+</table>>
+]
+
+"github.com/gin-gonic/gin"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/gin-gonic/gin</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_coverage</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">98.67</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">41</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">codecov_lines</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2036</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-04-21</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">321</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">47520</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.99</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">83</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">98.90</td>
+			</tr>
+</table>>
 ]
 
 "github.com/golang/protobuf"
 [
-shape=record
-label="{ github.com/golang/protobuf | {awesomelists_is_mentioned\l | true\r} | {can_get_git\l | true\r} | {can_get_github\l | true\r} | {can_run_tests\l | true\r} | {files_has_benchmarks\l | false\r} | {files_has_tests\l | true\r} | {git_last_commit\l | 2021-03-30\r} | {git_last_commit_days_since\l | 26\r} | {git_num_contributors\l | 96\r} | {github_repo_stars\l | 7608\r} | {goreportcard_average\l | 0.92\r} | {goreportcard_files\l | 39\r} | {goreportcard_grade\l | A+\r} | {goreportcard_issues\l | 16\r} | {gotest_all_tests_passed\l | true\r} | {gotest_has_tests\l | true\r} | {gotest_num_packages\l | 21\r} | {gotest_num_packages_tests_passed\l | 5\r} | {gotest_num_packages_with_tests\l | 5\r} | {gotest_package_coverage_avg\l | 79.80\r} | {readme_deprecated\l | true\r} }"
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/golang/protobuf</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-03-30</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">26</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">96</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">7608</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.92</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">39</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">16</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">21</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">5</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">79.80</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">readme_deprecated</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+</table>>
 ]
 
-"github.com/gin-gonic/gin" -> "github.com/go-playground/validator/v10"
+"github.com/pmezard/go-difflib"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/pmezard/go-difflib</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2018-12-26</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">850</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">6</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">github_repo_stars</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">263</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.53</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">D</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">readme_deprecated</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+</table>>
+]
+
+"gopkg.in/check.v1"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">gopkg.in/check.v1</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.89</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">19</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">8</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_all_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_tests_passed</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_num_packages_with_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">1</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">gotest_package_coverage_avg</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">92.60</td>
+			</tr>
+</table>>
+]
+
+"golang.org/x/tools"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">golang.org/x/tools</td>
+				</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">awesomelists_is_mentioned</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_git</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_get_github</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">can_run_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_benchmarks</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">files_has_tests</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">2021-04-20</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_last_commit_days_since</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">4</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">git_num_contributors</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">389</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_average</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">0.94</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_files</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">832</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_grade</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">A+</td>
+			</tr>
+
+			<tr>
+				<td border="1" ALIGN="LEFT">goreportcard_issues</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">346</td>
+			</tr>
+</table>>
+]
+
+"github.com/json-iterator/go" -> "github.com/modern-go/concurrent"
+"github.com/go-playground/universal-translator" -> "github.com/go-playground/locales"
+"golang.org/x/crypto" -> "golang.org/x/net"
+"golang.org/x/crypto" -> "golang.org/x/sys"
+"golang.org/x/text" -> "golang.org/x/tools"
 "github.com/gin-gonic/gin" -> "github.com/golang/protobuf"
-"github.com/gin-gonic/gin" -> "github.com/mattn/go-isatty"
+"github.com/gin-gonic/gin" -> "github.com/stretchr/testify"
+"github.com/gin-gonic/gin" -> "github.com/ugorji/go/codec"
+"github.com/go-playground/validator/v10" -> "golang.org/x/crypto"
+"github.com/json-iterator/go" -> "github.com/modern-go/reflect2"
+"github.com/go-playground/validator/v10" -> "github.com/go-playground/universal-translator"
+"github.com/json-iterator/go" -> "github.com/davecgh/go-spew"
+"github.com/ugorji/go/codec" -> "github.com/ugorji/go"
+"github.com/go-playground/locales" -> "golang.org/x/text"
+"github.com/ugorji/go" -> "github.com/ugorji/go/codec"
+"golang.org/x/net" -> "golang.org/x/text"
+"github.com/go-playground/validator/v10" -> "github.com/go-playground/locales"
 "github.com/go-playground/validator/v10" -> "github.com/leodido/go-urn"
 "github.com/stretchr/testify" -> "github.com/stretchr/objx"
 "golang.org/x/net" -> "golang.org/x/crypto"
-"github.com/gin-gonic/gin" -> "github.com/stretchr/testify"
-"github.com/gin-contrib/sse" -> "github.com/stretchr/testify"
-"github.com/go-playground/validator/v10" -> "github.com/go-playground/locales"
-"github.com/stretchr/testify" -> "github.com/pmezard/go-difflib"
-"golang.org/x/text" -> "golang.org/x/tools"
-"github.com/go-playground/universal-translator" -> "github.com/go-playground/locales"
-"github.com/json-iterator/go" -> "github.com/google/gofuzz"
-"github.com/json-iterator/go" -> "github.com/davecgh/go-spew"
-"github.com/stretchr/testify" -> "github.com/davecgh/go-spew"
-"github.com/ugorji/go/codec" -> "github.com/ugorji/go"
-"golang.org/x/crypto" -> "golang.org/x/net"
-"golang.org/x/crypto" -> "golang.org/x/sys"
-"github.com/go-playground/validator/v10" -> "golang.org/x/crypto"
-"github.com/json-iterator/go" -> "github.com/stretchr/testify"
-"github.com/go-playground/locales" -> "golang.org/x/text"
-"github.com/leodido/go-urn" -> "github.com/stretchr/testify"
-"golang.org/x/net" -> "golang.org/x/text"
-"github.com/ugorji/go" -> "github.com/ugorji/go/codec"
 "github.com/gin-gonic/gin" -> "github.com/gin-contrib/sse"
-"github.com/gin-gonic/gin" -> "github.com/json-iterator/go"
-"github.com/json-iterator/go" -> "github.com/modern-go/reflect2"
+"github.com/gin-gonic/gin" -> "github.com/go-playground/validator/v10"
+"github.com/gin-gonic/gin" -> "github.com/mattn/go-isatty"
+"github.com/json-iterator/go" -> "github.com/stretchr/testify"
 "github.com/mattn/go-isatty" -> "golang.org/x/sys"
-"github.com/stretchr/testify" -> "gopkg.in/yaml.v2"
+"github.com/gin-gonic/gin" -> "github.com/json-iterator/go"
+"github.com/gin-contrib/sse" -> "github.com/stretchr/testify"
+"github.com/stretchr/testify" -> "github.com/pmezard/go-difflib"
 "gopkg.in/yaml.v2" -> "gopkg.in/check.v1"
-"github.com/gin-gonic/gin" -> "github.com/ugorji/go/codec"
 "github.com/gin-gonic/gin" -> "gopkg.in/yaml.v2"
 "github.com/go-playground/validator/v10" -> "github.com/go-playground/assert/v2"
-"github.com/go-playground/validator/v10" -> "github.com/go-playground/universal-translator"
-"github.com/json-iterator/go" -> "github.com/modern-go/concurrent"
+"github.com/json-iterator/go" -> "github.com/google/gofuzz"
+"github.com/stretchr/testify" -> "github.com/davecgh/go-spew"
+"github.com/stretchr/testify" -> "gopkg.in/yaml.v2"
+"github.com/leodido/go-urn" -> "github.com/stretchr/testify"
 }

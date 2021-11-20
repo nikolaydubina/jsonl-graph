@@ -16,6 +16,10 @@ docs: clean build
 	cat testdata/small_lr.dot | dot -Tsvg > testdata/small_lr.svg
 	cat testdata/small.jsonl | ./jsonl-graph -tb > testdata/small_tb.dot
 	cat testdata/small_tb.dot | dot -Tsvg > testdata/small_tb.svg
+	cat testdata/k8s_pod_owners.jsonl | ./jsonl-graph > testdata/k8s_pod_owners.dot
+	cat testdata/k8s_pod_owners.dot | dot -Tsvg > testdata/k8s_pod_owners.svg
+	cat testdata/k8s_pod_owners_details.jsonl | ./jsonl-graph > testdata/k8s_pod_owners_details.dot
+	cat testdata/k8s_pod_owners_details.dot | dot -Tsvg > testdata/k8s_pod_owners_details.svg
 
 test:
 	go test -race -coverprofile=coverage.out -covermode=atomic ./...

@@ -71,21 +71,15 @@ func main() {
 		orientation = decideOrientation(g)
 	}
 
-	var r renderable
-
-	// default
-	r = dot.NewBasicGraph(g, orientation)
-
-	// try get colors
+	var conf color.ColorConfig
 	if colorSchemeFilePath != "" {
 		if colorFile, err := getFileFromLocalFiles(colorSchemeFilePath); err == nil {
-			var conf color.ColorConfig
 			if err := json.Unmarshal(colorFile, &conf); err != nil {
 				log.Fatalf("bad color config: %s", err)
 			}
-			r = dot.NewColoredGraph(g, orientation, conf)
 		}
 	}
 
+	r := dot.NewColoredGraph(g, orientation, conf)
 	os.Stdout.WriteString(r.Render())
 }

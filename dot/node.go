@@ -56,7 +56,6 @@ func (r BasicNodeLabel) Render() string {
 		return fmt.Sprintf(`"{ %s }"`, r.n.ID())
 	}
 
-	// this will sort by key, since key is first
 	sort.Strings(rows)
 
 	return fmt.Sprintf(`"{ %s | %s }"`, r.n.ID(), strings.Join(rows, " | "))
@@ -76,5 +75,12 @@ func (r Value) Render() string {
 			return fmt.Sprintf("%.2f", v)
 		}
 	}
-	return fmt.Sprintf("%v", r.v)
+	if v, ok := r.v.(fmt.Stringer); ok {
+		return v.String()
+	}
+	if v, ok := r.v.(string); ok {
+		return v
+	}
+	// unusual types
+	return "..."
 }
