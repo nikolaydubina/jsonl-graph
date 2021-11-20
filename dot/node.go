@@ -81,6 +81,9 @@ func (r Value) Render() string {
 	if v, ok := r.v.(string); ok {
 		return v
 	}
+	if v, ok := r.v.(bool); ok {
+		return fmt.Sprintf("%t", v)
+	}
 	// unusual types
 	return "..."
 }

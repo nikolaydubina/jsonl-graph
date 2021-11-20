@@ -71,12 +71,12 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.blockOwnerDeletion</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
 				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.controller</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -257,12 +257,12 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.blockOwnerDeletion</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
 				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.controller</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -327,7 +327,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.readOnly</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -337,7 +337,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">spec.enableServiceLinks</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -552,7 +552,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">status.containerStatuses.0.ready</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -562,7 +562,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">status.containerStatuses.0.started</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -658,12 +658,12 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.blockOwnerDeletion</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
 				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.controller</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -728,7 +728,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.readOnly</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -738,7 +738,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">spec.enableServiceLinks</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -953,7 +953,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">status.containerStatuses.0.ready</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -963,7 +963,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">status.containerStatuses.0.started</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -1059,12 +1059,12 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.blockOwnerDeletion</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
 				<td border="1" ALIGN="LEFT">metadata.ownerReferences.0.controller</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -1129,7 +1129,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">spec.containers.0.volumeMounts.0.readOnly</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -1139,7 +1139,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">spec.enableServiceLinks</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -1354,7 +1354,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">status.containerStatuses.0.ready</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
@@ -1364,7 +1364,7 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 			<tr>
 				<td border="1" ALIGN="LEFT">status.containerStatuses.0.started</td>
-				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">...</td>
+				<td border="1" ALIGN="RIGHT" bgcolor="#ffffffff">true</td>
 			</tr>
 
 			<tr>
