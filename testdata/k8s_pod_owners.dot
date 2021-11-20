@@ -1,29 +1,5 @@
 digraph G {
 rankdir=LR
-"Pod:nginx-6799fc88d8-np6b7"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">Pod:nginx-6799fc88d8-np6b7</td>
-				</tr>
-
-</table>>
-]
-
-"Pod:nginx-6799fc88d8-xjd9w"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">Pod:nginx-6799fc88d8-xjd9w</td>
-				</tr>
-
-</table>>
-]
-
 "ReplicaSet:nginx-6799fc88d8"
 [
 shape=none
@@ -48,7 +24,31 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 </table>>
 ]
 
-"ReplicaSet:nginx-6799fc88d8" -> "Pod:nginx-6799fc88d8-xjd9w"
+"Pod:nginx-6799fc88d8-np6b7"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">Pod:nginx-6799fc88d8-np6b7</td>
+				</tr>
+
+</table>>
+]
+
+"Pod:nginx-6799fc88d8-xjd9w"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">Pod:nginx-6799fc88d8-xjd9w</td>
+				</tr>
+
+</table>>
+]
+
 "ReplicaSet:nginx-6799fc88d8" -> "Pod:nginx-6799fc88d8-j4vv8"
 "ReplicaSet:nginx-6799fc88d8" -> "Pod:nginx-6799fc88d8-np6b7"
+"ReplicaSet:nginx-6799fc88d8" -> "Pod:nginx-6799fc88d8-xjd9w"
 }

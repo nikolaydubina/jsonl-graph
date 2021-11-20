@@ -1,5 +1,101 @@
 digraph G {
 rankdir=LR
+"encoding/json"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">encoding/json</td>
+				</tr>
+
+</table>>
+]
+
+"io/ioutil"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">io/ioutil</td>
+				</tr>
+
+</table>>
+]
+
+"net/http"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">net/http</td>
+				</tr>
+
+</table>>
+]
+
+"sort"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">sort</td>
+				</tr>
+
+</table>>
+]
+
+"errors"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">errors</td>
+				</tr>
+
+</table>>
+]
+
+"github.com/nikolaydubina/jsonl-graph/dot"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/nikolaydubina/jsonl-graph/dot</td>
+				</tr>
+
+</table>>
+]
+
+"embed"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">embed</td>
+				</tr>
+
+</table>>
+]
+
+"strings"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">strings</td>
+				</tr>
+
+</table>>
+]
+
 "text/template"
 [
 shape=none
@@ -48,42 +144,6 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 </table>>
 ]
 
-"bytes"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">bytes</td>
-				</tr>
-
-</table>>
-]
-
-"github.com/nikolaydubina/jsonl-graph/dot"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/nikolaydubina/jsonl-graph/dot</td>
-				</tr>
-
-</table>>
-]
-
-"image/color"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">image/color</td>
-				</tr>
-
-</table>>
-]
-
 "fmt"
 [
 shape=none
@@ -91,18 +151,6 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 				<tr>
 					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">fmt</td>
-				</tr>
-
-</table>>
-]
-
-"embed"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">embed</td>
 				</tr>
 
 </table>>
@@ -120,30 +168,6 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 </table>>
 ]
 
-"strconv"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">strconv</td>
-				</tr>
-
-</table>>
-]
-
-"strings"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">strings</td>
-				</tr>
-
-</table>>
-]
-
 "github.com/nikolaydubina/jsonl-graph/graph"
 [
 shape=none
@@ -151,6 +175,18 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 				<tr>
 					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">github.com/nikolaydubina/jsonl-graph/graph</td>
+				</tr>
+
+</table>>
+]
+
+"bytes"
+[
+shape=none
+label=<<table border="0" cellspacing="0" CELLPADDING="6">
+
+				<tr>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">bytes</td>
 				</tr>
 
 </table>>
@@ -168,61 +204,25 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 </table>>
 ]
 
-"net/http"
+"image/color"
 [
 shape=none
 label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">net/http</td>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">image/color</td>
 				</tr>
 
 </table>>
 ]
 
-"sort"
+"strconv"
 [
 shape=none
 label=<<table border="0" cellspacing="0" CELLPADDING="6">
 
 				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">sort</td>
-				</tr>
-
-</table>>
-]
-
-"encoding/json"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">encoding/json</td>
-				</tr>
-
-</table>>
-]
-
-"errors"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">errors</td>
-				</tr>
-
-</table>>
-]
-
-"io/ioutil"
-[
-shape=none
-label=<<table border="0" cellspacing="0" CELLPADDING="6">
-
-				<tr>
-					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">io/ioutil</td>
+					<td port="port0" border="1" colspan="2" ALIGN="CENTER" bgcolor="#c8c8c8c8">strconv</td>
 				</tr>
 
 </table>>
@@ -240,29 +240,29 @@ label=<<table border="0" cellspacing="0" CELLPADDING="6">
 </table>>
 ]
 
-"github.com/nikolaydubina/jsonl-graph/dot" -> "errors"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "fmt"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "github.com/nikolaydubina/jsonl-graph/graph"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "net/http"
 "github.com/nikolaydubina/jsonl-graph/graph" -> "bytes"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "encoding/json"
 "github.com/nikolaydubina/jsonl-graph/graph" -> "errors"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "io"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "strings"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "text/template"
-"github.com/nikolaydubina/jsonl-graph" -> "io"
-"github.com/nikolaydubina/jsonl-graph" -> "os"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "encoding/json"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "io"
-"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/dot"
-"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/graph"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "embed"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "sort"
-"github.com/nikolaydubina/jsonl-graph" -> "log"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "strconv"
-"github.com/nikolaydubina/jsonl-graph" -> "flag"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "bufio"
 "github.com/nikolaydubina/jsonl-graph/graph" -> "fmt"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "fmt"
+"github.com/nikolaydubina/jsonl-graph" -> "flag"
+"github.com/nikolaydubina/jsonl-graph" -> "io"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "sort"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "text/template"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "bufio"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "embed"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "encoding/json"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "github.com/nikolaydubina/jsonl-graph/graph"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "image/color"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "io/ioutil"
+"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/dot"
+"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/graph"
+"github.com/nikolaydubina/jsonl-graph" -> "log"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "io"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "io"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "strconv"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "strings"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "encoding/json"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "errors"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "net/http"
+"github.com/nikolaydubina/jsonl-graph" -> "os"
 }
