@@ -1,9 +1,33 @@
 digraph G {
 rankdir=LR
-"strings"
+"bytes"
 [
 shape=record
-label="{ strings }"
+label="{ bytes }"
+]
+
+"io/ioutil"
+[
+shape=record
+label="{ io/ioutil }"
+]
+
+"sort"
+[
+shape=record
+label="{ sort }"
+]
+
+"os"
+[
+shape=record
+label="{ os }"
+]
+
+"strconv"
+[
+shape=record
+label="{ strconv }"
 ]
 
 "github.com/nikolaydubina/jsonl-graph"
@@ -18,82 +42,16 @@ shape=record
 label="{ bufio }"
 ]
 
+"errors"
+[
+shape=record
+label="{ errors }"
+]
+
 "image/color"
 [
 shape=record
 label="{ image/color }"
-]
-
-"fmt"
-[
-shape=record
-label="{ fmt }"
-]
-
-"sort"
-[
-shape=record
-label="{ sort }"
-]
-
-"strconv"
-[
-shape=record
-label="{ strconv }"
-]
-
-"log"
-[
-shape=record
-label="{ log }"
-]
-
-"github.com/nikolaydubina/jsonl-graph/graph"
-[
-shape=record
-label="{ github.com/nikolaydubina/jsonl-graph/graph }"
-]
-
-"bytes"
-[
-shape=record
-label="{ bytes }"
-]
-
-"text/template"
-[
-shape=record
-label="{ text/template }"
-]
-
-"os"
-[
-shape=record
-label="{ os }"
-]
-
-"github.com/nikolaydubina/jsonl-graph/dot"
-[
-shape=record
-label="{ github.com/nikolaydubina/jsonl-graph/dot }"
-]
-
-"io/ioutil"
-[
-shape=record
-label="{ io/ioutil }"
-]
-
-"io"
-[
-shape=record
-label="{ io }"
-]
-
-"embed"
-[
-shape=record
-label="{ embed }"
 ]
 
 "net/http"
@@ -108,41 +66,83 @@ shape=record
 label="{ flag }"
 ]
 
+"log"
+[
+shape=record
+label="{ log }"
+]
+
+"github.com/nikolaydubina/jsonl-graph/graph"
+[
+shape=record
+label="{ github.com/nikolaydubina/jsonl-graph/graph }"
+]
+
 "encoding/json"
 [
 shape=record
 label="{ encoding/json }"
 ]
 
-"errors"
+"fmt"
 [
 shape=record
-label="{ errors }"
+label="{ fmt }"
 ]
 
-"github.com/nikolaydubina/jsonl-graph/dot" -> "fmt"
+"github.com/nikolaydubina/jsonl-graph/dot"
+[
+shape=record
+label="{ github.com/nikolaydubina/jsonl-graph/dot }"
+]
+
+"io"
+[
+shape=record
+label="{ io }"
+]
+
+"embed"
+[
+shape=record
+label="{ embed }"
+]
+
+"strings"
+[
+shape=record
+label="{ strings }"
+]
+
+"text/template"
+[
+shape=record
+label="{ text/template }"
+]
+
 "github.com/nikolaydubina/jsonl-graph/dot" -> "sort"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "strings"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "text/template"
+"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/dot"
+"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/graph"
 "github.com/nikolaydubina/jsonl-graph" -> "log"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "io"
+"github.com/nikolaydubina/jsonl-graph" -> "os"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "errors"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "embed"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "fmt"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "encoding/json"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "github.com/nikolaydubina/jsonl-graph/graph"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "io/ioutil"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "strconv"
-"github.com/nikolaydubina/jsonl-graph" -> "flag"
 "github.com/nikolaydubina/jsonl-graph/graph" -> "bufio"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "errors"
-"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/dot"
-"github.com/nikolaydubina/jsonl-graph" -> "os"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "text/template"
-"github.com/nikolaydubina/jsonl-graph" -> "github.com/nikolaydubina/jsonl-graph/graph"
-"github.com/nikolaydubina/jsonl-graph/graph" -> "bytes"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "errors"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "fmt"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "image/color"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "io"
 "github.com/nikolaydubina/jsonl-graph/dot" -> "net/http"
 "github.com/nikolaydubina/jsonl-graph" -> "io"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "bytes"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "fmt"
+"github.com/nikolaydubina/jsonl-graph/graph" -> "io"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "io"
+"github.com/nikolaydubina/jsonl-graph/dot" -> "strings"
+"github.com/nikolaydubina/jsonl-graph" -> "flag"
 "github.com/nikolaydubina/jsonl-graph/graph" -> "encoding/json"
-"github.com/nikolaydubina/jsonl-graph/dot" -> "errors"
 }
