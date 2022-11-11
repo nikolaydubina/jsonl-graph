@@ -39,7 +39,7 @@ func NewBasicGraph(
 
 	edges := make([]Renderable, 0, len(graph.Edges))
 	for _, e := range graph.Edges {
-		edges = append(edges, BasicEdge{from: e.From(), to: e.To()})
+		edges = append(edges, BasicEdge{from: e.From(), to: e.To(), label: e.Label()})
 	}
 
 	return BasicGraph{
@@ -67,10 +67,18 @@ func (r BasicGraph) Render() string {
 }
 
 type BasicEdge struct {
-	from string
-	to   string
+	from  string
+	to    string
+	label string
 }
 
 func (r BasicEdge) Render() string {
-	return fmt.Sprintf(`"%s" -> "%s"`, r.from, r.to)
+	e := fmt.Sprintf(`"%s" -> "%s"`, r.from, r.to)
+
+	// include edge label when declared
+	if r.label != "" {
+		e += fmt.Sprintf(" [label=%s]", r.label)
+	}
+
+	return e
 }
