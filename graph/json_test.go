@@ -70,7 +70,7 @@ func TestEdgeData(t *testing.T) {
 		},
 		{
 			name:     "valid with string id",
-			EdgeData: EdgeData(map[string]interface{}{"from": "asdf", "to": "12a3"}),
+			EdgeData: EdgeData(map[string]interface{}{"from": "asdf", "to": "12a3", "label": "foo"}),
 			valid:    true,
 		},
 		{
@@ -126,7 +126,7 @@ func TestOr(t *testing.T) {
 		},
 		{
 			name: "EdgeData",
-			or:   orNodeDataEdgeData(map[string]interface{}{"from": "123", "to": "456"}),
+			or:   orNodeDataEdgeData(map[string]interface{}{"from": "123", "to": "456", "label": "foo"}),
 			e:    &e,
 		},
 		{
@@ -180,6 +180,7 @@ func TestParser(t *testing.T) {
 		input := `
 		{"id": "123"}
 		{"from": "123", "to": "321"}
+		{"from": "456", "to": "789", "label": "foo"}
 		`
 		g, err := NewGraphFromJSONL(strings.NewReader(input))
 		if err != nil {
@@ -198,6 +199,21 @@ func TestParser(t *testing.T) {
 
 		edge := g.Edges[[2]uint64{from, to}]
 		if edge["from"] != "123" || edge["to"] != "321" {
+			t.Errorf("bad EdgeData %#v", edge)
+		}
+
+		from = g.IDStorage.Get("456")
+		if v, ok := g.Nodes[from]; !ok || v["id"] != "456" {
+			t.Errorf("bad NodeData %#v", g.Nodes)
+		}
+
+		to = g.IDStorage.Get("789")
+		if v, ok := g.Nodes[to]; !ok || v["id"] != "789" {
+			t.Errorf("bad NodeData %#v", g.Nodes)
+		}
+
+		edge = g.Edges[[2]uint64{from, to}]
+		if edge["from"] != "456" || edge["to"] != "789" || edge["label"] != "foo" {
 			t.Errorf("bad EdgeData %#v", edge)
 		}
 	})

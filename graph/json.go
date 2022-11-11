@@ -29,7 +29,7 @@ func (n NodeData) ID() string {
 	return v
 }
 
-// EdgeData can have any fields, only `from` and `to` is reserved.
+// EdgeData can have any fields, only `from`, `to`, `label` is reserved.
 // This is JSON representation of edge.
 type EdgeData map[string]interface{}
 
@@ -47,6 +47,11 @@ func (e EdgeData) From() string {
 
 func (e EdgeData) To() string {
 	v, _ := e["to"].(string)
+	return v
+}
+
+func (e EdgeData) Label() string {
+	v, _ := e["label"].(string)
 	return v
 }
 
