@@ -8,6 +8,7 @@
 [![Tests](https://github.com/nikolaydubina/jsonl-graph/workflows/Tests/badge.svg)](https://github.com/nikolaydubina/jsonl-graph/actions)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/avelino/awesome-go#science-and-data-analysis)
 [![go-recipes](https://raw.githubusercontent.com/nikolaydubina/go-recipes/main/badge.svg?raw=true)](https://github.com/nikolaydubina/go-recipes)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/nikolaydubina/jsonl-graph/badge)](https://securityscorecards.dev/viewer/?uri=github.com/nikolaydubina/jsonl-graph)
 
 ```
 # get https://graphviz.org/download/ 
